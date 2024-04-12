@@ -1,0 +1,4 @@
+RecipeDetailsSelectedControlProtocol.content(params: RecipeDetailsSelectedControlParameters)
+where
+RecipeDetailsSelectedControlParameters {
+@Binding public var selection: SelectedControlPage

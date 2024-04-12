@@ -1,0 +1,4 @@
+RecipeCardLoadingProtocol.content(params: RecipeCardLoadingParameters)
+where
+RecipeCardLoadingParameters {
+public let recipeCardDimensions: CGSize
