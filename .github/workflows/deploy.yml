@@ -2,7 +2,8 @@ name: Build and deploy documentation
 
 on:
   push:
-    branches: [ "version-4" ]
+    branches: 
+      - main
   workflow_dispatch:
 
 permissions:
