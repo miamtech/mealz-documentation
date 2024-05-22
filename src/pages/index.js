@@ -29,6 +29,13 @@ function HomepageHeader() {
             Get Started 🍏
           </Link>
         </div>
+        <div >
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/web/Introduction">
+            Get Started 🌐
+          </Link>
+        </div>
         </div>
       </div>
     </header>

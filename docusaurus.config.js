@@ -63,6 +63,12 @@ const config = {
             position: "left",
             label: "For iOS",
           },
+          {
+            type: "doc",
+            docId: "web/Introduction",
+            position: "left",
+            label: "For Web",
+          },
           { to: "https://en.mealz.ai/", label: "Enterprise", position: "left" },
           {
             type: "dropdown",
@@ -85,6 +91,10 @@ const config = {
                 label: "Android V4",
                 to: "docs/android/Introduction",
               },
+              {
+                label: "Web V8",
+                to: "docs/web/Introduction",
+              },
             ],
           },
         ],
@@ -96,12 +106,16 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "android",
-                to: "android/Introduction",
+                label: "Android",
+                to: "docs/android/Introduction",
               },
               {
-                label: "ios",
-                to: "ios/Introduction",
+                label: "iOS",
+                to: "docs/ios/Introduction",
+              },
+              {
+                label: "Web",
+                to: "docs/web/Introduction",
               },
             ],
           },
