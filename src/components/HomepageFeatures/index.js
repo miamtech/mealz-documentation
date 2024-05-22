@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/plugAndPlay.svg').default,
     description: (
       <>
-        Mealz provide native view that can be plugged in any configuration XML, Jetpack Compose, UIkit or Swiftui.
+        Mealz provide native view that can be plugged in any configuration.
       </>
     ),
   },

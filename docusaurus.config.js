@@ -4,7 +4,7 @@
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Mealz Documentation",
-  tagline: "Mealz for native iOS and Android apps",
+  tagline: "Mealz for native iOS, Android and Web apps",
   favicon: "img/favicon.ico",
   url: "https://miamtech.github.io/",
   baseUrl: "/mealz-documentation/",
