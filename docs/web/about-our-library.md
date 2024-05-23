@@ -14,7 +14,6 @@ With ngMiam, Mealz provides you a bundle of features that you can add to your we
 - A catalog of recipes so your clients have a page on your website where they can search for inspiration
 - Reminders of recipes that you can insert in your basket page so the clients can remember from where the products come from
 
-
 ### The recipe cards
 
 The main Mealz feature is giving you access to a recipe card component that you can insert in between products in any shelf of your website. With those recipes appearing in the shelves among the products that the client came to look for, they may be inspired by the recipe and click on it. They will then see all products needed to make that recipe and discover that they can, in a single click, add to their cart all these products !
@@ -60,12 +59,14 @@ If the user clicks on the main CTA, the title or the image, a drawer will appear
 <br/><br/>
 
 The user can then add the products to their cart, either all at once by clicking on the primary CTA, or one by one:
+
 <div>
   <img src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetailAdded.png" title="Details with products added" alt="Details with products added" style={{maxWidth: '600px'}}/>
 </div>
 <br/>
 
 They can also replace any product they want by another product that would also suit the ingredient needed for the recipe:
+
 <div>
   <img src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/replaceItems.png" title="Replacing a product" alt="Replacing a product" style={{width: '600px'}}/>
   <img src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/replaceItems-lg.png" title="Replacing a product large" alt="Replacing a product large" style={{width: '600px'}}/>
@@ -78,9 +79,9 @@ Once the user has added the recipe to their cart, the component is updated to re
 ![Recipe added](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeCardAdded.png "Recipe added")
 <br/>
 
-### The recipe catalog 
+### The recipe catalog
 
-The other main feature Mealz offers is the [catalog](#the-recipe-catalog):
+The other main feature Mealz offers is the [catalog](./features/recipe-catalog):
 
 ![Catalog](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Catalog")
 
@@ -108,7 +109,7 @@ Finally, if any recipes has been added to the user's cart, a button appears at t
 
 ### The recipe reminders
 
-To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](#recipe-tags) component, to remind the user why a product is in their basket
+To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](./features/recipe-tags) component, to remind the user why a product is in their basket
 
 Imagine your cart page looks like this:
 
@@ -142,9 +143,10 @@ If you don't like the look, the component can also be a small tag that could for
 />
 <br/><br/>
 
-
 ## How the recipes displayed in the cards are chosen
+
 We have developped the concept of our recipe cards by following this goal:
+
 > Display the right recipe, at the right time, to the right person.
 
 To achieve this, we have developped a solution based on Artificial Intelligence which is capable of finding the best recipes to show to one client, based on their shopping habits and on products displayed next to the recipe card.
