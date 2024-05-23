@@ -10,11 +10,11 @@ function Like({
 <p>
 The <code>Like</code> Component shows in several component sush as: 
 <br>
-    RecipeCar, RecipeDetail
+    RecipeCard, RecipeDetail
 <br/>
 </p>"
                     alt="A screenshot of the like button component"
-                    caption="like button"
+                    caption="Like button"
                     imageMaxWidth="250px"
             />
     );

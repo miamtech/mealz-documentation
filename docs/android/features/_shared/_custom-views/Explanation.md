@@ -5,7 +5,7 @@ All Template slote are optional, there are Mealz defaults for each view.
 To understand how to create a custom component, you can read [here](/docs/android/usage/ui-customization).
 :::
 
-We recommend putting all of your custom Template into a custom module, then configure mealz in a configClass
+We recommend putting all of your custom Templates into a custom module, then configure mealz in a configClass
 In our sample implementations, we have one class `MealzTemplateManager`
 
 ```kotlin

@@ -10,7 +10,7 @@ function Counter({
 <p>
 The <code>Counter</code> Component shows in several component sush as: 
 <br/>
-        Products, RecipeDetail, Prefrences
+        Products, RecipeDetail, Preferences
 <br/> <br/>
 
 </p>"

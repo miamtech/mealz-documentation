@@ -10,9 +10,9 @@ function Empty({
 <p>
 The <code>Empty</code> Component shows in several component sush as: 
 <br>
-    Catalog, MyMeal, MyProducts, Prefrences, PrefrenceSearch, ItemSelector, Favorite, SponsorDetail
+    Catalog, MyMeal, MyProducts, Preferences, PreferenceSearch, ItemSelector, Favorite, SponsorDetail
 <br/>
-Note that template would be the same but text action trigger by the button will depend one parent component
+Note that the template may be the same but the existence of the button depends on the parent component.
 </p>"
                     alt="A screenshot of the empty component"
                     caption="Example of custom empty state"

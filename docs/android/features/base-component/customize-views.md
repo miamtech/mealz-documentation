@@ -20,13 +20,13 @@ import * as BaseComponentView from './_component';
 # Customize base component views
 
 Basic components are available through the SDK. 
-The aim is to save time by override a template once and reusing it without further configuration.
+The aim is to save time by overriding a template once and reusing it without further configuration.
 
 <Explanation />
 
 ## Ingredients
 
-There is 7 differents components that you can override once and will be reuse through the SDK  
+There are 7 different components that you can override once and will be reused throughout the SDK  
 
 ## Small components
 
@@ -86,8 +86,8 @@ Like button have two sub templates loading and success
 
 #### LikeButtonLoading
 
-When a user click on like button a api call is launch then we need to block user interaction and we 
-put like button in loading state.
+When a user clicks on the like button an API call is launched. To prevent user interaction we 
+put the like button in loading state.
 
 To override this loading state you have to create class that implement `LikeButtonLoading`
 
@@ -109,8 +109,8 @@ There is no parameter in like button loading Content fonction
 :::
 
 :::note
-Fetching or updating like can be quick in order to avoid flikering we recommande 
-making this view looking like not like view
+Fetching or updating the like status is quick so in order to avoid flickering we recommand
+making this view the same or similar to the isLiked View.
 :::
 
 #### LikeButtonSuccess 
@@ -168,11 +168,11 @@ class MealzTemplateManager {
 ### MyMealButton
 <BaseComponentView.MyMealButton platform="android"/>
 
-MyMealButton have two customizable part an empty state and success state
+MyMealButton has two customizable parts: an empty state and a success state
 
 #### MyMealButtonEmpty
 
-When there is no recipe in mealz basket we are in empty state
+When there is no recipe in Mealz basket we are in empty state
 
 :::tip
 In our default Template empty my meal button is a empty Box in order to hide it
@@ -252,7 +252,7 @@ class MealzTemplateManager {
 ```
 
 :::tip 
-Your not force to override all template availble, here you can override only empty state if you wish to.
+You are not forced to override all available templates. You can override the empty state if you wish to.
 :::
 
 ## Page States
@@ -324,7 +324,7 @@ class MyCustomLoadingView: Loader {
 }
 ```
 
-`LoaderParameters` is an empty object for now, but tomorrow we'll be able to add properties to it, in order to avoid breaks in future versions. 
+`LoaderParameters` is an empty object for now, but tomorrow we'll be able to add properties to it, in order to avoid breaking changes in future versions. 
 
 ```kotlin
 object LoaderParameters

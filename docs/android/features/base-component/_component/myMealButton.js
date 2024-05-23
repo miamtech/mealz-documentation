@@ -8,7 +8,7 @@ function MyMealButton({
                     url={`https://storage.googleapis.com/assets.miam.tech/kmm_documentation/${platform}/page-overviews/my-meal-button.png`}
                     text="
 <p>
-The <code>MyMealButton</code> is use only in main catalog page for now 
+The <code>MyMealButton</code> is currently only used in the main catalog page. 
 <br/>
 <br/> 
 </p>"
