@@ -4,7 +4,7 @@
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Mealz Documentation",
-  tagline: "Mealz for native iOS and Android apps",
+  tagline: "Mealz for native iOS, Android and Web apps",
   favicon: "img/favicon.ico",
   url: "https://miamtech.github.io/",
   baseUrl: "/mealz-documentation/",
@@ -63,6 +63,12 @@ const config = {
             position: "left",
             label: "For iOS",
           },
+          {
+            type: "doc",
+            docId: "web/Introduction",
+            position: "left",
+            label: "For Web",
+          },
           { to: "https://en.mealz.ai/", label: "Enterprise", position: "left" },
           {
             type: "dropdown",
@@ -72,18 +78,27 @@ const config = {
               {
                 label: "iOS V3",
                 to: "docs/ios/previous-versions/3/Introduction",
+                activeBasePath: "docs/ios/previous-versions/3/",
               },
               {
                 label: "iOS V4",
                 to: "docs/ios/Introduction",
+                activeBaseRegex: "docs\/ios\/(?!previous-versions)",
               },
               {
                 label: "Android V3",
                 to: "docs/android/previous-versions/3/Introduction",
+                activeBasePath: "docs/android/previous-versions/3/",
               },
               {
                 label: "Android V4",
                 to: "docs/android/Introduction",
+                activeBaseRegex: "docs\/android\/(?!previous-versions)",
+              },
+              {
+                label: "Web V8",
+                to: "docs/web/Introduction",
+                activeBasePath: "docs/web/",
               },
             ],
           },
@@ -96,12 +111,16 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "android",
-                to: "android/Introduction",
+                label: "Android",
+                to: "docs/android/Introduction",
               },
               {
-                label: "ios",
-                to: "ios/Introduction",
+                label: "iOS",
+                to: "docs/ios/Introduction",
+              },
+              {
+                label: "Web",
+                to: "docs/web/Introduction",
               },
             ],
           },
