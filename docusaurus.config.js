@@ -78,22 +78,27 @@ const config = {
               {
                 label: "iOS V3",
                 to: "docs/ios/previous-versions/3/Introduction",
+                activeBasePath: "docs/ios/previous-versions/3/",
               },
               {
                 label: "iOS V4",
                 to: "docs/ios/Introduction",
+                activeBaseRegex: "docs\/ios\/(?!previous-versions)",
               },
               {
                 label: "Android V3",
                 to: "docs/android/previous-versions/3/Introduction",
+                activeBasePath: "docs/android/previous-versions/3/",
               },
               {
                 label: "Android V4",
                 to: "docs/android/Introduction",
+                activeBaseRegex: "docs\/android\/(?!previous-versions)",
               },
               {
                 label: "Web V8",
                 to: "docs/web/Introduction",
+                activeBasePath: "docs/web/",
               },
             ],
           },
