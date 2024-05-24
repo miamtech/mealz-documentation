@@ -6,7 +6,7 @@ label: "Installation"
 # Installation
 
 We are self-hosting our libray on <a target="\_blank" href='https://github.com/miamtech/releaseMealz'> github</a>.
-To use it follow these steps : 
+To use it you have to folow those step : 
 
 
 ``` gradle
