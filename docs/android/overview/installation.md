@@ -5,52 +5,29 @@ label: "Installation"
 
 # Installation
 
-You can use Miam with Maven. Just add the following tags to your build dependencies
+We are self-hosting our libray on <a target="\_blank" href='https://github.com/miamtech/releaseMealz'> github</a>.
+To use it you have to folow those step : 
 
-## From Maven central
-
-``` xml
-<dependency>
-  <groupId>tech.miam.sdk</groupId>
-  <artifactId>kmm-miam-sdk</artifactId>
-  <version>X.X.X</version>
-  <type>aar</type>
-</dependency>
-```
-
-Import with Gradle Groovy DSL
 
 ``` gradle
-implementation 'tech.miam.sdk:kmm-miam-sdk:X.X.X'
+// In your main gradle file 
+dependencyResolutionManagement {
+    repositories {
+        maven {
+            url = uri("https://github.com/miamtech/releaseMealz/raw/main")
+        }
+      }
+}
 ```
 
-With Gradle Kotlin DSL
+Import with Gradle Kotlin DSL
 
-``` kotlin
-implementation("tech.miam.sdk:kmm-miam-sdk:X.X.X")
+``` gradle
+// Your module gradle file
+dependencies {
+    implementation("ai.mealz.core:mealz-core:version")
+    implementation("ai.mealz.android:mealz-android:version")
+}
 ```
 
-All information and version
-available <a target="\_blank" href='https://search.maven.org/artifact/tech.miam.sdk/kmm-miam-sdk'> here </a>
 
-## Build and import an AAR
-
-If you want to use directly on AAR file, you will need to clone this repository and build the
-archive in production mode.
-
-The archive will be generated as `miam-sdk-release.aar` in `/androidSDK/build/outputs`.
-
-Import it into your project, in the `libs` folder.
-
-Finally, import it to your Gradle configuration:
-
-```kotlin
-implementation(name:'miam-SDK-release', ext:'aar')
-```
-
-:::danger
- Miam SDK is using  <a target="\_blank" href='https://developer.android.com/jetpack/compose?gclsrc=aw.ds&gclid=CjwKCAjwrfCRBhAXEiwAnkmKmWkwGezGLmmfauda5_ACVVNtTVPUw576netuScD2mLnGacjr2cB30RoCC24QAvD_BwE&hl=fr'> Jetpack Compose </a>  under the hood, you must use the same version as Mealz.
- Although not mandatory. Jetpack Compose is the recommended way to inject Mealz components.
-
- Current supported version is `1.3.2`
-:::
