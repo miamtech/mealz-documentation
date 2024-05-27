@@ -1,6 +1,10 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Mealz Documentation",
@@ -22,12 +26,12 @@ const config = {
   },
 
   presets: [
-    [
-      "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
+    ['@docusaurus/preset-classic',
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
+          remarkPlugins: [math],
+          rehypePlugins: [katex, {strict: false}],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
