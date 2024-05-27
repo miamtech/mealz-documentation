@@ -1,0 +1,23 @@
+```kotlin
+// existingUserId is your user id type String is expected
+Mealz.user.updateUserId(userId = existingUserId)
+```
+
+Here is how to inform the SDK whenever the user login state changes. We recommend using Observables
+or EventListeners to that end.
+
+```kotlin 
+import com.miam.core.Mealz
+
+class Miam() {
+  init {
+    // CODE
+
+    OBSERVABLE_ON_USER_OBJECT.collect { user ->
+       Mealz.shared.user.updateUserId(userId = user.id)
+    }
+  }
+
+  // CODE
+}
+```
