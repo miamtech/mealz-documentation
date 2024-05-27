@@ -1,0 +1,23 @@
+```kotlin
+import com.miam.core.Mealz
+
+object MealzManager {
+
+    private var isInitialized = false
+
+    public fun initialize(applicationContext: Context){
+        isInitialized = true
+    }
+}
+```
+
+```kotlin
+// MainActivity.kt
+import com.miam.core.Mealz
+
+class MainActivity: ComponentActivity(), CoroutineScope by CoroutineScope(Dispatchers.Main) {
+
+private fun initMiam() {
+    MiamManager.initialize(this@MainActivity)
+}
+```
