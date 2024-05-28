@@ -1,19 +1,67 @@
----
-sidebar_position: 3
-label: "Supplier Initialisation"
----
+export var platform 
 
-import * as BasketService from '@site/docs/android/advanced/_shared/_miamManager/_basketService/';
-import SupplierId from '@site/docs/android/advanced/_shared/_miamManager/SupplierId.md';
+import AndroidBasicImp from '@site/docs/android/overview/_shared/_MealzBasicImp.mdx'
+import AndroidUserSetUp from '@site/docs/android/overview/_shared/_MealzUserSetUp.mdx'
+import AndroidSupplierId from '@site/docs/android/advanced/_shared/_miamManager/SupplierId.md';
+import AndroidStoreSetup from '@site/docs/android/overview/_shared/_MealzStoreSetupSupplier.mdx';
+import * as AndroidBasketService from '@site/docs/android/advanced/_shared/_miamManager/_basketService/';
 
 
-# Supplier Initialisation
+import IosBasicImp from '@site/docs/ios/overview/_shared/_MealzBasicImp.mdx'
+import IosUserSetUp from '@site/docs/ios/overview/_shared/_MealzUserSetUp.mdx'
+import IosSupplierId from '@site/docs/ios/advanced/_shared/_miamManager/SupplierId.md';
+import IosStoreSetup from '@site/docs/ios/overview/_shared/_MealzStoreSetupSupplier.mdx';
+import * as IosBasketService from '@site/docs/android/advanced/_shared/_miamManager/_basketService/';
+
+
+export function BasicImp(props){
+    if(props.platform == "android") { return <AndroidBasicImp /> } else return  <IosBasicImp />
+}
+
+export function SupplierId(props){
+    if(props.platform == "android") { return <AndroidSupplierId /> } else return  <IosSupplierId />
+}
+
+export function NewBasketService(props){
+    if(props.platform == "android") { return <AndroidBasketService.NewBasketService  /> } else return  <IosBasketService.NewBasketService  />
+}
+
+export function OnBasketUpdate(props){
+    if(props.platform == "android") { return <AndroidBasketService.OnBasketUpdate  /> } else return  <IosBasketService.OnBasketUpdate  />
+}
+
+export function InitializeBasket(props){
+    if(props.platform == "android") { return <AndroidBasketService.InitializeBasket  /> } else return  <IosBasketService.InitializeBasket  />
+}
+
+export function UpdateBasketFromExternalSource(props){
+    if(props.platform == "android") { return <AndroidBasketService.UpdateBasketFromExternalSource  /> } else return  <IosBasketService.UpdateBasketFromExternalSource  />
+}
+
+export function FinalCodeBlock(props){
+    if(props.platform == "android") { return <AndroidBasketService.FinalCodeBlock  /> } else return  <IosBasketService.FinalCodeBlock  />
+}
+
+export function HandlePayment(props){
+    if(props.platform == "android") { return <AndroidBasketService.HandlePayment  /> } else return  <IosBasketService.HandlePayment  />
+}
+
+export function UserSetUp(props){
+    if(props.platform == "android") { return <AndroidUserSetUp /> } else return  <IosUserSetUp />
+}
+
+export function StoreSetup(props){
+    if(props.platform == "android") { return <AndroidStoreSetup /> } else return  <IosStoreSetup />
+}
+
+
+
 
 You are a retailer and you have your owned groceries list that need to be syncronize with mealz groceries list
 
 ## SupplierKey - base64 key to set information
 
-<SupplierId />
+<SupplierId platform ={props.platform}/>
 
 :::tip
 Your keys will be provided by our Development team
@@ -32,24 +80,7 @@ First to init Mealz we need your application context and also your supplier key
 Two key must have been send to you one for **developement** purpose and a **production** one
 :::
 
-```kotlin
-import ai.mealz.core.Mealz
-
-object MealzManager {
-
-    private var isInitialized = false
-
-    public fun initialize(applicationContext: Context){
-        Mealz.Core {
-        sdkRequirement {
-            key = supplierKey
-            context = applicationContext
-            }   
-        }
-        isInitialized = true
-    }
-}
-```
+<BasicImp platform ={props.platform}/>
 
 ## Basket synchronization Setup
 
@@ -74,7 +105,9 @@ We have two protocols `BasketSubscriber` & `BasketListener` to coordinate the tw
 As the name suggestions, the listeners listens for updates from your basket.
 The subscriber allows you to listen.
 
-<BasketService.NewBasketService />
+<NewBasketService platform ={props.platform}/>
+
+
 
 ### onBasketUpdate
 
@@ -84,14 +117,14 @@ From there, we can sink your basket (in this case, the `ExampleState`) with the 
 
 Here's our example:
 
-<BasketService.OnBasketUpdate />
+<OnBasketUpdate  platform ={props.platform}/>
 
 ### initialValue
 
 When Mealz is launching, we need to know the state of the current customer basket.
 Whenever this basket changes, we will refresh the Mealz SDK.
 
-<BasketService.InitializeBasket />
+<InitializeBasket  platform ={props.platform}/>
 
 :::danger
 IMPORTANT: passing an empty list to Mealz SDK on initialization when there are actual products in the basket will lead to unexpected side effects. If this is done, products in the user's basekt will appear as removed by the user in the Mealz basket.
@@ -102,27 +135,24 @@ IMPORTANT: passing an empty list to Mealz SDK on initialization when there are a
 The last step of the `basketService` is to implement `receive`.
 This will update make sure both baskets are connected & up to date.
 
-<BasketService.UpdateBasketFromExternalSource />
+<UpdateBasketFromExternalSource platform ={props.platform}/>
 
 ### Putting it all together
 
-<BasketService.FinalCodeBlock />
+<FinalCodeBlock platform ={props.platform}/>
+
 
 ## Handle Payment
 
 Now, to properly finish the Mealz session, you'll need to call the below function:
-```kotlin
-import com.miam.core.Mealz
 
-Mealz.basket.handlePayment(totalAmount: <#T##Double#>)
-```
+<HandlePayment platform ={props.platform}/>
 
 This will clear the basket & lodge the products as purchased, especially with regard to our AI model.
 The more a recipe is purchased, the more confident we are in the model & products associated.
 Further, we also can use this data for analytics purposes to see which recipes are most frequently purchased.
 
 This should be called directly before the user pays & is ***mandatory***.
-
 
 ## User setup
 
@@ -133,29 +163,8 @@ You can also enable **authless** feature, more informations [**here**](../advanc
 ).
 :::
 
-```kotlin
-// existingUserId is your user id type String is expected
-Mealz.user.updateUserId(userId = existingUserId)
-```
+<UserSetUp platform ={props.platform}/>
 
-Here is how to inform the SDK whenever the user login state changes. We recommend using Observables
-or EventListeners to that end.
-
-```kotlin 
-import com.miam.core.Mealz
-
-class Miam() {
-  init {
-    // CODE
-
-    OBSERVABLE_ON_USER_OBJECT.collect { user ->
-       Mealz.shared.user.updateUserId(userId = user.id)
-    }
-  }
-
-  // CODE
-}
-```
 :::info
 To get full list of user feature check [**User configurations**](../advanced/user-configuration).
 :::
@@ -165,12 +174,7 @@ To get full list of user feature check [**User configurations**](../advanced/use
 For Mealz to work properly, your user must be connected to a specific store so we can accurately provide recipes with available ingredients.
 To add the store that the user is currently at, you can use this code:
 
-```kotlin
-// From anywhere
-import com.miam.core.Mealz
-
-// STORE_ID_IN_HOST_APP is your store id type String is expected
-Mealz.user.setStoreIdWithCallBack(storeId = <string>STORE_ID_IN_HOST_APP) { /** action to execute one mealz store has been fetch and set can be a rediretion */}
-```
+<StoreSetup platform ={props.platform}/>
 
 Congratulation **Mealz** is good to go 🥳
+
