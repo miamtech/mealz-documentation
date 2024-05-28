@@ -15,6 +15,6 @@ class YourNewBasketService(): BasketPublisher, BasketSubscriber, CoroutineScope 
 }
 ```
 :::danger
-IMPORTANT: For all upcoming code examples, we will use `MyProduct` to replicate YOUR product.
+IMPORTANT: For all upcoming code examples, we will use `MyProduct` to replicate **YOUR** product.
 In your implementation, use your actual Product class.
 :::
