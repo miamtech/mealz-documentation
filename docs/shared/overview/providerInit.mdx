@@ -32,7 +32,7 @@ export function StoreSetup(props){
 }
 
 
-You are providing content you use Mealz as a link to retailers
+You provide recipes and use Mealz to push it to a retailer. For example, a food delivery service that works with multiple grocery stores. 
 
 ## ProviderKey - base64 key to set information
 
@@ -44,14 +44,13 @@ Your keys will be provided by our Development team
 
 ## Basic implementation
 
-There is several options to configure that handle authless here we are considering a basic implemtation
-were Mealz initialization process will only start after the user is **logged in** and has **selected a valid
+There are several options to configure to handle authless users. The below is a basic implementation
+where the Mealz initialization process will only start after the user is **logged in** and has **selected a valid store**.
 
-
-First to init Mealz we need your application context and also your provider key
+First, to init Mealz we need your application context and your provider key
 
 :::note
-Two key must have been send to you one for **developement** purpose and a **production** one
+Two keys will have been sent to you: one for **development** and one for **production**.
 :::
 
 <BasicImp platform ={props.platform}/>
@@ -61,14 +60,14 @@ Two key must have been send to you one for **developement** purpose and a **prod
 Here is how to pass the user ID to the SDK, directly within the host app:
 
 :::info
-You can also enable **authless** feature, more informations [**here**](../advanced/user-configuration/##AuthLess
+You can also enable our **authless** feature, more information [**here**](../advanced/user-configuration/##AuthLess
 ).
 :::
 
 <UserSetting platform ={props.platform}/>
 
 :::info
-To get full list of user feature check [**User configurations**](../advanced/user-configuration).
+To get full list of user features check [**User configurations**](../advanced/user-configuration).
 :::
 
 ## Store setup
