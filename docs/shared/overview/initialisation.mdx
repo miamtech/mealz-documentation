@@ -1,15 +1,23 @@
----
-sidebar_position: 2
-label: "Initialisation"
----
+export var platform 
+
+
+import AndroidMealzSingletonSample from '../../android/overview/_shared/_MealzSingletonSample.mdx'
+import IOSMealzSingletonSample from '../../ios/overview/_shared/_MealzSingletonSample.mdx'
+
+export function Package(props){
+    if(props.platform == "android") { return "an Android Module" } else return "a Swift Package"
+}
+
+export function MealzSingletonSample(props) {
+  if(props.platform == "android") { return <AndroidMealzSingletonSample></AndroidMealzSingletonSample>  } else return <IOSMealzSingletonSample></IOSMealzSingletonSample>
+}
 
 # Initialisation
 
+## Create module
 
-## Create Package
-
-First & foremost, we recommend creating a new Android Module to house all your Mealz SDK related code.
-We understand the issues associated with sharing your entire codebase with us, so creating a shareable package should quell those fears.
+First & foremost, we recommend creating <Package platform={props.platform}></Package> to house all your Mealz SDK related code.
+We understand the issues associated with sharing your entire codebase with us, so creating a shareable module should quell those fears.
 The reason we'd like to have it shareable is so that we can discover & solve bugs as quickly as possible.
 Instead of "playing telephone" about underlying bugs, having access to your implementation will save you time (& money).
 
@@ -29,28 +37,11 @@ Here
 is a basic implementation
 :::
 
-```kotlin
-import com.miam.core.Mealz
+<MealzSingletonSample platform={props.platform}></MealzSingletonSample>
 
-class MiamManager(val appContext: Context) {
-   init {
-     // Will contain calls to Miam SDK core class for modules (User, Basket, Store...)
-  }
-}
-```
 
-```kotlin
-// MainActivity.kt
-import com.miam.core.Mealz
 
-class MainActivity: ComponentActivity(), CoroutineScope by CoroutineScope(Dispatchers.Main) {
-
-private fun initMiam() {
-    MiamManager(this@MainActivity)
-}
-```
-
-## Minimum requirement
+## Initialisation types
 
 Regarding your type of app you can be belong to one of the two type of initialisation :
   - **Provider** -> You provide recipe and use mealz to push it to a retailer 
