@@ -7,7 +7,7 @@ First & foremost, you would create a SwiftUI struct that implements the Miam `Ba
 
 ```swift
 import SwiftUI
-import MiamIOSFramework
+import MealziOSSDK
 
 @available(iOS 14, *)
 public struct DemoBackgroundView: BackgroundProtocol {

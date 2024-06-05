@@ -39,8 +39,8 @@ To implement your own version, you'll just need to extend the protocol & conform
 
 ```swift
 import SwiftUI
-import MiamIOSFramework
-import miamCore // we need this as the Recipe object is defined in miamCore
+import MealziOSSDK
+import mealzcore // we need this as the Recipe object is defined in mealzcore
 
 @available(iOS 14, *)
 public struct DemoCatalogRecipeCardView: CatalogRecipeCardProtocol {
@@ -105,18 +105,48 @@ public struct DemoCatalogRecipeCardView: CatalogRecipeCardProtocol {
 
 ## Add it to our CatalogPackageRow on the CatalogView
 
-Next, you would pass that component into the `viewOptions` of the `CatalogPackageRowParameters` for the `CatalogView` page.
-The `CatalogPackageRowParameters` is separate than the `CatalogParameters` because we separate out the functionality of the overall page & showing the packages.
-`CatalogView` shows packages while `CatalogResults` shows recipes list, so you'd need to implement a similar solution there in the `CatalogRecipesListParameters`.
+Next, you would pass that component into the `recipeCard` of the `CatalogPackageRowViewOptions` for the `CatalogFeature`.
+The `CatalogPackageRowViewOptions` is separate than the `CatalogRecipesListViewOptions` because we separate out the functionality of the overall page & showing the packages.
+`CatalogView` shows packages while `CatalogResults` shows recipes list, so you'd need to implement a similar solution there in the `CatalogRecipesListViewOptions`.
 To pass in your new view, you must pass it inside the `TypeSafeCatalogRecipeCard` object first, like we did previously with background.
 
 
 ```swift
- CatalogPackageRowParameters(
-    actions: /* */,
-    viewOptions: CatalogPackageRowViewOptions(
+struct MealzViewConfig {
+    // other views
+    static let catalogPackageView = CatalogPackageRowViewOptions(
         recipeCard: TypeSafeCatalogRecipeCard(DemoCatalogRecipeCardView())
     )
+}
+```
+
+Then we make sure the catalogPackageView options are passed into our CatalogFeatureConstructor:
+
+```swift
+struct MealzViewConfig {
+    // other views
+        static let catalogConfig = CatalogFeatureConstructor(
+        useMealPlanner: true // only if you want Meal Planner feature
+//        usesPreferences: true,
+//        baseViews: baseViews,
+//        catalogViewOptions: catalogView,
+//        recipesListViewOptions: recipesListView,
+        packageRowViewOptions: catalogPackageView, // <--- this is what we add
+//        catalogSearchViewOptions: catalogSearchView, 
+//        filtersViewOptions: filtersViewOptions,
+//        preferencesViewOptions: preferencesViewOptions,
+//        preferencesSearchViewOptions: preferencesSearchViewOptions,
+//        catalogViewGridConfig: catalogViewGridConfig,
+//        catalogResultsGridConfig: catalogResultsGridConfig
+    )
+}
+```
+
+& be sure that your CatalogFeature uses this custom CatalogFeatureConstructor that we just created:
+
+```swift
+feature = MealzCatalogFeatureUIKit(
+    catalogFeatureConstructor: MealzViewConfig.catalogConfig, // <--- this is what we add
 )
 ```
 
@@ -132,3 +162,7 @@ secondCaption="New CatalogRecipeCard on CatalogResults"
 secondImageMaxWidth="250px"
 />
 <br /> <br />
+
+
+To see the full Catalog options, you can read here:
+[Catalog Feature Customization](/docs/ios/features/catalog/customize-views.md).
