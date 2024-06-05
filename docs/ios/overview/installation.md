@@ -9,38 +9,25 @@ You can use Mealz with Swift Package Manager & Cocoapods. Just add the following
 
 ## Cocoapods
 
-To integrate MiamIOSFramework into your Xcode project using CocoaPods, specify it in your Podfile:
+To integrate our packages into your Xcode project using CocoaPods, specify it in your Podfile:
 
 ```
-pod 'MiamIOSFramework'
+pod 'MealzCoreRelease'
+pod 'MealziOSSDKRelease'
+pod 'MealzUIiOSSDKRelease'
+pod 'MealzNaviOSSDKRelease'
 ```
 
 ## Swift package manager installation
 
-To add MiamIOSFramework as a dependency directly from Xcode.
+To add Mealz as a dependency directly from Xcode.
 
 ![Add Swift Package step 1](./img/addSwiftPackage.png)
 ![Add Swift Package step 2](./img/addMiamSwiftPackage.png)
 
-## Manual Installation
+Here are the links:
 
-
-You will need to clone this repository and build the archive in production mode, you need for it to install AndroidStudio and get gradle dependencies
-then run :
-
-```
-run ./gradlew assembleXCFramework
-```
-
-Then go in your project click on your app name with two fingers, add select add file to
-![Add Framwork step 1](./img/addFrameworkStep1.png)
-
-Navigate to miam kmm repo and select `MiamIOSFramework.xcodeproj`
-
-![Add Framwork step 2](./img/addFrameworkStep2.png)
-
-You can now select your project and select Build Phases tab open "Link Binaries With Libraries"
-expander. then click on + button and select your framwork
-
-![Add Framwork step 3](./img/addFrameworkStep3.png)
-
+* MealzCoreRelease: https://github.com/miamtech/MealzCoreRelease
+* MealziOSSDKRelease: https://github.com/miamtech/MealziOSSDKRelease
+* MealzUIiOSSDKRelease: https://github.com/miamtech/MealzUIiOSSDKRelease
+* MealzNaviOSSDKRelease: https://github.com/miamtech/MealzNaviOSSDKRelease
