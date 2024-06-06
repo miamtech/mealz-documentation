@@ -9,3 +9,6 @@ static let preferencesSearchViewOptions = PreferencesSearchViewOptions(
     tagButton: TypeSafeBaseButton(/* your new view*/)
 )
 ```
+Protocols:
+- [SearchProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/searchprotocol)
+- [BaseButtonProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basebuttonprotocol)

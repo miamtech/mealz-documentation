@@ -9,3 +9,6 @@ static let myMealsViewOptions = MyMealsViewOptions(
     recipeCardLoading: TypeSafeRecipeCardLoading(/* your new view*/)
 )
 ```
+Protocols:
+- [MyMealRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/mymealrecipecardprotocol)
+- [RecipeCardLoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipecardloadingprotocol)

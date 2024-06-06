@@ -5,8 +5,8 @@
 #### Base Views - `BasePageViewParameters`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealzUIiOSSDK
+import MealziOSSDK
 
 static let baseViews = BasePageViewParameters(
     loading: TypeSafeLoading(/* your new view*/),
@@ -14,3 +14,9 @@ static let baseViews = BasePageViewParameters(
     background: TypeSafeBackground(/* your new view*/)
 )
 ```
+
+Protocols:
+- [LoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/loadingprotocol)
+- [EmptyProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/emptyprotocol)
+- [BackgroundProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/backgroundprotocol)
+
