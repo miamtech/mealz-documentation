@@ -8,8 +8,6 @@ import LikeButton from '@site/docs/shared/component-overviews/LikeButton';
 import Prerequisites from '@site/docs/ios/features/_shared/Prerequisites.md';
 import LinkToCustomization from '@site/docs/ios/features/_shared/LinkToCustomization.md';
 import TimeIcon from '@site/src/components/TimeIcon';
-import CreateFavoritesPage from './_walkthrough/_steps/CreateFavoritesPage.md'
-import AddLikeButton from './_walkthrough/_steps/AddLikeButton.md'
 
 # Favorites Walkthrough
 
@@ -38,14 +36,6 @@ Mealz.shared.user.setEnableLike(isEnable: true)
 
 ### Like Button
 <LikeButton platform="ios"/>
-
-## Steps
-
-### 1. Create Standalone page
-<CreateFavoritesPage />
-
-### 2. Add LikeButton to your components
-<AddLikeButton />
 
 ## Customization
 <LinkToCustomization />
