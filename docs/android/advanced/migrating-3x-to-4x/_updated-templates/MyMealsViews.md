@@ -15,13 +15,13 @@ oldCode={`var myMealRecipeExpendableAction: (@Composable() (isExpended: Boolean,
         <summary>Loading</summary>
         <CodeUpdateComparison 
 oldCode={`var myMealLoaderTemplate: (@Composable() () -> Unit)?`}
-            newCode=<LoadingProtocol />/>
+            newCode={<LoadingProtocol />}/>
     </details>
 <details>
         <summary>Empty</summary>
         <CodeUpdateComparison 
 oldCode={`var myMealEmptyTemplate: (@Composable() (onButtonClickedWhenEmpty: () -> Unit) -> Unit)?`}
-            newCode=<EmptyProtocol />/>
+            newCode={<EmptyProtocol />}/>
     </details>
   </div>
 </details>

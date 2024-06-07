@@ -16,46 +16,46 @@ oldCode={`recipeDetailsTitleBarTemplate: ((Bool, String) -> AnyView)?`}
         <CodeUpdateComparison 
 oldCode={`recipeDetailsHeaderTemplate: ((String?, String, Int, String, Binding<Bool>,
         Bool, String) -> AnyView)?`}
-            newCode=<RecipeDetailsProtocols.RecipeDetailsHeaderProtocol/>/>
+            newCode={<RecipeDetailsProtocols.RecipeDetailsHeaderProtocol/>}/>
     </details>
     <details>
         <summary>Ingredients</summary>
         <CodeUpdateComparison 
 oldCode={`recipeDetailsIngredientsViewTemplate: (([Ingredient], Int, Int, Bool,
         @escaping (Int) -> Void) -> AnyView )?`}
-            newCode=<RecipeDetailsProtocols.RecipeDetailsIngredientsProtocol/>/>
+            newCode={<RecipeDetailsProtocols.RecipeDetailsIngredientsProtocol/>}/>
     </details>
     <details>
         <summary>Steps</summary>
         <CodeUpdateComparison 
 oldCode={`recipeDetailStepsViewTemplate: (([RecipeStep]) -> AnyView )?`}
-            newCode=<RecipeDetailsProtocols.RecipeDetailsStepsProtocol/>/>
+            newCode={<RecipeDetailsProtocols.RecipeDetailsStepsProtocol/>}/>
     </details>
 <details>
         <summary>Footer</summary>
         <CodeUpdateComparison 
 oldCode={`recipeDetailFooterTemplate: ((_: Recipe, _: Int, _: Bool, _: @escaping () -> Void,
         _: @escaping () -> Void) -> AnyView )?`}
-            newCode=<RecipeDetailsProtocols.RecipeDetailsFooterProtocol/>/>
+            newCode={<RecipeDetailsProtocols.RecipeDetailsFooterProtocol/>}/>
     </details>
     <p>Products have moved to The Recipe Details</p>
 <details>
         <summary>Added Product</summary>
         <CodeUpdateComparison 
 oldCode="Added in 4.0"
-            newCode=<RecipeDetailsProtocols.RecipeDetailsAddedProductProtocol/>/>
+            newCode={<RecipeDetailsProtocols.RecipeDetailsAddedProductProtocol/>}/>
     </details>
 <details>
         <summary>Unadded Product</summary>
         <CodeUpdateComparison 
 oldCode="Added in 4.0"
-            newCode=<RecipeDetailsProtocols.RecipeDetailsUnaddedProductProtocol/>/>
+            newCode={<RecipeDetailsProtocols.RecipeDetailsUnaddedProductProtocol/>}/>
     </details>
 <details>
         <summary>Ignored Product</summary>
         <CodeUpdateComparison 
 oldCode="Added in 4.0"
-            newCode=<RecipeDetailsProtocols.RecipeDetailsIgnoredProductProtocol/>/>
+            newCode={<RecipeDetailsProtocols.RecipeDetailsIgnoredProductProtocol/>}/>
     </details>
   </div>
 </details>

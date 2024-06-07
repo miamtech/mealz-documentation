@@ -1,13 +1,19 @@
+```koltin 
 interface ProductIgnore {
-@Composable
-fun Content(params: ProductIgnoreParameters)
+    @Composable
+    fun Content(params: ProductIgnoreParameters){
+
+    }
 }
+```
 where
+```koltin 
 data class ProductIgnoreParameters(
-val ingredientName: String,
-val ingredientQuantity: String,
-val ingredientUnit: String,
-val guestsCount: `MutableStateFlow<Int>`,
-val defaultRecipeGuest: Int,
-val chooseProduct: () -> Unit
+    val ingredientName: String,
+    val ingredientQuantity: String,
+    val ingredientUnit: String,
+    val guestsCount: `MutableStateFlow<Int>`,
+    val defaultRecipeGuest: Int,
+    val chooseProduct: () -> Unit
 )
+```

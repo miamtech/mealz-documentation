@@ -15,13 +15,13 @@ oldCode={`myMealsActionColumnTemplate: ((MyMealsActionColumnTemplateParameters) 
         <summary>Loading</summary>
         <CodeUpdateComparison 
 oldCode={`myMealsLoadingViewTemplate: (() -> AnyView)?`}
-            newCode=<LoadingProtocol />/>
+            newCode={<LoadingProtocol />}/>
     </details>
 <details>
         <summary>Empty</summary>
         <CodeUpdateComparison 
 oldCode={`myMealsEmptyViewTemplate: ((@escaping () -> Void) -> AnyView)?`}
-            newCode=<EmptyProtocol />/>
+            newCode={<EmptyProtocol />}/>
     </details>
   </div>
 </details>
