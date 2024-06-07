@@ -1,0 +1,96 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### steps
+
+To create your own recipe detail Steps template you have to create class that implement `RecipeDetailSteps`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailIngredients.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.steps.RecipeDetailSteps
+import ai.mealz.sdk.components.recipeDetail.success.steps.RecipeDetailStepsParamters
+
+
+class MyCustomRecipeDetailSteps:  RecipeDetailSteps {
+
+    @Composable
+    override fun Content(params: RecipeDetailStepsParamters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.steps.RecipeDetailSteps
+import ai.mealz.sdk.components.recipeDetail.success.steps.RecipeDetailStepsParamters
+
+
+class MyCustomRecipeDetailSteps:  RecipeDetailSteps {
+
+    @Composable
+    override fun Content(params: RecipeDetailStepsParamters) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        ) {
+            Text(
+                text = Localisation.recipe.steps.localised,
+                style = ai.mealz.sdk.theme.Typography.subtitleBold,
+                color = ai.mealz.sdk.theme.Colors.black
+            )
+            params.steps.forEachIndexed { index, recipeStep ->
+                recipeStep.attributes?.stepDescription?.let { description ->
+                    Step(
+                        index,
+                        description
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.padding(vertical = 50.dp))
+        }
+    }
+     @Composable
+    fun Step(stepNumber: Int, description: String) {
+        Surface(Modifier.clip(RoundedCornerShape(16.dp))) {
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp)
+            ) {
+                CircleChips((stepNumber + 1).toString())
+                Text(
+                    text = description,
+                    fontSize = 16.sp,
+                    modifier = Modifier
+                        .weight(1F)
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
+
+                )
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+
+with 
+
+```kotlin
+data class RecipeDetailStepsParamters(
+    val steps: List<RecipeStep>
+)
+```
