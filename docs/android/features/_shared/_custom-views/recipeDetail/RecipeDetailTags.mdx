@@ -1,0 +1,142 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### tags 
+
+To create your own recipe detail tags template you have to create class that implement `RecipeDetailSuccessTag
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailTags.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailSuccessTag
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailSuccessTagParameters
+
+
+class MyCustomRecipeDetailTags: RecipeDetailSuccessTag {
+
+    @Composable
+    override fun Content(params: RecipeDetailSuccessTagParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailSuccessTag
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailSuccessTagParameters
+
+
+class MyCustomRecipeDetailTags: RecipeDetailSuccessTag {
+
+    @Composable
+    override fun Content(params: RecipeDetailSuccessTagParameters) {
+        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            Row(Modifier.fillMaxWidth()) {
+                Text(
+                    text = params.title,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    textAlign = TextAlign.Left,
+                    style = ai.mealz.sdk.theme.Typography.subtitleBold
+                )
+            }
+            RecipeDifficultyAndTiming(
+                params.difficulty,
+                params.preparationTime,
+                params.cookingTime,
+            )
+        }
+    }
+
+      @Composable
+    fun RecipeDifficultyAndTiming(
+        difficulty: RecipeDifficulty,
+        preparationTime: Duration?,
+        cookingTime: Duration?,
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            Time(ai.mealz.sdk.ressource.Image.miamPreparation, preparationTime)
+            Time(ai.mealz.sdk.ressource.Image.miamCook, cookingTime)
+            when (difficulty) {
+                RecipeDifficulty.Easy -> RecipeDifficulty(ai.mealz.sdk.ressource.Image.miamDifficulty, Localisation.recipe.lowDifficulty.localised)
+                RecipeDifficulty.Medium -> RecipeDifficulty(ai.mealz.sdk.ressource.Image.miamDifficulty, Localisation.recipe.mediumDifficulty.localised)
+                RecipeDifficulty.Hard -> RecipeDifficulty(ai.mealz.sdk.ressource.Image.miamDifficulty, Localisation.recipe.highDifficulty.localised)
+                else -> {
+                    RecipeDifficulty(ai.mealz.sdk.ressource.Image.difficulty, Localisation.recipe.lowDifficulty.localised)
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun RecipeDifficulty(imageRef: Int, difficultyLabel: String) {
+        Row(
+            modifier = Modifier
+                .background(shape = RoundedCornerShape(100.dp), color = ai.mealz.sdk.theme.Colors.backgroundGrey)
+                .padding(vertical = 8.dp, horizontal = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Image(
+                painter = painterResource(imageRef),
+                contentDescription = "Recipe Difficulty",
+                modifier = Modifier.height(20.dp)
+            )
+            Text(
+                text = difficultyLabel,
+                style = TextStyle(ai.mealz.sdk.theme.Colors.boldText, fontSize = 16.sp)
+            )
+        }
+    }
+
+    @Composable
+    fun Time(image: Int, time: Duration?) {
+        if (time?.inWholeSeconds != 0.toLong()) {
+            Row(
+                modifier = Modifier
+                    .background(shape = RoundedCornerShape(100.dp), color = ai.mealz.sdk.theme.Colors.backgroundGrey)
+                    .padding(vertical = 8.dp, horizontal = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Image(painter = painterResource(image), contentDescription = "$image", modifier = Modifier.height(20.dp))
+                Text(text = "$time", style = TextStyle(ai.mealz.sdk.theme.Colors.boldText, fontSize = 16.sp))
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class RecipeDetailSuccessTagParameters(
+    val title: String, // name of the recipe
+    val totalTime: String, // preparationTime + cookingTime + restingTime
+    val preparationTime: Duration?, 
+    val cookingTime: Duration?, 
+    val restingTime: Duration?,
+    val difficulty: RecipeDifficulty
+)
+
+public enum class RecipeDifficulty(public val value: Int) {
+    Easy(1),
+    Medium(2),
+    Hard(3)
+}
+```
