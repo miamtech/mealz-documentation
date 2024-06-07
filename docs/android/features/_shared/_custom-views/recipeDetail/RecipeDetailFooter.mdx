@@ -1,0 +1,152 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### footer
+
+To create your own recipe detail footer template you have to create class that implement `RecipeDetailSuccessFooter`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailSuccessFooter.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
+
+class MyCustomRecipeDetailSuccessFooter: RecipeDetailSuccessFooter {
+
+    @Composable
+    override fun Content(params: RecipeDetailSuccessFooterParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooter
+import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFooterParameters
+
+    @Composable
+    override fun Content(params: RecipeDetailSuccessFooterParameters) {
+        val priceOfProductsInBasket = params.priceOfProductsInBasket.collectAsState()
+        val priceOfRemainingProducts = params.priceOfRemainingProducts.collectAsState()
+
+        val isButtonLock = params.isButtonLock.collectAsState()
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp, horizontal = 16.dp)
+                .height(200.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Box(Modifier.weight(1f)) {
+                when (params.priceStatus) {
+                    ComponentUiState.EMPTY, ComponentUiState.IDLE -> {
+                        Box {} // show nothing until price is loaded
+                    }
+                    ComponentUiState.SUCCESS, ComponentUiState.LOADING -> Column {
+                        if (params.priceStatus == ComponentUiState.LOADING) {
+                            Box(Modifier.size(16.dp)) {
+                                CircularProgressIndicator(color = ai.mealz.sdk.theme.Colors.primary)
+                            }
+                        }
+                        if (params.priceStatus != ComponentUiState.LOADING && priceOfProductsInBasket.value > 0) {
+                            Text(
+                                text = priceOfProductsInBasket.value.formatPrice(),
+                                style = TextStyle(fontSize = 16.sp, color = ai.mealz.sdk.theme.Colors.primary, fontWeight = FontWeight.Black)
+                            )
+                            Text(
+                                text = Localisation.recipeDetails.inMyBasket.localised,
+                                style = TextStyle(fontSize = 10.sp, color = ai.mealz.sdk.theme.Colors.grey)
+                            )
+                        }
+                    }
+                    else -> {}
+                }
+            }
+            if (isButtonLock.value) {
+                LoadingButton()
+            } else {
+                when (params.ingredientsStatus.type) {
+                    IngredientStatusTypes.NO_MORE_TO_ADD -> ContinueButton(text = Localisation.recipeDetails.continueShopping.localised) { params.onConfirm() }
+                    IngredientStatusTypes.REMAINING_INGREDIENTS_TO_BE_ADDED, IngredientStatusTypes.INITIAL_STATE -> {
+                        AddButton(text =
+                        "${Localisation.ingredient.addProduct(params.ingredientsStatus.count).localised} (${priceOfRemainingProducts.value.formatPrice()})"
+                        ) { params.onConfirm() }
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun LoadingButton() {
+        Surface(shape = RoundedCornerShape(10.dp), color = ai.mealz.sdk.theme.Colors.primary) {
+            Row(
+                Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                CircularProgressIndicator(Modifier.size(20.dp), ai.mealz.sdk.theme.Colors.white)
+            }
+        }
+    }
+
+    @OptIn(ExperimentalMaterialApi::class)
+    @Composable
+    fun AddButton(text: String, action: () -> Unit = {}) {
+        Surface(
+            shape = RoundedCornerShape(10.dp),
+            color = ai.mealz.sdk.theme.Colors.primary,
+            onClick = { action() }) {
+            Row(
+                Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Image(painter = painterResource(cart), contentDescription = "$cart")
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = text, style = TextStyle(fontSize = 16.sp, color = ai.mealz.sdk.theme.Colors.white, fontWeight = FontWeight.Black))
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class RecipeDetailSuccessFooterParameters(
+    val price: StateFlow<Double>, // Deprecated You now have access to the price of the items in basket & remaining items not in basket. What was now price is now `priceProductsInBasketPerGuest
+    val priceOfProductsInBasket: StateFlow<Double>, // price of products in basket 
+    val priceOfRemainingProducts: StateFlow<Double>, // price of products that can be adde to basket (not taking in count ignored or unavailable product)
+    val priceProductsInBasketPerGuest: StateFlow<Double>, // priceOfProductsInBasket
+    val priceStatus: ComponentUiState, 
+    val ingredientsStatus: IngredientStatus, // state for CTA 
+    val isButtonLock: StateFlow<Boolean>, //  true if main CTA should be disable
+    val onConfirm: () -> Unit // to call on main CTA click
+)
+
+public enum class ComponentUiState {
+    SUCCESS, ERROR, LOADING, EMPTY, IDLE, LOCKED;
+}
+
+public data class IngredientStatus(
+    public val type: IngredientStatusTypes = IngredientStatusTypes.INITIAL_STATE,
+    public val count: Int = 0
+)
+
+public enum class IngredientStatusTypes {
+    INITIAL_STATE,
+    NO_MORE_TO_ADD,
+    REMAINING_INGREDIENTS_TO_BE_ADDED;
+}
+```
