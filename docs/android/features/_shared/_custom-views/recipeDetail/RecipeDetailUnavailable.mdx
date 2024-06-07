@@ -1,0 +1,213 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### unavailable
+
+Unavailable has two sub-templates : 
+- **header** : The line before the list of products
+- **product** : product it self
+
+```kotlin
+unavailable {
+    header  {
+        view = MyCustomRecipeDetailUnavailableHeader()
+    }
+    product {
+        view = MyCustomRecipeDetailUnavailableProduct()
+    }
+}
+```
+
+#### header
+
+To create your own recipe detail oftend deleted product template you have to create class that implement `UnavailableProductsHeader`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailUnavailableProductsHeader.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.unavailable.header.UnavailableProductsHeader
+import ai.mealz.sdk.components.recipeDetail.success.unavailable.header.UnavailableProductsHeaderParameters
+
+
+class MyCustomRecipeDetailUnavailableProductsHeader: UnavailableProductsHeader {
+
+    @Composable
+    override fun Content(params: UnavailableProductsHeaderParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="example">
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.unavailable.header.UnavailableProductsHeader
+import ai.mealz.sdk.components.recipeDetail.success.unavailable.header.UnavailableProductsHeaderParameters
+
+
+class MyCustomRecipeDetailUnavailableProductsHeader: UnavailableProductsHeader {
+
+    @Composable
+    override fun Content(params: UnavailableProductsHeaderParameters) {
+         val rotationState by animateFloatAsState(
+            targetValue = if (params.isOpen) 90f else 0f, label = "Icon rotation state "
+        )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp)
+        ) {
+            Text(
+                text = params.title,
+                modifier = Modifier.weight(6f),
+                maxLines = 1,
+                fontWeight = if (params.isOpen) FontWeight.Bold else FontWeight.Normal
+            )
+            IconButton(modifier = Modifier
+                .weight(1f)
+                .rotate(rotationState), onClick = { params.toggle() }) {
+                Image(
+                    painter = painterResource(ai.mealz.sdk.ressource.Image.toggleCaret),
+                    contentDescription = "open icon",
+                    modifier = Modifier
+                )
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class UnavailableProductsHeaderParameters(
+    val title: String,
+    val isOpen: Boolean,
+    val toggle: () -> Unit
+)
+```
+
+#### product
+
+To create your own recipe detail unavailable product template you have to create class that implement `UnavailableProduct`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailUnavailableProduct.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+
+
+class MyCustomRecipeDetailUnavailableProduct: ProductUnavailableParameters {
+
+    @Composable
+    override fun Content(params: OftenDeletedProductParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="example">
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+
+
+class MyCustomRecipeDetailUnavailableProduct: ProductUnavailableParameters {
+
+    @Composable
+    override fun Content(params: OftenDeletedProductParameters) {
+     Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+                .border(1.dp, lightgrey, RoundedCornerShape(8.dp))
+                .background(lightgrey)
+                .clip(RoundedCornerShape(8.dp))
+        ) {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                ProductHeader(params.ingredientName, params.ingredientQuantity, params.ingredientUnit, params.guestsCount, params.defaultRecipeGuest)
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = Localisation.ingredient.notAvailable.localised, style = TextStyle(
+                            fontSize = 14.sp,
+                            color = grey
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+        @Composable
+    private fun ProductHeader(
+        ingredientName: String,
+        ingredientQuantity: String,
+        ingredientUnit: String,
+        guest: MutableStateFlow<Int>,
+        defaultRecipeGuest: Int
+    ) {
+
+        val guestsCount = guest.collectAsState()
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = ingredientName.replaceFirstChar { it.titlecaseChar() },
+                style = TextStyle(
+                    fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight(900), color =
+                    boldText
+                )
+            )
+            Text(
+                text = QuantityFormatter.readableFloatNumber(
+                    value = QuantityFormatter.realQuantities(ingredientQuantity, guestsCount.value, defaultRecipeGuest),
+                    unit = ingredientUnit
+                ),
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 21.sp,
+                    fontWeight = FontWeight(500),
+                    color = boldText
+                )
+            )
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+
+with 
+
+```kotlin
+data class UnavailableProductsHeaderParameters(
+    val title: String,
+    val isOpen: Boolean,
+    val toggle: () -> Unit
+)
+```
