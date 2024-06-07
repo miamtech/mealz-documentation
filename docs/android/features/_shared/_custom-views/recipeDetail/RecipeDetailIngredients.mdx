@@ -1,0 +1,143 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Ingredients
+
+To create your own recipe detail ingredients template you create a class that implements `Ingredients`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailIngredients.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.ingredients.Ingredients
+import ai.mealz.sdk.components.recipeDetail.success.ingredients.IngredientsParameters
+
+
+class MyCustomRecipeDetailIngredients:  Ingredients {
+
+    @Composable
+    override fun Content(params: IngredientsParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.ingredients.Ingredients
+import ai.mealz.sdk.components.recipeDetail.success.ingredients.IngredientsParameters
+
+
+class MyCustomRecipeDetailIngredients:  Ingredients {
+
+    @Composable
+    override fun Content(params: IngredientsParameters) {
+       Column(Modifier.padding(vertical = 16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth(),
+                text = Localisation.recipe.numberOfIngredients(params.ingredients.size).localised,
+                style = ai.mealz.sdk.theme.Typography.subtitleBold.copy(textAlign = TextAlign.Start),
+                color = ai.mealz.sdk.theme.Colors.black
+            )
+
+            params.ingredients.groupBy { ceil(((params.ingredients.indexOf(it) + 1.0)) / 3.0) }.map { it.value }.forEach { row ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    row.forEach {
+                        Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                            Ingredient(it, params.guestsCount, params.defaultRecipeGuest)
+                        }
+                    }
+                    for (i in 3 - row.size downTo 1) {
+                        Spacer(modifier = Modifier.weight(1f))
+                    }
+                }
+            }
+        }
+       
+    }
+
+    @Composable
+    fun Ingredient(ingredient: Ingredient, guestsCount: Int, defaultRecipeGuest: Int) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Surface(
+                shape = RoundedCornerShape(32.dp),
+                border = BorderStroke(1.dp, ai.mealz.sdk.theme.Colors.lightgrey)
+            ) {
+                if (ingredient.attributes?.pictureUrl.isNullOrEmpty()) {
+                    Image(
+                        painter = painterResource(miamDefaultIngredient),
+                        contentDescription = "icon ingredient",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .height(56.dp)
+                            .width(56.dp)
+                            .padding(4.dp)
+                    )
+
+                } else {
+                    AsyncImage(
+                        model = ingredient.attributes?.pictureUrl,
+                        contentDescription = "icon ingredient",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .height(56.dp)
+                            .width(56.dp)
+                            .padding(4.dp)
+                    )
+                }
+            }
+            Text(
+                text = ingredient.attributes?.name?.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() } ?: "",
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 21.sp,
+                    fontWeight = FontWeight(900),
+                    color = ai.mealz.sdk.theme.Colors.boldText,
+                    textAlign = TextAlign.Center,
+                )
+            )
+            Text(
+                text = QuantityFormatter.readableFloatNumber(
+                    value = QuantityFormatter.realQuantities(
+                        // Will never append ingredient must have a quantity
+                        ingredient.attributes?.quantity ?: "1",
+                        guestsCount,
+                        // Will never append recipe must have a numberOfGuests
+                        defaultRecipeGuest
+                    ),
+                    unit = ingredient.attributes?.unit
+                ), textAlign = TextAlign.Center
+            )
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class IngredientsParameters(
+    val ingredients: List<Ingredient>,
+    val guestsCount: Int,
+    val defaultRecipeGuest: Int
+)
+```
