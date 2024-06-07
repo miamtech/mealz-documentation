@@ -1,10 +1,16 @@
+```swift
 CatalogRecipeCardProtocol.content(params: CatalogRecipeCardParameters)
+```
 where
+
+```swift
 CatalogRecipeCardParameters {
-public var recipeCardDimensions: CGSize
-public var recipe: Recipe
-public var recipePrice: Double
-public var numberOfGuests: Int
-public var isCurrentlyInBasket: Bool
-public var onAddToBasket: (String) -> Void
-public var onShowRecipeDetails: (String) -> Void
+    public var recipeCardDimensions: CGSize
+    public var recipe: Recipe
+    public var recipePrice: Double
+    public var numberOfGuests: Int
+    public var isCurrentlyInBasket: Bool
+    public var onAddToBasket: (String) -> Void
+    public var onShowRecipeDetails: (String) -> Void
+}
+```

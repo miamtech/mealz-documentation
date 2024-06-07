@@ -17,12 +17,12 @@ import Steps from "./RecipeDetailSteps.mdx"
 
 ## RecipeDetail
 
-RecipeDetails is one of the most customizable component, It has two customizations state **success** & **loading:**
+RecipeDetails is one of the most customizable components, it has two customization states: **success** & **loading:**
 
 ### Loading 
 
-Loading is of type [**LoaderConfig**](../../base-component/customize-views#loading) you can eather create a specific 
-template for RecipeDetails otherwise the default template define in **defaultViews** would be use.
+Loading is of type [**LoaderConfig**](../../base-component/customize-views#loading). You can create a custom 
+template for RecipeDetails or otherwise the default template defined in **defaultViews** will be used.
 
 
 `LoaderParameters` is an empty object for now, but tomorrow we'll be able to add properties to it, in order to avoid breaking changes in future versions. 
@@ -33,7 +33,7 @@ object LoaderParameters
 
 ### Success
 
-Success state containe 12 customizable slots and one configuration field :
+Success state contains 12 customizable slots and one configuration field :
 
 <img src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/android/customization/recipe-detail-1.png" alt="templating 1" />
 <img src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/android/customization/recipe-detail-2.png" alt="templating 2" />
@@ -41,8 +41,8 @@ Success state containe 12 customizable slots and one configuration field :
 
 ### Full customisation setting
 
-if you want to fully customize this component we remande to copy that code into your mealz template configuration.
-You can remove useless part
+If you want to fully customize this component we recommend copying the code into your Mealz template configuration.
+You can remove the code you do not overwrite.
 
 ```kotlin
 recipeDetail{
