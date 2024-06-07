@@ -1,0 +1,139 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### swapper
+
+To create your own recipe detail swapper template you have to create class that implement `Swapper`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailSwapper.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.swapper.Swapper
+import ai.mealz.sdk.components.recipeDetail.success.swapper.SwapperParameters
+
+
+class MyCustomRecipeDetailSwapper:  Swapper {
+
+    @Composable
+    override fun Content(params: SwapperParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.swapper.Swapper
+import ai.mealz.sdk.components.recipeDetail.success.swapper.SwapperParameters
+
+
+class MyCustomRecipeDetailSwapper:  Swapper {
+
+    @Composable
+    override fun Content(params: RecipeDetailHeaderParameters) {
+      var isShopping by remember { mutableStateOf(params.isShopping) }
+      val interactionSource = remember { MutableInteractionSource() }
+
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .clickable( interactionSource = interactionSource,
+                    indication = null) {
+                    isShopping = !isShopping
+                    params.toggle()
+                }) {
+
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = ai.mealz.sdk.theme.Colors.backgroundGrey,
+                        shape = RoundedCornerShape(100.dp),
+                    )
+                    .height(48.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {}
+
+
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
+                Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
+
+                ) {
+
+                Spacer(
+                    modifier = Modifier
+                        .animateContentSize()
+                        .then(if (isShopping) Modifier.weight(1f) else Modifier.height(0.dp))
+                )
+                Surface(
+                    shape = RoundedCornerShape(100.dp),
+                    color = ai.mealz.sdk.theme.Colors.primary,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(44.dp)
+                        .padding(vertical = 2.dp, horizontal = 4.dp)
+                ) {}
+                Spacer(
+                    modifier = Modifier
+                        .animateContentSize()
+                        .then(if (isShopping) Modifier.height(0.dp) else Modifier.weight(1f))
+                )
+            }
+
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = Localisation.recipeDetails.shopping.localised,
+                    style = TextStyle(
+                        color = if (isShopping) ai.mealz.sdk.theme.Colors.boldText else ai.mealz.sdk.theme.Colors.white,
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
+
+                )
+                Text(
+                    text = Localisation.recipeDetails.cooking.localised,
+                    style = TextStyle(
+                        color = if (isShopping) ai.mealz.sdk.theme.Colors.white else ai.mealz.sdk.theme.Colors.boldText,
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+
+with 
+
+```kotlin
+data class SwapperParameters(
+    val isShopping: Boolean, // true if we are is shooping mode (you can add product to basket)
+    val toggle: () -> Unit // change isShopping
+)
+```
