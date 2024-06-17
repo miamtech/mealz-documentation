@@ -9,20 +9,20 @@ import EmptyProtocol from '@site/docs/android/_code/_base/EmptyProtocol.md'
     <details>
         <summary>Recipe Card</summary>
         <CodeUpdateComparison 
-oldCode={` var recipeCardTemplate: (@Composable() (recipe: Recipe, vmRecipe: RecipeViewModel, look: () -> Unit, buy: () -> Unit) -> Unit)?`}
-            newCode=<CatalogProtocols.CatalogRecipeCardProtocol/>/>
+oldCode={ "var recipeCardTemplate: (@Composable() (recipe: Recipe, vmRecipe: RecipeViewModel, look: () -> Unit, buy: () -> Unit) -> Unit)?"}
+            newCode={<CatalogProtocols.CatalogRecipeCardProtocol/>}/>
     </details>
     <details>
         <summary>Recipe Card Loading</summary>
         <CodeUpdateComparison 
 oldCode={`var recipeLoaderTemplate: (@Composable() () -> Unit)?`}
-            newCode=<RecipeCardLoadingProtocol/>/>
+            newCode={<RecipeCardLoadingProtocol/>}/>
     </details>
 <details>
         <summary>Catalog Loading</summary>
         <CodeUpdateComparison 
 oldCode={`var CatalogResultPageLoadingTemplate: (@Composable() () -> Unit)?`}
-            newCode=<LoadingProtocol/>/>
+            newCode={<LoadingProtocol/>}/>
     </details>
 <details>
         <summary>Catalog Categories Empty</summary>
@@ -35,14 +35,14 @@ oldCode={`var CatalogCategoriesEmptyTemplate: (@Composable() (action: () -> Unit
         <CodeUpdateComparison 
 oldCode={`var CatalogSearchTemplate: (@Composable() (currentSearchValue: String, updateResearch: (newSearchValue: String) -> Unit,
         closeDialog: () -> Unit, goToResultPage: () -> Unit) -> Unit)?`}
-            newCode=<CatalogProtocols.CatalogSearchProtocol/>/>
+            newCode={<CatalogProtocols.CatalogSearchProtocol/>}/>
     </details>
 <details>
         <summary>Catalog Category</summary>
         <CodeUpdateComparison 
 oldCode={`var CatalogCategoryTemplate: (@Composable() (context: Context, category: Package, recipesID: List<String>,
         goToCategoryPage: (category: Package) -> Unit) -> Unit)?`}
-           newCode=<CatalogProtocols.CatalogCategoriesPageCategory/>/>
+           newCode={<CatalogProtocols.CatalogCategoriesPageCategory/>}/>
     </details>
 <details>
         <summary>Catalog Header</summary>
@@ -55,14 +55,14 @@ oldCode={`var CatalogHeader: (@Composable() (openFilter: () -> Unit, openSearch:
         <summary>Catalog Toolbar</summary>
         <CodeUpdateComparison 
 oldCode="Added in 4.0"
-            newCode=<CatalogProtocols.CatalogToolbarProtocol/>/>
+            newCode={<CatalogProtocols.CatalogToolbarProtocol/>}/>
     </details>
 <details>
         <summary>My Meal Button</summary>
         <CodeUpdateComparison 
 oldCode={`var myMealButtonSuccessViewTemplate: (@Composable() (
         recipeCount: Int, onclick: () -> Unit) -> Unit)?`}
-            newCode=<CatalogProtocols.MealsInBasketButtonSuccessProtocol/>/>
+            newCode={<CatalogProtocols.MealsInBasketButtonSuccessProtocol/>}/>
     </details>
 <details>
         <summary>Recipes List Title</summary>

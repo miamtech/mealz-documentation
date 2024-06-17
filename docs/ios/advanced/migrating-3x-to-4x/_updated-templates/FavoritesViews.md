@@ -14,7 +14,7 @@ oldCode={`favoritesSuccessViewTemplate: (([Recipe], @escaping () -> Void) -> Any
         <summary>Empty</summary>
         <CodeUpdateComparison 
 oldCode={`favoritesEmptyViewTemplate: ((@escaping () -> Void) -> AnyView)?`}
-            newCode=<EmptyProtocol />/>
+            newCode={<EmptyProtocol />}/>
     </details>
   </div>
 </details>

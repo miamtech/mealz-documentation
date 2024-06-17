@@ -12,7 +12,7 @@ import SearchProtocol from '@site/docs/ios/_code/_base/SearchProtocol.md'
         <summary>Loading</summary>
         <CodeUpdateComparison 
 oldCode={`preferencesLoadingViewTemplate: (() -> AnyView)?`}
-            newCode=<LoadingProtocol />/>
+            newCode={<LoadingProtocol />}/>
     </details>
     <details>
         <summary>Success</summary>
@@ -56,34 +56,34 @@ oldCode={`preferencesTagViewTemplate: ((CheckableTag, @escaping (CheckableTag) -
         <summary>Footer</summary>
         <CodeUpdateComparison 
 oldCode={`preferencesFooterView: ((@escaping () -> Void, @escaping () -> Void, Int) -> AnyView)?`}
-            newCode=<PreferencesProtocols.PreferencesFooterProtocol />/>
+            newCode={<PreferencesProtocols.PreferencesFooterProtocol />}/>
     </details>
 <details>
         <summary>Search</summary>
         <CodeUpdateComparison 
 oldCode={`preferencesSearchViewTemplate: ((PreferencesSearchVM, @escaping () -> Void) -> AnyView)?`}
-            newCode=<SearchProtocol />/>
+            newCode={<SearchProtocol />}/>
     </details>
 <p>Here are some new Templates:</p>
 <details>
         <summary>Diet</summary>
         <CodeUpdateComparison 
-oldCode="Added in 4.0" newCode=<PreferencesProtocols.PreferencesDietProtocol />/>
+oldCode="Added in 4.0" newCode={<PreferencesProtocols.PreferencesDietProtocol />}/>
     </details>
 <details>
         <summary>Equipment</summary>
         <CodeUpdateComparison 
-oldCode="Added in 4.0" newCode=<PreferencesProtocols.PreferencesEquipmentProtocol />/>
+oldCode="Added in 4.0" newCode={<PreferencesProtocols.PreferencesEquipmentProtocol />}/>
     </details>
 <details>
         <summary>Guest</summary>
         <CodeUpdateComparison 
-oldCode="Added in 4.0" newCode=<PreferencesProtocols.PreferencesGuestProtocol />/>
+oldCode="Added in 4.0" newCode={<PreferencesProtocols.PreferencesGuestProtocol />}/>
     </details>
 <details>
         <summary>Ingredients</summary>
         <CodeUpdateComparison 
-oldCode="Added in 4.0" newCode=<PreferencesProtocols.PreferencesIngredientsProtocol />/>
+oldCode="Added in 4.0" newCode={<PreferencesProtocols.PreferencesIngredientsProtocol />}/>
     </details>
   </div>
 </details>

@@ -6,7 +6,7 @@ function CodeUpdateComparison({ oldVersion = "3.X", newVersion = "4.X", oldCode,
                 <h2>{oldVersion}</h2>
                 <pre><code>{oldCode}</code></pre>
                 <h2>{newVersion}</h2>
-                <pre><code>{newCode}</code></pre>
+                <pre>{newCode}</pre>
             </div>
     );
 }
