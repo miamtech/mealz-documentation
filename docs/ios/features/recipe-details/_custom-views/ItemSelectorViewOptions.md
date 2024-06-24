@@ -12,3 +12,9 @@ static let itemSelectorViewOptions = ItemSelectorViewOptions(
     noResults = TypeSafeItemSelectorNoResults(/* your new view*/)
 )
 ```
+Protocols:
+- [SearchProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/searchprotocol)
+- [BaseTitleProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basetitleprotocol)
+- [ItemSelectorSelectedProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/itemselectorselectedproductprotocol)
+- [ItemSelectorOptionProductsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/itemselectoroptionproductsprotocol)
+- [ItemSelectorNoResultsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/itemselectornoresultsprotocol)

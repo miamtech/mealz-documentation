@@ -11,3 +11,8 @@ static let recipeDetailsProductViewOptions = RecipeDetailsProductViewOptions(
     loadingProduct = TypeSafeLoading(/* your new view*/)
 )
 ```
+Protocols:
+- [RecipeDetailsIgnoredProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsignoredproductprotocol)
+- [RecipeDetailsUnaddedProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsunaddedproductprotocol)
+- [RecipeDetailsAddedProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsaddedproductprotocol)
+- [LoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/loadingprotocol)

@@ -11,3 +11,8 @@ static let filtersViewOptions = FiltersViewOptions(
     background: TypeSafeBackground(/* your new view*/)
 )
 ```
+Protocols:
+- [FiltersHeaderProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filtersheaderprotocol)
+- [FiltersCTAProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filtersctaprotocol)
+- [FiltersSectionProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filterssectionprotocol)
+- [BackgroundProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/backgroundprotocol)

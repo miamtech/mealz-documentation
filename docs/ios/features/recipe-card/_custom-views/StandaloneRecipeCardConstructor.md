@@ -5,3 +5,6 @@ static let recipeCardConfig = StandaloneRecipeCardConstructor(
     recipeCardDimensions: CGSize(width: /* */, height: /* */)
 )
 ```
+Protocols:
+- [CatalogRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogrecipecardprotocol)
+- [RecipeCardLoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipecardloadingprotocol)
