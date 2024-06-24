@@ -1,0 +1,224 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Often deleted
+Often deleted has two sub-templates : 
+- **header** : The the toggle button that programmatically displays or hides the list of products
+- **product** : A single product in the list
+
+```kotlin
+oftenDeleted {
+    header  {
+        view = MyCustomRecipeDetailOftenDeletedHeader()
+    }
+    product {
+        view = MyCustomRecipeDetailOftenDeletedProduct()
+    }
+}
+```
+
+#### Header
+
+To create your own recipe detail product often deleted template you create a class that implements `OftenDeletedProductsHeader`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailProductIgnore.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnore
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+
+
+class MyCustomRecipeDetailOftenDeletedProductsHeader: OftenDeletedProductsHeader {
+
+    @Composable
+    override fun Content(params: ProductIgnoreParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnore
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+
+
+class MyCustomRecipeDetailOftenDeletedProductsHeader: OftenDeletedProductsHeader {
+
+    @Composable
+    override fun Content(params: ProductIgnoreParameters) {
+        val rotationState by animateFloatAsState(
+            targetValue = if (params.isOpen) 90f else 0f, label = "Icon rotation state "
+        )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = params.title,
+                modifier = Modifier.weight(6f),
+                maxLines = 1,
+                fontWeight = if (params.isOpen) FontWeight.Bold else FontWeight.Normal
+            )
+            IconButton(modifier = Modifier
+                .weight(1f)
+                .rotate(rotationState), onClick = { params.toggle() }) {
+                Icon(
+                    painter = painterResource(toggleCaret),
+                    contentDescription = "open icon",
+                    tint = Colors.primary
+                )
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class OftenDeletedProductsHeaderParameters(
+    val title: String, // title of section 
+    val isOpen: Boolean, // initial state if you want to colapse the section
+    val toggle: () -> Unit 
+)
+```
+
+#### Product
+To create your own recipe detail often deleted product template you create a class that implements `OftenDeletedProduct`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailOftenDeletedProduct.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+
+
+class MyCustomRecipeDetailOftenDeletedProduct: OftenDeletedProduct {
+
+    @Composable
+    override fun Content(params: OftenDeletedProductParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.oftenDeleted.oftenDeletedProduct
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+
+
+class MyCustomRecipeDetailOftenDeletedProduct: OftenDeletedProduct {
+
+    @Composable
+    override fun Content(params: OftenDeletedProductParameters) {
+          Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .border(1.dp, ai.mealz.sdk.theme.Colors.lightgrey, RoundedCornerShape(8.dp))
+                    .background(ai.mealz.sdk.theme.Colors.lightgrey)
+                    .clip(RoundedCornerShape(8.dp))
+            ) {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    ProductHeader(
+                        params.ingredientName,
+                        params.ingredientQuantity,
+                        params.ingredientUnit,
+                        params.guestsCount,
+                        params.defaultRecipeGuest
+                    )
+                    Column(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Text(
+                            text = Localisation.ingredient.willNotBeAdded.localised, style = TextStyle(
+                                fontSize = 14.sp,
+                                color = ai.mealz.sdk.theme.Colors.grey
+                            )
+                        )
+                        TextButton(onClick = { params.chooseProduct() }) {
+                            Text(
+                                text = Localisation.ingredient.chooseProduct.localised,
+                                style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(700), color = ai.mealz.sdk.theme.Colors.primary)
+                            )
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun ProductHeader(
+        ingredientName: String,
+        ingredientQuantity: String,
+        ingredientUnit: String,
+        guestsCount: MutableStateFlow<Int>,
+        defaultRecipeGuest: Int
+    ) {
+        val guest by guestsCount.collectAsState()
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = ingredientName.replaceFirstChar { it.titlecaseChar() },
+                style = TextStyle(
+                    fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight(900), color =
+                    ai.mealz.sdk.theme.Colors.boldText
+                )
+            )
+            Text(
+                text = QuantityFormatter.readableFloatNumber(
+                    value = QuantityFormatter.realQuantities(ingredientQuantity, guest, defaultRecipeGuest),
+                    unit = ingredientUnit
+                ),
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 21.sp,
+                    fontWeight = FontWeight(500),
+                    color = ai.mealz.sdk.theme.Colors.boldText
+                )
+            )
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class OftenDeletedProductParameters(
+    val ingredientName: String,
+    val ingredientQuantity: String,
+    val ingredientUnit: String,
+    val guestsCount: MutableStateFlow<Int>,
+    val defaultRecipeGuest: Int,
+    val chooseProduct: () -> Unit
+)
+```

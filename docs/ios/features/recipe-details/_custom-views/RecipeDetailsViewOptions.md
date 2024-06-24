@@ -17,3 +17,12 @@ static let recipeDetailsViewOptions = RecipeDetailsViewOptions(
     unavailableIngredients = TypeSafeNotInBasketProduct(/* your new view*/)
 )
 ```
+Protocols:
+- [RecipeDetailsHeaderProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsheaderprotocol)
+- [RecipeDetailsSponsorProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailssponsorprotocol)
+- [RecipeDetailsSelectedControlProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsselectedcontrolprotocol)
+- [RecipeDetailsIngredientsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsingredientsprotocol)
+- [RecipeDetailsStepsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsstepsprotocol)
+- [RecipeDetailsFooterProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsfooterprotocol)
+- [BaseButtonProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basebuttonprotocol)
+- [NotInBasketProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/notinbasketproductprotocol)

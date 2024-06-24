@@ -1,0 +1,635 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Product
+
+Product has three sub-templates : 
+- **success** : State when data is loaded from back end
+- **loading** : Still fetching data 
+- **ignored** : Product will not be shown or added to basket (yet ingredient is still shown)
+
+```kotlin
+products {
+    success  {
+        view = MyCustomRecipeDetailProductSuccess()
+    }
+    loading {
+        view = MyCustomRecipeDetailProductLoading()
+    }
+    ignore {
+        view = MyCustomRecipeDetailProductIgnore()
+    }
+}
+```
+
+#### Success
+
+To create your own recipe detail product success template you create a class that implements `ProductSuccess`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailProductSuccess.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.product.success.ProductSuccess
+import ai.mealz.sdk.components.recipeDetail.success.product.success.ProductSuccessParameters
+
+
+class MyCustomRecipeDetailProductSuccess: ProductSuccess {
+
+    @Composable
+    override fun Content(params: ProductSuccessParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.product.success.ProductSuccess
+import ai.mealz.sdk.components.recipeDetail.success.product.success.ProductSuccessParameters
+
+
+class MyCustomRecipeDetailProductSuccess: ProductSuccess {
+
+    @Composable
+    override fun Content(params: ProductSuccessParameters) {
+        val guestsCount = params.guestsCount.collectAsState()
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(
+                    1.dp,
+                    if (params.isInBasket) primary else lightgrey, RoundedCornerShape(8.dp)
+                )
+                .clip(RoundedCornerShape(8.dp))
+        ) {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                ProductHeader(
+                    params.ingredientName,
+                    params.ingredientQuantity,
+                    params.ingredientUnit,
+                    params.isInBasket,
+                    guestsCount.value,
+                    params.defaultRecipeGuest
+                )
+                ProductInformation(
+                    params.productName,
+                    params.productBrand,
+                    params.productCapacityVolume,
+                    params.productUnit,
+                    params.productImage,
+                    params.isSponsored,
+                    params.replaceProduct
+                )
+                ActionRow(
+                    params.formattedUnitPrice,
+                    params.productQuantity,
+                    params.isInBasket,
+                    params.isLocked,
+                    params.addProduct,
+                    params.ignoreProduct,
+                    params.updateProductQuantity
+                )
+
+                if (params.numberOfRecipeConcernsByProduct > 1 && params.isInBasket) {
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .background(lightgrey)
+                            .padding(vertical = 8.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = Localisation.ingredient.productsSharedRecipe(params.numberOfRecipeConcernsByProduct).localised,
+                            style = TextStyle(fontSize = 12.sp, color = grey)
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun ProductHeader(
+        ingredientName: String,
+        ingredientQuantity: String,
+        ingredientUnit: String,
+        isInBasket: Boolean,
+        guest: Int,
+        defaultRecipeGuest: Int
+    ) {
+        Row(
+            Modifier
+                .background(if (isInBasket) primary else lightgrey)
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = ingredientName.replaceFirstChar { it.titlecaseChar() },
+                style = TextStyle(
+                    fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight(900), color =
+                    if (isInBasket) white else boldText
+                )
+            )
+            Text(
+                text = QuantityFormatter.readableFloatNumber(
+                    value = QuantityFormatter.realQuantities(ingredientQuantity, guest, defaultRecipeGuest),
+                    unit = ingredientUnit
+                ),
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 21.sp,
+                    fontWeight = FontWeight(500),
+                    color = if (isInBasket) white else boldText
+                )
+            )
+        }
+    }
+
+    @Composable
+    private fun ProductInformation(
+        productName: String,
+        productBrand: String,
+        productCapacityVolume: String,
+        productUnit: String,
+        productImage: String,
+        isSponsor: Boolean,
+        replaceProduct: () -> Unit
+
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(top = 12.dp)
+                .padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            AsyncImage(
+                model = productImage,
+                contentDescription = "Product image",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(96.dp)
+                    .padding(4.dp)
+                    .fillMaxSize()
+            )
+
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    text = productBrand,
+                    style = TextStyle(fontSize = 16.sp, lineHeight = 18.sp, fontWeight = FontWeight(700), color = ai.mealz.sdk.theme.Colors.boldText)
+                )
+                Text(
+                    text = productName,
+                    style = TextStyle(fontSize = 12.sp, lineHeight = 18.sp, fontWeight = FontWeight(500))
+                )
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Surface(shape = RoundedCornerShape(100.dp), color = lightgrey) {
+                        Text(
+                            modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp),
+                            text = "$productCapacityVolume $productUnit",
+                            style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight(500), color = boldText)
+                        )
+                    }
+                    if (isSponsor) {
+                        Text(
+                            text = Localisation.basket.sponsored.localised,
+                            style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight(500), color = boldText),
+                            modifier = Modifier
+                                .background(Color.Transparent, shape = RoundedCornerShape(100.dp))
+                                .border(BorderStroke(1.dp, lightgrey), shape = RoundedCornerShape(100.dp))
+                                .padding(horizontal = 12.dp, vertical = 4.dp)
+                        )
+                    }
+                }
+
+                TextButton(onClick = { replaceProduct() }) {
+                    Text(
+                        text = Localisation.budget.replaceItem.localised,
+                        style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(700), color = primary)
+                    )
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun ActionRow(
+        productPrice: String,
+        productQuantity: Int,
+        isInBasket: Boolean,
+        isLocked: Boolean,
+        addProduct: () -> Unit,
+        ignoreProduct: () -> Unit,
+        changeCount: (Int) -> Unit
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(bottom = 12.dp)
+                .padding(horizontal = 12.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = productPrice,
+                style = TextStyle(fontSize = 20.sp, lineHeight = 24.sp, fontWeight = FontWeight(900), color = primary)
+            )
+            if (isInBasket) {
+                TemplateDI.recipeDetail.success.product.counter?.view?.Content(
+                    params = CounterParameters(
+                        initialCount = productQuantity,
+                        onCounterChanged = { changeCount(it) },
+                        lightMode = true,
+                        isDisable = isLocked,
+                        isLoading = isLocked
+                    )
+                ) ?: TemplateDI.defaultViews.counter?.view?.Content(
+                    params = CounterParameters(
+                        initialCount = productQuantity,
+                        onCounterChanged = { changeCount(it) },
+                        lightMode = true,
+                        isDisable = isLocked,
+                        isLoading = isLocked
+                    )
+                )
+            } else {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    TextButton(onClick = { ignoreProduct() }) {
+                        Text(
+                            text = Localisation.ingredient.ignoreProduct.localised,
+                            style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(700), color = grey)
+                        )
+                    }
+                    Surface(
+                        Modifier
+                            .size(48.dp)
+                            .clickable { addProduct() }, shape = RoundedCornerShape(10.dp), color = primary
+                    ) {
+                        if (isLocked) {
+                            Row(
+                                modifier = Modifier
+                                    .size(16.dp)
+                                    .padding(16.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                CircularProgressIndicator(color = white, modifier = Modifier.size(16.dp))
+                            }
+                        } else {
+                            Image(
+                                painter = painterResource(id = cart),
+                                contentDescription = "buy",
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .size(16.dp)
+                                    .padding(8.dp)
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+ data class ProductSuccessParameters(
+    val productName: String, // name of product in your referential
+    val productBrand: String, 
+    val productQuantity: Int, // quantity of product
+    val productCapacityVolume: String, // packaging quantity (200g )
+    val productUnit: String, // example "g" for "grammes"
+    val unitPrice: Double,  // example 12.058
+    val formattedUnitPrice: String, // example 12.05€
+    val productImage: String, 
+    val ingredientName: String, // name of ingredient in our recipe
+    val ingredientQuantity: String, // required quantity in our recipe
+    val ingredientUnit: String, // unit in our recipe
+    val guestsCount: MutableStateFlow<Int>, // number of shares
+    val defaultRecipeGuest: Int, // if guestsCount is empty
+    val numberOfRecipeConcernsByProduct: Int, 
+    val isLocked: Boolean, // if true you must disable any button on template
+    val isSponsored: Boolean, // if true product is a sponsored one
+    val isInBasket: Boolean, //  if true product is in basket
+    val ean: String,
+    val replaceProduct: () -> Unit,
+    val ignoreProduct: () -> Unit,
+    val addProduct: () -> Unit,
+    val updateProductQuantity: (Int) -> Unit
+)
+```
+
+#### Loading
+
+To create your own recipe detail product loading template you create a class that implements `ProductLoading`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailProductLoading.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.product.loading.ProductLoading
+import ai.mealz.sdk.components.recipeDetail.success.product.loading.ProductLoadingParameters
+
+
+class MyCustomRecipeDetailProductLoading: ProductLoading {
+
+    @Composable
+    override fun Content(params: ProductLoadingParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.product.loading.ProductLoading
+import ai.mealz.sdk.components.recipeDetail.success.product.loading.ProductLoadingParameters
+
+
+class MyCustomRecipeDetailProductLoading: ProductLoading {
+
+    @Composable
+    override fun Content(params: ProductLoadingParameters) {
+         val shimmerColors = listOf(
+            Color.LightGray.copy(alpha = 0.6F),
+            Color.LightGray.copy(alpha = 0.2F),
+            Color.LightGray.copy(alpha = 0.6F)
+        )
+        val transition = rememberInfiniteTransition()
+        val translateAnimation = transition.animateFloat(
+            initialValue = 0f,
+            targetValue = 1000f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = 1000,
+                    easing = FastOutLinearInEasing
+                )
+            )
+        )
+        val brush = Brush.linearGradient(
+            colors = shimmerColors,
+            start = Offset.Zero,
+            end = Offset(
+                x = translateAnimation.value,
+                y = translateAnimation.value
+            )
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(8.dp))
+                .background(ai.mealz.sdk.theme.Colors.backgroundLightGrey),
+            contentAlignment = Alignment.TopStart,
+        ) {
+            Column() {
+                Row(
+                    Modifier
+                        .fillMaxWidth(),
+                ) {
+                    Spacer(
+                        modifier = Modifier
+                            .height(40.dp)
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(brush = brush)
+                    )
+                }
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Spacer(
+                        modifier = Modifier
+                            .padding(vertical = 1.dp)
+                            .height(80.dp)
+                            .width(80.dp)
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(brush = brush)
+                    )
+                    Column(horizontalAlignment = Alignment.Start) {
+                        Spacer(
+                            modifier = Modifier
+                                .height(20.dp)
+                                .width(100.dp)
+                                .clip(RoundedCornerShape(100))
+                                .background(brush = brush)
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .padding(vertical = 4.dp)
+                                .height(20.dp)
+                                .width(200.dp)
+                                .clip(RoundedCornerShape(100))
+                                .background(brush = brush)
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .padding(vertical = 4.dp)
+                                .height(25.dp)
+                                .width(50.dp)
+                                .clip(RoundedCornerShape(100))
+                                .background(brush = brush)
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .padding(vertical = 4.dp)
+                                .height(25.dp)
+                                .width(80.dp)
+                                .clip(RoundedCornerShape(100))
+                                .background(brush = brush)
+                        )
+                    }
+                }
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
+                        .padding(bottom = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.Bottom
+                ) {
+                    Spacer(
+                        modifier = Modifier
+                            .height(25.dp)
+                            .width(60.dp)
+                            .clip(RoundedCornerShape(100))
+                            .background(brush = brush)
+                    )
+                    Spacer(
+                        modifier = Modifier
+                            .height(32.dp)
+                            .width(150.dp)
+                            .clip(RoundedCornerShape(100))
+                            .background(brush = brush)
+                    )
+                    Spacer(
+                        modifier = Modifier
+                            .height(48.dp)
+                            .width(48.dp)
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(brush = brush)
+                    )
+                }
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+object ProductLoadingParameters
+```
+
+#### Ignored 
+
+To create your own recipe detail product ignore template you create a class that implements `ProductIgnore
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailProductIgnore.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnore
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+
+
+class MyCustomRecipeDetailProductIgnore: ProductIgnore {
+
+    @Composable
+    override fun Content(params: ProductIgnoreParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnore
+import ai.mealz.sdk.components.recipeDetail.success.product.ignore.ProductIgnoreParameters
+
+
+class MyCustomRecipeDetailProductIgnore: ProductIgnore {
+
+    @Composable
+    override fun Content(params: ProductIgnoreParameters) {
+        
+        val guestsCount = params.guestsCount.collectAsState()
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, ai.mealz.sdk.theme.Colors.lightgrey, RoundedCornerShape(8.dp))
+                .background(ai.mealz.sdk.theme.Colors.lightgrey)
+                .clip(RoundedCornerShape(8.dp))
+        ) {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                ProductHeader(params.ingredientName, params.ingredientQuantity, params.ingredientUnit, guestsCount.value, params.defaultRecipeGuest)
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Text(
+                        text = Localisation.ingredient.willNotBeAdded.localised, style = TextStyle(
+                            fontSize = 14.sp,
+                            color = ai.mealz.sdk.theme.Colors.grey
+                        )
+                    )
+                    TextButton(onClick = { params.chooseProduct() }) {
+                        Text(
+                            text = Localisation.ingredient.chooseProduct.localised,
+                            style = TextStyle(fontSize = 14.sp, lineHeight = 16.sp, fontWeight = FontWeight(700), color = ai.mealz.sdk.theme.Colors.primary)
+                        )
+                    }
+                }
+            }
+        }
+
+    @Composable
+    private fun ProductHeader(
+        ingredientName: String,
+        ingredientQuantity: String,
+        ingredientUnit: String,
+        guestsCount: Int,
+        defaultRecipeGuest: Int
+    ) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = ingredientName.replaceFirstChar { it.titlecaseChar() },
+                style = TextStyle(
+                    fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight(900), color =
+                    ai.mealz.sdk.theme.Colors.boldText
+                )
+            )
+
+            Text(
+                text = QuantityFormatter.readableFloatNumber(
+                    value = QuantityFormatter.realQuantities(ingredientQuantity, guestsCount, defaultRecipeGuest),
+                    unit = ingredientUnit
+                ),
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 21.sp,
+                    fontWeight = FontWeight(500),
+                    color = ai.mealz.sdk.theme.Colors.boldText
+                )
+            )
+        }
+    }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class ProductIgnoreParameters(
+    val ingredientName: String, // name of ingredient in recipe
+    val ingredientQuantity: String, // quantity required in recipe
+    val ingredientUnit: String, //  ememple
+    val guestsCount: MutableStateFlow<Int>,// number of shares
+    val defaultRecipeGuest: Int, // initial  number of shares
+    val chooseProduct: () -> Unit
+)
+```

@@ -11,7 +11,7 @@ oldCode={`var CatalogFilterTemplate: (@Composable() (difficulties: List<CatalogF
         times: List<CatalogFilterOptions>, onCostFilterChanged: (option: CatalogFilterOptions) -> Unit,
         onTimeFilterChanged: (option: CatalogFilterOptions) -> Unit, onDifficultyChanged: (option: CatalogFilterOptions) -> Unit,
         clearFilter: () -> Unit, goToFilterResult: () -> Unit, closeDialog: () -> Unit,) -> Unit)?`}
-             newCode=<FilterSuccessProtocol/>/>
+             newCode={<FilterSuccessProtocol/>}/>
     </details>
   </div>
 </details>

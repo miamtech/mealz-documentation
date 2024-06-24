@@ -17,7 +17,7 @@ Mealz will **never** be ready in the folowing cases :
 
 Here's how you can find out of Mealz is available:
 ```swift
-import miamCore
+import mealzcore
 
-Mealz.environment.isAvailable()
+Mealz.shared.environment.isAvailable()
 ```

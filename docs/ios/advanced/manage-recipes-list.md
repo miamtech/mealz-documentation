@@ -6,13 +6,13 @@ Information relating to the Mealz recipes can be accessed in the Mealz init.
 
 You can get the count of recipes added to cart by the user:
 ```swift
-import miamCore
+import mealzcore
 
 Mealz.shared.basket.getRecipeCountInBasket()
 ```
 or use a notifier to listen to the recipe count:
 ```swift
-import miamCore
+import mealzcore
 
 Mealz.shared.notifications.recipesCount
 ```
@@ -22,7 +22,7 @@ Mealz.shared.notifications.recipesCount
 You can provide a new groceries list to your customer :
 
 ```swift
-import miamCore
+import mealzcore
 
 Mealz.shared.basket.clear()
 ```
