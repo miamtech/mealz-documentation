@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 There are two ways to inject Mealz components into the host app:
 
-1. **SwiftUi** (preferred as nothing has to be changed on the component itself, except styling
+1. **SwiftUI** (preferred as nothing has to be changed on the component itself, except styling
 adjustments)
 2. **UIKit**
 
@@ -34,41 +34,28 @@ This will need to be done on all of our views in a swiftUI view.
 ```swift
 import UIKit
 import SwiftUI
-import MiamIOSFramework
-import MiamNeutraliOSFramework
+import MealziOSSDK
+import MealzUIiOSSDK
+import MealzNaviOSSDK
 
 class YourViewController: UIViewController {
 
+   let standaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipeId: "15434")
+
    override func viewDidLoad() {
         super.viewDidLoad()
-        // Your Miam View with content 
-        let swiftUIView = MiamNeutralRecipeCard().content(
-            recipeCardDimensions: CGSize(width: 300, height: 300),
-            recipe: FakeRecipe().createRandomFakeRecipe(),
-            isCurrentlyInBasket: false,
-            onAddToBasket: { recipeId in },
-            onShowRecipeDetails: { recipeId in }
-        )
-
-        // Create a UIHostingController with MiamNeutralRecipeCard
-        let hostingController = UIHostingController(rootView: swiftUIView)
+       
+        // Add the recipe card as a child view controller
+        view.addSubview(standaloneRecipeCard.view)
         
-        // Add the hostingController as a child view controller
-        self.addChild(hostingController)
-        
-        // Add hostingController's view to the current view
-        self.view.addSubview(hostingController.view)
-        
-        // Set hostingController's view size and position
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([ // this can be used with SnapKit too
-            hostingController.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            hostingController.view.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            hostingController.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            hostingController.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        standaloneRecipeCard.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            standaloneRecipeCard.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            standaloneRecipeCard.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            standaloneRecipeCard.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            standaloneRecipeCard.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+            standaloneRecipeCard.view.heightAnchor.constraint(equalToConstant: CGFloat(300)) // Adjust the height as needed
         ])
-        // Notify the hostingController that it has been moved to the current view controller
-        hostingController.didMove(toParent: self)
     }
 }
 ```
@@ -79,65 +66,15 @@ class YourViewController: UIViewController {
 // ContentView.swift
 
 import SwiftUI
-import MiamIOSFramework
-import MiamNeutraliOSFramework
+import MealziOSSDK
+import MealzUIiOSSDK
+import MealzNaviOSSDK
 
 var body: some View {
   VStack {
-      MiamNeutralRecipeCard().content(
-        recipeCardDimensions: CGSize(width: 300, height: 300),
-        recipe: FakeRecipe().createRandomFakeRecipe(),
-        isCurrentlyInBasket: false,
-        onAddToBasket: { recipeId in },
-        onShowRecipeDetails: { recipeId in }
-    )
+     MealzStandaloneRecipeCardSwiftUI(recipeId: "15434")
   }
+}
 ```
 </TabItem>
 </Tabs>
-
-### Creating components and navigating between them
-
-We provide callbacks on our components in order to let you navigate between them and between them and your views: e.g. navigate to your basket view. 
-
-```swift
-class FavoritesViewController: UIViewController {
-    var swiftUIView: Favorites<
-        FavoritesParameters> {
-        return Favorites.init(
-            params: FavoritesParameters(
-                onNoResultsRedirect: { [weak self] in 
-                    // navigate to Catalog Feature
-                },
-                onShowRecipeDetails: { [weak self] recipeId in
-                    guard let strongSelf = self else { return }
-                    strongSelf.navigationController?.pushViewController(RecipeDetailsViewController(recipeId), animated: true)
-                }, onRecipeCallToActionTapped: { [weak self] recipeId in
-                    guard let strongSelf = self else { return }
-                    strongSelf.navigationController?.pushViewController(MyMealsViewController(), animated: true)
-                }),
-            gridConfig: localRecipesListViewConfig
-        )
-    }
-    // The hosting controller for your SwiftUI view
-    private var hostingController: UIHostingController<Favorites<
-        FavoritesParameters>>?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        hostingController = UIHostingController(rootView: swiftUIView) // Initialize the hosting controller with your SwiftUI view
-        guard let hostingController = hostingController, let hcView = hostingController.view else { return }
-        hcView.translatesAutoresizingMaskIntoConstraints = false
-        addChild(hostingController)
-        view.addSubview(hcView)
-        NSLayoutConstraint.activate([ //  you can also use SnapKit or other frameworks to set the bounds
-            hcView.topAnchor.constraint(equalTo: view.topAnchor),
-            hcView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            hcView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            hcView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-        hostingController.didMove(toParent: self)
-    }
-}
-```
-See the full walkthrough [here](/docs/ios/features/favorites/walkthrough.md).
