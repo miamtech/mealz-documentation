@@ -10,7 +10,6 @@ import SponsorDetails from '@site/docs/shared/page-overviews/GeneralPages/Sponso
 import Prerequisites from '@site/docs/ios/features/_shared/Prerequisites.md';
 import LinkToCustomization from '@site/docs/ios/features/_shared/LinkToCustomization.md';
 import TimeIcon from '@site/src/components/TimeIcon';
-import AddRecipeCards from './_walkthrough/_steps/AddRecipeCards.md';
 
 # Standalone Recipe Card Walkthrough
 
@@ -37,11 +36,6 @@ The Standalone Recipe Card can be embedded into any part of your app, & is ideal
 
 ### ItemSelector
 <ItemSelector platform="ios"/>
-
-## Steps
-### Embed directly into your app
-
-<AddRecipeCards />
 
 ## Customization
 

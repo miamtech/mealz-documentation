@@ -9,9 +9,6 @@ import SponsorDetails from '@site/docs/shared/page-overviews/GeneralPages/Sponso
 import Prerequisites from '@site/docs/ios/features/_shared/Prerequisites.md';
 import LinkToCustomization from '@site/docs/ios/features/_shared/LinkToCustomization.md';
 import TimeIcon from '@site/src/components/TimeIcon';
-import AddBasketTags from './_walkthrough/AddBasketTags.md'
-import ImplementSponsorDetails from '@site/docs/ios/features/_shared/_steps/ImplementSponsorDetails.md';
-import ImplementRecipeDetails from '@site/docs/ios/features/_shared/_steps/ImplementRecipeDetails.md';
 
 # Basket Tags Walkthrough
 
@@ -34,28 +31,6 @@ Basket Tags are used on a product in the user's basket to show the recipes assoc
 
 ### SponsorDetails
 <SponsorDetails platform="ios"/>
-
-## Steps
-
-### 1. Add Basket Tag to your product
-<AddBasketTags />
-
-### 2. Create Recipe Details page
-Again, if you've already completed the Catalog Feature, you'll already have the ViewController or page set up.
-You have nothing more to do for this.
-
-The first thing to be done is to create a RecipeDetailsViewController or RecipeDetailsView standalone page.
-The only parameters this page may expect are those related to navigating back to the MyMeals page.
-The navigation to the basket can be ignored as that Call To Action will not be shown as the product is already in the basket.
-<ImplementRecipeDetails />
-
-### 3. Create Sponsor Details page
-Again, if you've already completed the Catalog Feature, you'll already have the ViewController or page set up.
-You have nothing more to do for this.
-
-The first thing to be done is to create a SponsorDetailsViewController or SponsorDetailsView standalone page.
-The only parameters this page may expect are those related to navigating back to the MyMeals page.
-<ImplementSponsorDetails />
 
 ## Customization
 <LinkToCustomization />

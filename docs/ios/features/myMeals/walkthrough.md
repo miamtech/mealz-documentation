@@ -10,7 +10,6 @@ import SponsorDetails from '@site/docs/shared/page-overviews/GeneralPages/Sponso
 import Prerequisites from '@site/docs/ios/features/_shared/Prerequisites.md';
 import LinkToCustomization from '@site/docs/ios/features/_shared/LinkToCustomization.md';
 import TimeIcon from '@site/src/components/TimeIcon';
-import * as SharedSteps from '@site/docs/ios/features/_shared/_steps/';
 
 # My Meals Walkthrough
 
@@ -38,43 +37,6 @@ This tutorial will just help you create a standalone page.
 
 ### SponsorDetails
 <SponsorDetails platform="ios"/>
-
-## Steps
-
-### 1. Create MyMeals page
-Again, if you've already completed the Catalog Feature, you'll already have the ViewController or page set up.
-
-The only new aspect is navigating to the Catalog Feature when the user does not have any recipes in their basket.
-
-The first thing to be done is to create a MyMealsViewController or MyMealsView standalone page.
-The only parameters this page may expect are those related to navigating to the Catalog Feature.
-For example, you may want to pass a Navigation Delegate or a binding of the current tab.
-<SharedSteps.ImplementMyMeals />
-
-### 2. Create ItemSelector page
-Again, if you've already completed the Catalog Feature, you'll already have the ViewController or page set up.
-You have nothing more to do for this.
-
-The first thing to be done is to create a ItemSelectorViewController or ItemSelectorView standalone page.
-The only parameters this page may expect are those related to navigating back to the MyMeals page.
-<SharedSteps.ImplementItemSelector />
-
-### 3. Create Recipe Details page
-Again, if you've already completed the Catalog Feature, you'll already have the ViewController or page set up.
-You have nothing more to do for this.
-
-The first thing to be done is to create a RecipeDetailsViewController or RecipeDetailsView standalone page.
-The only parameters this page may expect are those related to navigating back to the MyMeals page.
-The navigation to the basket can be ignored as that Call To Action will not be shown as the product is already in the basket.
-<SharedSteps.ImplementRecipeDetails />
-
-### 4. Create Sponsor Details page
-Again, if you've already completed the Catalog Feature, you'll already have the ViewController or page set up.
-You have nothing more to do for this.
-
-The first thing to be done is to create a SponsorDetailsViewController or SponsorDetailsView standalone page.
-The only parameters this page may expect are those related to navigating back to the MyMeals page.
-<SharedSteps.ImplementSponsorDetails />
 
 ## Customization
 <LinkToCustomization />
