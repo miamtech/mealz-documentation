@@ -17,7 +17,7 @@ The integration of the SDK into your app will take three steps:
 1. **Initialization** : define the few mapping functions the SDK needs to interact with your app (
    push products to basket, retrieve the user unique id...)
 2. **Components injection** : fill your app with Mealz components wherever relevant (recipe cards in
-   search results grids, recipes catalog on a dedicated page...)
+   search results, recipes catalog on a dedicated page...)
 3. **Styling** : apply your own stylesheets, globally at the SDK level, and specifically for each
    component
 
@@ -29,12 +29,8 @@ Android apps. Only the Views have to be implemented separately for each platform
 
 Consequently, this SDK is organized in four main modules:
 
-- /miamCore : contains the core logic shared between the two platforms
-- /androidSDK : the SDK to be built and imported in an Android app, containing the core logic +
-  Android-related Views
-- /MiamIOSFramework : same thing, but for iOS apps
-- /MiamNeuatriliOSFramework : all UI Views
-
-For instance, in the case of an Android application, you shouldn't have to import the built archive
-of /miamCore and /androidSDK : building /androidSDK to an APK and importing it will be enough, as
-this APK will contain all logic (/miamCore + Android views).
+- **mealzcore**: Contains the core logic shared between the two platforms
+- **MealziOSSDK**: The SDK to build and import into an iOS app, containing the core logic +
+  iOS-related Views
+- **MealzUIiOSSDK**: All UI Views
+- **MealzNaviOSSDK**: All navigation functionality
