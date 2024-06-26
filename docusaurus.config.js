@@ -1,12 +1,11 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 
-/** @type {import('@docusaurus/types').Config} */
-const config = {
+export default {
   title: "Mealz Documentation",
   tagline: "Mealz for native iOS, Android and Web apps",
   favicon: "img/favicon.ico",
@@ -25,24 +24,74 @@ const config = {
     locales: ["en"],
   },
 
-  presets: [
-    ['@docusaurus/preset-classic',
-    
-      ({
-        docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          remarkPlugins: [remarkMath],
-          rehypePlugins: [rehypeKatex],
+  plugins: [
+    [
+      "@docusaurus/plugin-content-pages",
+      { }
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "android",
+        path: "docs/android",
+        routeBasePath: "docs/android",
+        sidebarPath: './docs/android/sidebar.js',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+        lastVersion: 'current',
+        versions: {
+          current: {
+            label: "4",
+            path: "4"
+          },
         },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
-      }),
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "ios",
+        path: "docs/ios",
+        routeBasePath: "docs/ios",
+        sidebarPath: 'docs/ios/sidebar.js',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+        lastVersion: 'current',
+        versions: {
+          current: {
+            label: "4",
+            path: "4"
+          },
+        }
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "web",
+        path: "docs/web",
+        routeBasePath: "docs/web",
+        sidebarPath: './docs/web/sidebar.js',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+        lastVersion: 'current',
+        versions: {
+          current: {
+            label: "8.3",
+            path: "8.3"
+          },
+        }
+      },
+    ],
+    [
+      "@docusaurus/theme-classic",
+      {
+        customCss: './src/css/custom.css',
+      },
     ],
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
@@ -57,56 +106,53 @@ const config = {
         },
         items: [
           {
-            type: "doc",
-            docId: "android/Introduction",
             position: "left",
-            label: "For Android",
-          },
-          {
-            type: "doc",
-            docId: "ios/Introduction",
-            position: "left",
-            label: "For iOS",
-          },
-          {
-            type: "doc",
-            docId: "web/Introduction",
-            position: "left",
-            label: "For Web",
-          },
-          { to: "https://en.mealz.ai/", label: "Enterprise", position: "left" },
-          {
-            type: "dropdown",
-            label: "Versions", // The text to display for the dropdown
-            position: "left", // Position in the navbar
+            label: "Android",
+            to: "docs/android/4/Introduction",
+            activeBasePath: "docs/android/4/",
             items: [
               {
-                label: "iOS V3",
-                to: "docs/ios/previous-versions/3/Introduction",
-                activeBasePath: "docs/ios/previous-versions/3/",
+                label: "V4",
+                to: "docs/android/4/Introduction",
+                activeBasePath: "docs/android/4/",
               },
               {
-                label: "iOS V4",
-                to: "docs/ios/Introduction",
-                activeBaseRegex: "docs\/ios\/(?!previous-versions)",
-              },
-              {
-                label: "Android V3",
-                to: "docs/android/previous-versions/3/Introduction",
-                activeBasePath: "docs/android/previous-versions/3/",
-              },
-              {
-                label: "Android V4",
-                to: "docs/android/Introduction",
-                activeBaseRegex: "docs\/android\/(?!previous-versions)",
-              },
-              {
-                label: "Web V8",
-                to: "docs/web/Introduction",
-                activeBasePath: "docs/web/",
-              },
-            ],
+                label: "V3",
+                to: "docs/android/3/Introduction",
+                activeBasePath: "docs/android/3/",
+              }
+            ]
           },
+          {
+            position: "left",
+            label: "iOS",
+            to: "docs/ios/4/Introduction",
+            items: [
+              {
+                label: "V4",
+                to: "docs/ios/4/Introduction",
+                activeBasePath: "docs/ios/4/",
+              },
+              {
+                label: "V3",
+                to: "docs/ios/3/Introduction",
+                activeBasePath: "docs/ios/3/",
+              }
+            ]
+          },
+          {
+            position: "left",
+            label: "Web",
+            to: "docs/web/8.3/Introduction",
+            items: [
+              {
+                label: "8.3",
+                to: "docs/web/8.3/Introduction",
+                activeBasePath: "docs/web/8.3/",
+              },
+            ]
+          },
+          { to: "https://en.mealz.ai/", label: "Enterprise", position: "left" },
         ],
       },
       footer: {
@@ -144,4 +190,4 @@ const config = {
     }),
 };
 
-module.exports = config;
+// module.exports = config;
