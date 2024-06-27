@@ -2,35 +2,6 @@
 sidebar_position: 1
 ---
 
-## Introduction
+import SharedIntro from '../shared/overview/introduction.mdx';
 
-This SDK aims to facilitate the integration of Mealz eCommerce to any grocery shopping mobile application.
-
-It implements a series of components that can be re-styled to your standards, and injected into your app. 
-Mealz Components interact with each other and handle the communication with the Mealz API.
-Using this SDK, you should not need to communicate with the Mealz API directly from your app.
-
-### 3 steps integration
-
-The integration of the SDK into your app will take three steps:
-
-1. **Initialization** : define the few mapping functions the SDK needs to interact with your app (
-   push products to basket, retrieve the user unique id...)
-2. **Components injection** : fill your app with Mealz components wherever relevant (recipe cards in
-   search results, recipes catalog on a dedicated page...)
-3. **Styling** : apply your own stylesheets, globally at the SDK level, and specifically for each
-   component
-
-### Project architecture
-
-This SDK is leveraging Kotlin Multiplatform Mobile so most of the Models, Controllers, and
-Services (interactions with Mealz API) can be implemented only once and reused both in iOS and
-Android apps. Only the Views have to be implemented separately for each platform.
-
-Consequently, this SDK is organized in four main modules:
-
-- **mealzcore**: Contains the core logic shared between the two platforms
-- **MealziOSSDK**: The SDK to build and import into an iOS app, containing the core logic +
-  iOS-related Views
-- **MealzUIiOSSDK**: All UI Views
-- **MealzNaviOSSDK**: All navigation functionality
+<SharedIntro platform="iOS" />
