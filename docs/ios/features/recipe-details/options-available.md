@@ -1,15 +1,13 @@
 ---
-sidebar_position: 2
-label: "Customize Views"
+sidebar_position: 3
+label: "View Options Available"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import Explanation from '@site/docs/ios/features/_shared/_custom-views/Explanation.md';
 import BaseViews from '@site/docs/ios/features/_shared/_custom-views/BaseViews.md';
 import * as RecipeDetailsViewOptions from '@site/docs/ios/features/recipe-details/_custom-views/';
 
-# Customize Views
+# View Options Available
 
 <Explanation />
 <BaseViews />
