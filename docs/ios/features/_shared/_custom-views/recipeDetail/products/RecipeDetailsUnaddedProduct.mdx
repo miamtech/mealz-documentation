@@ -1,0 +1,153 @@
+import RecipeProductData from './_shared/RecipeProductData.mdx';
+
+### Unadded
+
+To create your own recipe detail unadded product template you create a class that implements `RecipeDetailsUnaddedProductProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+  values={[
+      { label: 'MyCustomRecipeDetailsUnaddedProductView.swift', value: 'empty_example' },
+      { label: 'example', value: 'full_example' },
+  ]}>
+<TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+import mealzcore
+
+public struct MyCustomRecipeDetailsUnaddedProductView: RecipeDetailsUnaddedProductProtocol {
+    public func content(params: RecipeDetailsUnaddedProductParameters) -> some View {
+         // Your custom design here
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+import mealzcore
+
+@available(iOS 14, *)
+    public struct MealzRecipeDetailsUnaddedProductView: RecipeDetailsUnaddedProductProtocol {
+    public init() {}
+    let dim = Dimension.sharedInstance
+    public func content(params: RecipeDetailsUnaddedProductParameters) -> some View {
+        var lockButton: Bool {
+            return params.productStatus == ComponentUiState.locked
+            || params.productStatus == ComponentUiState.loading
+        }
+        VStack {
+            HStack {
+                Text(params.data.ingredientName.capitalizingFirstLetter())
+                    .padding(dim.mPadding)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigBoldStyle)
+                    .foregroundColor(Color.mealzColor(.standardDarkText))
+                Spacer()
+                if let unit = params.data.ingredientUnit {
+                    Text(QuantityFormatter.companion.readableFloatNumber(value: params.data.ingredientQuantity, unit: unit))
+                        .padding(dim.mPadding)
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumStyle)
+                }
+            }
+                .foregroundColor(Color.mealzColor(.darkestGray))
+                .frame(height: 40)
+                .background(Color.mealzColor(.lightBackground))
+                .cornerRadius(dim.mCornerRadius, corners: .top)
+            HStack {
+                if let pictureURL = URL(string: params.data.pictureURL) {
+                 AnyView(AsyncImage(url: pictureURL) { image in
+                     image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                }).frame(width: 72, height: 72)
+                    .padding(dim.mPadding)
+                }
+                VStack(alignment: .leading) {
+                    if let brand = params.data.brand {
+                        Text(brand)
+                         .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodySmallBoldStyle)
+                    }
+                    Text(params.data.name)
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodySmallStyle)
+                    HStack {
+                        IngredientUnitBubble(capacity: params.data.capacity)
+                        if params.data.isSponsored { MealzSponsoredTag() }
+                    }
+                    Button(action: params.onChooseProduct, label: {
+                        Text(Localization.myBudget.replaceItem.localised)
+                            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumBoldStyle)
+                            .foregroundColor(Color.mealzColor(.primary))
+                    })
+               }
+                    .frame(maxWidth: .infinity,alignment: .leading)
+                    .padding(.horizontal, dim.mlPadding)
+                    .padding(.top, dim.mPadding)
+            }
+            HStack(spacing: Dimension.sharedInstance.lPadding) {
+                Text(params.data.formattedProductPrice)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleBigStyle)
+                    .foregroundColor(Color.mealzColor(.primaryText))
+                Spacer()
+                Button(action: params.onIgnoreProduct, label: {
+                     Text(Localization.ingredient.ignoreProduct.localised)
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumBoldStyle)
+                        .foregroundColor(Color.mealzColor(.grayText))
+                })
+                if lockButton {
+                    Button(action: {}, label: {
+                    ProgressLoader(color: .white, size: 24)
+                 })
+                    .padding(Dimension.sharedInstance.mlPadding)
+                    .background(Color.mealzColor(.primary))
+                    .cornerRadius(Dimension.sharedInstance.buttonCornerRadius)
+                 }else{
+                    Button(action: params.onAddProduct, label: {
+                        Image.mealzIcon(icon: .basket)
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(Color.mealzColor(.white))
+                        .frame(width: 20, height: 20)
+                        .padding(dim.mlPadding)
+                        .background(Color.mealzColor(.primary)
+                        .cornerRadius(dim.buttonCornerRadius))
+                        .frame(width: 48, height: 48)
+                    })
+                }
+            }
+                .padding(.horizontal, dim.mlPadding)
+            Spacer()
+        }
+            .frame(height: mealzProductHeight)
+            .overlay( /// apply a rounded border
+                RoundedRectangle(cornerRadius: dim.mCornerRadius)
+                    .stroke(Color.mealzColor(.lightBackground), lineWidth: 1)
+            )
+            .padding(.horizontal, dim.mPadding)
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct RecipeDetailsUnaddedProductParameters {
+    /// Contains all the info related to the product
+    public let data: RecipeProductData
+    /// Status of the product (ex: loading, success, etc)
+    public let productStatus: ComponentUiState
+    /// Closure to add the product
+    public let onAddProduct: () -> Void
+    /// Closure to ignore the product
+    public let onIgnoreProduct: () -> Void
+    /// Closure to open the Item Selector
+    public let onChooseProduct: () -> Void
+```
+
+where
+
+<RecipeProductData />
