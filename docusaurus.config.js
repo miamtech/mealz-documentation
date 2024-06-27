@@ -42,7 +42,7 @@ export default {
         versions: {
           current: {
             label: "4",
-            path: "4"
+            path: "/"
           },
         },
       },
@@ -60,7 +60,7 @@ export default {
         versions: {
           current: {
             label: "4",
-            path: "4"
+            path: "/"
           },
         }
       },
@@ -78,7 +78,7 @@ export default {
         versions: {
           current: {
             label: "8.3",
-            path: "8.3"
+            path: "/"
           },
         }
       },
@@ -108,13 +108,12 @@ export default {
           {
             position: "left",
             label: "Android",
-            to: "docs/android/4/Introduction",
-            activeBasePath: "docs/android/4/",
+            to: "docs/android/Introduction",
             items: [
               {
                 label: "V4",
-                to: "docs/android/4/Introduction",
-                activeBasePath: "docs/android/4/",
+                to: "docs/android/Introduction",
+                activeBaseRegex: "docs\/android\/(?![0-9]/)",
               },
               {
                 label: "V3",
@@ -126,12 +125,12 @@ export default {
           {
             position: "left",
             label: "iOS",
-            to: "docs/ios/4/Introduction",
+            to: "docs/ios/Introduction",
             items: [
               {
                 label: "V4",
-                to: "docs/ios/4/Introduction",
-                activeBasePath: "docs/ios/4/",
+                to: "docs/ios/Introduction",
+                activeBaseRegex: "docs\/ios\/(?![0-9]\/)",
               },
               {
                 label: "V3",
@@ -143,12 +142,12 @@ export default {
           {
             position: "left",
             label: "Web",
-            to: "docs/web/8.3/Introduction",
+            to: "docs/web/Introduction",
             items: [
               {
                 label: "8.3",
-                to: "docs/web/8.3/Introduction",
-                activeBasePath: "docs/web/8.3/",
+                to: "docs/web/Introduction",
+                activeBasePath: "docs/web/",
               },
             ]
           },
