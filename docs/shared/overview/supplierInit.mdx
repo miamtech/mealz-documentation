@@ -79,6 +79,28 @@ Two key have been send to you: one for **developement** and one for **production
 
 <BasicImp platform ={props.platform}/>
 
+## User setup
+
+Here is how to pass the user ID to the SDK, directly within the host app:
+
+:::info
+You can also enable **authless** feature, more informations [**here**](../advanced/user-configuration/##AuthLess
+).
+:::
+
+<UserSetUp platform ={props.platform}/>
+
+:::info
+To get full list of user feature check [**User configurations**](../advanced/user-configuration).
+:::
+
+## Store setup
+
+For Mealz to work properly, your user must be connected to a specific store so we can accurately provide recipes with available ingredients.
+To add the store that the user is currently at, you can use this code:
+
+<StoreSetup platform ={props.platform}/>
+
 ## Basket synchronization Setup
 
 Most importantly, the Mealz Basket must be kept up to date with your in-app basket.
@@ -148,28 +170,6 @@ The more a recipe is purchased, the more confident we are in the model & product
 Further, we also can use this data for analytics purposes to see which recipes are most frequently purchased.
 
 This should be called directly before the user pays & is ***mandatory***.
-
-## User setup
-
-Here is how to pass the user ID to the SDK, directly within the host app:
-
-:::info
-You can also enable **authless** feature, more informations [**here**](../advanced/user-configuration/##AuthLess
-).
-:::
-
-<UserSetUp platform ={props.platform}/>
-
-:::info
-To get full list of user feature check [**User configurations**](../advanced/user-configuration).
-:::
-
-## Store setup
-
-For Mealz to work properly, your user must be connected to a specific store so we can accurately provide recipes with available ingredients.
-To add the store that the user is currently at, you can use this code:
-
-<StoreSetup platform ={props.platform}/>
 
 Congratulation **Mealz** is good to go 🥳
 
