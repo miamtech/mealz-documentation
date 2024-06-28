@@ -1,11 +1,10 @@
 ```kotlin
-import com.miam.core.Mealz
-
 object MealzManager {
 
     private var isInitialized = false
 
     public fun initialize(applicationContext: Context){
+        if(isInitialized) return
         isInitialized = true
     }
 }
@@ -13,7 +12,6 @@ object MealzManager {
 
 ```kotlin
 // MainActivity.kt
-import com.miam.core.Mealz
 
 class MainActivity: ComponentActivity(), CoroutineScope by CoroutineScope(Dispatchers.Main) {
 
