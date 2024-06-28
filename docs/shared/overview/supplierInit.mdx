@@ -26,6 +26,10 @@ export function NewBasketService(props){
     if(props.platform == "android") { return <AndroidBasketService.NewBasketService  /> } else return  <IosBasketService.NewBasketService  />
 }
 
+export function HelperFunctionTransform(props){
+    if(props.platform == "ios") { return <IosBasketService.PretendProductsToRetailerProducts  /> }
+}
+
 export function OnBasketUpdate(props){
     if(props.platform == "android") { return <AndroidBasketService.OnBasketUpdate  /> } else return  <IosBasketService.OnBasketUpdate  />
 }
@@ -117,6 +121,14 @@ When we notice a product used in a Mealz Recipe was deleted, we update our baske
 If at some point, you feel like products magically disappear from Mealz recipes, or are not removed
 from the app basket while they should be, this is probably related to this part.
 :::
+
+### Helper Function to map between products
+
+More than likely, your Product object will be quite different than ours so we have created a bridge model called `SupplierProduct`.
+Because of this, we recommend creating a helper function or two to translate between your object & the bridge.
+This will make your code easier to understand.
+
+<HelperFunctionTransform platform ={props.platform}/>
 
 ### BasketSubscriber & BasketListener
 
