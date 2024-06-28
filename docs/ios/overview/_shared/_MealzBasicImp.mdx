@@ -7,7 +7,7 @@ public class MealzManager: ObservableObject {
     Mealz.shared.Core(init: { coreBuilder in
             // set supplier key
             coreBuilder.sdkRequirement(init: { requirementBuilder in
-            requirementBuilder.key = supplierKey
+                 requirementBuilder.key = self.supplierKey
             })
         })
     }
