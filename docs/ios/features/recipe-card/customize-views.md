@@ -21,11 +21,11 @@ The Standalone Recipe Card is a little different. Instead of taking a "ViewOptio
 
 ### Custom Views
 
-#### CatalogRecipeCard
+#### [CatalogRecipeCard](./components/CatalogRecipeCard)
 
 A SwiftUI View that implements the `CatalogRecipeCardProtocol`
 
-#### RecipeCardLoading
+#### [RecipeCardLoading](./components/RecipeCardLoading)
 
 A SwiftUI View that implements the `RecipeCardLoadingProtocol`
 
