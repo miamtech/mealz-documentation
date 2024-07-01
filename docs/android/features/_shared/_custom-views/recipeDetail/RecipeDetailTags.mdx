@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Tags 
+## Tags 
 
 To create your own recipe detail tags template you create a class that implements `RecipeDetailSuccessTag
 
@@ -121,7 +121,7 @@ class MyCustomRecipeDetailTags: RecipeDetailSuccessTag {
 </TabItem>
 </Tabs>
 
-with 
+### Tags params
 
 ```kotlin
 data class RecipeDetailSuccessTagParameters(
@@ -139,3 +139,17 @@ public enum class RecipeDifficulty(public val value: Int) {
     Hard(3)
 }
 ```
+
+### Tags ressources
+
+:::tip
+you can replace and reuse  string  ressources if you want to take advantage of our internationalisation system
+
+  ex :  `Localisation.recipe.lowDifficulty.localised`
+:::
+
+| Name | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| lowDifficulty | com_miam_recipe_difficulty_low | Débutant | Beginner chef |
+| mediumDifficulty | com_miam_recipe_difficulty_medium | Intermédiaire | Intermediate chef |
+| highDifficulty | com_miam_recipe_difficulty_high | Confirmé | Top chef |
