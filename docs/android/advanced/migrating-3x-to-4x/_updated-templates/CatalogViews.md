@@ -16,7 +16,7 @@ oldCode={ "var recipeCardTemplate: (@Composable() (recipe: Recipe, vmRecipe: Rec
         <summary>Recipe Card Loading</summary>
         <CodeUpdateComparison 
 oldCode={`var recipeLoaderTemplate: (@Composable() () -> Unit)?`}
-            newCode={<RecipeCardLoadingProtocol/>}/>
+            newCode={<CatalogProtocols.RecipeCardLoading/>}/>
     </details>
 <details>
         <summary>Catalog Loading</summary>
