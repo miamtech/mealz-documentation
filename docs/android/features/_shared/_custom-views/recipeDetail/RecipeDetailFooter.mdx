@@ -1,7 +1,9 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import UseStringResource from '../../../../_code/_utils/UseStringResource.mdx'
 
-### Footer
+
+## Footer
 
 To create your own recipe detail footer template you create a class that implements `RecipeDetailSuccessFooter`
 
@@ -121,7 +123,7 @@ import ai.mealz.sdk.components.recipeDetail.success.footer.RecipeDetailSuccessFo
 </TabItem>
 </Tabs>
 
-with 
+### Footer params
 
 ```kotlin
 data class RecipeDetailSuccessFooterParameters(
@@ -150,3 +152,19 @@ public enum class IngredientStatusTypes {
     REMAINING_INGREDIENTS_TO_BE_ADDED;
 }
 ```
+### Footer resource 
+
+<UseStringResource   localisationExample = {"Localisation.recipeDetails.inMyBasket.localised"}/>
+
+
+
+| Name | Resource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| inMyBasket | com_miam_details_in_my_basket | dans mon panier | In my basket |
+| continueShopping | com_miam_details_continue_shopping | Continuer mes courses | Continue shopping |
+
+there are also plurials
+
+| Methods | Resource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| addProduct(Int) | com_miam_ingredient_add_product | Ajouter %d produit  <br/> Ajouter %d produits | Add %d product <br/>  Add %d products | 
