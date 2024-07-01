@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Ingredients
+## Ingredients
 
 To create your own recipe detail ingredients template you create a class that implements `Ingredients`
 
@@ -132,7 +132,7 @@ class MyCustomRecipeDetailIngredients:  Ingredients {
 </TabItem>
 </Tabs>
 
-with 
+### Ingredients params 
 
 ```kotlin
 data class IngredientsParameters(
@@ -141,3 +141,15 @@ data class IngredientsParameters(
     val defaultRecipeGuest: Int
 )
 ```
+
+### Ingredients ressources 
+
+:::tip
+you can replace and reuse  string  ressources if you want to take advantage of our internationalisation system
+
+  ex :  `Localisation.recipe.numberOfIngredients(INT).localised`
+:::
+
+| Methods | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| numberOfIngredients(Int) | com_miam_recipe_number_of_ingredients | %d ingrédients | %d ingredients | 
