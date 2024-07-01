@@ -1,0 +1,80 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Header
+
+The Header is the first customizable component on the RecipeDetail at the very top of the page;
+to create your own recipe detail header you create a class that implements `RecipeDetailHeader`
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailHeader.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailHeader
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailHeaderParameters
+
+
+class MyCustomRecipeDetailHeader: RecipeDetailHeader {
+
+    @Composable
+    override fun Content(params: RecipeDetailHeaderParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailHeader
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailHeaderParameters
+
+
+class MyCustomRecipeDetailHeader: RecipeDetailHeader {
+
+    @Composable
+    override fun Content(params: RecipeDetailHeaderParameters) {
+       Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.background(color = Color.Transparent)
+        ) {
+            Box(Modifier.padding(16.dp)) {
+                Surface(
+                    Modifier
+                        .size(36.dp)
+                        .align(Alignment.Center),
+                    shape = CircleShape,
+                    color = ai.mealz.sdk.theme.Colors.white,
+                    elevation = 1.dp
+                ) {}
+                Image(
+                    painter = painterResource(ai.mealz.sdk.ressource.Image.toggleCaret),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(24.dp).padding(end = 4.dp)
+                        .rotate(180f)
+                        .clickable { params.closeDialogue() }
+                )
+            }
+        }
+    }
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class RecipeDetailHeaderParameters(
+    val title: String, // name of the recipe
+    val closeDialogue: () -> Unit //  close the view
+)
+```

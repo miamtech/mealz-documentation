@@ -1,0 +1,80 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### SponsorBanner
+
+To create your own recipe detail sponsor banner template you create a class that implements `RecipeDetailSponsorBanner`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailSponsorBanner.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.sponsorBanner.RecipeDetailSponsorBanner
+import ai.mealz.sdk.components.recipeDetail.success.sponsorBanner.RecipeDetailSponsorBannerParameters
+
+
+class MyCustomRecipeDetailSponsorBanner: RecipeDetailSponsorBanner {
+
+    @Composable
+    override fun Content(params: RecipeDetailSponsorBannerParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.sponsorBanner.RecipeDetailSponsorBanner
+import ai.mealz.sdk.components.recipeDetail.success.sponsorBanner.RecipeDetailSponsorBannerParameters
+
+
+class MyCustomRecipeDetailSponsorBanner: RecipeDetailSponsorBanner {
+
+    @Composable
+    override fun Content(params: RecipeDetailSponsorBannerParameters) {
+       Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.background(color = Color.Transparent)
+        ) {
+            Box(Modifier.padding(16.dp)) {
+                Surface(
+                    Modifier
+                        .size(36.dp)
+                        .align(Alignment.Center),
+                    shape = CircleShape,
+                    color = ai.mealz.sdk.theme.Colors.white,
+                    elevation = 1.dp
+                ) {}
+                Image(
+                    painter = painterResource(ai.mealz.sdk.ressource.Image.toggleCaret),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(24.dp).padding(end = 4.dp)
+                        .rotate(180f)
+                        .clickable { params.closeDialogue() }
+                )
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+
+with 
+
+```kotlin
+data class RecipeDetailInfoParameters(
+    val sponsor: Sponsor, // all usefull info is inside attributes field
+    val openSponsorDetail: (sponsor: Sponsor) -> Unit // navigate to sponsor presentation page 
+)
+```

@@ -50,7 +50,7 @@ let hostingViewController = UIHostingController<RecipeCardView>
 To change your `RecipeCardView()` you'll just need to replace it with one of these:
 
 ```swift
-import MiamIOSFramework
+import MealziOSSDK
 import MealzNavModuleIOS
 
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipeId: /* your String recipe id */)
@@ -80,7 +80,7 @@ let hostingViewController = UIHostingController<RecipeCardView>
 To change your `RecipeCardView()` you'll just need to replace it with one of these:
 
 ```swift
-import MiamIOSFramework
+import MealziOSSDK
 import MealzNavModuleIOS
 
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipeId: /* your String recipe id */)
@@ -95,7 +95,7 @@ mealzStandaloneRecipeCard.view.addTo(cell, Pin(.all))
 
 You can completely configure all the templates & pages associated with the Recipe Card Feature.
 
-[//]: # (You can read about it [here]&#40;/docs/ios/features/catalog/customize-views.md&#41;.)
+You can read about it [here](/docs/ios/features/recipe-card/customize-views.md).
 
 ## Favorites Feature
 

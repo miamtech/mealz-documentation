@@ -1,0 +1,29 @@
+```swift
+// From anywhere
+import mealzcore
+
+// existingUserId is your user id type String is expected
+Mealz.shared.user.updateUserId(userId: existingUserId, authorization: Authorization.userId)
+```
+
+Here is how to inform the SDK whenever the user login state changes. We recommend using Observables
+or EventListeners to that end.
+
+```swift
+// file MealzManager.swift
+import mealzcore
+
+public class MealzManager {
+  // CODE
+
+  private init() {
+    // CODE
+
+    OBSERVABLE_ON_USER_OBJECT.sink { _  in
+      // existingUserId is your user id type String is expected
+      Mealz.shared.user.updateUserId(userId: existingUserId, authorization: Authorization.userId)
+    }
+  }
+  // CODE
+}
+```

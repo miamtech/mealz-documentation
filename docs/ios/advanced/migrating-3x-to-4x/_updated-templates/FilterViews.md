@@ -14,7 +14,7 @@ oldCode={`catalogFiltersViewTemplate: AnyView?`}
         <summary>Section</summary>
         <CodeUpdateComparison 
 oldCode={`catalogFiltersSectionTemplate: ((String, Array<CatalogFilterOptions>, @escaping (CatalogFilterOptions) -> Void) -> AnyView)?`}
-            newCode=<FiltersProtocols.FiltersSectionProtocol/>/>
+            newCode={<FiltersProtocols.FiltersSectionProtocol/>}/>
     </details>
 <details>
         <summary>Row</summary>

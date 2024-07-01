@@ -13,37 +13,37 @@ import BaseTitleProtocol from '@site/docs/ios/_code/_base/BaseTitleProtocol.md'
         <summary>Recipe Card</summary>
         <CodeUpdateComparison 
 oldCode={`recipeCardTemplate: ((Recipe?, Bool, Bool, Bool, @escaping () -> Void, @escaping () -> Void) -> AnyView)?`}
-            newCode=<CatalogProtocols.CatalogRecipeCardProtocol/>/>
+            newCode={<CatalogProtocols.CatalogRecipeCardProtocol/>}/>
     </details>
     <details>
         <summary>Recipe Card Loading</summary>
         <CodeUpdateComparison 
 oldCode={`recipeCardLoadingViewTemplate: (() -> AnyView)?`}
-            newCode=<RecipeCardLoadingProtocol/>/>
+            newCode={<RecipeCardLoadingProtocol/>}/>
     </details>
 <details>
         <summary>Catalog Loading</summary>
         <CodeUpdateComparison 
 oldCode={`catalogLoadingViewTemplate: ((String) -> AnyView)?`}
-            newCode=<LoadingProtocol/>/>
+            newCode={<LoadingProtocol/>}/>
     </details>
 <details>
         <summary>Catalog Empty</summary>
         <CodeUpdateComparison 
 oldCode={`catalogEmptyViewTemplate: (() -> AnyView)?`}
-            newCode=<EmptyProtocol/>/>
+            newCode={<EmptyProtocol/>}/>
     </details>
 <details>
         <summary>Catalog Search</summary>
         <CodeUpdateComparison 
 oldCode={`catalogSearchViewTemplate: ((@escaping () -> Void, @escaping () -> Void) -> AnyView)?`}
-            newCode=<SearchProtocol/> />
+            newCode={<SearchProtocol/>} />
     </details>
 <details>
         <summary>Catalog Recipe No Results</summary>
         <CodeUpdateComparison 
 oldCode={`catalogRecipePageNoResultsViewTemplate: ((String, (() -> Void)?, Bool) -> AnyView)?`}
-            newCode=<CatalogProtocols.CatalogRecipesListNoResultsProtocol/>/>
+            newCode={<CatalogProtocols.CatalogRecipesListNoResultsProtocol/>}/>
     </details>
 <details>
         <summary>Catalog Package Row</summary>
@@ -63,31 +63,31 @@ oldCode={`catalogViewHeaderTemplate: (((() -> Void)?) -> AnyView)?`}
 oldCode={`catalogViewToolbarTemplate: ((Bool, Bool, @escaping () -> Void, @escaping () -> Void,
         @escaping () -> Void, @escaping () -> Void, @escaping () -> Void
     ) -> AnyView)?`}
-            newCode=<CatalogProtocols.CatalogToolbarProtocol/>/>
+            newCode={<CatalogProtocols.CatalogToolbarProtocol/>}/>
     </details>
 <details>
         <summary>My Meal Button</summary>
         <CodeUpdateComparison 
 oldCode={`public var myMealButtonEmptyViewTemplate: (() -> AnyView)?`}
-            newCode=<CatalogProtocols.MealsInBasketButtonSuccessProtocol/>/>
+            newCode={<CatalogProtocols.MealsInBasketButtonSuccessProtocol/>}/>
     </details>
 <details>
         <summary>Recipes List Title</summary>
         <CodeUpdateComparison 
 oldCode={`recipesListTitleTemplate: ((CatalogPageTitleTemplateParameters) -> AnyView)?`}
-            newCode=<BaseTitleProtocol/>/>
+            newCode={<BaseTitleProtocol/>}/>
     </details>
 <details>
         <summary>Recipes Category List Title</summary>
         <CodeUpdateComparison 
 oldCode={`recipesListCategoryTitleTemplate: ((CatalogPageTitleTemplateParameters) -> AnyView)?`}
-            newCode=<BaseTitleProtocol/>/>
+            newCode={<BaseTitleProtocol/>}/>
     </details>
 <details>
         <summary>Recipes Search Title</summary>
         <CodeUpdateComparison 
 oldCode={`recipesListSearchTitleTemplate: ((CatalogPageTitleTemplateParameters) -> AnyView)?`}
-            newCode=<BaseTitleProtocol/>/>
+            newCode={<BaseTitleProtocol/>}/>
     </details>
 <details>
         <summary>Recipe Modal</summary>

@@ -10,25 +10,25 @@ import EmptyProtocol from '@site/docs/android/_code/_base/EmptyProtocol.md'
         <summary>Current Product</summary>
         <CodeUpdateComparison 
 oldCode={`var currentProductTemplate: (@Composable() (selectedItem: BasketPreviewLine) -> Unit)?`}
-            newCode=<ItemSelectorProtocols.ItemSelectorSelectedProductProtocol/>/>
+            newCode={<ItemSelectorProtocols.ItemSelectorSelectedProductProtocol/>}/>
     </details>
     <details>
         <summary>Product Options</summary>
         <CodeUpdateComparison 
 oldCode={`var productOptionListTemplate: (@Composable() (options: List<BasketPreviewLine>, choose: (index: Int) -> Unit) -> Unit)?`}
-            newCode=<ItemSelectorProtocols.ItemSelectorOptionProductsProtocol/>/>
+            newCode={<ItemSelectorProtocols.ItemSelectorOptionProductsProtocol/>}/>
     </details>
 <details>
         <summary>Loading</summary>
         <CodeUpdateComparison 
 oldCode={`var itemSelectorLoadingTemplate: (@Composable() (back: () -> Unit) -> Unit)?`}
-            newCode=<LoadingProtocol/>/>
+            newCode={<LoadingProtocol/>}/>
     </details>
 <details>
         <summary>Empty</summary>
         <CodeUpdateComparison 
 oldCode={`var itemSelectorEmptyTemplate: (@Composable() (back: () -> Unit) -> Unit)?`}
-            newCode=<EmptyProtocol/>/>
+            newCode={<EmptyProtocol/>}/>
     </details>
   </div>
 </details>

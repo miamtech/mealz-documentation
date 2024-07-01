@@ -1,0 +1,60 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### ProductListHeader
+
+To create your own recipe detail product list header template you create a class that implements `RecipeDetailProductListHeader`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailHeader.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailProductListHeader
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailProductListHeaderParameters
+
+
+class MyCustomRecipeDetailProductListHeader: RecipeDetailProductListHeader {
+
+    @Composable
+    override fun Content(params: RecipeDetailProductListHeaderParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailProductListHeader
+import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailProductListHeaderParameters
+
+
+class MyCustomRecipeDetailProductListHeader: RecipeDetailProductListHeader {
+
+    @Composable
+    override fun Content(params: RecipeDetailProductListHeaderParameters) {
+         Text(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            text = Localisation.recipe.numberOfIngredients(params.productCount).localised,
+            style = ai.mealz.sdk.theme.Typography.subtitleBold.copy(textAlign = TextAlign.Start),
+            color = ai.mealz.sdk.theme.Colors.black
+        )
+    }
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```kotlin
+data class RecipeDetailProductListHeaderParameters(
+   val productCount: Int
+)
+```

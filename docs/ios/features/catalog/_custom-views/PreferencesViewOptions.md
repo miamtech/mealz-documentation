@@ -12,3 +12,9 @@ static let preferencesViewOptions = PreferencesViewOptions(
     footer: TypeSafePreferencesFooter(/* your new view*/)
 )
 ```
+Protocols:
+- [PreferencesGuestProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesguestprotocol)
+- [PreferencesDietProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesdietprotocol)
+- [PreferencesIngredientsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesingredientsprotocol)
+- [PreferencesEquipmentProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesequipmentprotocol)
+- [PreferencesFooterProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesfooterprotocol)

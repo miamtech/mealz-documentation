@@ -9,20 +9,20 @@ import LoadingProtocol from '@site/docs/ios/_code/_base/LoadingProtocol.md'
         <summary>Current Product</summary>
         <CodeUpdateComparison 
 oldCode={`currentProductTemplate: ( (_: BasketPreviewLine) -> AnyView )?`}
-            newCode=<ItemSelectorProtocols.ItemSelectorSelectedProductProtocol/>/>
+            newCode={<ItemSelectorProtocols.ItemSelectorSelectedProductProtocol/>}/>
     </details>
     <details>
         <summary>Product Options</summary>
         <CodeUpdateComparison 
 oldCode={`productOptionListTemplate: ( (_: [BasketPreviewLine], (BasketPreviewLine, Int) -> Void) -> AnyView )?
 `}
-            newCode=<ItemSelectorProtocols.ItemSelectorOptionProductsProtocol/>/>
+            newCode={<ItemSelectorProtocols.ItemSelectorOptionProductsProtocol/>}/>
     </details>
 <details>
         <summary>Loading</summary>
         <CodeUpdateComparison 
 oldCode={`itemSelectorLoadingViewTemplate: ( () -> AnyView )?`}
-            newCode=<LoadingProtocol/>/>
+            newCode={<LoadingProtocol/>}/>
     </details>
   </div>
 </details>

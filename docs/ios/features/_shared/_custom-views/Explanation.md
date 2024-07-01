@@ -9,6 +9,10 @@ We recommend putting all of your custom ViewOptions into a custom class.
 In our sample implementations, we have one class `MealzViewConfig`, however you may find it more maintainable to have multiple classes.
 
 ```swift
+import MealziOSSDK
+import MealzUIiOSSDK
+import MealzNaviOSSDK
+
 struct MealzViewConfig {
 // the below View Options go here
 }
