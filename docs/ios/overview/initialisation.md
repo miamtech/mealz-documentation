@@ -4,6 +4,6 @@ label: "Initialisation"
 title: "Initialisation"
 ---
 
-import SharedInit from '../../shared/overview/Initialisation.mdx';
+import SharedInit from '../../shared/overview/initialisation.mdx';
 
 <SharedInit platform="ios" />
