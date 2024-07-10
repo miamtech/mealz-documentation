@@ -8,12 +8,12 @@ If a website is affiliated with you via Mealz, products added from this website 
 
 The process is the following:
 1. The user is browsing the affiliated website and have the possibility to add recipes and/or individual products to a Mealz basket
-2. The user at some point has to chose a store to transfer their basket over to, and they chose one of your stores !
+2. The user at some point has to choose a store to transfer their basket over to, and they choose one of your stores !
 3. The user decides that they can proceed to transfer their basket and clicks on a CTA that redirects them to your website with custom urlParams 
 :::warning
   The url is by default the following: `{recipe-catalog-url}?affiliate={affiliate_website_name}&transferred_basket_token={token}&point_of_sale_ext_id={storeId}`
 
-  If you'd need us to add more params or if some params are in conflict with any of your params, please contact us so we can work it together
+  If you need us to add more params or if some params are in conflict with any of your params, please contact us so we can work it together
 :::
 4. On your website, the SDK catches the urlParams, removes them from the url and stores them in sessionStorage until the basket is fully transfered 
   :::info
@@ -37,11 +37,11 @@ The process is the following:
 
 On the affiliated website, Mealz needs to ask to the user which store they wants to shop in, so we can know which product to present them.
 
-This means that, when they are redirected to your website, they expect to be on the store they chose earlier.
+This means that, when they are redirected to your website, they expect to be on the store they chose earlier. But if the last time they were on your website they chose a different store, this store will still be selected on redirection...
 
-**Which means that we need you to provide us a way to force the store !**
+**Which means that we need you to provide us a way to override the chosen store !**
 
-Just like hookCallback, Mealz needs a callback that it can call when it needs to force the store.
+Just like hookCallback, Mealz needs a callback that it can call when it needs to override the store.
 You can set this callback with `window.miam.hook.setForcePosCallback: (callback: (posExtId: string) => boolean) => void`.
 
   :::note
@@ -58,7 +58,7 @@ export class Mealz {
   }
 
   forceStoreCallback(storeId) => {
-    // Force the store to the store with the ID passed in param
+    // Override the store to the store with the ID passed in param
     // Then
     // if (mealzCanSafelyAddProductsToCart) {
       return true
@@ -70,7 +70,7 @@ export class Mealz {
 }
 ```
 :::info
-  **Mealz will not add product until your callback has returned.** This means that if, for instance, when changing stores you display a confirmation popup to the user, and if for the purpose of this example your website has a rule that there must not be any product added to cart while this popup is displayed, then your callback should only return *after that popup was closed*, or else Mealz will try to add products while the popup is opened (which then would break your website rules).
+  **Mealz will not add products until your callback has returned.** For example, perhaps when changing stores you display a confirmation popup to the user because your website has a rule dictating that no products may be added to cart while this popup is displayed. In this case, your callback should only return *after the popup was closed*, or else Mealz will try to add products while the popup is open (which would break your website rules).
 
   This is only an example, but should be kept in mind so the user experience stays as coherent as possible.
 :::

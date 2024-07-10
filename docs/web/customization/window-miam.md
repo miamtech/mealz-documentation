@@ -7,11 +7,11 @@ sidebar_position: 1
 The window.miam object still has a lot more methods and attributes that can make a big difference for customizing your experience. Some of them will not be useful to you right off the bat, but can be at some point.
 
 :::tip
-  Except for the ones mentionned in [Set up and usage](./category/set-up-and-usage), none of the methods listed in this section are necessary if the basic implementation is good enough for you. But if you want or need more customization, you may need to call some of those methods.
+  Except for the methods mentioned in [Set up and usage](./category/set-up-and-usage), none of the methods listed in this section are necessary if the basic implementation is good enough for you. But if you want or need more customization, you may need to call some of those methods.
 :::
 
 ## window.miam.analytics
-- `eventSent$: Observable<string>` Each time Mealz sends an analytics event, emits its content as a stringified JSON of the following format:
+- `eventSent$: Observable<string>` Each time Mealz sends an analytics event, it emits its content as a stringified JSON of the following format:
 
 ```javascript
 {
@@ -46,7 +46,7 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
 
 - `definePushProductsToBasket: (pushProductsToBasket: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket changes to update the user's cart accordingly
   :::note
-    `pushProductsToBasket`: a method that updates the user's cart with the products passed in parameter, by adding products if their quantity is positive, and removing them if their quantity is negative
+    `pushProductsToBasket`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative
   :::
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
   :::note
@@ -83,7 +83,7 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
 - `setForcePosCallback: (callback: (posExtId: string) => boolean) => void`: [Receiving baskets from affiliated websites](./affiliated-websites)
 
 ## window.miam.pos
-- `load: (externalId) => void`: Call to inform Miam of the point of sale the user is currently on. 
+- `load: (externalId) => void`: Call to inform Mealz that the point of sale has been updated. 
   :::info
     Do not forget to call `pos.load` again after each time the store changes
   :::
@@ -105,7 +105,7 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
     `ingredientsTotal`: the total number of ingredients in the recipe
   :::
   :::warning
-    It sends the number of **ingredients** and not of products because the SDK has no way of knowing in which quantities the product not added would be added
+    It sends the number of **ingredients** and not of products because the SDK has no way of knowing the quantity of the potential products NOT added. 
   :::
 - `shouldDisplayIngredientPicturesOnRecipeCard: (should: boolean) => void`: If true is passed, recipe-cards will diplay pictures of the ingredients.
 - `setDefaultIngredientPicture: (url: string) => void`: Set a default url for if there aren't any picture for an ingredient

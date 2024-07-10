@@ -10,7 +10,7 @@ With version 8.4 we released a new `list-scan` component :
 
 ![](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/8.4/ListScanCTA.png "List scan CTA")
 
-It consists of a simple CTA that you can add on your website provide a groceries list scan feature :
+It consists of a simple CTA that you can add to your website to provide a groceries list scan feature :
 
 1. On a click on the CTA the user will be prompted to select a image or PDF file of a groceries-list **(desktop)** / the photo app of their phone will open **(webmobile)**
 ![](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/8.4/ListScanFileSelect.png "List scan file select")
@@ -30,14 +30,14 @@ It consists of a simple CTA that you can add on your website provide a groceries
   This is due to the way product replacement / quntity changes currently works. There may be changes in the future
 :::
 
-## Inputs :
+## Inputs
 
   - `disableIngredientsMatching: boolean = false`: Disables the AI matching products to ingredient names. You need to switch this input to true if the user are expected to scan only non-food groceries lists
 
-## Outputs :
+## Outputs
   - `confirmed: void`: Emits an event when the user clicks on "Add to cart" and the drawer is closed
 
-## Example :
+## Example
 
 A recipe contextualized with surrounding products **_(Recommended)_**:
 
