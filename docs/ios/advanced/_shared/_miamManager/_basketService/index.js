@@ -5,3 +5,5 @@ export { default as OnBasketUpdate } from './OnBasketUpdate.md';
 export { default as PretendProductsToRetailerProducts } from './PretendProductsToRetailerProducts.md';
 export { default as UpdateBasketFromExternalSource } from './UpdateBasketFromExternalSource.md';
 export { default as HandlePayment } from './HandlePayment.md';
+export { default as PaymentStarted } from './PaymentStarted.md';
+export { default as PaymentFinished } from './PaymentFinished.md';
