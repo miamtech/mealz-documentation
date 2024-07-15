@@ -77,7 +77,7 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "8.4",
+            label: "8.5",
             path: "/"
           },
         }
@@ -145,9 +145,14 @@ export default {
             to: "docs/web/Introduction",
             items: [
               {
-                label: "8.4",
+                label: "8.5",
                 to: "docs/web/Introduction",
                 activeBasePath: "docs/web/",
+              },
+              {
+                label: "8.4",
+                to: "docs/web/Introduction",
+                activeBasePath: "docs/web/8.4",
               },
               {
                 label: "8.3",
