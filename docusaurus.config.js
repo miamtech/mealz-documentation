@@ -151,7 +151,7 @@ export default {
               },
               {
                 label: "8.4",
-                to: "docs/web/Introduction",
+                to: "docs/web/8.4/Introduction",
                 activeBasePath: "docs/web/8.4",
               },
               {
