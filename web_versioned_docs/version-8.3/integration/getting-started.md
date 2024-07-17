@@ -24,7 +24,7 @@ You can pass input parameters to a WebComponent simply by adding properties to t
 
 ```javascript
 const card = document.querySelector('webc-miam-recipe-card');
-card.productIds = ['id1', 'id2']
+card.productIds = [{ id: "1" }, { id: "2" }]
 ```
 
 If you need to listen to the Webcomponents's outputs (events), you can add an EventListener to the corresponding DOM element :
@@ -41,7 +41,7 @@ If your framework gives you an other way to interact with HTML tags, you should 
 
 ```html
 <webc-miam-recipe-card>
-  [productIds]="['id1', 'id2']"
+  [productIds]="[{ id: "1" }, { id: "2" }]"
   (hide)="alert($event)"
 </webc-miam-recipe-card>
 ```

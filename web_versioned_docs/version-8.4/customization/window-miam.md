@@ -77,7 +77,6 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
   :::warning
     Feature is working but will be reworked from the ground up in the future
   :::
-- `collapseUnavailableProductsByDefault: () => void`: Call to enable collapsing of unavailable products by default in recipe-details
 
 ## window.miam.hook
 - `setHookCallback(callback: (isLogged, isPosValid) => boolean) => void`: [Set up hook callback](./set-up-and-usage/hooks)
@@ -135,10 +134,6 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
   :::warning
     **Deprecated**, prefer using `supplier.setupWithToken` as it automatically loads the supplier
   :::
-- `getAffiliateSuppliers: () => Observable<Supplier[]>`
-  :::danger
-    This is an internal method that will be moved elsewhere soon. Do not call
-  :::
 
 ## window.miam.user
 - `loadWithExtId: (id, forbidProfiling = false) => void`: [Log in user](./set-up-and-usage/login-and-logout#handle-user-login-and-logout-optional)
@@ -147,19 +142,9 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
   :::note
     `favoriteProductIds`:  an array of product ids, passed as string
   :::
-- `setLocation: (position: GeolocationPosition) => void`: You can provide the user location if they allowed it in order to send it to our store-locator
+- `setLocation: (coords: Coordinates) => void`: You can provide the user location if they allowed it in order to send it to our store-locator
   :::info
-    the `GeolocationPosition` is the type returned by the method `navigator.geolocation.getCurrentPosition()` [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
-    
-    If you use another method to get the geolocation, you can simply provide an object with the following format:
-    ```js
-      window.miam.user.setLocation({
-        coords: {
-          longitude: 50.0;
-          latitude: 50.0;
-        }
-      })
-    ```
+    the `Coordinates` interface requires a `longitude` (number), a `latitude` (number) and optionally an `accuracy` (number), you can refer to [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates) for those specific attributes
   :::
 
 ## window.miam.events
