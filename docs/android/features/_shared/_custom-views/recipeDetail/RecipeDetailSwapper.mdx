@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Swapper
+## Swapper
 
 To create your own recipe detail swapper template you create a class that implements `Swapper`
 
@@ -129,7 +129,7 @@ class MyCustomRecipeDetailSwapper:  Swapper {
 </Tabs>
 
 
-with 
+### Swapper params
 
 ```kotlin
 data class SwapperParameters(
@@ -137,3 +137,16 @@ data class SwapperParameters(
     val toggle: () -> Unit // change isShopping
 )
 ```
+
+### Swapper ressources
+
+:::tip
+you can replace and reuse  string  ressources if you want to take advantage of our internationalisation system
+
+  ex :  `Localisation.recipeDetails.shopping.localised`
+:::
+
+| Name | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| shopping | com_miam_details_shopping | Je fais mes courses | I\'m shopping |
+| cooking | com_miam_details_cooking | Je cuisine | I\'m cooking |
