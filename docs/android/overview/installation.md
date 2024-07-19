@@ -5,12 +5,16 @@ label: "Installation"
 
 # Installation
 
+## Dependency
+
 We are self-hosting our libray on <a target="\_blank" href='https://github.com/miamtech/releaseMealz'> github</a>.
 To use it follow these steps : 
 
 
+Add a dependency resolution in your settings.gradle on repository root :
+
 ``` gradle
-// In your main gradle file 
+
 dependencyResolutionManagement {
     repositories {
         maven {
@@ -20,14 +24,18 @@ dependencyResolutionManagement {
 }
 ```
 
-Import with Gradle Kotlin DSL
+then import in your module build.gradle 
 
 ``` gradle
 // Your module gradle file
-dependencies {
-    implementation("ai.mealz.core:mealz-core:version")
-    implementation("ai.mealz.android:mealz-android:version")
-}
+implementation("ai.mealz.android:mealz-android:version")
 ```
 
+## ProGuard config
 
+If you have enabled minification, you must add these lines in your ProGuard config file 
+
+```
+-keep class ai.mealz.core.model.** { *; }
+-keep class ai.mealz.core.services.** { *; }
+```
