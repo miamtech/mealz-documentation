@@ -1,0 +1,161 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import UseStringResource from '../../../../_code/_utils/UseStringResource.mdx'
+
+## ItemSelector Success
+
+To create your own Success template you create a class that implements `ItemSelectorSuccess`
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomItemSelectorHeader.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccess
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccessParameters
+
+
+class MyCustomItemSelectorSuccess: ItemSelectorSuccess {
+
+    @Composable
+    override fun Content(params: ItemSelectorSearchParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccess
+import ai.mealz.sdk.components.itemSelector.success.ItemSelectorSuccessParameters
+
+class MyCustomItemSelectorSuccess: ItemSelectorSuccess {
+
+    @Composable
+    override fun Content(params: ItemSelectorSuccessParameters) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            params.items.forEach { item -> SelectableItem(item, params.select) }
+        }
+    }
+
+    @Composable
+    private fun SelectableItem(selectableItem: Item, select: (pricedItem: Item) -> Unit) {
+        Column {
+            Surface(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        AsyncImage(
+                            model = selectableItem.attributes?.image ?: "",
+                            contentDescription = "Product image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .size(88.dp)
+                                .padding(4.dp)
+                                .fillMaxSize()
+                        )
+                        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                            selectableItem.attributes?.brand?.let { name ->
+                                Text(
+                                    text = name.uppercase(),
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    lineHeight = 18.sp,
+                                )
+                            }
+                            selectableItem.attributes?.name?.let { name ->
+                                Text(
+                                    text = name,
+                                    fontSize = 12.sp,
+                                    lineHeight = 18.sp
+                                )
+                            }
+                            Badge(selectableItem.capacity)
+                        }
+                    }
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = selectableItem.attributes?.unitPrice?.toDouble()?.formatPrice() ?: "",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Black,
+                            lineHeight = 24.sp,
+                            color = ai.mealz.sdk.theme.Colors.primary,
+                            textAlign = TextAlign.Center
+                        )
+                        PrimaryButton(selectableItem, select)
+                    }
+                }
+            }
+            Surface(color = border, modifier = Modifier.fillMaxWidth()) {
+                Spacer(Modifier.size(1.dp))
+            }
+        }
+    }
+
+    @Composable
+    private fun Badge(text: String) {
+        Surface(
+            color = backgroundSecondary,
+            modifier = Modifier.padding(top = 8.dp),
+            shape = RoundedCornerShape(50)
+        ) {
+            Text(text = text, modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp))
+        }
+    }
+
+    @Composable
+    private fun PrimaryButton(selectableItem: Item, select: (item: Item) -> Unit) {
+        Surface(shape = RoundedCornerShape(6.dp), color = primary, modifier = Modifier.clickable { select(selectableItem) }) {
+            Text(
+                text = Localisation.itemSelector.select.localised,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                lineHeight = 16.sp,
+                color = white,
+                modifier = Modifier.padding(vertical = 6.dp, horizontal = 16.dp)
+            )
+        }
+    }
+}s
+```
+</TabItem>
+</Tabs>
+
+
+### ItemSelector Success params
+
+```koltin
+data class ItemSelectorSuccessItem(
+    val name: String,
+    val brand: String,
+    val imageUrl: String,
+    val description: String,
+    val price : Double
+)
+
+data class ItemSelectorSuccessParameters(
+    @Deprecated("Use itemSelectorItems instead")
+    val items: List<Item>,
+    val itemSelectorItems: List<ItemSelectorSuccessItem>,
+    val previous: () -> Unit,
+    val select: (Item) -> Unit
+)
+```
+
+### ItemSelector Success resource
+
+<UseStringResource   localisationExample = {"Localisation.itemSelector.select.localised"}/>
+
+
+| Name | Resource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| select | com_miam_item_selector_select | Sélectionner | Select |
