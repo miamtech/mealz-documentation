@@ -1,8 +1,8 @@
 #### Item Selector - `ItemSelectorViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
+import MealzUIiOSSDK
 
 static let itemSelectorViewOptions = ItemSelectorViewOptions(
     searchBar = TypeSafeSearch(/* your new view*/),
