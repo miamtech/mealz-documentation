@@ -32,7 +32,7 @@ function HomepageHeader() {
         <div >
           <Link
             className="button button--secondary button--lg"
-            to="/docs/web/Introduction">
+            to="/docs/web_sdk/Introduction">
             Get Started 🌐
           </Link>
         </div>
