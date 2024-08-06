@@ -80,6 +80,12 @@ export default {
             label: "8.5",
             path: "/"
           },
+          "8.4": {
+            banner: 'none'
+          },
+          "8.3": {
+            banner: 'none'
+          }
         }
       },
     ],
@@ -147,7 +153,7 @@ export default {
               {
                 label: "8.5",
                 to: "docs/web/Introduction",
-                activeBasePath: "docs/web/",
+                activeBaseRegex: "docs/web/[^0-9][^/]",
               },
               {
                 label: "8.4",
