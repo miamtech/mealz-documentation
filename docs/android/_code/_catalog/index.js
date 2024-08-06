@@ -3,3 +3,4 @@ export { default as CatalogRecipeCardProtocol } from './CatalogRecipeCardProtoco
 export { default as MealsInBasketButtonSuccessProtocol } from './MealsInBasketButtonSuccessProtocol.md';
 export { default as CatalogSearchProtocol } from './CatalogSearchProtocol.md';
 export { default as CatalogCategoriesPageCategory } from './CatalogCategoriesPageCategory.md';
+export { default as RecipeCardLoading } from './RecipeCardLoading.md'

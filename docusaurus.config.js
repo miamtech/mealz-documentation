@@ -77,9 +77,15 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "8.3",
+            label: "8.5",
             path: "/"
           },
+          "8.4": {
+            banner: 'none'
+          },
+          "8.3": {
+            banner: 'none'
+          }
         }
       },
     ],
@@ -145,9 +151,19 @@ export default {
             to: "docs/web/Introduction",
             items: [
               {
-                label: "8.3",
+                label: "8.5",
                 to: "docs/web/Introduction",
-                activeBasePath: "docs/web/",
+                activeBaseRegex: "docs/web/[^0-9][^/]",
+              },
+              {
+                label: "8.4",
+                to: "docs/web/8.4/Introduction",
+                activeBasePath: "docs/web/8.4",
+              },
+              {
+                label: "8.3",
+                to: "docs/web/8.3/Introduction",
+                activeBasePath: "docs/web/8.3",
               },
             ]
           },
