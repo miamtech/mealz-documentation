@@ -6,13 +6,17 @@ import ImageSideBySide from '@site/src/components/ImageSideBySide';
 
 # About our library
 
-## Which features can I add to my website using ngMiam
+## Which features can I add to my website using Mealz library
 
-With ngMiam, Mealz provides you a bundle of features that you can add to your website.
+Mealz provides you a bundle of features that you can add to your website.
 
 - Recipe cards that you can insert in-between products to inspire the client
 - A catalog of recipes so your clients have a page on your website where they can search for inspiration
 - Reminders of recipes that you can insert in your basket page so the clients can remember from where the products come from
+
+:::note
+    Currently, SSR (Server-Side Rendering) is only available for the recipe card feature.
+:::
 
 ### The recipe cards
 
@@ -109,7 +113,7 @@ Finally, if any recipes has been added to the user's cart, a button appears at t
 
 ### The recipe reminders
 
-To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](./features/recipe-tags) component, to remind the user why a product is in their basket
+To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](./features/recipe-tags) component, to remind the user why a product is in their basket.
 
 Imagine your cart page looks like this:
 
