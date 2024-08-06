@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-label: "Overview"
+label: "overview"
 ---
 
 import TimeIcon from '@site/src/components/TimeIcon';
