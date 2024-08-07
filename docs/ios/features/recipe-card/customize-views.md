@@ -10,6 +10,7 @@ import BaseViews from '@site/docs/ios/features/_shared/_custom-views/BaseViews.m
 import CatalogRecipesListGridConfig from '@site/docs/ios/features/_shared/_custom-views/CatalogRecipesListGridConfig.md';
 import StandaloneRecipeCardConstructor from './_custom-views/StandaloneRecipeCardConstructor.md';
 import * as RecipeDetailsViewOptions from '@site/docs/ios/features/recipe-details/_custom-views/';
+import ItemSelectorViewOptions from '@site/docs/ios/features/item-selector/_custom-views/ItemSelectorViewOptions.md';
 
 # Customize Views
 
@@ -43,7 +44,7 @@ A basic `CGSize` that includes the width & height.
 
 <RecipeDetailsViewOptions.RecipeDetailsViewOptions />
 <RecipeDetailsViewOptions.RecipeDetailsProductViewOptions />
-<RecipeDetailsViewOptions.ItemSelectorViewOptions />
+<ItemSelectorViewOptions />
 
 ### Recipe Details Constructor
 
