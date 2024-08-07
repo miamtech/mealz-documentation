@@ -1,7 +1,9 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import UseStringResource from '../../../../_code/_utils/UseStringResource.mdx'
 
-### Product
+
+## Product
 
 Product has three sub-templates : 
 - **success** : State when data is loaded from back end
@@ -22,7 +24,7 @@ products {
 }
 ```
 
-#### Success
+## Product Success
 
 To create your own recipe detail product success template you create a class that implements `ProductSuccess`
 
@@ -303,7 +305,7 @@ class MyCustomRecipeDetailProductSuccess: ProductSuccess {
 </TabItem>
 </Tabs>
 
-with 
+### Product Success params
 
 ```kotlin
  data class ProductSuccessParameters(
@@ -332,7 +334,24 @@ with
 )
 ```
 
-#### Loading
+### Product Success ressources 
+
+<UseStringResource   localisationExample = {"Localisation.product.sponsored.localised"}/>
+
+
+| Name | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| sponsored | com_miam_basket_sponsored | Sponsorisé | Sponsored |
+| replaceItem | com_miam_budget_replace_item | Remplacer | Replace |
+| ignoreProduct | com_miam_ingredient_ignore_product | Ignorer ce produit | Ignore this product |
+
+there are also plurials
+
+| Methods | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| productsSharedRecipe(Int) | com_miam_ingredient_shared_with_recipe | Calculé pour %d repas  <br/> Calculés pour %d repas | Calculated for %d meal <br/>  Calculated for %d meals | 
+
+## Product Loading
 
 To create your own recipe detail product loading template you create a class that implements `ProductLoading`
 
@@ -500,13 +519,13 @@ class MyCustomRecipeDetailProductLoading: ProductLoading {
 </TabItem>
 </Tabs>
 
-with 
+### Product Loading params
 
 ```kotlin
 object ProductLoadingParameters
 ```
 
-#### Ignored 
+## Product Ignored 
 
 To create your own recipe detail product ignore template you create a class that implements `ProductIgnore
 
@@ -621,7 +640,7 @@ class MyCustomRecipeDetailProductIgnore: ProductIgnore {
 </TabItem>
 </Tabs>
 
-with 
+### Product Ignore params
 
 ```kotlin
 data class ProductIgnoreParameters(
@@ -633,3 +652,14 @@ data class ProductIgnoreParameters(
     val chooseProduct: () -> Unit
 )
 ```
+
+
+### Product Ignore resources 
+
+<UseStringResource   localisationExample = {"`Localisation.ingredient.willNotBeAdded.localised`"}/>
+
+
+| Name | Resource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| willNotBeAdded | com_miam_ingredient_will_not_be_added | Cet ingrédient ne sera pas ajouté à votre panier | This ingredient will not be added to your basket |
+| chooseProduct | com_miam_ingredient_choose_product | Choisir un produit | Choose a product |

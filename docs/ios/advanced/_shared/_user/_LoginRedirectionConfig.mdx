@@ -4,7 +4,7 @@ public class MealzManager: ObservableObject {
 
    private init() {
     // set the redirection when the user has not selected a store
-    Mealz.shared.user.setStoreLocatorRedirection { yourFunctionToChangeStore() }
+    Mealz.shared.user.setSignInRedirection { yourFunctionToSignInUser() }
 
     Mealz.shared.Core(init: { coreBuilder in
             coreBuilder.sdkRequirement(init: { requirementBuilder in

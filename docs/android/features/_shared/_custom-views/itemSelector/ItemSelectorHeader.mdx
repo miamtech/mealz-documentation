@@ -1,0 +1,76 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import UseStringResource from '../../../../_code/_utils/UseStringResource.mdx'
+
+## ItemSelector Header
+
+The Header is the first customizable component on the ItemSelector at the very top of the page;
+to create your own ItemSelector header you create a class that implements `ItemSelectorHeader`
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomItemSelectorHeader.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeader
+import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeaderParameters
+
+
+class MyCustomItemSelectorHeader: ItemSelectorHeader {
+
+    @Composable
+    override fun Content(params: ItemSelectorHeaderParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeader
+import ai.mealz.sdk.components.itemSelector.header.ItemSelectorHeaderParameters
+
+class MyCustomItemSelectorHeader : ItemSelectorHeader {
+    @Composable
+    override fun Content(params: ItemSelectorHeaderParameters) {
+        Box(modifier = Modifier.fillMaxWidth()) {
+            IconButton(
+                modifier = Modifier
+                    .size(xlButtonHeight)
+                    .align(Alignment.CenterStart),
+                onClick = params.previous
+            ) {
+                Image(
+                    colorFilter = ColorFilter.tint(ai.mealz.sdk.theme.Colors.primary),
+                    painter = painterResource(ai.mealz.sdk.ressource.Image.toggleCaret),
+                    contentDescription = "Previous",
+                    modifier = Modifier.rotate(180f)
+                )
+            }
+            Text(
+                text = params.title,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.Center),
+                textAlign = TextAlign.Center,
+                style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            )
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+### ItemSelector Header params
+
+```kotlin
+data class ItemSelectorHeaderParameters(
+    val title: String,
+    val previous: () -> Unit // back to previous page 
+)
+```

@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Often deleted
+## Often deleted
 Often deleted has two sub-templates : 
 - **header** : The the toggle button that programmatically displays or hides the list of products
 - **product** : A single product in the list
@@ -17,7 +17,7 @@ oftenDeleted {
 }
 ```
 
-#### Header
+## Header
 
 To create your own recipe detail product often deleted template you create a class that implements `OftenDeletedProductsHeader`
 
@@ -83,7 +83,7 @@ class MyCustomRecipeDetailOftenDeletedProductsHeader: OftenDeletedProductsHeader
 </TabItem>
 </Tabs>
 
-with 
+### Often deleted header params
 
 ```kotlin
 data class OftenDeletedProductsHeaderParameters(
@@ -93,7 +93,7 @@ data class OftenDeletedProductsHeaderParameters(
 )
 ```
 
-#### Product
+## Product
 To create your own recipe detail often deleted product template you create a class that implements `OftenDeletedProduct`
 
 <Tabs defaultValue="empty_example" groupId="code-example"
@@ -222,3 +222,16 @@ data class OftenDeletedProductParameters(
     val chooseProduct: () -> Unit
 )
 ```
+
+### Often deleted Product ressources 
+
+:::tip
+you can replace and reuse  string  ressources if you want to take advantage of our internationalisation system
+
+  ex :  `Localisation.ingredient.willNotBeAdded.localised`
+:::
+
+| Name | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| willNotBeAdded | com_miam_ingredient_will_not_be_added | Cet ingrédient ne sera pas ajouté à votre panier | This ingredient will not be added to your basket |
+| chooseProduct | com_miam_ingredient_choose_product | Choisir un produit | Choose a product |

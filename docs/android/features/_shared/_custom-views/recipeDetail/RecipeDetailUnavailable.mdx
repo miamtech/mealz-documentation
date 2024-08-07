@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Unavailable
+## Unavailable
 Unavailable has two sub-templates : 
 - **header** : The toggle button that programmatically displays or hides the list of products
 - **product** : A single product in the list
@@ -17,7 +17,7 @@ unavailable {
 }
 ```
 
-#### Header
+### Header
 To create your own recipe detail unavailable product template you create a class that implements `UnavailableProductsHeader`
 
 <Tabs defaultValue="empty_example" groupId="code-example"
@@ -83,7 +83,7 @@ class MyCustomRecipeDetailUnavailableProductsHeader: UnavailableProductsHeader {
 </TabItem>
 </Tabs>
 
-with 
+### Unavailable Header params
 
 ```kotlin
 data class UnavailableProductsHeaderParameters(
@@ -92,6 +92,21 @@ data class UnavailableProductsHeaderParameters(
     val toggle: () -> Unit
 )
 ```
+
+### Unavailable Header ressources
+
+:::warning
+you can replace and reuse  string  ressources if you want to take advantage of our internationalisation system
+
+  ex :  `Localisation.recipeDetails.unavailable.localised`
+
+this on is pass throw params
+:::
+
+| Name | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| unavailable | com_miam_detail_unavailable | Articles indisponibles | Unavailable Products |
+
 
 #### Product
 To create your own recipe detail unavailable product template you create a class that implements `UnavailableProduct`
