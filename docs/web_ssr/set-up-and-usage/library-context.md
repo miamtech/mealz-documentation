@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# Inform the library
+# Configure library context
 
 ## Inform the library of who you are
 
@@ -26,7 +26,7 @@ export class Mealz {
 }
 ```
 
-> if you don't understand what we mean by supplier here on in the code, we tend to use the words "supplier" and "retailer" interchangeably, but supplier is the name of the type in our database that refers to a retailer, so we mostly use this term
+> If you don't understand what we mean by supplier here on in the code, we tend to use the words "supplier" and "retailer" interchangeably, but supplier is the name of the type in our database that refers to a retailer, so we mostly use this term
 
 ## Inform the library when the user chooses a store
 
@@ -41,7 +41,7 @@ window.miam.pos.load(posExternalId: string || number)
 
 posExternalId being the id of the store in your database, which needs to be the same id as the id that was provided to our backend with your stores infos.
 
-> If the store changes after the application is started, simply call this method again, and Mealz will recalculate its internal basket, as products and prices can be different from one store to another.
+> If the store changes after the application has started, simply call this method again, and Mealz will recalculate its internal basket, as products and prices can be different from one store to another.
 
 ```ts
 // Example Setup

@@ -1,17 +1,17 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Basket synchronization
 
-This section is complex, but quite critical: this is where we make sure the items are correctly added to / removed from the user's cart when products were added or removed from Mealz fetaures.
+This section is complex, but quite critical: this is where we make sure the items are correctly added to / removed from the user's cart when products were added or removed from Mealz features.
 
 > In this section and everywhere in this tutorial, we refer to Mealz' cart as "the basket" and to your cart as "your cart", to avoid any confusion between the two.
 
 ## How it works
 
 First the synchronization of baskets (basket-sync) needs two baskets to synchronize.
-So the process will not start until you send the first user's cart's contents to the library and mealz's first basket is initialized
+So the process will not start until you send the first user's cart's contents to the library and Mealz's first basket is initialized.
 
 > Mealz' basket can be non-empty when the user opens your website, because Mealz keeps the user's current basketId in memory (in the localStorage and in the User table of our database). This is useful if your application isn't an SPA, or if the user leaves the page to come back later.
 
@@ -21,10 +21,10 @@ Then, whenever the retailer sends to Mealz the user's cart because it has been m
 
 When the user adds products to their basket or change a products' quantity from Mealz's components, Mealz compares the newest basket to the oldest one, and sends to the retailer the list of products to add or remove.
 
-Lastly, if the user pays their cart, Mealz needs to be updated, because:
+Lastly, if the user pays their cart, Mealz needs to be updated because:
 
 - Just as the user's cart will be reset, Mealz needs to reset the basket to start afresh for the next user's cart
-- For analytics purposes, Mealz needs to know that the cart has been paid, and the total price paid for the cart, so that we can present you with stats of how many products of this cart were added from Mealz's features
+- For analytics purposes, Mealz needs to know that the cart has been paid, and the total amount paid for the cart, so that we can provide you with statistics on how many products in this cart were added through Mealz's features
 
 ![Basket sync diagram](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/explanations/basket_sync.png "Basket sync diagram")
 
@@ -37,7 +37,7 @@ Lastly, if the user pays their cart, Mealz needs to be updated, because:
 
 ## How to setup the basket-sync ?
 
-Based on the previous explaination, there are 3 points of communication between the retailer & Mealz in the basket-sync process, and all methods needed for this communication are in `window.miam.basketSync`.
+Based on the previous explanation, there are 3 points of communication between the retailer & Mealz in the basket-sync process, and all methods needed for this communication are in `window.miam.basketSync`.
 
 > Mealz uses a simplified type to describe products for those methods :
 > `ComparableProducts { id: string, quantity: number }`
@@ -77,7 +77,7 @@ export class Mealz {
 
 > :warning: This method needs to be called **before you send to the library the cart reset on your side** or else, Mealz will empty the basket before sending the event to our analytics, which means we will not be able to inform you of Mealz' impact on your sales
 
-- The last method is a little more complicated. When Mealz will want to send you the products to update in the user's cart, the library will need a way to send those products to you. The simplest way of achieving this is having a method that you can pass a callback to, so we can call this callback anytime products need to be added / removed.
+- The last method is a bit more complex. When Mealz will want to send you the products to update in the user's cart, the library will need a way to send those products to you. The simplest way of achieving this is having a method that you can pass a callback to, so we can call this callback anytime products need to be added / removed.
   To do this, you will need to call
   `definePushProductsToBasket(pushProductsToBasket: (products: ComparableProduct[]) => void): void;`
 

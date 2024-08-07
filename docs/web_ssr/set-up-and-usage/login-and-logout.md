@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# Handle user login and logout (Optional)
+# Handle user login and logout
 
 Many of Mealz features are enabled by having a user connected, so if you want to use them, you will need to set events to notice the SDK when your users log in or out.
 
@@ -24,7 +24,7 @@ window.miam.user.loadWithExternalId(userID: string, forbidProfiling: boolean).su
 - userId: a unique identifier that we can recognize the user by
 - forbidProfiling: true if the user has refused all cookies and false if they have accepted them (if true, personalized content will be desactivated).
 
-When your user log out, simply call `window.miam.user.reset()` to disconnect the user from Mealz
+When your user log out, call `window.miam.user.reset()` to disconnect the user from Mealz. Additionally, when the user logs out, you must pass the authless ID in the headers, as detailed in the [Pre-rendered Components](../features/pre-rendered-components) section.
 
 ```ts
 // Example Setup
