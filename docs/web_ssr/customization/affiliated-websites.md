@@ -7,15 +7,15 @@ sidebar_position: 2
 If a website is affiliated with you via Mealz, products added from this website can be transfered to your user's cart.
 
 The process is the following:
-1. The user is browsing the affiliated website and have the possibility to add recipes and/or individual products to a Mealz basket
+1. The user is browsing the affiliated website and have the possibility to add recipes and/or individual products to a Mealz's basket
 2. The user at some point has to choose a store to transfer their basket over to, and they choose one of your stores !
 3. The user decides that they can proceed to transfer their basket and clicks on a CTA that redirects them to your website with custom urlParams 
 :::warning
   The url is by default the following: `{recipe-catalog-url}?affiliate={affiliate_website_name}&transferred_basket_token={token}&point_of_sale_ext_id={storeId}`
 
-  If you need us to add more params or if some params are in conflict with any of your params, please contact us so we can work it together
+  If you need us to add more params or if any params are in conflict with yours, please contact us so we can work it together
 :::
-4. On your website, the SDK catches the urlParams, removes them from the url and stores them in sessionStorage until the basket is fully transfered 
+4. On your website, the SDK catches the urlParams, removes them from the url and stores them in sessionStorage until the basket is fully transferred 
   :::info
     Params are stored in sessionStorage because we take into account that maybe logging the user or forcing the store could force your website to reload, which would interrupt the process on our side. So in order to continue the process after any reload, we need to store the params temporarily
 
@@ -25,7 +25,7 @@ The process is the following:
   :::note
     This means if your website accepts unlogged carts, the features will take it into account as usual
   :::
-6. Once `hookCallback` has returned true, if the current POS in not the one passed in params, Mealz calls [setForcePosCallback](#set-force-pos-callback) with the id of the store the user selected on the affiliated website in param
+6. Once `hookCallback` has returned true, if the current POS is not the one passed in params, Mealz calls [setForcePosCallback](#set-force-pos-callback) with the id of the store selected by the user on the affiliated website in param
 7. Once `setForcePosCallback` has returned true, Mealz adds all products that were added to the basket on the affiliated website to your cart, as if the user had added them all at the same time on your website
 8. Once all products are added, Mealz removes the urlParams stored earlier from sessionStorage
   :::info
