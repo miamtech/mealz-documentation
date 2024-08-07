@@ -18,11 +18,16 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz' fav
 
 - Parameters :
 
-  - `supplier_id: string`:
-  **_(Mandatory)_** Your supplier ID
-  
   - `store_id: string`:
   **_(Mandatory)_** Your store ID
+
+- `recipe_id: string`:
+  **_(Optional)_** load a recipe from its id
+
+- `surrounding_products_ids: string[]`:
+  **_(Mandatory if no `recipe_id` provided)_** an array of productIds around the place where you want to put the recipe card, the goal is to find a recipe matching the products
+  _eg: if the recipe is surrounded by milk, we want to show a recipe that needs milk_
+
 
   - `pricebook_key: string = 'DEFAULT'`:
   **_(Optional)_** the pricebook key is needed to retrieve the recipe price
@@ -35,13 +40,6 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz' fav
 
   - `orientation: 'vertical' | 'horizontal' = 'vertical'`:
   **_(Optional)_** Select the orientation for the display of the card. See below for examples.
-
-  - `recipe_id: string`:
-  **_(Optional)_** load a recipe from its id
-
-  - `surrounding_products_ids: string[]`:
-  **_(Mandatory if no `recipeId` provided)_** an array of productIds around the place where you want to put the recipe card, the goal is to find a recipe matching the products
-    _eg: if the recipe is surrounded by milk, we want to show a recipe that needs milk_
 
   - `current_products_ids: string[]`:
   **_(Optional)_** takes an array of product ids with a high priority on the suggestion
@@ -57,13 +55,13 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz' fav
 A recipe contextualized with surrounding products **_(Recommended)_**:
 
 ```
-http://MEALZ_SSR_API_URL/recipe-card?supplier_id=7&surrounding_products_ids=["214086","1254022"]&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET http://MEALZ_SSR_API_URL/recipe-card?surrounding_products_ids=["214086","1254022"]&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
 ```
 
 A fixed recipe:
 
-```html
-http://MEALZ_SSR_API_URL/recipe-card?supplier_id=7&recipe_id=15123&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
+```
+GET http://MEALZ_SSR_API_URL/recipe-card?recipe_id=15123&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
 ```
 
 ### Display variants

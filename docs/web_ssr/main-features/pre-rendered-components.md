@@ -29,14 +29,27 @@ Sending requests with the mandatory parameters alone is not sufficient to retrie
 }
 ```
 
-- **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in, the user token must be replaced with an [authless token](TODO)
+- **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in, the user token must be replaced with an [authless token](./pre-rendered-components#authless-user)
 
 - **Supplier-token**: We will provide you with your supplier token (in JWT format). This token allows us to identify you.
 
-- **Language-id**: Set this header to either the language ISO code alone or the language ISO code combined with your retail name:
+- **Language-id**: Set this header to either the [language ISO code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) alone or the language ISO code combined with your retail name:
 
 ```json
 {
   "Language-id": "fr" | "fr-<your-retail-name>"
 }
+```
+
+## Authless user
+Even if the user is not logged into your website, you might want to allow them to add products to their basket.
+
+We also need a way to track user events and the basket, so that the contents can be transferred to their account once they log in.
+
+To do that you'll need to **generate an authless token** and provide it to the [Authorization Header](./pre-rendered-components#http-request-headers)
+
+The route to generate the **Authless Token**:
+
+```
+GET http://MEALZ_SSR_API_URL/generate-authless-token
 ```
