@@ -1,10 +1,12 @@
 ---
-sidebar_position: 9
+sidebar_position: 5
 ---
 
 # Styling
 
-This library mainly uses global variables for its style (mainly the colors). You can easily adapt the theme of the library to your website's design simply by overriding those variables.
+## Global variables
+
+This library mainly uses global CSS variables for its style (mainly the colors). You can easily adapt the theme of the library to your website's design simply by overriding those variables.
 
 ```html
 <style>
@@ -17,17 +19,17 @@ This library mainly uses global variables for its style (mainly the colors). You
 </style>
 ```
 
-> :warning: We are currently transitioning from our old variable system to our new Design System, which has its own set of CSS variables. Any variable that does not start with --miam-ds is meant to disappear at some point in the future.
+:warning: We are currently transitioning from our old variable system to our new Design System, which has its own set of CSS variables. Any variable that does not start with --miam-ds is meant to disappear at some point in the future.
 
 
-# Component Styling
+## Component styles
 
 For any other change in style you want to make, we recommend overriding directly our components' CSS class in you own CSS. You can override style classes of our components like below.
 
 ```html
 <style>
   :host {
-    .miam-recipe-card {
+    .mealz-recipe-card {
       border-color: solid blue 1px;
     }
   }
