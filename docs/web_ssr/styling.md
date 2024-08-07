@@ -13,8 +13,6 @@ This library mainly uses global CSS variables for its style (mainly the colors).
   :host {
     --miam-ds-color-primary: blue;
     --miam-ds-color-background-primary: #FCFCFC;
-    --miam-default-transition: all 1s linear;
-    --miam-border-radius: 3px;
 
     .miam-ds-text {
       font-weight: 500;
