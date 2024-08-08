@@ -3,8 +3,8 @@ object MealzManager {
 
     private var isInitialized = false
 
-    public fun initialize(applicationContext: Context){
-        if(isInitialized) return
+    public fun initialize(applicationContext: Context) {
+        if (isInitialized) return
         isInitialized = true
     }
 }
@@ -15,7 +15,7 @@ object MealzManager {
 
 class MainActivity: ComponentActivity(), CoroutineScope by CoroutineScope(Dispatchers.Main) {
 
-private fun initMiam() {
-    MiamManager.initialize(this@MainActivity)
+private fun initMealz() {
+    MealzManager.initialize(this@MainActivity)
 }
 ```

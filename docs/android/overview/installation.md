@@ -7,7 +7,7 @@ label: "Installation"
 
 ## Dependency
 
-We are self-hosting our libray on <a target="\_blank" href='https://github.com/miamtech/releaseMealz'> github</a>.
+We are self-hosting our libray on <a target="\_blank" href='https://github.com/miamtech/releaseMealz'> GitHub</a>.
 To use it follow these steps : 
 
 
@@ -20,7 +20,7 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://github.com/miamtech/releaseMealz/raw/main")
         }
-      }
+    }
 }
 ```
 
@@ -28,7 +28,8 @@ then import in your module build.gradle
 
 ``` gradle
 // Your module gradle file
-implementation("ai.mealz.android:mealz-android:version")
+implementation("ai.mealz.android:mealz-android:<version>")
+implementation("ai.mealz.core:mealz-core:<version>")
 ```
 
 ## ProGuard config

@@ -5,9 +5,9 @@ public class MealzManager: ObservableObject {
    private init() {
 
     Mealz.shared.Core(init: { coreBuilder in
-            // set provider key
+            // set supplier key
             coreBuilder.sdkRequirement(init: { requirementBuilder in
-                 requirementBuilder.key = self.providerKey
+                 requirementBuilder.key = self.supplierKey
             })
         })
     }

@@ -6,7 +6,7 @@ object MealzManager {
     private var isInitialized = false
     private val basketService: MyBasketService = MyBasketService()  
 
-    public fun initialize(applicationContext: Context){
+    public fun initialize(applicationContext: Context) {
         Mealz.Core {
             sdkRequirement {
                 key = supplierKey
