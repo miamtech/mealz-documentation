@@ -46,7 +46,7 @@ Even if the user is not logged into your website, you might want to allow them t
 
 We also need a way to track user events and the basket, so that the contents can be transferred to their account once they log in.
 
-To do that you'll need to **generate an authless token** and provide it to the [Authorization Header](./pre-rendered-components#http-request-headers)
+To do that you'll need to **generate an authless token** and provide it to the [Authorization Header](./pre-rendered-components#http-request-headers).
 
 The route to generate the **Authless Token**:
 
