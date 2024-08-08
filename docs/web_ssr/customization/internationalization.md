@@ -25,5 +25,3 @@ These files are formatted as follows:
 
 This structure allows you to specify the path to the label and the text you wish to replace it with, providing a
 flexible way to customize the content.
-
-You can find those file in the Mealz SSR API project at `src/i18n/locales/**/**.json`
