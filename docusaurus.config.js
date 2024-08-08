@@ -182,11 +182,11 @@ export default {
           {
             position: "left",
             label: "Web SSR",
-            to: "docs/web_ssr/about/Introduction",
+            to: "docs/web_ssr/Introduction",
             items: [
               {
                 label: "1.0",
-                to: "docs/web_ssr/about/Introduction",
+                to: "docs/web_ssr/Introduction",
                 activeBasePath: "docs/web_ssr/",
               }
             ]
@@ -214,7 +214,7 @@ export default {
               },
               {
                 label: "Web SSR",
-                to: "docs/web_ssr/about/Introduction",
+                to: "docs/web_ssr/Introduction",
               },
             ],
           },
