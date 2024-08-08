@@ -29,7 +29,7 @@ Sending requests with the mandatory parameters alone is not sufficient to retrie
 }
 ```
 
-- **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in, the user token must be replaced with an [authless token](./pre-rendered-components#authless-user)
+- **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in, the user token must be replaced with an [authless token](./pre-rendered-components#authless-user).
 
 - **Supplier-token**: We will provide you with your supplier token (in JWT format). This token allows us to identify you.
 
