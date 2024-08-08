@@ -12,7 +12,7 @@ Our solution offers configurable internationalization (i18n), allowing you to se
 the text you prefer.
 
 We provide dedicated .json files like fr.json and en.json for localization. Additionally, you can create custom override
-files such as fr-*your_name*.json to further tailor the content to your needs.
+files such as fr-*your_retail_name*.json to further tailor the content to your needs.
 
 You can find the replaceable texts in JSON format within the description of each feature. This approach helps you can identify which texts you can customize and how they correspond to specific parts of the interface.
 
