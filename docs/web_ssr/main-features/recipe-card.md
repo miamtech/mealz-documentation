@@ -8,7 +8,7 @@ sidebar_position: 2
 
 The recipe card is the base of Mealz' whole experience. This card fetches and shows a recipe based on the items that are displayed around it (see [here](../about/features#how-the-recipes-displayed-in-the-cards-are-chosen) to see how the process of fetching the best recipe works).
 
-The primary CTA on the card is the "Baskets icon" button. When clicked, Mealz's drawer opens and shows the recipe's details. Clicking on the picture or title has the same effect.
+The primary CTA on the card is the "Basket icon" button. When clicked, Mealz's drawer opens and shows the recipe's details. Clicking on the picture or title has the same effect.
 
 Finally, by clicking on the heart icon the user can add the recipe to Mealz's favorite recipes list. This icon only appears if the user is connected.
 
@@ -21,15 +21,15 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
   - `store_id: string`:
   **_(Mandatory)_** Your store ID
 
-  - `recipe_id: string`:
-  **_(Optional)_** load a recipe from its id
-
   - `surrounding_products_ids: string[]`:
   **_(Mandatory if no `recipe_id` provided)_** an array of productIds around the place where you want to put the recipe card, the goal is to find a recipe matching the products
   _eg: if the recipe is surrounded by milk, we want to show a recipe that needs milk_
 
+  - `recipe_id: string`:
+  **_(Mandatory if no `surrounding_products_ids` provided)_** load a recipe from its id
+
   - `pricebook_key: string = 'DEFAULT'`:
-  **_(Optional)_** the pricebook key is needed to retrieve the recipe price
+  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
 
   - `profiling: boolean = true`:
   **_(Optional)_** set to false if user refused profiling
@@ -41,18 +41,17 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
   **_(Optional)_** Select the orientation for the display of the card (see below for examples)
 
   - `current_products_ids: string[]`:
-  **_(Optional)_** takes an array of product ids with a high priority on the suggestion
+  **_(Optional)_** takes an array of product ids with a high priority on the suggestion. Does not have any effect if not paired with surrounding_products_ids
 
-  - `serves: number = 4`
-  **_(Optional)_** serves parameter indicate the number of people the meal will serve
+  - `serves: number`
+  **_(Optional)_** Override the default number of guests set for the recipe
 
-> As mentioned earlier, while you have the possibility to display a random recipe, we heavily recommend you to pass the products ids, because while a user would be interested by a chocolate cake recipe between chocolate bars, they could find it weird to have for instance a burger recipe between 2 bottles of milk.
-> On the same note, displaying a fixed recipe can be tempting if you want to have control on the content appearing on your website, but it also means that the users will always see the same recipes at the same places and may not be interested, while our algorithm has some random components that makes the content vary between sessions, giving the user more inspiration.
+> Displaying a fixed recipe can be tempting if you want to have control on the content appearing on your website, but it also means that the users will always see the same recipes at the same places and may not stay interested, while our algorithm has some random elements to it that makes the content vary between sessions, giving the user more inspiration.
 
 ### Example :
 
 :::warning
-Do not forget [mandatory HTTP headers](./pre-rendered-components#http-request-headers)
+Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-request-headers)
 :::
 
 A recipe contextualized with surrounding products **_(Recommended)_**:
