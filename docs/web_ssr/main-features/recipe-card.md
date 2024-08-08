@@ -14,8 +14,6 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
 
 ![Recipe card](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeCard.png "Recipe card")
 
-> You need to have loaded the **token** to display recipes and the library needs a valid **store** to add products to the cart
-
 - Parameters :
 
   - `store_id: string`:
