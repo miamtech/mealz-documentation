@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# Pre-rendered components
+# Pre-rendered custom elements
 
-As previously explained, to use our pre-rendered components, you must retrieve them through a dedicated route, similar to how you retrieve data from a CRUD API.
+As previously explained, to use our pre-rendered custom components, you must retrieve them through a dedicated route, similar to how you retrieve data from a CRUD API.
 
 ## Components parameters
 
@@ -29,7 +29,7 @@ Sending requests with the mandatory parameters alone is not sufficient to retrie
 }
 ```
 
-- **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in, the user token must be replaced with an [authless token](./pre-rendered-components#authless-user).
+- **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in, the user token must be replaced with an [authless token](./pre-rendered-components#authless-user) following the same format.
 
 - **Supplier-token**: We will provide you with your supplier token (in JWT format). This token allows us to identify you.
 
@@ -52,4 +52,12 @@ The route to generate the **Authless Token**:
 
 ```
 GET http://MEALZ_SSR_API_URL/generate-authless-token
+```
+
+which will return an object:
+
+```json
+{
+  "authless_id": "<generated-authless-token>"
+}
 ```

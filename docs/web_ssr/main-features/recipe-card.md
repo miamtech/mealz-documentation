@@ -21,10 +21,10 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
   - `store_id: string`:
   **_(Mandatory)_** Your store ID
 
-- `recipe_id: string`:
+  - `recipe_id: string`:
   **_(Optional)_** load a recipe from its id
 
-- `surrounding_products_ids: string[]`:
+  - `surrounding_products_ids: string[]`:
   **_(Mandatory if no `recipe_id` provided)_** an array of productIds around the place where you want to put the recipe card, the goal is to find a recipe matching the products
   _eg: if the recipe is surrounded by milk, we want to show a recipe that needs milk_
 
@@ -50,6 +50,10 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
 > On the same note, displaying a fixed recipe can be tempting if you want to have control on the content appearing on your website, but it also means that the users will always see the same recipes at the same places and may not be interested, while our algorithm has some random components that makes the content vary between sessions, giving the user more inspiration.
 
 ### Example :
+
+:::warning
+Do not forget [mandatory HTTP headers](./pre-rendered-components#http-request-headers)
+:::
 
 A recipe contextualized with surrounding products **_(Recommended)_**:
 
