@@ -32,7 +32,7 @@ To do so, you'll need to get current active catalog's categories.
 Here's how you can do that:
 
 ```kotlin
-import com.miam.core.Mealz
+import ai.mealz.core.Mealz
 
 Mealz.catalog.getCatalogCategories(::fetchCategory)
 where

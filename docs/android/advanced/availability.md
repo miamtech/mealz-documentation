@@ -17,7 +17,7 @@ Mealz will **never** be ready in the folowing cases :
 
 Here's how you can find out of Mealz is available:
 ```kotlin
-import com.miam.core.Mealz
+import ai.mealz.core.Mealz
 
 Mealz.environment.isAvailable()
 ```
