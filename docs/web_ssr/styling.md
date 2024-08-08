@@ -15,7 +15,7 @@ This library mainly uses global CSS variables for its style (mainly the colors).
     --miam-ds-color-background-primary: #FCFCFC;
 
     .miam-ds-text {
-      font-weight: 500;
+      font-family: "Roboto";
     }
   }
 </style>
@@ -38,4 +38,4 @@ For any other change in style you want to make, we recommend overriding directly
 </style>
 ```
 
-> The only thing you need to keep in mind is that your override must be read by the DOM **after** our CSS so it overrides correctly.
+> The only thing you need to keep in mind is that your override must either be read by the DOM **after** our CSS or have more precision to override it correctly.
