@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Pre-rendered custom elements
 
-As previously explained, to use our pre-rendered custom components, you must retrieve them through a dedicated route, similar to how you retrieve data from a CRUD API.
+As previously explained, to use our pre-rendered custom elements, you must retrieve them through a dedicated route, similar to how you retrieve data from a CRUD API.
 
 ## Components parameters
 
@@ -31,7 +31,7 @@ Sending requests with the mandatory parameters alone is not sufficient to retrie
 
 - **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in, the user token must be replaced with an [authless token](./pre-rendered-components#authless-user) following the same format.
 
-- **Supplier-token**: We will provide you with your supplier token (in JWT format). This token allows us to identify you.
+- **Supplier-token**: We will provide you with your supplier token (in Base64 format). This token allows us to identify you.
 
 - **Language-id**: Set this header to either the [language ISO code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) alone or the language ISO code combined with your retail name:
 
