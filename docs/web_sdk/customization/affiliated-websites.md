@@ -21,7 +21,7 @@ The process is the following:
 
     Also, because the tokens are single-use, Mealz removes the params after storing them so the user can't come back on the url (by adding it to favorite for example), which would cause errors.
   :::
-5. If the user isn't logged, Mealz calls the [hookCallback](./set-up-and-usage/hooks) with params (true, false) (i.e. "*user isn't logged, but we don't care about the store for now*")
+5. If the user isn't logged, Mealz calls the [hookCallback](../set-up-and-usage/hooks) with params (true, false) (i.e. "*user isn't logged, but we don't care about the store for now*")
   :::note
     This means if your website accepts unlogged carts, the features will take it into account as usual
   :::
