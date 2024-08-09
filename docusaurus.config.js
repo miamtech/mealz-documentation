@@ -68,10 +68,10 @@ export default {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "web",
-        path: "docs/web",
-        routeBasePath: "docs/web",
-        sidebarPath: './docs/web/sidebar.js',
+        id: "web_sdk",
+        path: "docs/web_sdk",
+        routeBasePath: "docs/web_sdk",
+        sidebarPath: './docs/web_sdk/sidebar.js',
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
         lastVersion: 'current',
@@ -86,6 +86,24 @@ export default {
           "8.3": {
             banner: 'none'
           }
+        }
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "web_ssr",
+        path: "docs/web_ssr",
+        routeBasePath: "docs/web_ssr",
+        sidebarPath: './docs/web_ssr/sidebar.js',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+        lastVersion: 'current',
+        versions: {
+          current: {
+            label: "1.0",
+            path: "/"
+          },
         }
       },
     ],
@@ -147,24 +165,36 @@ export default {
           },
           {
             position: "left",
-            label: "Web",
-            to: "docs/web/Introduction",
+            label: "Web SDK",
+            to: "docs/web_sdk/Introduction",
             items: [
               {
                 label: "8.5",
-                to: "docs/web/Introduction",
-                activeBaseRegex: "docs/web/[^0-9][^/]",
+                to: "docs/web_sdk/Introduction",
+                activeBaseRegex: "docs/web_sdk/[^0-9][^/]",
               },
               {
                 label: "8.4",
-                to: "docs/web/8.4/Introduction",
-                activeBasePath: "docs/web/8.4",
+                to: "docs/web_sdk/8.4/Introduction",
+                activeBasePath: "docs/web_sdk/8.4",
               },
               {
                 label: "8.3",
-                to: "docs/web/8.3/Introduction",
-                activeBasePath: "docs/web/8.3",
+                to: "docs/web_sdk/8.3/Introduction",
+                activeBasePath: "docs/web_sdk/8.3",
               },
+            ]
+          },
+          {
+            position: "left",
+            label: "Web SSR",
+            to: "docs/web_ssr/Introduction",
+            items: [
+              {
+                label: "1.0",
+                to: "docs/web_ssr/Introduction",
+                activeBaseRegex: "docs/web_ssr/[^0-9][^/]",
+              }
             ]
           },
           { to: "https://en.mealz.ai/", label: "Enterprise", position: "left" },
@@ -185,8 +215,12 @@ export default {
                 to: "docs/ios/Introduction",
               },
               {
-                label: "Web",
-                to: "docs/web/Introduction",
+                label: "Web SDK",
+                to: "docs/web_sdk/Introduction",
+              },
+              {
+                label: "Web SSR",
+                to: "docs/web_ssr/Introduction",
               },
             ],
           },
