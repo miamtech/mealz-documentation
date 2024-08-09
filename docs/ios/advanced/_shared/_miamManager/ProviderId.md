@@ -4,7 +4,7 @@ This will include information such as PROD vs UAT & your unique company identifi
 If you just want to play around, you can use the sample Mealz Store:
 
 ```swift
-val providerKey = "ewoJInByb3ZpZGVyX2lkIjogIjE0IiwKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLnRlc3QiLAoJIm1pYW1fb3JpZ2luIjogIm1pYW0iLAoJIm9yaWdpbiI6ICJtaWFtIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlVBVCIKfQ"
+let providerKey = "ewoJInByb3ZpZGVyX2lkIjogIjE0IiwKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLnRlc3QiLAoJIm1pYW1fb3JpZ2luIjogIm1pYW0iLAoJIm9yaWdpbiI6ICJtaWFtIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlVBVCIKfQ"
 ```
 which you'll see decodes from base 64 to this:
 ```json

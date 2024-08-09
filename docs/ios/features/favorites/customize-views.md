@@ -11,6 +11,7 @@ import CatalogRecipesListGridConfig from '@site/docs/ios/features/_shared/_custo
 import FavoritesViewOptions from './_custom-views/FavoritesViewOptions.md';
 import FavoritesFeatureConstructor from './_custom-views/FavoritesFeatureConstructor.md';
 import * as RecipeDetailsViewOptions from '@site/docs/ios/features/recipe-details/_custom-views/';
+import ItemSelectorViewOptions from '@site/docs/ios/features/item-selector/_custom-views/ItemSelectorViewOptions.md';
 
 # Customize Views
 
@@ -34,7 +35,7 @@ import * as RecipeDetailsViewOptions from '@site/docs/ios/features/recipe-detail
 
 <RecipeDetailsViewOptions.RecipeDetailsViewOptions />
 <RecipeDetailsViewOptions.RecipeDetailsProductViewOptions />
-<RecipeDetailsViewOptions.ItemSelectorViewOptions />
+<ItemSelectorViewOptions />
 
 ### Recipe Details Constructor
 

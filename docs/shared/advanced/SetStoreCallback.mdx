@@ -1,0 +1,24 @@
+export var platform
+
+import AndroidSetStoreRedirectionConfig from '@site/docs/android/advanced/_shared/_user/_SetStoreRedirectionConfig.mdx'
+
+import IosSetStoreRedirectionConfig from '@site/docs/ios/advanced/_shared/_user/_SetStoreRedirectionConfig.mdx'
+
+
+export function SetStoreRedirectionConfig(props){
+    if(props.platform == "android") { return <AndroidSetStoreRedirectionConfig /> } else return  <IosSetStoreRedirectionConfig />
+}
+
+
+For Mealz to work properly, a store is mandatory.
+Without a store, we cannot generate a Recipe price, see the products, or purchase anything.
+
+However, Recipe Cards, & our catalog, CAN be shown without a store.
+When the user clicks on a Recipe Card, we prompt the user to select a store.
+You must pass in a function for us to navigate to your Store Selector.
+
+:::info
+Using Mealz without an active store is only available in version 4.1 and above
+:::
+
+<SetStoreRedirectionConfig platform= {props.platform}/>

@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Steps
+## Steps
 
 To create your own recipe detail Steps template you create a class that implements `RecipeDetailSteps`
 
@@ -87,10 +87,22 @@ class MyCustomRecipeDetailSteps:  RecipeDetailSteps {
 </Tabs>
 
 
-with 
+### Steps params 
 
 ```kotlin
 data class RecipeDetailStepsParamters(
     val steps: List<RecipeStep>
 )
 ```
+
+### Steps ressources 
+
+:::tip
+you can replace and reuse  string  ressources if you want to take advantage of our internationalisation system
+
+  ex :  `Localisation.recipe.steps.localised`
+:::
+
+| Name | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| steps | com_miam_recipe_steps | Étapes | Steps |

@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### SponsorBanner
+## SponsorBanner
 
 To create your own recipe detail sponsor banner template you create a class that implements `RecipeDetailSponsorBanner`
 
@@ -70,7 +70,7 @@ class MyCustomRecipeDetailSponsorBanner: RecipeDetailSponsorBanner {
 </Tabs>
 
 
-with 
+### SponsorBanner params
 
 ```kotlin
 data class RecipeDetailInfoParameters(
@@ -78,3 +78,17 @@ data class RecipeDetailInfoParameters(
     val openSponsorDetail: (sponsor: Sponsor) -> Unit // navigate to sponsor presentation page 
 )
 ```
+
+
+### SponsorBanner ressources 
+
+:::tip
+you can replace and reuse  string  ressources if you want to take advantage of our internationalisation system
+
+  ex :  `Localisation.sponsorBanner.sponsorBannerSpeach.localised`
+:::
+
+| Name | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| sponsorBannerSpeach | com_miam_sponsor_banner_speach | Cette recette vous est proposée par notre partenaire | This recipe is brought to you by our partner |
+| sponsorBannerMoreInfo | com_miam_sponsor_banner_more_info | En savoir plus | Read more |
