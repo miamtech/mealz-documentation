@@ -12,7 +12,7 @@ The object `miam`, instanciated in our _context.services.ts_ is the interface yo
 
 For this interface to be accessible for anyone, we inject it into the `window` object when the SDK script is run, so you will only need to call `window.miam` to access our methods and variables.
 
-The methods and variables in `window.miam` are grouped in thematic categories, like `window.miam.user` or `window.miam.recipes` for example. See [window.miam](./customization#windowmiam) for more details on the content of each category.
+The methods and variables in `window.miam` are grouped in thematic categories, like `window.miam.user` or `window.miam.recipes` for example. See [window.miam](./customization/window-miam) for more details on the content of each category.
 
 ### If you use Typescript
 
