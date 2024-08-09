@@ -7,7 +7,7 @@ sidebar_position: 1
 The window.miam object still has a lot more methods and attributes that can make a big difference for customizing your experience. Some of them will not be useful to you right off the bat, but can be at some point.
 
 :::tip
-  Except for the methods mentioned in [Set up and usage](./category/set-up-and-usage), none of the methods listed in this section are necessary if the basic implementation is good enough for you. But if you want or need more customization, you may need to call some of those methods.
+  Except for the methods mentioned in [Set up and usage](../category/set-up-and-usage), none of the methods listed in this section are necessary if the basic implementation is good enough for you. But if you want or need more customization, you may need to call some of those methods.
 :::
 
 ## window.miam.analytics
@@ -27,7 +27,7 @@ props: {aString: 'foo bar', aNumber: 5}
 
 ## window.miam.basket
 - `basketIsReady$: Observable<boolean>`: Emits true when Mealz's basket has successfully loaded for the first time. Does not emit anything before or after that.
-- `initialize: () => void`: Fetch the first Basket early (before any action requires it on Mealz's side), so you can start the [basket-sync](./set-up-and-usage/basket-synchronization) earlier
+- `initialize: () => void`: Fetch the first Basket early (before any action requires it on Mealz's side), so you can start the [basket-sync](../set-up-and-usage/basket-synchronization) earlier
 - `reset: () => void`: Resets Mealz's basket : empties all products & recipes added by the user.
   :::info
     We recommend that you use `basket.reset()` when the user empties their cart on your website, to avoid the recipes being kept in a "in-basket" state but with no products and displayed at a price of 0.
@@ -42,7 +42,7 @@ props: {aString: 'foo bar', aNumber: 5}
 - `openPreview: () => void`: Opens the recipe-modal in basket preview mode to display the recipes currently in the basket (Same action as when clicking on the FAB in the recipe-catalog)
 
 ## window.miam.basketSync
-See [basket synchronization](./set-up-and-usage/basket-synchronization)
+See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 - `definePushProductsToBasket: (pushProductsToBasket: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket changes to update the user's cart accordingly
   :::note
@@ -80,7 +80,7 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
 - `collapseUnavailableProductsByDefault: () => void`: Call to enable collapsing of unavailable products by default in recipe-details
 
 ## window.miam.hook
-- `setHookCallback(callback: (isLogged, isPosValid) => boolean) => void`: [Set up hook callback](./set-up-and-usage/hooks)
+- `setHookCallback(callback: (isLogged, isPosValid) => boolean) => void`: [Set up hook callback](../set-up-and-usage/hooks)
 - `setForcePosCallback: (callback: (posExtId: string) => boolean) => void`: [Receiving baskets from affiliated websites](./affiliated-websites)
 
 ## window.miam.pos
@@ -126,7 +126,7 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
 - `setPromotionsUrl: (url: string) => void`: Inform Mealz of the url where the promotions are
 
 ## window.miam.supplier
-- `setupWithToken: (token: string) => void`: [Inform the library of who you are](./set-up-and-usage/inform-the-library#inform-the-library-of-who-you-are)
+- `setupWithToken: (token: string) => void`: [Inform the library of who you are](../set-up-and-usage/library-context#inform-the-library-of-who-you-are)
 - `setOrigin: (origin: string) => void`: set the origin to put in Mealz's requests headers
   :::warning
     **Deprecated**, prefer using `supplier.setupWithToken` as it automatically sets the origin
@@ -141,8 +141,8 @@ See [basket synchronization](./set-up-and-usage/basket-synchronization)
   :::
 
 ## window.miam.user
-- `loadWithExtId: (id, forbidProfiling = false) => void`: [Log in user](./set-up-and-usage/login-and-logout#handle-user-login-and-logout-optional)
-- `reset: () => void`: [Log out user](./set-up-and-usage/login-and-logout#handle-user-login-and-logout-optional)
+- `loadWithExtId: (id, forbidProfiling = false) => void`: [Log in user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout)
+- `reset: () => void`: [Log out user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout)
 - `setFavoriteItems: (favoriteProductIds: string[]) => Observable<object>`: If your website has a "favorite products" feature, you can pass the ids of all products which the user has marked as favorites, so they can be prioritized when adding a recipe to their cart, if one of them is returned as a matching product for the recipe.
   :::note
     `favoriteProductIds`:  an array of product ids, passed as string

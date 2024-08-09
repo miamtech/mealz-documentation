@@ -86,7 +86,7 @@ Once the user has added the recipe to their cart, the component is updated to re
 
 ### The recipe catalog (CSR)
 
-The other main feature Mealz offers is the [catalog](./features/recipe-catalog):
+The other main feature Mealz offers is the [catalog](../main-features/recipe-catalog):
 
 ![Catalog](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Catalog")
 
@@ -114,7 +114,7 @@ Finally, if any recipes has been added to the user's cart, a button appears at t
 
 ### The recipe reminders (CSR)
 
-To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](./features/recipe-tags) component, to remind the user why a product is in their basket.
+To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](../main-features/recipe-tags) component, to remind the user why a product is in their basket.
 
 Imagine your cart page looks like this:
 
