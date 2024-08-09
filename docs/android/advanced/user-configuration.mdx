@@ -21,7 +21,7 @@ To enable this feature you need to provide a **context** and change the Mealz pr
 Example with **Jetpack Compose** :
 
 ```kotlin
-import com.miam.core.Mealz
+import ai.mealz.core.Mealz
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +48,9 @@ To do this, we expose this function:
 
 ```kotlin 
 // file MealzManager.kt
-import com.miam.core.Mealz
+import ai.mealz.core.Mealz
 
-class MiamManager(val appContext: Context) {    
+class MealzManager(val appContext: Context) {    
     // allow profiling -> can we use your personal data to provide custom recipes?
     Mealz.user.setProfilingAllowance(allowance: true)
 }
@@ -62,9 +62,9 @@ You can disable the Like feature as well
 
 ```kotlin 
 // file MealzManager.kt
-import com.miam.core.Mealz
+import ai.mealz.core.Mealz
 
-class MiamManager(val appContext: Context) {    
+class MealzManager(val appContext: Context) {    
     // allow users to heart recipes
     Mealz.user.setEnableLike(isEnable: true)
 }

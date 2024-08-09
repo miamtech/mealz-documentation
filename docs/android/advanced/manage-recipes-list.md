@@ -6,13 +6,13 @@ Information relating to the Mealz recipes can be accessed in the Mealz init.
 
 You can get the count of recipes added to cart by the user:
 ```kotlin
-import com.miam.core.Mealz
+import ai.mealz.core.Mealz
 
 Mealz.basket.getRecipeCountInBasket()
 ```
 or use a notifier to listen to the recipe count:
 ```kotlin
-import com.miam.core.Mealz
+import ai.mealz.core.Mealz
 
 Mealz.notifications.recipesCount
 ```
@@ -22,7 +22,7 @@ Mealz.notifications.recipesCount
 You can provide a new groceries list to your customer :
 
 ```kotlin
-import com.miam.core.Mealz
+import ai.mealz.core.Mealz
 
 Mealz.basket.clear()
 ```

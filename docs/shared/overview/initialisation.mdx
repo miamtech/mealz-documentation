@@ -12,8 +12,6 @@ export function MealzSingletonSample(props) {
   if(props.platform == "android") { return <AndroidMealzSingletonSample></AndroidMealzSingletonSample>  } else return <IOSMealzSingletonSample></IOSMealzSingletonSample>
 }
 
-# Initialisation
-
 ## Create module
 
 First & foremost, we recommend creating <Package platform={props.platform}></Package> to house all your Mealz SDK related code.
