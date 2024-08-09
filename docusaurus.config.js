@@ -193,7 +193,7 @@ export default {
               {
                 label: "1.0",
                 to: "docs/web_ssr/Introduction",
-                activeBasePath: "docs/web_ssr/[^0-9][^/]",
+                activeBaseRegex: "docs/web_ssr/[^0-9][^/]",
               }
             ]
           },
