@@ -6,7 +6,7 @@ object MealzManager {
     private var isInitialized = false
 
     public fun initialize(applicationContext: Context) {
-        Mealz.user.setStoreLocatorRedirection =  { /** your select store navigation method*/ }
+        Mealz.user.setStoreLocatorRedirection { /** Your select store navigation method */ }
         Mealz.Core {
             sdkRequirement {
                 key = supplierKey

@@ -2,7 +2,7 @@
 // From anywhere
 import mealzcore
 
-// existingUserId is your user id type String is expected
+// existingUserId is your user id, type String is expected
 Mealz.shared.user.updateUserId(userId: existingUserId, authorization: Authorization.userId)
 ```
 
@@ -20,7 +20,7 @@ public class MealzManager {
     // CODE
 
     OBSERVABLE_ON_USER_OBJECT.sink { _  in
-      // existingUserId is your user id type String is expected
+      // existingUserId is your user id, type String is expected
       Mealz.shared.user.updateUserId(userId: existingUserId, authorization: Authorization.userId)
     }
   }
