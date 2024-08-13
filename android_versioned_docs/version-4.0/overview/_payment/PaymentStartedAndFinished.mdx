@@ -1,0 +1,27 @@
+import * as AndroidBasketService from '@site/docs/android/advanced/_shared/_miamManager/_basketService/';
+
+There are two functions that need to be called during the checkout experience.
+Mealz does not collect payment, but we must reset our basket & lodge the transaction to share with your commerical team.
+Checkout is a crucial part of the Mealz experience.
+
+### Payment Started
+
+
+When your use selects "Buy now", or when the payment tunnel is begun, you must call `paymentStarted.`
+
+<AndroidBasketService.PaymentStarted />
+
+This will save the payment information on our end & allow us to cross reference with your team for every transaction Mealz is involved with.
+Internally, we do NOT track payments where the value of products added by Mealz is 0, so you do not need to implement this logic.
+
+### Payment Finished
+
+When your payment tunnel is over, & you've returned a "Payment Success", you must call `paymentFinished.`
+
+:::danger
+It is of crucial importance that you call this function BEFORE clearing your basket and pass the correct values for the totalAmount & totalProductCount.
+Please ensure these are the values of the transaction, NOT the values after the transaction (probably an empty basket).
+If you clear your basket, then call this method, all products will be considered as deleted so the ratio of products added by Mealz will not be correct.
+:::
+
+<AndroidBasketService.PaymentFinished />

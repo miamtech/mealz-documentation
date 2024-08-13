@@ -1,15 +1,13 @@
-```koltin 
+```kotlin 
 interface Swapper {
     @Composable
-    fun Content(params : SwapperParameters){
-
-    }
+    fun Content(params : SwapperParameters)
 }
 ```
 
 where
 
-```koltin 
+```kotlin 
 data class SwapperParameters constructor(
     val isShopping: Boolean,
     val toggle: () -> Unit

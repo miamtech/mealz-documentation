@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface PreferencesGuestSection {
     @Composable
-    fun Content(params: PreferencesGuestSectionParameters){
-
-    }
+    fun Content(params: PreferencesGuestSectionParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class PreferencesGuestSectionParameters(
     val guests: Int?,
     val guestChanged: (count: Int) -> Unit

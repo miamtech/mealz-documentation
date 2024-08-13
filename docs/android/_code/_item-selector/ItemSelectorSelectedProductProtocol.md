@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface ItemSelectorSelectedItem {
     @Composable
-    fun Content(params: ItemSelectorSelectedItemParameters){
-
-    }
+    fun Content(params: ItemSelectorSelectedItemParameters)
 }
 ```
 where
 
-```koltin 
+```kotlin 
 data class ItemSelectorSelectedItemParameters(val selectedItem: Item)
 ```

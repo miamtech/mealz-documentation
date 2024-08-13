@@ -1,4 +1,4 @@
-```koltin
+```kotlin
 interface LazyListLoader {
     @Composable
     fun Content(params: LazyListLoaderParameters)
@@ -7,6 +7,6 @@ interface LazyListLoader {
 
 where
 
-```koltin
+```kotlin
 class LazyListLoaderParameters(val isFetching: Boolean)
 ```

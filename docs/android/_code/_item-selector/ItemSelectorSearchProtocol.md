@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface ItemSelectorSearch {
     @Composable
-    fun Content(params: ItemSelectorSearchParameters){
-
-    }
+    fun Content(params: ItemSelectorSearchParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class ItemSelectorSearchParameters(
     val ingredientName: String,
     val ingredientQuantity: Int,

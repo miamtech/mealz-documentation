@@ -1,14 +1,12 @@
-```koltin 
+```kotlin 
 interface RecipeDetailSuccessFooter {
     @Composable
-    fun Content(params: RecipeDetailSuccessFooterParameters){
-
-    }
+    fun Content(params: RecipeDetailSuccessFooterParameters)
 }
 ```
 where
 
-```koltin 
+```kotlin 
 data class RecipeDetailSuccessFooterParameters(
     val price: `StateFlow<Double>`,
     val priceStatus: ComponentUiState,

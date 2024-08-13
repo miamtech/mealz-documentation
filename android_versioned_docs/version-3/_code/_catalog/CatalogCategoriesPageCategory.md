@@ -7,7 +7,7 @@ interface CatalogCategoriesPageCategory {
 ```
 where
 
-```koltin
+```kotlin
 data class CatalogCategoriesPageCategoryParameters(
     val category: Package,
     val recipesId: `List<String>`,

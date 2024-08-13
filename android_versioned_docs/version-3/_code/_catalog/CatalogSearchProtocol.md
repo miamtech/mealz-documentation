@@ -1,4 +1,4 @@
-```koltin 
+```kotlin 
 interface CatalogSuccessSearch {
     @Composable
     fun Content(params: CatalogSuccessSearchParameters){
@@ -8,7 +8,7 @@ interface CatalogSuccessSearch {
 
 where
 
-```koltin 
+```kotlin 
 data class CatalogSuccessSearchParameters(
     val onClose: () -> Unit,
     val updateSearch: (String) -> Unit,

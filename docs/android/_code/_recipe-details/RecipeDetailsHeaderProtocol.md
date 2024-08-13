@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface RecipeDetailHeader {
     @Composable
-    fun Content(params: RecipeDetailHeaderParameters){
-
-    }
+    fun Content(params: RecipeDetailHeaderParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class RecipeDetailHeaderParameters(
     val title: String,
     val closeDialogue: () -> Unit

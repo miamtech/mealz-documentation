@@ -1,4 +1,4 @@
-```koltin 
+```kotlin 
 interface RecipeDetailSteps {
     @Composable
     fun Content(params: RecipeDetailStepsParamters){
@@ -8,7 +8,7 @@ interface RecipeDetailSteps {
 ```
 where
 
-```koltin 
+```kotlin 
 data class RecipeDetailStepsParamters(
     val steps: `List<RecipeStep>`
 )

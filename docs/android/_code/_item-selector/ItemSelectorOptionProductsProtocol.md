@@ -1,4 +1,4 @@
-```koltin 
+```kotlin 
 interface ItemSelectorSuccess {
     @Composable
     fun Content(params: ItemSelectorSuccessParameters)
@@ -6,7 +6,7 @@ interface ItemSelectorSuccess {
 ```
 where
 
-```koltin 
+```kotlin 
 data class ItemSelectorSuccessParameters(
     val items: `List<Item>`,
     val previous: () -> Unit,

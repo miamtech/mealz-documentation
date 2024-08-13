@@ -1,4 +1,4 @@
-```koltin
+```kotlin
 interface RecipeCardSuccess {
     @Composable
     fun Content(params: RecipeCardSuccessParams){
@@ -8,7 +8,7 @@ interface RecipeCardSuccess {
 ```
 where
 
-```koltin
+```kotlin
 data class RecipeCardSuccessParams(
     val recipe: Recipe,
     val recipeTitle: String,
