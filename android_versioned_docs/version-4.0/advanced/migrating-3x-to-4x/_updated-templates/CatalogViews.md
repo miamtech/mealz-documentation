@@ -1,7 +1,7 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import * as CatalogProtocols from '@site/docs/android/_code/_catalog/'
-import LoadingProtocol from '@site/docs/android/_code/_base/LoadingProtocol.md'
-import EmptyProtocol from '@site/docs/android/_code/_base/EmptyProtocol.md'
+import * as CatalogProtocols from '../../../_code/_catalog/'
+import LoadingProtocol from '../../../_code/_base/LoadingProtocol.md'
+import EmptyProtocol from '../../../_code/_base/EmptyProtocol.md'
 
 <details>
   <summary>Catalog</summary>

@@ -6,8 +6,8 @@ label: "Walkthrough"
 import BasketTags from '@site/docs/shared/component-overviews/BasketTags';
 import RecipeDetails from '@site/docs/shared/page-overviews/GeneralPages/RecipeDetails';
 import SponsorDetails from '@site/docs/shared/page-overviews/GeneralPages/SponsorDetails';
-import Prerequisites from '@site/docs/android/features/_shared/Prerequisites.md';
-import LinkToCustomization from '@site/docs/android/features/_shared/LinkToCustomization.md';
+import Prerequisites from '../_shared/Prerequisites.md';
+import LinkToCustomization from '../_shared/LinkToCustomization.md';
 import TimeIcon from '@site/src/components/TimeIcon';
 
 # Basket Tags Walkthrough

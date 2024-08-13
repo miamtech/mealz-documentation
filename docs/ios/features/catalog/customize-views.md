@@ -5,15 +5,15 @@ label: "Customize Views"
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Explanation from '@site/docs/ios/features/_shared/_custom-views/Explanation.md';
-import BaseViews from '@site/docs/ios/features/_shared/_custom-views/BaseViews.md';
-import FiltersViewOptions from '@site/docs/ios/features/_shared/_custom-views/FiltersViewOptions.md';
+import Explanation from '../_shared/_custom-views/Explanation.md';
+import BaseViews from '../_shared/_custom-views/BaseViews.md';
+import FiltersViewOptions from '../_shared/_custom-views/FiltersViewOptions.md';
 import * as CatalogViewOptions from './_custom-views/';
-import CatalogRecipesListGridConfig from '@site/docs/ios/features/_shared/_custom-views/CatalogRecipesListGridConfig.md';
-import MyMealsViewOptions from '@site/docs/ios/features/myMeals/_custom-views/MyMealsViewOptions.md';
-import MyMealsRecipesListGridConfig from '@site/docs/ios/features/myMeals/_custom-views/MyMealsRecipesListGridConfig.md';
-import * as RecipeDetailsViewOptions from '@site/docs/ios/features/recipe-details/_custom-views/';
-import ItemSelectorViewOptions from '@site/docs/ios/features/item-selector/_custom-views/ItemSelectorViewOptions.md';
+import CatalogRecipesListGridConfig from '../_shared/_custom-views/CatalogRecipesListGridConfig.md';
+import MyMealsViewOptions from '../myMeals/_custom-views/MyMealsViewOptions.md';
+import MyMealsRecipesListGridConfig from '../myMeals/_custom-views/MyMealsRecipesListGridConfig.md';
+import * as RecipeDetailsViewOptions from '../recipe-details/_custom-views/';
+import ItemSelectorViewOptions from '../item-selector/_custom-views/ItemSelectorViewOptions.md';
 
 # Customize Views
 

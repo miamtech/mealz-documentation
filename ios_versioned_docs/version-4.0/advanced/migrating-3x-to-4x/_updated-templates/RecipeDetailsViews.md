@@ -1,6 +1,6 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import * as RecipeDetailsProtocols from '@site/docs/ios/_code/_recipe-details/'
-import LoadingProtocol from '@site/docs/ios/_code/_base/LoadingProtocol.md'
+import * as RecipeDetailsProtocols from '../../../_code/_recipe-details/'
+import LoadingProtocol from '../../../_code/_base/LoadingProtocol.md'
 
 <details>
   <summary>Recipe Details</summary>

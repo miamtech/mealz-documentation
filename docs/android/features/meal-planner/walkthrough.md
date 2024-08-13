@@ -5,8 +5,8 @@ label: "Walkthrough"
 
 import ImageWithText from '@site/src/components/ImageWithText';
 import TimeIcon from '@site/src/components/TimeIcon';
-import Prerequisites from '@site/docs/android/features/_shared/Prerequisites.md';
-import LinkToCustomization from '@site/docs/android/features/_shared/LinkToCustomization.md';
+import Prerequisites from '../_shared/Prerequisites.md';
+import LinkToCustomization from '../_shared/LinkToCustomization.md';
 import * as MealPlannerPage from '@site/docs/shared/page-overviews/MealPlanner/';
 import * as CatalogOverviews from '@site/docs/shared/page-overviews/Catalog/';
 import * as GeneralOverviews from '@site/docs/shared/page-overviews/GeneralPages/';

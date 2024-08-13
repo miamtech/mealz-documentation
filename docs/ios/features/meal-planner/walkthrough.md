@@ -5,13 +5,13 @@ label: "Walkthrough"
 
 import ImageWithText from '@site/src/components/ImageWithText';
 import TimeIcon from '@site/src/components/TimeIcon';
-import Prerequisites from '@site/docs/ios/features/_shared/Prerequisites.md';
-import LinkToCustomization from '@site/docs/ios/features/_shared/LinkToCustomization.md';
+import Prerequisites from '../_shared/Prerequisites.md';
+import LinkToCustomization from '../_shared/LinkToCustomization.md';
 import * as MealPlannerPage from '@site/docs/shared/page-overviews/MealPlanner/';
 import * as CatalogOverviews from '@site/docs/shared/page-overviews/Catalog/';
 import * as GeneralOverviews from '@site/docs/shared/page-overviews/GeneralPages/';
 import ItemSelector from '@site/docs/shared/page-overviews/Basket/ItemSelector';
-import * as SharedSteps from '@site/docs/ios/features/_shared/_steps/';
+import * as SharedSteps from '../_shared/_steps/';
 import * as Steps from './_walkthrough/_steps';
 
 # Meal Planner Walkthrough

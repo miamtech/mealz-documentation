@@ -1,5 +1,5 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import * as FiltersProtocols from '@site/docs/ios/_code/_filters/'
+import * as FiltersProtocols from '../../../_code/_filters/'
 
 <details>
   <summary>Filters</summary>

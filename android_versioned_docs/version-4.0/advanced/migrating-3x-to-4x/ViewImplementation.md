@@ -28,7 +28,7 @@ with:
 
 You can completely configure all the templates & pages in the Catalog Feature.
 
-[//]: # (You can read about it [here]&#40;/docs/android/features/catalog/customize-views&#41;.)
+You can read about it [here](../../features/catalog/customize-views)
 
 ## Standalone Recipe Card Feature
 
@@ -76,7 +76,7 @@ recipeView.Content()
 
 You can completely configure all the templates & pages associated with the Recipe Card Feature.
 
-[//]: # (You can read about it [here]&#40;/docs/android/features/recipe-card/customize-views&#41;.)
+You can read about it [here](../../features/recipe-card/customize-views)
 
 ## Favorites Feature
 
@@ -95,7 +95,7 @@ with:
 
 You can completely configure all the templates & pages in the Favorites Feature.
 
-[//]: # (You can read about it [here]&#40;/docs/android/features/favorites/customize-views&#41;.)
+You can read about it [here](../../features/favorites/customize-views)
 
 ## MyMeals Feature (Recipes in your basket)
 
@@ -114,4 +114,4 @@ with:
 
 You can completely configure all the templates & pages in the MyMeals Feature.
 
-[//]: # (You can read about it [here]&#40;/docs/android/features/myMeals/customize-views&#41;.)
+You can read about it [here](../../features/myMeals/customize-views)

@@ -4,8 +4,8 @@ label: "Custom Navigation"
 ---
 
 import AddRecipeCarousel from './_walkthrough/AddRecipeCarousel.md'
-import ImplementSponsorDetails from '@site/docs/ios/features/_shared/_steps/ImplementSponsorDetails.md';
-import ImplementRecipeDetails from '@site/docs/ios/features/_shared/_steps/ImplementRecipeDetails.md';
+import ImplementSponsorDetails from '../_shared/_steps/ImplementSponsorDetails.md';
+import ImplementRecipeDetails from '../_shared/_steps/ImplementRecipeDetails.md';
 
 # Custom Navigation
 

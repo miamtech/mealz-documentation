@@ -1,5 +1,5 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import EmptyProtocol from '@site/docs/ios/_code/_base/EmptyProtocol.md'
+import EmptyProtocol from '../../../_code/_base/EmptyProtocol.md'
 
 <details>
   <summary>Favorites</summary>

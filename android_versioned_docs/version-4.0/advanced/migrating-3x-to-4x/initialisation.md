@@ -3,10 +3,10 @@ sidebar_position: 1
 label: "Migrating 3.X to 4.X"
 ---
 
-import * as BasketService from '@site/docs/android/advanced/_shared/_miamManager/_basketService/';
-import SupplierId from '@site/docs/android/advanced/_shared/_miamManager/SupplierId.md';
-import Analytics from '@site/docs/android/advanced/_shared/_miamManager/_analytics-notifiers/Analytics.md';
-import Toaster from '@site/docs/android/advanced/_shared/_miamManager/_analytics-notifiers/Toaster.md';
+import * as BasketService from '../_shared/_miamManager/_basketService/';
+import SupplierId from '../_shared/_miamManager/SupplierId.md';
+import Analytics from '../_shared/_miamManager/_analytics-notifiers/Analytics.md';
+import Toaster from '../_shared/_miamManager/_analytics-notifiers/Toaster.md';
 
 # Updating MiamManager
 

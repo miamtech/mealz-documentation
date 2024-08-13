@@ -4,8 +4,8 @@ label: "Custom Navigation"
 ---
 
 import * as Steps from './_walkthrough/_steps';
-import * as SharedSteps from '@site/docs/ios/features/_shared/_steps/';
-import LinkToCustomization from '@site/docs/ios/features/_shared/LinkToCustomization.md';
+import * as SharedSteps from '../_shared/_steps/';
+import LinkToCustomization from '../_shared/LinkToCustomization.md';
 
 # Custom Navigation
 
