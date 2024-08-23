@@ -32,6 +32,7 @@
 
 .miam_button_row{
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   gap: 16px;
