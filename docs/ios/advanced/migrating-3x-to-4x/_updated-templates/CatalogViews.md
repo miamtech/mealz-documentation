@@ -1,10 +1,10 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import * as CatalogProtocols from '@site/docs/ios/_code/_catalog/'
-import RecipeCardLoadingProtocol from '@site/docs/ios/_code/_base/RecipeCardLoadingProtocol.md'
-import LoadingProtocol from '@site/docs/ios/_code/_base/LoadingProtocol.md'
-import EmptyProtocol from '@site/docs/ios/_code/_base/EmptyProtocol.md'
-import SearchProtocol from '@site/docs/ios/_code/_base/SearchProtocol.md'
-import BaseTitleProtocol from '@site/docs/ios/_code/_base/BaseTitleProtocol.md'
+import * as CatalogProtocols from '../../../_code/_catalog/'
+import RecipeCardLoadingProtocol from '../../../_code/_base/RecipeCardLoadingProtocol.md'
+import LoadingProtocol from '../../../_code/_base/LoadingProtocol.md'
+import EmptyProtocol from '../../../_code/_base/EmptyProtocol.md'
+import SearchProtocol from '../../../_code/_base/SearchProtocol.md'
+import BaseTitleProtocol from '../../../_code/_base/BaseTitleProtocol.md'
 
 <details>
   <summary>Catalog</summary>

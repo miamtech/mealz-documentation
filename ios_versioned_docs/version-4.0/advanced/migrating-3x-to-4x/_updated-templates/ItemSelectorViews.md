@@ -1,6 +1,6 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import * as ItemSelectorProtocols from '@site/docs/ios/_code/_item-selector/'
-import LoadingProtocol from '@site/docs/ios/_code/_base/LoadingProtocol.md'
+import * as ItemSelectorProtocols from '../../../_code/_item-selector/'
+import LoadingProtocol from '../../../_code/_base/LoadingProtocol.md'
 
 <details>
   <summary>Item Selector</summary>

@@ -5,12 +5,12 @@ label: "Customize Views"
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Explanation from '@site/docs/ios/features/_shared/_custom-views/Explanation.md';
-import BaseViews from '@site/docs/ios/features/_shared/_custom-views/BaseViews.md';
-import CatalogRecipesListGridConfig from '@site/docs/ios/features/_shared/_custom-views/CatalogRecipesListGridConfig.md';
+import Explanation from '../_shared/_custom-views/Explanation.md';
+import BaseViews from '../_shared/_custom-views/BaseViews.md';
+import CatalogRecipesListGridConfig from '../_shared/_custom-views/CatalogRecipesListGridConfig.md';
 import StandaloneRecipeCardConstructor from './_custom-views/StandaloneRecipeCardConstructor.md';
-import * as RecipeDetailsViewOptions from '@site/docs/ios/features/recipe-details/_custom-views/';
-import ItemSelectorViewOptions from '@site/docs/ios/features/item-selector/_custom-views/ItemSelectorViewOptions.md';
+import * as RecipeDetailsViewOptions from '../recipe-details/_custom-views/';
+import ItemSelectorViewOptions from '../item-selector/_custom-views/ItemSelectorViewOptions.md';
 
 # Customize Views
 

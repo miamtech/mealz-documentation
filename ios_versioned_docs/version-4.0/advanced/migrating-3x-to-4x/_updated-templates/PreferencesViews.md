@@ -1,8 +1,8 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import * as PreferencesProtocols from '@site/docs/ios/_code/_preferences/'
-import EmptyProtocol from '@site/docs/ios/_code/_base/EmptyProtocol.md'
-import LoadingProtocol from '@site/docs/ios/_code/_base/LoadingProtocol.md'
-import SearchProtocol from '@site/docs/ios/_code/_base/SearchProtocol.md'
+import * as PreferencesProtocols from '../../../_code/_preferences/'
+import EmptyProtocol from '../../../_code/_base/EmptyProtocol.md'
+import LoadingProtocol from '../../../_code/_base/LoadingProtocol.md'
+import SearchProtocol from '../../../_code/_base/SearchProtocol.md'
 
 <details>
   <summary>Preferences</summary>

@@ -3,8 +3,8 @@ sidebar_position: 2
 label: "Styling"
 ---
 
-import ColorList from '@site/docs/shared/usage/styling/ColorList.md';
-import IconList from '@site/docs/shared/usage/styling/IconList.md';
+import ColorList from './_styling/ColorList.md';
+import IconList from './_styling/IconList.md';
 
 # Styling
 

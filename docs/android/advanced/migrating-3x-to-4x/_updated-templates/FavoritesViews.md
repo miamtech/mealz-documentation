@@ -1,6 +1,6 @@
 import CodeUpdateComparison from "@site/src/components/CodeUpdateComparison"
-import EmptyProtocol from "@site/docs/android/_code/_base/EmptyProtocol.md"
-import LazyListLoaderProtocol from "@site/docs/android/_code/_base/LazyListLoaderProtocol.md"
+import EmptyProtocol from "../../../_code/_base/EmptyProtocol.md"
+import LazyListLoaderProtocol from "../../../_code/_base/LazyListLoaderProtocol.md"
 
 <details>
   <summary>Favorites</summary>

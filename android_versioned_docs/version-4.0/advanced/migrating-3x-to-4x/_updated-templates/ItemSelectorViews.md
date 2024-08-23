@@ -1,7 +1,7 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import * as ItemSelectorProtocols from '@site/docs/android/_code/_item-selector/'
-import LoadingProtocol from '@site/docs/android/_code/_base/LoadingProtocol.md'
-import EmptyProtocol from '@site/docs/android/_code/_base/EmptyProtocol.md'
+import * as ItemSelectorProtocols from '../../../_code/_item-selector/'
+import LoadingProtocol from '../../../_code/_base/LoadingProtocol.md'
+import EmptyProtocol from '../../../_code/_base/EmptyProtocol.md'
 
 <details>
   <summary>Item Selector</summary>

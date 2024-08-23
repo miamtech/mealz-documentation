@@ -1,5 +1,5 @@
-import Toaster from '@site/docs/ios/advanced/_shared/_miamManager/_analytics-notifiers/Toaster.md';
-import Analytics from '@site/docs/ios/advanced/_shared/_miamManager/_analytics-notifiers/Analytics.md';
+import Toaster from './_shared/_miamManager/_analytics-notifiers/Toaster.md';
+import Analytics from './_shared/_miamManager/_analytics-notifiers/Analytics.md';
 
 # Notifications
 

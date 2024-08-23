@@ -4,8 +4,8 @@ label: "Overview"
 ---
 
 import TimeIcon from '@site/src/components/TimeIcon';
-import Prerequisites from '@site/docs/ios/features/_shared/Prerequisites.md';
-import LinkToCustomization from '@site/docs/ios/features/_shared/LinkToCustomization.md';
+import Prerequisites from '../_shared/Prerequisites.md';
+import LinkToCustomization from '../_shared/LinkToCustomization.md';
 import * as CatalogOverviews from '@site/docs/shared/page-overviews/Catalog/';
 import * as BasketOverviews from '@site/docs/shared/page-overviews/Basket/';
 import * as GeneralOverviews from '@site/docs/shared/page-overviews/GeneralPages/';

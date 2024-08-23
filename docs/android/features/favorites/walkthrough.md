@@ -5,8 +5,8 @@ label: "Walkthrough"
 
 import Favorites from '@site/docs/shared/page-overviews/GeneralPages/Favorites';
 import LikeButton from '@site/docs/shared/component-overviews/LikeButton';
-import Prerequisites from '@site/docs/android/features/_shared/Prerequisites.md';
-import LinkToCustomization from '@site/docs/android/features/_shared/LinkToCustomization.md';
+import Prerequisites from '../_shared/Prerequisites.md';
+import LinkToCustomization from '../_shared/LinkToCustomization.md';
 import TimeIcon from '@site/src/components/TimeIcon';
 
 # Favorites Walkthrough

@@ -3,7 +3,7 @@ sidebar_position: 3
 label: "Custom Navigation"
 ---
 
-import * as SharedSteps from '@site/docs/ios/features/_shared/_steps/';
+import * as SharedSteps from '../_shared/_steps/';
 import * as Steps from './_walkthrough/_steps'
 
 # Custom Navigation

@@ -1,5 +1,5 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import FilterSuccessProtocol from '@site/docs/android/_code/_filters/FilterSuccessProtocol.md'
+import FilterSuccessProtocol from '../../../_code/_filters/FilterSuccessProtocol.md'
 
 <details>
   <summary>Filters</summary>

@@ -1,6 +1,6 @@
 import CodeUpdateComparison from '@site/src/components/CodeUpdateComparison'
-import EmptyProtocol from '@site/docs/android/_code/_base/EmptyProtocol.md'
-import LoadingProtocol from '@site/docs/android/_code/_base/LoadingProtocol.md'
+import EmptyProtocol from '../../../_code/_base/EmptyProtocol.md'
+import LoadingProtocol from '../../../_code/_base/LoadingProtocol.md'
 
 <details>
   <summary>My Meals</summary>
