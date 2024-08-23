@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface ProductIgnore {
     @Composable
-    fun Content(params: ProductIgnoreParameters){
-
-    }
+    fun Content(params: ProductIgnoreParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class ProductIgnoreParameters(
     val ingredientName: String,
     val ingredientQuantity: String,

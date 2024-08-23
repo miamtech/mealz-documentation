@@ -1,0 +1,141 @@
+---
+sidebar_position: 3
+label: "Supplier Initialisation"
+title: "Supplier Initialisation"
+---
+
+import IosBasicImp from './_shared/_MealzBasicImp.mdx'
+import IosUserSetUp from './_shared/_MealzUserSetUp.mdx'
+import IosSupplierId from '../advanced/_shared/_miamManager/SupplierId.md';
+import IosStoreSetup from './_shared/_MealzStoreSetupSupplier.mdx';
+import * as IosBasketService from '../advanced/_shared/_miamManager/_basketService/';
+import PaymentStartedAndFinished from './_payment/PaymentStartedAndFinished.mdx';
+
+
+## Supplier minimum requirement
+
+You are a retailer and you have your own groceries list that need to be synchronized with the Mealz groceries list.
+
+## SupplierKey - base64 key to set information
+
+<IosSupplierId/>
+
+:::tip
+Your keys will be provided by our Development team
+:::
+
+## Basic implementation
+
+There are several options to configure to handle authless users. Here is a basic implemtation
+where the Mealz initialization process will only start after the user is **logged in** and has **selected a valid store**.
+It will then need to complete the **basket synchronization**
+
+
+First to init Mealz we need your application context and also your supplier key
+
+:::note
+Two key have been send to you: one for **developement** and one for **production**.
+:::
+
+<IosBasicImp/>
+
+## User setup
+
+Here is how to pass the user ID to the SDK, directly within the host app:
+
+<IosUserSetUp/>
+
+:::info
+To get full list of user feature check [**User configurations**](../advanced/user-configuration).
+:::
+
+## Store setup
+
+For Mealz to work properly, your user must be connected to a specific store so we can accurately provide recipes with available ingredients.
+To add the store that the user is currently at, you can use this code:
+
+<IosStoreSetup/>
+
+## Basket synchronization Setup
+
+Most importantly, the Mealz Basket must be kept up to date with your in-app basket.
+The SDK handles this complex logic by translating between Mealz Products & your real products.
+This mechanism is **mandatory** -> otherwise products will not be able to be added nor deleted properly between the two stores.
+
+For example, when a user adds a Mealz Recipe to their cart, they are adding Mealz products to their basket.
+We then send them to you, the retailer, to be translated into your products & then added to your basket.
+
+Likewise, when a product is deleted from your basket, the retailer, we listen for updates.
+When we notice a product used in a Mealz Recipe was deleted, we update our basket to reflect that change as well.
+
+:::tip
+If at some point, you feel like products magically disappear from Mealz recipes, or are not removed
+from the app basket while they should be, this is probably related to this part.
+:::
+
+### Helper Function to map between products
+
+More than likely, your Product object will be quite different than ours so we have created a bridge model called `SupplierProduct`.
+Because of this, we recommend creating a helper function or two to translate between your object & the bridge.
+This will make your code easier to understand.
+
+<IosBasketService.PretendProductsToRetailerProducts />
+
+### BasketSubscriber & BasketListener
+
+We have two protocols `BasketSubscriber` & `BasketListener` to coordinate the two baskets together.
+As the name suggestions, the listeners listens for updates from your basket.
+The subscriber allows you to listen.
+
+<IosBasketService.NewBasketService/>
+
+### onBasketUpdate
+
+Now, we need a way to stream the updates from the Mealz Basket to your own.
+We recommend using an observable.
+From there, we can sink your basket (in this case, the `ExampleState`) with the updates from Mealz.
+
+Here's our example:
+
+<IosBasketService.OnBasketUpdate/>
+
+### initialValue
+
+When Mealz is launching, we need to know the state of the current customer basket.
+Whenever this basket changes, we will refresh the Mealz SDK.
+
+<IosBasketService.InitializeBasket/>
+
+:::danger
+IMPORTANT: passing an empty list to Mealz SDK on initialization when there are actual products in the basket will lead to unexpected side effects. If this is done, products in the user's basket will appear as removed by the user in the Mealz basket.
+:::
+
+### receive
+
+The last step of the `basketService` is to implement `receive`.
+This will make sure both baskets are connected & up to date.
+
+<IosBasketService.UpdateBasketFromExternalSource/>
+
+### Putting it all together
+
+<IosBasketService.FinalCodeBlock/>
+
+
+## Checkout
+
+Now, to properly finish the Mealz session, you'll need to call the below function:
+
+<IosBasketService.HandlePayment/>
+
+This will clear the basket & lodge the products as purchased, especially with regard to our AI model.
+The more a recipe is purchased, the more confident we are in the model & products associated.
+Further, we also can use this data for analytics purposes to see which recipes are most frequently purchased.
+
+This should be called directly before the user pays & is ***mandatory***.
+
+
+
+
+Congratulations, **Mealz** is good to go 🥳
+

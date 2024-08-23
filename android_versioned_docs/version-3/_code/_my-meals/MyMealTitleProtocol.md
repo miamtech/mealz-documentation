@@ -1,9 +1,7 @@
-```koltin 
+```kotlin 
 interface MyMealTitle {
     @Composable
-    fun Content(params: MyMealTitleParameters){
-        
-    }
+    fun Content(params: MyMealTitleParameters)
 }
 ```
 where

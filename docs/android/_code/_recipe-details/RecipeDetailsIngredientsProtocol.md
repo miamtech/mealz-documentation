@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface Ingredients {
     @Composable
-    fun Content(params: IngredientsParameters){
-        
-    }
+    fun Content(params: IngredientsParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class IngredientsParameters(
     val ingredients: `List<Ingredient>`,
     val guestsCount: Int,

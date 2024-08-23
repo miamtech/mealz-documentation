@@ -1,0 +1,112 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## ItemSelector Loading
+
+To create your own itemSelector loading template create a class that implements `ItemSelectorLoading`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomItemSelectorHeader.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.itemSelector.loading.ItemSelectorLoading
+
+
+class MyCustomItemSelectorHeader: ItemSelectorLoading {
+
+    @Composable
+    override fun Content() {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+import ai.mealz.sdk.components.itemSelector.loading.ItemSelectorLoading
+
+class MyCustomItemSelectorHeader : ItemSelectorLoading {
+    @Composable
+    override fun Content() {
+        for (i in 0..3) {
+            SkeletonLoader {
+                ShimmerItem(it)
+            }
+        }
+    }
+}
+
+@Composable
+fun ShimmerItem(brush: Brush) {
+    Column {
+        Surface(modifier = Modifier.fillMaxWidth()) {
+            Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Spacer(
+                        modifier = Modifier
+                            .size(88.dp)
+                            .padding(4.dp)
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(brush = brush)
+                    )
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Spacer(
+                            modifier = Modifier
+                                .height(18.dp)
+                                .width(130.dp)
+                                .clip(RoundedCornerShape(100))
+                                .background(brush = brush)
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .height(18.dp)
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(100))
+                                .background(brush = brush)
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .padding(top = 8.dp)
+                                .height(20.dp)
+                                .width(40.dp)
+                                .clip(RoundedCornerShape(100))
+                                .background(brush = brush)
+                        )
+                    }
+                }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Spacer(
+                        modifier = Modifier
+                            .height(24.dp)
+                            .width(60.dp)
+                            .clip(RoundedCornerShape(100))
+                            .background(brush = brush)
+                    )
+                    Spacer(
+                        modifier = Modifier
+                            .height(28.dp)
+                            .width(110.dp)
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(brush = brush)
+                    )
+                }
+            }
+        }
+        Surface(color = ai.mealz.sdk.theme.Colors.border, modifier = Modifier.fillMaxWidth()) {
+            Spacer(Modifier.size(1.dp))
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>

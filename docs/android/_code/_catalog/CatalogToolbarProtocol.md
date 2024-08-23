@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface CatalogSuccessToolbar {
     @Composable
-    fun Content(params: CatalogSuccessToolbarParameters){
-        
-    }
+    fun Content(params: CatalogSuccessToolbarParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class CatalogSuccessToolbarParameters(
     val content: CatalogContent,
     val openFilter: () -> Unit,

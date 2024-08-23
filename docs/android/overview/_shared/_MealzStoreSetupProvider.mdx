@@ -1,30 +1,7 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+```kotlin
+// From anywhere
+import ai.mealz.core.Mealz
 
-<Tabs
-    defaultValue="4.0"
-    groupId="mobile-version"
-    values={[
-        { label: '4.0', value: '4.0' },
-        { label: '4.1', value: '4.1' },
-    ]}>
-
-    <TabItem value="4.0">
-        ```kotlin
-        // From anywhere
-        import ai.mealz.core.Mealz
-
-        // STORE_ID_IN_HOST_APP is your store id, type String is expected
-        Mealz.user.setStoreWithMealzId(storeId = STORE_ID_IN_HOST_APP)
-        ```
-    </TabItem>
-    <TabItem value="4.1">
-        ```kotlin
-        // From anywhere
-        import ai.mealz.core.Mealz
-
-        // STORE_ID_IN_HOST_APP is your store id, type String is expected
-        Mealz.user.setStoreWithMealzIdWithCallBack(storeId = STORE_ID_IN_HOST_APP) { /** action to execute one mealz store has been fetch and set can be a redirection */}
-        ```
-    </TabItem>
-</Tabs>
+// STORE_ID_IN_HOST_APP is your store id, type String is expected
+Mealz.user.setStoreWithMealzIdWithCallBack(storeId = STORE_ID_IN_HOST_APP) { /** action to execute one mealz store has been fetch and set can be a redirection */}
+```

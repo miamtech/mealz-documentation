@@ -1,14 +1,12 @@
 
-```koltin 
+```kotlin 
 interface MyMealRecipeCardSuccess {
     @Composable
-    fun Content(params: MyMealRecipeCardSuccessParameters){
-
-    }
+    fun Content(params: MyMealRecipeCardSuccessParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class MyMealRecipeCardSuccessParameters(
     val recipe: Recipe,
     val totalPrice: Double,

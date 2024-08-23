@@ -1,14 +1,12 @@
-```koltin 
+```kotlin 
 interface PreferencesFooter {
     @Composable
-    fun Content(params: PreferencesFooterParameters){
-
-    }
+    fun Content(params: PreferencesFooterParameters)
 }
 ```
 where
 
-```koltin 
+```kotlin 
 data class PreferencesFooterParameters(
     val recipesFound: Int,
     val closePref: () -> Unit,
