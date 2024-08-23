@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 label: "Initialisation"
+title: "Initialisation"
 ---
 
 import SharedInit from '../../shared/overview/initialisation.mdx';

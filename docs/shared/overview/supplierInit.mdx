@@ -14,8 +14,6 @@ import IosStoreSetup from '@site/docs/ios/overview/_shared/_MealzStoreSetupSuppl
 import * as IosBasketService from '@site/docs/ios/advanced/_shared/_miamManager/_basketService/';
 
 import PaymentStartedAndFinished from './_payment/PaymentStartedAndFinished.mdx';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 export function BasicImp(props){
     if(props.platform == "android") { return <AndroidBasicImp /> } else return  <IosBasicImp />
@@ -47,10 +45,6 @@ export function UpdateBasketFromExternalSource(props){
 
 export function FinalCodeBlock(props){
     if(props.platform == "android") { return <AndroidBasketService.FinalCodeBlock  /> } else return  <IosBasketService.FinalCodeBlock  />
-}
-
-export function HandlePayment(props){
-    if(props.platform == "android") { return <AndroidBasketService.HandlePayment  /> } else return  <IosBasketService.HandlePayment  />
 }
 
 export function UserSetUp(props){
@@ -176,23 +170,7 @@ This will make sure both baskets are connected & up to date.
 
 ## Checkout
 
-<Tabs
-    defaultValue="4.1"
-    groupId="mobile-version"
-    values={[
-        { label: '4.0', value: '4.0' },
-        { label: '4.1', value: '4.1' },
-    ]}>
-
-    <TabItem value="4.0">
-        Now, to properly finish the Mealz session, you'll need to call the below function:
-
-        <HandlePayment platform ={props.platform}/>
-    </TabItem>
-    <TabItem value="4.1">
-        <PaymentStartedAndFinished platform ={props.platform}/>
-    </TabItem>
-</Tabs>
+<PaymentStartedAndFinished platform ={props.platform}/>
 
 This will clear the basket & lodge the products as purchased, especially with regard to our AI model.
 The more a recipe is purchased, the more confident we are in the model & products associated.
@@ -200,8 +178,5 @@ Further, we also can use this data for analytics purposes to see which recipes a
 
 This should be called directly before the user pays & is ***mandatory***.
 
-
-
-
-Congratulation **Mealz** is good to go 🥳
+Congratulations, **Mealz** is good to go 🥳
 

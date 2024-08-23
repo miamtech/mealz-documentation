@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface PreferencesEquipmentSection {
     @Composable
-    fun Content(params: PreferencesEquipmentSectionParameters){
-
-    }
+    fun Content(params: PreferencesEquipmentSectionParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class PreferencesEquipmentSectionParameters(
     val equipmentsTag: `List<CheckableTag>`,
     val togglePreference: (tagIdToToggle: String) -> Unit

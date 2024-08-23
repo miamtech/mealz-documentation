@@ -1,0 +1,60 @@
+---
+sidebar_position: 4
+label: "Provider Initialisation"
+---
+
+import AndroidProviderId from '../advanced/_shared/_miamManager/ProviderId.md';
+import AndroidBasicImpProvider from './_shared/_MealzBasicImpProvider.mdx'
+import AndroidUserSetting from './_shared/_MealzUserSetUp.mdx'
+import AndroidStoreSetup from './_shared/_MealzStoreSetupProvider.mdx'
+
+# Provider minimum requirement
+
+
+You provide recipes and use Mealz to push it to a retailer. For example, a food delivery service that works with multiple grocery stores. 
+
+## ProviderKey - base64 key to set information
+
+<AndroidProviderId />
+
+:::tip
+Your keys will be provided by our Development team
+:::
+
+## Basic implementation
+
+There are several options to configure to handle authless users. The below is a basic implementation
+where the Mealz initialization process will only start after the user is **logged in** and has **selected a valid store**.
+
+First, to init Mealz we need your application context and your provider key
+
+:::note
+Two keys will have been sent to you: one for **development** and one for **production**.
+:::
+
+<AndroidBasicImpProvider />
+
+## User setup
+
+Here is how to pass the user ID to the SDK, directly within the host app:
+
+<AndroidUserSetting />
+
+:::info
+To get full list of user features check [**User configurations**](../advanced/user-configuration).
+:::
+
+## Store setup
+
+For Mealz to work properly, your user must be connected to a specific store so we can accurately provide recipes with available ingredients.
+To add the store that the user is currently at, you can use this code:
+
+<AndroidStoreSetup />
+
+:::info
+You can also set a callback to redirect to your Store Selector, more information [**here**](../advanced/store-configuration/##SetStore
+).
+:::
+
+
+Congratulations, **Mealz** is good to go 🥳
