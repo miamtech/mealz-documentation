@@ -8,7 +8,7 @@ function Loading({
                     url={`https://storage.googleapis.com/assets.miam.tech/kmm_documentation/${platform}/page-overviews/loader.png`}
                     text="
 <p>
-The <code>Loader</code> Component shows in several component sush as: 
+The <code>Loader</code> Component shows in several component such as: 
 <br/>
 MyMeal, MyProduct, Catalog, Favorite, BasketPreview, Preference, PreferenceSearch, RecipeDetail, SponsorDetail
 <br/> <br/>
