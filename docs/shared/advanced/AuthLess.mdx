@@ -20,10 +20,6 @@ export function LoginRedirectionConfig(props){
 AuthLess mode allows Mealz to create an anonymous user and to find previous lists of non-connected users.
 Once the user connects to your app Mealz will merge anonymous user into the connected user.
 
-:::info
-AuthLess user feature is only available since version 4.1 and above 
-:::
-
 You can enable AuthLess feature in mealz initialisation
 
 <AuthlessConfig platform= {props.platform}/>
@@ -35,7 +31,6 @@ You can enable AuthLess feature in mealz initialisation
 You can also provide Mealz a redirection function to your login page. We will use this function when connecting the user connection becomes mandatory, like adding the products to the basket. Even without supporting anonymous users, we can display Mealz Recipes on your apps, with CTAs requiring a user sign in. 
 
 <LoginRedirectionConfig platform= {props.platform}/>
-
 
 :::warning
  if **isAnonymousModeEnabled** is set to **true** Mealz will **never** call your redirection function

@@ -1,26 +1,5 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs
-    defaultValue="4.0"
-    groupId="mobile-version"
-    values={[
-        { label: '4.0', value: '4.0' },
-        { label: '4.1', value: '4.1' },
-    ]}>
-
-    <TabItem value="4.0">
-        ```swift
-        import mealzcore
-        // STORE_ID_IN_HOST_APP is your store id, type String is expected
-        Mealz.shared.user.setStoreWithMealzId(storeId: STORE_ID_IN_HOST_APP)
-        ```
-    </TabItem>
-    <TabItem value="4.1">
-        ```swift
-        import mealzcore
-        // STORE_ID_IN_HOST_APP is your store id, type String is expected
-        Mealz.shared.user.setStoreWithMealzIdWithCallBack(storeId: STORE_ID_IN_HOST_APP) { _ in /** action to execute one mealz store has been fetch and set can be a redirection */}
-        ```
-    </TabItem>
-</Tabs>
+```swift
+import mealzcore
+// STORE_ID_IN_HOST_APP is your store id, type String is expected
+Mealz.shared.user.setStoreWithMealzIdWithCallBack(storeId: STORE_ID_IN_HOST_APP) { _ in /** action to execute one mealz store has been fetch and set can be a redirection */}
+```
