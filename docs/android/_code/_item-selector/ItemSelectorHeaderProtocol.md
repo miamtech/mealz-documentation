@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface ItemSelectorHeader {
     @Composable
-    fun Content(params: ItemSelectorHeaderParameters){
-        
-    }
+    fun Content(params: ItemSelectorHeaderParameters)
 }
 ```
 where
 
-```koltin 
+```kotlin 
 data class ItemSelectorHeaderParameters(val previous: () -> Unit)
 ```

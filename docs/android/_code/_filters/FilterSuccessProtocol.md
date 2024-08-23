@@ -1,14 +1,12 @@
-```koltin 
+```kotlin 
 interface FilterSuccess {
     @Composable
-    fun Content(params: FilterSuccessParameters){
-
-    }
+    fun Content(params: FilterSuccessParameters)
 }
 ```
 where
 
-```koltin 
+```kotlin 
 data class FilterSuccessParameters(
     val difficulties: `List<CatalogFilterOptions>`,
     val costs: `List<CatalogFilterOptions>`,

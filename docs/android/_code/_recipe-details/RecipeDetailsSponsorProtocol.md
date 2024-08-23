@@ -1,14 +1,12 @@
-```koltin 
+```kotlin 
 interface RecipeDetailSponsorBanner {
     @Composable
-    fun Content(params: RecipeDetailSponsorBannerParameters){
-
-    }
+    fun Content(params: RecipeDetailSponsorBannerParameters)
 }
 ```
 where
 
-```koltin 
+```kotlin 
 data class RecipeDetailSponsorBannerParameters(
     val sponsor: Sponsor,
     val openSponsorDetail: (sponsor: Sponsor) -> Unit

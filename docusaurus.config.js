@@ -41,9 +41,16 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "4",
+            label: "4.1",
             path: "/"
           },
+          "4.0": {
+            banner: 'none'
+          },
+          "3": {
+            label: "3.x",
+            banner: 'unmaintained'
+          }
         },
       },
     ],
@@ -59,9 +66,16 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "4",
+            label: "4.1",
             path: "/"
           },
+          "4.0": {
+            banner: 'none'
+          },
+          "3": {
+            label: "3.x",
+            banner: 'unmaintained'
+          }
         }
       },
     ],
@@ -125,7 +139,7 @@ export default {
       navbar: {
         style: "dark",
         logo: {
-          alt: "My Site Logo",
+          alt: "Mealz Logo",
           src: "img/logo.svg",
         },
         items: [
@@ -135,12 +149,17 @@ export default {
             to: "docs/android/Introduction",
             items: [
               {
-                label: "V4",
+                label: "4.1",
                 to: "docs/android/Introduction",
-                activeBaseRegex: "docs\/android\/(?![0-9]/)",
+                activeBaseRegex: "docs\/android\/[^0-9][^/]",
               },
               {
-                label: "V3",
+                label: "4.0",
+                to: "docs/android/4.0/Introduction",
+                activeBasePath: "docs/android/4.0/",
+              },
+              {
+                label: "3.x",
                 to: "docs/android/3/Introduction",
                 activeBasePath: "docs/android/3/",
               }
@@ -152,12 +171,17 @@ export default {
             to: "docs/ios/Introduction",
             items: [
               {
-                label: "V4",
+                label: "4.1",
                 to: "docs/ios/Introduction",
-                activeBaseRegex: "docs\/ios\/(?![0-9]\/)",
+                activeBaseRegex: "docs\/ios\/[^0-9][^/]",
               },
               {
-                label: "V3",
+                label: "4.0",
+                to: "docs/ios/4.0/Introduction",
+                activeBasePath: "docs/ios/4.0/",
+              },
+              {
+                label: "3.x",
                 to: "docs/ios/3/Introduction",
                 activeBasePath: "docs/ios/3/",
               }

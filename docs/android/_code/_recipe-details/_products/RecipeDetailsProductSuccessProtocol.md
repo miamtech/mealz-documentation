@@ -1,13 +1,11 @@
-```koltin 
+```kotlin 
 interface ProductSuccess {
     @Composable
-    fun Content(params: ProductSuccessParameters){
-
-    }
+    fun Content(params: ProductSuccessParameters)
 }
 ```
 where
-```koltin 
+```kotlin 
 data class ProductSuccessParameters(
     val productName: String,
     val productBrand: String,

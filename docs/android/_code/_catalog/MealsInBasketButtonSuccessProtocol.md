@@ -1,14 +1,12 @@
-```koltin 
+```kotlin 
 interface CatalogFloating {
     @Composable
-    fun Content(params: CatalogFloatingParameters){
-
-    }
+    fun Content(params: CatalogFloatingParameters)
 }
 ```
 where
 
-```koltin 
+```kotlin 
 data class CatalogFloatingParameters(
     val onClickAction: () -> Unit
 )
