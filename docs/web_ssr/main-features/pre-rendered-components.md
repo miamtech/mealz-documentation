@@ -51,7 +51,7 @@ To do that you'll need to **generate an authless token** and provide it to the [
 The route to generate the **Authless Token**:
 
 ```
-GET http://MEALZ_SSR_API_URL/generate-authless-token
+GET http://MEALZ_SSR_API_URL/API_VERSION/generate-authless-token
 ```
 
 which will return an object:

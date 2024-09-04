@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-# Configure library context
+# Inform the library
 
 ## Inform the library of who you are
 
@@ -26,7 +26,7 @@ export class Mealz {
 }
 ```
 
-> If you don't understand what we mean by supplier here on in the code, we tend to use the words "supplier" and "retailer" interchangeably, but supplier is the name of the type in our database that refers to a retailer, so we mostly use this term
+> if you don't understand what we mean by supplier here on in the code, we tend to use the words "supplier" and "retailer" interchangeably, but supplier is the name of the type in our database that refers to a retailer, so we mostly use this term
 
 ## Inform the library when the user chooses a store
 
@@ -39,21 +39,14 @@ To inform the library of the selected store, use:
 window.miam.pos.load(posExternalId: string || number)
 ```
 
-:::warning
-
-If you do not have any store selected, simply call this method with `null` or `undefined` as parameter. **Our library will not work properly if the method is not called.**
-
-:::
-
 posExternalId being the id of the store in your database, which needs to be the same id as the id that was provided to our backend with your stores infos.
 
-> If the store changes after the application has started, simply call this method again, and Mealz will recalculate its internal basket, as products and prices can be different from one store to another.
+> If the store changes after the application is started, simply call this method again, and Mealz will recalculate its internal basket, as products and prices can be different from one store to another.
 
 ```ts
 // Example Setup
 export class Mealz {
-  // Call this method from your app on init with the id of the store or with null / undefined if no store is selected
-  // And when the user choses a store
+  // Call this method from your app when the user choses a store
   loadStore(storeId) {
     window.miam.pos.load(storeId);
   }
