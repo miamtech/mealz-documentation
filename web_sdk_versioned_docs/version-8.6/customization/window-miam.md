@@ -91,7 +91,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
   :::
 
   :::warning
-   Even without point of sale selected, this method needs to be called with `null` or `undefined` as parameter. Otherwise the library will not work properly.
+  Even without a selected store, this method needs to be called with `null` or `undefined` as parameter. All features of the library that need a store won't start until miam.pos.load is called. (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)"
   :::
 
 - `getByAddress: (address: string, radius: string) => Observable<DocumentCollection<PointOfSale>>`
