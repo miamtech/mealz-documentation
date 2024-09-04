@@ -55,13 +55,13 @@ Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-reques
 A recipe contextualized with surrounding products **_(Recommended)_**:
 
 ```
-GET http://MEALZ_SSR_API_URL/recipe-card?surrounding_products_ids=["214086","1254022"]&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["214086","1254022"]&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
 ```
 
 A fixed recipe:
 
 ```
-GET http://MEALZ_SSR_API_URL/recipe-card?recipe_id=15123&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=15123&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
 ```
 
 ### Display variants

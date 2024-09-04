@@ -83,11 +83,18 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 - `setHookCallback(callback: (isLogged, isPosValid) => boolean) => void`: [Set up hook callback](../set-up-and-usage/hooks)
 - `setForcePosCallback: (callback: (posExtId: string) => boolean) => void`: [Receiving baskets from affiliated websites](./affiliated-websites)
 
+
 ## window.miam.pos
-- `load: (externalId) => void`: Call to inform Mealz that the point of sale has been updated. 
+- `load: (externalId) => void`: Call to inform Mealz that the point of sale has been updated. Either initialized or updated.
+
   :::info
-    Do not forget to call `pos.load` again after each time the store changes
+  Do not forget to call `pos.load` again after each time the store changes
   :::
+
+  :::warning
+  Even without a selected store, this method needs to be called with `null` or `undefined` as parameter. All features of the library that need a store won't start until miam.pos.load is called. (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)"
+  :::
+
 - `getByAddress: (address: string, radius: string) => Observable<DocumentCollection<PointOfSale>>`
   :::danger
     This is an internal method that will be moved elsewhere soon. Do not call

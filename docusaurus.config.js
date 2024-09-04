@@ -91,8 +91,14 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "8.5",
+            label: "9.0",
             path: "/"
+          },
+          "8.6": {
+            banner: 'none'
+          },
+          "8.5": {
+            banner: 'none'
           },
           "8.4": {
             banner: 'none'
@@ -115,7 +121,7 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "1.0",
+            label: "0.1",
             path: "/"
           },
         }
@@ -193,9 +199,19 @@ export default {
             to: "docs/web_sdk/Introduction",
             items: [
               {
-                label: "8.5",
+                label: "9.0",
                 to: "docs/web_sdk/Introduction",
                 activeBaseRegex: "docs/web_sdk/[^0-9][^/]",
+              },
+              {
+                label: "8.6",
+                to: "docs/web_sdk/8.6/Introduction",
+                activeBaseRegex: "docs/web_sdk/8.6",
+              },
+              {
+                label: "8.5",
+                to: "docs/web_sdk/8.5/Introduction",
+                activeBaseRegex: "docs/web_sdk/8.5",
               },
               {
                 label: "8.4",
@@ -215,7 +231,7 @@ export default {
             to: "docs/web_ssr/Introduction",
             items: [
               {
-                label: "1.0",
+                label: "0.1",
                 to: "docs/web_ssr/Introduction",
                 activeBaseRegex: "docs/web_ssr/[^0-9][^/]",
               }
