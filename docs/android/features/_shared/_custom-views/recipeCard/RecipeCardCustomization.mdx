@@ -342,7 +342,7 @@ internal fun BadgeViewGuest(numberOfGuests: MutableStateFlow<Int>) {
 </TabItem>
 </Tabs>
 
-### RecipeCard Success params
+### Params
 
 
 :::warning
@@ -365,7 +365,7 @@ data class RecipeCardSuccessParams(
 )
 ```
 
-### RecipeCard Success catalog
+### Catalog
 
 You can choose to have to differents design for the recipe card in our catalog and in your shelf.
 Regarding your need you can create two templates or only one implementing both catalog and shelf
@@ -500,7 +500,7 @@ class RecipeCardSuccessCatalogImp : RecipeCardSuccessCatalog {
 </TabItem>
 </Tabs>
 
-### RecipeCard Success catalog params
+### Catalog params
 
 ```kotlin
 data class RecipeCardSuccessCatalogParams (
@@ -525,7 +525,7 @@ data class RecipeCardSuccessCatalogParams (
 
 ```
 
-### RecipeCard Success shelf
+### Shelf
 
 <Tabs defaultValue="empty_example" groupId="code-example"
 values={[
@@ -601,7 +601,7 @@ class RecipeCardSuccessShelfCustomView : RecipeCardSuccessShelf {
 </TabItem>
 </Tabs>
 
-### RecipeCard Success shelf params
+### Shelf params
 
 ```kotlin
 data class RecipeCardSuccessShelfParams (
@@ -626,7 +626,7 @@ data class RecipeCardSuccessShelfParams (
 
 ```
 
-### RecipeCard Success ressources 
+### Ressources 
 
 
 <UseStringResource localisationExample = {"Localisation.recipe.showDetails.localised"}/>
@@ -638,7 +638,7 @@ data class RecipeCardSuccessShelfParams (
 | add | com_miam_recipe_add | Ajouter les ingrédients | Add ingredients |
 | perPerson | com_miam_my_meals_per_person | /pers.| /pers. |
 
-## RecipeCard Loading
+## Loading
 
 As for Success state basic Laoding view has been **deprecated** you must use catalog and shelf loading.
 
@@ -679,7 +679,7 @@ class RecipeCardLoadingCustomView: RecipeCardLoading {
 </TabItem>
 </Tabs>
 
-### RecipeCard Loading catalog
+### Loading catalog
 
 You can choose to have to differents design for the recipe card in our catalog and in your shelf.
 Regarding your needs you can create two templates or only one implementing both catalog and shelf loading
@@ -722,7 +722,7 @@ class RecipeCardLoadingCatalogCustomView: RecipeCardLoadingCatalog {
 </TabItem>
 </Tabs>
 
-### RecipeCard Loading shelf
+### Loading shelf
 
 
 <Tabs defaultValue="empty_example" groupId="code-example"
