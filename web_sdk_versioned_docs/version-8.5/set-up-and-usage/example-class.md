@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 6
 ---
 
 # Example class
@@ -26,8 +26,7 @@ export class Mealz {
 
   /////////////// POS ///////////////
 
-  // Call this method from your app on init with the id of the store or with null / undefined if no store is selected
-  // And when the user choses a store
+  // Call this method from your app when the user choses a store
   loadStore(storeId) {
     window.miam.pos.load(storeId)
   }

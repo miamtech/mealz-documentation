@@ -39,6 +39,12 @@ To inform the library of the selected store, use:
 window.miam.pos.load(posExternalId: string || number)
 ```
 
+:::warning
+
+If you do not have any store selected, simply call this method with `null` or `undefined` as parameter. **All features of the library that need a store won't start until miam.pos.load is called.** (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)
+
+:::
+
 posExternalId being the id of the store in your database, which needs to be the same id as the id that was provided to our backend with your stores infos.
 
 > If the store changes after the application has started, simply call this method again, and Mealz will recalculate its internal basket, as products and prices can be different from one store to another.
@@ -46,7 +52,8 @@ posExternalId being the id of the store in your database, which needs to be the 
 ```ts
 // Example Setup
 export class Mealz {
-  // Call this method from your app when the user choses a store
+  // Call this method from your app on init with the id of the store or with null / undefined if no store is selected
+  // And when the user choses a store
   loadStore(storeId) {
     window.miam.pos.load(storeId);
   }
