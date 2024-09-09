@@ -14,6 +14,7 @@ values={[
 ]}>
 <TabItem value="empty_example">
 
+    }
 ```kotlin
 import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailHeader
 import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailHeaderParameters
@@ -37,13 +38,15 @@ import ai.mealz.sdk.components.recipeDetail.success.header.RecipeDetailHeaderPar
 
 
 class MyCustomRecipeDetailHeader: RecipeDetailHeader {
-
     @Composable
     override fun Content(params: RecipeDetailHeaderParameters) {
-       Row(
+
+        Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.background(color = Color.Transparent)
+            modifier = Modifier
+                .background(color = if (params.scrollPosition > 900) Colors.white else Color.Transparent)
+                .fillMaxWidth()
         ) {
             Box(Modifier.padding(16.dp)) {
                 Surface(
@@ -51,7 +54,7 @@ class MyCustomRecipeDetailHeader: RecipeDetailHeader {
                         .size(36.dp)
                         .align(Alignment.Center),
                     shape = CircleShape,
-                    color = ai.mealz.sdk.theme.Colors.white,
+                    color = Colors.white,
                     elevation = 1.dp
                 ) {}
                 Image(
@@ -59,13 +62,34 @@ class MyCustomRecipeDetailHeader: RecipeDetailHeader {
                     contentDescription = null,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(24.dp).padding(end = 4.dp)
+                        .size(24.dp)
+                        .padding(end = 4.dp)
                         .rotate(180f)
                         .clickable { params.closeDialogue() }
                 )
             }
+            if (params.scrollPosition > 900) {
+                AnimatedVisibility(
+                    visible = true,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = params.title, Modifier.weight(1f),
+                        textAlign = TextAlign.Left,
+                        style = subtitleBold
+                    )
+                }
+            } else {
+                Spacer(modifier = Modifier.weight(1f))
+            }
+            if (params.isLikeEnabled) {
+                Box(Modifier.padding(16.dp)) {
+                    LikeButton(recipeId = params.recipeId).Content()
+                }
+            }
         }
     }
+}
 ```
 </TabItem>
 </Tabs>
@@ -74,7 +98,10 @@ class MyCustomRecipeDetailHeader: RecipeDetailHeader {
 
 ```kotlin
 data class RecipeDetailHeaderParameters(
-    val title: String, // name of the recipe
-    val closeDialogue: () -> Unit //  close the view
+    val title: String,
+    val recipeId: String,
+    val scrollPosition: Int, // of the whole page below
+    val isLikeEnabled: Boolean,
+    val closeDialogue: () -> Unit
 )
 ```
