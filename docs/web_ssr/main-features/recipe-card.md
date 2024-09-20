@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Recipe card (SSR)
@@ -14,10 +14,12 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
 
 ![Recipe card](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeCard.png "Recipe card")
 
-- Parameters :
+The base url for the recipe-card is the following:
+```
+GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card
+```
 
-  - `store_id: string`:
-  **_(Mandatory)_** Your store ID
+- Parameters :
 
   - `surrounding_products_ids: string[]`:
   **_(Mandatory if no `recipe_id` provided)_** an array of productIds around the place where you want to put the recipe card, the goal is to find a recipe matching the products
@@ -25,6 +27,9 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
 
   - `recipe_id: string`:
   **_(Mandatory if no `surrounding_products_ids` provided)_** load a recipe from its id
+
+  - `store_id: string`:
+  **_(Recommended)_** We need your store ID to display the price of the recipe, so ideally it should be passed if the user has chosen a store
 
   - `pricebook_key: string = 'DEFAULT'`:
   **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
@@ -43,6 +48,9 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
 
   - `serves: number`
   **_(Optional)_** Override the default number of guests set for the recipe
+
+  - `display_infos: boolean = false`:
+  **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
 
 > Displaying a fixed recipe can be tempting if you want to have control on the content appearing on your website, but it also means that the users will always see the same recipes at the same places and may not stay interested, while our algorithm has some random elements to it that makes the content vary between sessions, giving the user more inspiration.
 
@@ -88,3 +96,21 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=15123&store_id=28
 **The second and third variants are ideal for the cards you display in your shelves**, because of the badge in the upper-left corner (that you can easily replace by an image of your design that corresponds better to your website's design). **The third variant is better if your products have their "add to favorite" CTA next to the price**.
 
 **The first variant is better for our catalog**, because displaying the badge on each card would be redundant, which is why we use this variant by default.
+
+
+### I18n
+The customizable text contents for this component are the following:
+
+```json
+{
+  "RECIPE_PRICING": {
+    "PER_GUESTS": "/pers."
+  },
+  "RECIPE_CARD_CTA": {
+    "IN_BASKET_ICON_ALT": "See the products currently in basket",
+    "NOT_IN_BASKET_ICON_ALT": "See the products"
+  }
+}
+```
+
+See [Internationalisation](/docs/web_ssr/customization/internationalization) for more information on how to configure a custom I18n file to override our base texts with your own.
