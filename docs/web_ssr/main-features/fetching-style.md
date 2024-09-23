@@ -38,7 +38,7 @@ Which will return data in the following format:
 }
 ```
 
-You can then either simply use the html tags provided in `html` to add them in your head tag, or loop on the `links` attribute to create each link tag
+You can either directly inject the HTML tags from the `html` attribute into the `<head>` if your framework supports it, or loop through the links attribute to dynamically create and append each `<link>` tag.
 
 ## The performant way
 
@@ -85,6 +85,6 @@ The following route will fetch all CSS **for displaying the catalog's list page 
 ```
 GET http://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-list
 ```
-:::warning
+:::info
   Since the catalog-home displays recipe-cards, **these will contain the CSS for the recipe-cards as well**
 :::
