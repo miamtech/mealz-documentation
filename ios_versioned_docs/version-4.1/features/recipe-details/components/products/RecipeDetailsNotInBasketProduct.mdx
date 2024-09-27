@@ -1,0 +1,92 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### NotInBasketProduct
+
+To create your own recipe detail not in basket product template you create a class that implements `NotInBasketProductProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+<TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+import mealzcore
+
+@available(iOS 14, *)
+public struct MyCustomRecipeDetailsNotInBasketProductView: NotInBasketProductProtocol {
+    public func content(params: NotInBasketProductParameters) -> some View {
+        // Your custom design here
+    }
+}
+    ```
+</TabItem>
+<TabItem value="full_example">
+```swift
+import SwiftUI
+import MealziOSSDK
+import mealzcore
+
+@available(iOS 14, *)
+public struct MealzNotInBasketProduct: NotInBasketProductProtocol {
+    public init() {}
+    public func content(params: NotInBasketProductParameters) -> some View {
+        VStack {
+            HStack {
+                Text(params.ingredientName.capitalizingFirstLetter())
+                    .padding(Dimension.sharedInstance.mPadding)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigBoldStyle)
+                Spacer()
+                Text(QuantityFormatter.companion.readableFloatNumber(
+                    value: QuantityFormatter.companion.realQuantities(
+                    quantity: params.ingredientQuantity,
+                    currentGuest: Int32(params.guestsCount),
+                    recipeGuest: Int32(params.defaultRecipeGuest)
+                    ),
+                unit: params.ingredientUnit))
+                    .padding(Dimension.sharedInstance.mPadding)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumStyle)
+            }.frame(height:40)
+            Text(Localization.ingredient.willNotBeAdded.localised).padding(Dimension.sharedInstance.mPadding)
+                .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumStyle)
+            if let addIngredientAction = params.onAddToBasket {
+                Button(action: addIngredientAction, label: {
+                    Text(Localization.ingredient.chooseProduct.localised).padding(Dimension.sharedInstance.mPadding)
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumBoldStyle)
+                        .foregroundColor(Color.mealzColor(.primary))
+                })
+                    .background(Color.mealzColor(.white))
+                    .cornerRadius(Dimension.sharedInstance.buttonCornerRadius)
+                    .padding(Dimension.sharedInstance.mPadding)
+            }
+        }
+            .background(Color.mealzColor(.lightBackground))
+            .cornerRadius(Dimension.sharedInstance.mCornerRadius)
+            .padding(.horizontal, Dimension.sharedInstance.mPadding)
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct NotInBasketProductParameters {
+    /// The name of the ingredient in the recipe
+    public let ingredientName: String
+    /// The quantity of the ingredient that the recipe requires
+    public let ingredientQuantity: String
+    /// The unit of the ingredient that the recipe use (ex: g, kg)
+    public let ingredientUnit: String
+    /// The number of guests that the user has set
+    public let guestsCount: Int
+    /// The number of guests that the default recipe has set
+    public let defaultRecipeGuest: Int
+    /// The CTA to add a product to the basket if it is available (already at home or deleted products)
+    public var onAddToBasket: (() -> Void)?
+```
