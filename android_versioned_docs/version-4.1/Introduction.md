@@ -1,0 +1,113 @@
+---
+sidebar_position: 1
+---
+
+import AndroidPackages from './overview/_shared/_PackagesExplained.mdx'
+
+# Introduction
+
+This SDK aims to facilitate the integration of Mealz eCommerce to any grocery shopping mobile application or any 3rd party app that connects to multiple retailers.
+
+It implements a series of components that can be re-styled to your standards, and injected into your app.
+Mealz Components interact with each other and handle the communication with the Mealz API.
+Using this SDK, you should not need to communicate with the Mealz API directly from your app.
+
+## Background knowledge
+
+### How do we get the data?
+
+Your backend will work with our backend to share the referential information, often just called the "referential."
+In the case of a 3rd party app, we will work with the grocery retailers to get their referential.
+Our backend team will update the referential (fetch the data) somewhere between every hour or once a day (this will be decided commercially).
+We will get access to every product, & the corresponding price, at each & every store that Mealz is enabled at.
+
+### I am a retailer (grocery store), how does the communication with Mealz work?
+
+For the sake of the example, we will pretend that Mealz is integrated with the grocery chain SupaMRKT.
+
+As a retailer, SupaMRKT has a "basket" for their product.
+Mealz will also keep a basket of products.
+SupaMRKT will listen to the Mealz basket & our SDK will listen & update the SupaMRKT basket.
+- If a user adds a Mealz Product -> it will be pushed to the SupaMRKT basket
+- If a user removes a Mealz Product -> it will be removed from the SupaMRKT basket
+- If a user adds a SupaMRKT product -> Mealz will do nothing
+- If a user removes a SupaMRKT product -> Mealz will cross-reference its products & remove it if it was also a Mealz product.
+
+Mealz keeps a copy of the SupaMRKT basket & updates it every time there is a change to the real one.
+When there is a change involving Mealz products, Mealz will send the CHANGE between the two baskets, & the SupaMRKT will update their basket accordingly.
+
+For example,
+
+SupaMRKT has this basket:
+- Tomatoes, 2
+- Granola, 1
+- Yoghurt, 1
+- Banana, 3
+
+Mealz has this basket:
+- Granola, 1
+- Yoghurt, 1
+- Banana, 3
+
+As you can see, the user added Tomatoes individually, or OUTSIDE a Mealz Recipe.
+It can be assumed that the Granola, Yoghurt, & Banana were added WITH a Mealz Recipe (Yoghurt Parfait perhaps).
+
+Now, lets see an example of a user adding a Mealz product.
+This user loves Granola, so they decided to add another Granola item to their basket.
+
+Their Mealz basket is now this:
+- Granola, 2
+- Yoghurt, 1
+- Banana, 3
+
+The change sent to SupaMRKT will be this:
+[Granola, 2]
+
+SupaMRKT will now update their basket, replacing the existing Granola of 1 item with the Granola with 2 items.
+
+Likewise, if a user added Strawberries to their basket, via Mealz, their Mealz Basket would look like this:
+- Granola, 2
+- Yoghurt, 1
+- Banana, 3
+- Strawberries, 1
+
+The change sent to SupaMRKT will be this:
+[Strawberries, 1]
+
+At the end of the transaction, the SupaMRKT basket would be this:
+- Tomatoes, 2
+- Granola, 2
+- Yoghurt, 1
+- Banana, 3
+- Strawberries, 1
+
+Of course, your Product objects (& ours) are more complex than just the name & quantity, but in essence this is what occurs under the hood.
+
+### I am a Recipe Provider (3rd party connecting to a grocery store, like a delivery app), how does the communication with Mealz work?
+
+This case is much easier.
+For the sake of example, our client will be Deliver-Nous Groceries, a delivery service for produce.
+
+Mealz will maintain the basket for both parties.
+Deliver-Nous Groceries does not need a basket.
+
+When it is time to check out, we will send the basket to the 3rd party grocery store, such as SupaMRKT, to handle payment.
+
+### Get up & running
+
+The integration of the SDK into your app will take three steps:
+
+1. **Initialization**: Define the few mapping functions the SDK needs to interact with your app (
+push products to basket, retrieve the user unique id...)
+2. **Components injection**: Fill your app with Mealz components wherever relevant (recipe cards in
+search results grids, recipes catalog on a dedicated page...)
+3. **Styling**: Apply your own stylesheets, globally at the SDK level, and specifically for each
+component
+
+### Project architecture
+
+This SDK is leveraging Kotlin Multiplatform Mobile so most of the Models, Controllers, and
+Services (interactions with Mealz API) can be implemented only once and reused both in iOS and
+Android apps. Only the Views have to be implemented separately for each platform.
+
+<AndroidPackages />
