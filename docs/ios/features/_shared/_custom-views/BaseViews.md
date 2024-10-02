@@ -14,9 +14,8 @@ static let baseViews = BasePageViewParameters(
     background: TypeSafeBackground(/* your new view*/)
 )
 ```
-
-Protocols:
-- [LoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/loadingprotocol)
-- [EmptyProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/emptyprotocol)
-- [BackgroundProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/backgroundprotocol)
+Components:
+- [Loading](../../base-page-views/Loading.mdx)
+- [Empty](../../base-page-views/Empty.mdx)
+- [Background](../../base-page-views/Background.mdx)
 
