@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Footer
+### CatalogRecipeCard
 
 To create your own recipe card template you create a class that implements `CatalogRecipeCardProtocol`
 
@@ -34,7 +34,7 @@ import mealzcore
 import MealziOSSDK
 
 @available(iOS 14, *)
-public struct MyCustomRecipeCardView: CatalogRecipeCardParameters {
+public struct MyCustomRecipeCardView: CatalogRecipeCardProtocol {
     public init() {}
     public func content(params: CatalogRecipeCardParameters) -> some View {
         let dimensions = Dimension.sharedInstance

@@ -10,7 +10,7 @@ static let favoritesViewOptions = FavoritesViewOptions(
     recipeCardLoading: TypeSafeRecipeCardLoading(/* your new view*/)
 )
 ```
-Protocols:
-- [BaseTitleProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basetitleprotocol)
-- [CatalogRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogrecipecardprotocol)
-- [RecipeCardLoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipecardloadingprotocol)
+Components:
+- [FavoritesTitle](../components/FavoritesTitle.mdx)
+- [CatalogRecipeCard](../../recipe-card/components/CatalogRecipeCard.mdx)
+- [RecipeCardLoading](../../recipe-card/components/RecipeCardLoading.mdx)
