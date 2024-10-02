@@ -10,7 +10,7 @@ static let packageRowViewOptions = CatalogPackageRowViewOptions(
     recipeCardLoading: TypeSafeRecipeCardLoading(/* your new view*/)
 )
 ```
-Protocols:
-- [CatalogPackageCTAProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogpackagectaprotocol)
-- [CatalogRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogrecipecardprotocol)
-- [RecipeCardLoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipecardloadingprotocol)
+Components:
+- [CatalogPackageCTA](../components/package-row/CatalogPackageCTA.mdx)
+- [CatalogRecipeCard](../../recipe-card/components/CatalogRecipeCard.mdx)
+- [RecipeCardLoading](../../recipe-card/components/RecipeCardLoading.mdx)

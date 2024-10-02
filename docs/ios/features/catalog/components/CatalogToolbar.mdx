@@ -1,0 +1,96 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Toolbar
+
+This template allows you to customize the toolbar at the top of the Catalog & Catalog Results pages.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomCatalogToolbarView: CatalogToolbarProtocol {
+            public func content(params: CatalogToolbarParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomItemSelectorNoResultsView: ItemSelectorNoResultsProtocol {
+
+        public init() {}
+        public func content(params: ItemSelectorNoResultsParameters) -> some View {
+            HStack(spacing: Dimension.sharedInstance.xlPadding) {
+                CatalogToolbarButtonFormat(icon:  Image.mealzIcon(icon: .search), action: params.onSearchTapped)
+                Spacer()
+                CatalogToolbarButtonFormat(
+                    icon:  Image.mealzIcon(icon: .filters),
+                    badgeNumber: params.numberOfActiveFilters,
+                    action: params.onFiltersTapped)
+                if params.usesPreferences {
+                    CatalogToolbarButtonFormat(
+                        icon: Image.mealzIcon(icon: .admin),
+                        badgeNumber: params.numberOfActivePreferences,
+                        action: params.onPreferencesTapped)
+                 }
+                if withFavorites {
+                    CatalogToolbarButtonFormat(
+                        icon:  Image.mealzIcon(icon: .heart), action: params.onFavoritesTapped)
+                }
+            }
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct CatalogToolbarParameters {
+    /// If the user has set filters in the Filter page, this will give the quantity of filters set
+    public let numberOfActiveFilters: Int
+    /// If the user has set preferences in the Preferences page, this will give the quantity of preferences set
+    @Binding public var numberOfActivePreferences: Int
+    /// The CatalogVM can optionally use Preferences, where the user can filter based on dietary options like Vegetarian, equipment at home, etc
+    public let usesPreferences: Bool
+    /// If the user is looking at the recipes they have liked
+    public let isFavorite: Bool
+    /// The title of the page, for the Catalog Page, this will be the string in "com_miam_catalog_title" localized string
+    /// For the Catalog Results page, if the user has selected a package (like Summertime Salads), this will be the title
+    /// if the user has searched for a recipe or product (like Tomato), this will be the search text
+    public let title: String
+    /// The subtitle of the collection, if it exists
+    public let subtitle: String?
+    /// This will be expected height of the header by taking the maximum height minus the offset (how far the user has scrolled)
+    @Binding public var currentElementHeight: CGFloat
+    /// This is the minimum height the toolbar will be, making it sticky
+    public let minimumHeight: CGFloat
+    /// This is the maximum height the toolbar will be when the page is first opened & the user has not scrolled
+    public let maximumHeight: CGFloat
+    /// A closure to navigate to the Filters View
+    public let onFiltersTapped: () -> Void
+    /// A closure to navigate to the Catalog Search View
+    public let onSearchTapped: () -> Void
+    /// A closure to navigate to the Favorites View
+    public let onFavoritesTapped: () -> Void
+    /// A closure to navigate to the Preferences View
+    public let onPreferencesTapped: () -> Void
+```
+
+- [CatalogToolbarProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogtoolbarprotocol)

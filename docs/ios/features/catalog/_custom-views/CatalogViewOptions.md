@@ -12,8 +12,8 @@ static let catalogViewOptions = CatalogViewOptions(
     mealsInBasketButtonEmpty: TypeSafeEmpty(/* your new view*/)
 )
 ```
-Protocols:
-- [CatalogToolbarProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogtoolbarprotocol)
-- [MealPlannerCTAProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/mealplannerctaprotocol)
-- [MealsInBasketButtonSuccessProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/mealsinbasketbuttonsuccessprotocol)
-- [EmptyProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/emptyprotocol)
+Components:
+- [CatalogToolbar](../components/CatalogToolbar.mdx)
+- [MealPlannerCTA](../components/MealPlannerCTA.mdx)
+- [MealsInBasketButtonSuccess](../components/MealsInBasketButton.mdx)
+- [MealsInBasketButtonEmpty](../components/MealsInBasketButtonEmpty.mdx)

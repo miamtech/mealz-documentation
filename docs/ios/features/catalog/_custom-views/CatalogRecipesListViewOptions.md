@@ -12,9 +12,9 @@ static let recipesListViewOptions = CatalogRecipesListViewOptions(
     loading: TypeSafeLoading(/* your new view*/)
 )
 ```
-Protocols:
-- [CatalogRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogrecipecardprotocol)
-- [RecipeCardLoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipecardloadingprotocol)
-- [BaseTitleProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basetitleprotocol)
-- [CatalogRecipesListNoResultsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogrecipeslistnoresultsprotocol)
-- [LoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/loadingprotocol)
+Components:
+- [CatalogRecipeCard](../../recipe-card/components/CatalogRecipeCard.mdx)
+- [RecipeCardLoading](../../recipe-card/components/RecipeCardLoading.mdx)
+- [RecipesListTitle](../components/catalog-recipes-list/RecipesListTitle.mdx)
+- [CatalogRecipesListNoResults](../components/catalog-recipes-list/CatalogRecipesListNoResults.mdx)
+- [Loading](../../base-page-views/Loading.mdx)
