@@ -1,8 +1,7 @@
 #### MyMeals - `MyMealsViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let myMealsViewOptions = MyMealsViewOptions(
     recipeCard: TypeSafeMyMealRecipeCard(/* your new view*/),

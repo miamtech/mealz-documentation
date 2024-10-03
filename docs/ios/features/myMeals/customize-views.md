@@ -54,7 +54,7 @@ values={[
 <TabItem value="uiKit">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 public let mealzMyMealsFeature = MealzMyMealsFeatureUIKit(
     recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig,
@@ -65,7 +65,7 @@ public let mealzMyMealsFeature = MealzMyMealsFeatureUIKit(
 <TabItem value="swiftUI">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 MealzMyMealsFeatureSwiftUI(
     recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig,

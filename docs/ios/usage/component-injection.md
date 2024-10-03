@@ -35,8 +35,6 @@ This will need to be done on all of our views in a swiftUI view.
 import UIKit
 import SwiftUI
 import MealziOSSDK
-import MealzUIiOSSDK
-import MealzNaviOSSDK
 
 class YourViewController: UIViewController {
 
@@ -67,8 +65,6 @@ class YourViewController: UIViewController {
 
 import SwiftUI
 import MealziOSSDK
-import MealzUIiOSSDK
-import MealzNaviOSSDK
 
 var body: some View {
   VStack {

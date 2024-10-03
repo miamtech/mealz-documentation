@@ -10,8 +10,6 @@ In our sample implementations, we have one class `MealzViewConfig`, however you 
 
 ```swift
 import MealziOSSDK
-import MealzUIiOSSDK
-import MealzNaviOSSDK
 
 struct MealzViewConfig {
 // the below View Options go here

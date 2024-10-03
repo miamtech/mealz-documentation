@@ -15,8 +15,6 @@ We have switched to using a UIKit coordinator so have proper navigation function
 
 To change your `CatalogView()` you'll just need to replace it with this: `MealzCatalogFeatureSwiftUI()`.
 
-You will need to import the `MealzNavModuleIOS`. 
-
 ### Customizing
 
 You can completely configure all the templates & pages in the Catalog Feature.
@@ -28,8 +26,7 @@ Before, the Recipe Card Feature navigation used SwiftUI Modals, it is now also a
 
 To change your `RecipeCardView()` you'll just need to replace it with one of these:
 ```swift
-import MiamIOSFramework
-import MealzNavModuleIOS
+import MealziOSSDK
 
 MealzStandaloneRecipeCardSwiftUI(recipeId: /* your String recipe id */)
 MealzStandaloneRecipeCardSwiftUI(recipe: /* your Recipe object */)
@@ -52,8 +49,6 @@ MealzFavoritesFeatureSwiftUI(
         navigateToCatalog: /* navigate to the MealzCatalogFeature */))
 ```
 
-You will need to import the `MealzNavModuleIOS`.
-
 ### Customizing
 
 You can completely configure all the templates & pages in the Favorites Feature.
@@ -69,8 +64,6 @@ MealzMyMealsFeatureSwiftUI(
     myMealsContructor: MyMealsFeatureConstructor(
         navigateToCatalog: /* navigate to the MealzCatalogFeature */))
 ```
-
-You will need to import the `MealzNavModuleIOS`.
 
 ### Customizing
 
