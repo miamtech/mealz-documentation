@@ -31,10 +31,10 @@ This template allows you to customize the toolbar at the top of the Catalog & Ca
     import MealziOSSDK
 
     @available(iOS 14, *)
-    public struct MyCustomItemSelectorNoResultsView: ItemSelectorNoResultsProtocol {
+    public struct MyCustomCatalogToolbarView: CatalogToolbarProtocol {
 
         public init() {}
-        public func content(params: ItemSelectorNoResultsParameters) -> some View {
+        public func content(params: CatalogToolbarParameters) -> some View {
             HStack(spacing: Dimension.sharedInstance.xlPadding) {
                 CatalogToolbarButtonFormat(icon:  Image.mealzIcon(icon: .search), action: params.onSearchTapped)
                 Spacer()
