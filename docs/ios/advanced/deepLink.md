@@ -21,7 +21,6 @@ values={[
 ```swift
 import UIKit
 import MealziOSSDK
-import MealzUIiOSSDK
 
 // since these are standalone pages that shouldn't be created twice,
 // we can create them once here for reuse
@@ -43,7 +42,6 @@ public let mealzCatalogFeature = MealzCatalogFeatureUIKit(
 ```swift
 import SwiftUI
 import MealziOSSDK
-import MealzUIiOSSDK
 
 struct CatalogTabView: View {
     var deepLinkedCategoryId: String

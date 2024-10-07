@@ -1,8 +1,7 @@
 #### Package Row - `CatalogPackageRowViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let packageRowViewOptions = CatalogPackageRowViewOptions(
     callToAction: TypeSafeCatalogPackageCTA(/* your new view*/),

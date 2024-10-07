@@ -14,8 +14,6 @@ To integrate our packages into your Xcode project using CocoaPods, specify it in
 ```
 pod 'MealzCoreRelease'
 pod 'MealziOSSDKRelease'
-pod 'MealzUIiOSSDKRelease'
-pod 'MealzNaviOSSDKRelease'
 ```
 
 ## Swift package manager installation
@@ -29,5 +27,3 @@ Here are the links:
 
 * MealzCoreRelease: https://github.com/miamtech/MealzCoreRelease
 * MealziOSSDKRelease: https://github.com/miamtech/MealziOSSDKRelease
-* MealzUIiOSSDKRelease: https://github.com/miamtech/MealzUIiOSSDKRelease
-* MealzNaviOSSDKRelease: https://github.com/miamtech/MealzNaviOSSDKRelease

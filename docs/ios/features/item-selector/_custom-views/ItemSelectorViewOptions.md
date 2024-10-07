@@ -2,7 +2,6 @@
 
 ```swift
 import MealziOSSDK
-import MealzUIiOSSDK
 
 static let itemSelectorViewOptions = ItemSelectorViewOptions(
     searchBar = TypeSafeSearch(/* your new view*/),
