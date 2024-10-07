@@ -1,0 +1,23 @@
+import AndroidSetStoreRedirectionConfig from './_shared/_user/_SetStoreRedirectionConfig.mdx'
+
+# Store Configuration
+
+## Set Price Book
+
+To set the price book, you can use this code:
+```kotlin
+import ai.mealz.core.Mealz
+
+Mealz.basket.setPriceBook(priceBookId: pricebook.rawValue)
+```
+
+## Set Store
+
+For Mealz to work properly, a store is mandatory.
+Without a store, we cannot generate a Recipe price, see the products, or purchase anything.
+
+However, Recipe Cards, & our catalog, CAN be shown without a store.
+When the user clicks on a Recipe Card, we prompt the user to select a store.
+You must pass in a function for us to navigate to your Store Selector.
+
+<AndroidSetStoreRedirectionConfig />

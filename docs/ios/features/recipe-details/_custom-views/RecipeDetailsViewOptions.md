@@ -1,10 +1,10 @@
 #### Recipe Details - `RecipeDetailsViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let recipeDetailsViewOptions = RecipeDetailsViewOptions(
+    floatingHeader = TypeSafeRecipeDetailsFloatingHeader(/* your new view*/),
     header = TypeSafeRecipeDetailsHeader(/* your new view*/),
     sponsor = TypeSafeRecipeDetailsSponsor(/* your new view*/),
     selectedControl = TypeSafeRecipeDetailsSelectedControl(/* your new view*/),
@@ -17,12 +17,15 @@ static let recipeDetailsViewOptions = RecipeDetailsViewOptions(
     unavailableIngredients = TypeSafeNotInBasketProduct(/* your new view*/)
 )
 ```
-Protocols:
-- [RecipeDetailsHeaderProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsheaderprotocol)
-- [RecipeDetailsSponsorProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailssponsorprotocol)
-- [RecipeDetailsSelectedControlProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsselectedcontrolprotocol)
-- [RecipeDetailsIngredientsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsingredientsprotocol)
-- [RecipeDetailsStepsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsstepsprotocol)
-- [RecipeDetailsFooterProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsfooterprotocol)
-- [BaseButtonProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basebuttonprotocol)
-- [NotInBasketProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/notinbasketproductprotocol)
+Components:
+- [RecipeDetailsFloatingNavigation](../components/RecipeDetailsFloatingNavigation.mdx)
+- [RecipeDetailsHeader](../components/RecipeDetailHeader.mdx)
+- [RecipeDetailsSponsor](../components/RecipeDetailSponsorBanner.mdx)
+- [RecipeDetailsSelectedControl](../components/RecipeDetailSwapper.mdx)
+- [RecipeDetailsIngredients](../components/RecipeDetailIngredients.mdx)
+- [RecipeDetailsSteps](../components/RecipeDetailSteps.mdx)
+- [RecipeDetailsFooter](../components/RecipeDetailFooter.mdx)
+- [IngredientsAtHomeToggleButton](../components/RecipeDetailIngredientsAtHomeToggleButton.mdx)
+- [UnavailableIngredientsToggleButton](../components/RecipeDetailUnavailableIngredientsToggleButton.mdx)
+- [IngredientsAtHome](../components/products/RecipeDetailsNotInBasketProduct.mdx)
+- [UnavailableIngredients](../components/products/RecipeDetailsNotInBasketProduct.mdx)

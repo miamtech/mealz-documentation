@@ -33,13 +33,14 @@ Sending requests with the mandatory parameters alone is not sufficient to retrie
 
 - **Supplier-token**: We will provide you with your supplier token (in Base64 format). This token allows us to identify you.
 
-- **Language-id**: Set this header to either the [language ISO code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) alone or the language ISO code combined with your retail name:
+- **Language-id**: I18n header. Set this header to either the [language ISO code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) alone or the language ISO code combined with your retail name:
 
 ```json
 {
   "Language-id": "fr" | "fr-<your-retail-name>"
 }
 ```
+See [Internationalisation](/docs/web_ssr/customization/internationalization) for how to configure a custom I18n file to override our base texts with your own.
 
 ## Authless user
 Even if the user is not logged into your website, you might want to allow them to add products to their basket.

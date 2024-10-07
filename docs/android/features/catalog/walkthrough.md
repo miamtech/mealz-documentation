@@ -16,7 +16,8 @@ The Catalog feature is the bread & butter of Mealz.
 The Catalog is all of our Recipes, with additional features & options to filter, search, add dietary restrictions, & a whole lot more. 
 
 <TimeIcon titleText="Time to read:" timeText="30 minutes" /><br />
-<TimeIcon titleText="Time for base implementation:" timeText="8 hours" /><br />
+<TimeIcon titleText="Time for base implementation:" timeText="2 hours" /><br />
+<TimeIcon titleText="Time for custom implementation:" timeText="8 hours" /><br />
 <TimeIcon titleText="Time for full customization:" timeText="2.5 weeks" /><br />
 
 ## Prerequisites
@@ -24,7 +25,14 @@ The Catalog is all of our Recipes, with additional features & options to filter,
 
 ## Ingredients
 
+There are two diffrent ways to add this component to your projet : 
+    - basic implementation : an all-in-one compoment that embed navigation and all needed other components
+    - custom implementation : were you can handle navigation by yourself and link components that you need 
+
 The Catalog is made up of 8 base pages, with an additional 2 more being optional. Each page has its own functionality & is customizable, so that each component fits the appearance of your application.
+
+### Catalog Journey
+
 
 ### Categories Page
 <CatalogOverviews.CatalogView platform="android"/>
