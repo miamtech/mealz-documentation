@@ -63,7 +63,7 @@ values={[
 <TabItem value="uiKit">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 MealzStandaloneRecipeCardUIKit(
     recipeId: /* your String recipe id */, // or Recipe or criteria 
@@ -74,7 +74,7 @@ MealzStandaloneRecipeCardUIKit(
 <TabItem value="swiftUI">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 MealzStandaloneRecipeCardSwiftUI(
     recipeId: /* your String recipe id */, // or Recipe or criteria 

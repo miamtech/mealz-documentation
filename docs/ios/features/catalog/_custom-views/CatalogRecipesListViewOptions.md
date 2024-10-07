@@ -1,8 +1,7 @@
 #### Catalog Recipes List - `CatalogRecipesListViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let recipesListViewOptions = CatalogRecipesListViewOptions(
     recipeCard: TypeSafeCatalogRecipeCard(/* your new view*/),

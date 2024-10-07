@@ -1,8 +1,7 @@
 #### Favorites - `FavoritesViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let favoritesViewOptions = FavoritesViewOptions(
     title: TypeSafeBaseTitle(/* your new view*/),

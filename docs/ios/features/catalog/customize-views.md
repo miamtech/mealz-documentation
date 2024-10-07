@@ -71,7 +71,7 @@ values={[
 <TabItem value="uiKit">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 public let mealzCatalogFeature = MealzCatalogFeatureUIKit(
     recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig,
@@ -84,7 +84,7 @@ public let mealzCatalogFeature = MealzCatalogFeatureUIKit(
 <TabItem value="swiftUI">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 MealzCatalogFeatureSwiftUI(
     hideTitles: Bool = false, // hide the titles on the top navigation bar
