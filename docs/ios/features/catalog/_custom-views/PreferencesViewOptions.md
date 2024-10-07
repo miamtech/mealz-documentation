@@ -1,8 +1,7 @@
 #### Preferences - `PreferencesViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let preferencesViewOptions = PreferencesViewOptions(
     guestSection: TypeSafePreferencesGuest(/* your new view*/),
@@ -12,9 +11,9 @@ static let preferencesViewOptions = PreferencesViewOptions(
     footer: TypeSafePreferencesFooter(/* your new view*/)
 )
 ```
-Protocols:
-- [PreferencesGuestProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesguestprotocol)
-- [PreferencesDietProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesdietprotocol)
-- [PreferencesIngredientsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesingredientsprotocol)
-- [PreferencesEquipmentProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesequipmentprotocol)
-- [PreferencesFooterProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesfooterprotocol)
+Components:
+- [PreferencesGuest](../components/preferences/Guest.mdx)
+- [PreferencesDiet](../components/preferences/Diet.mdx)
+- [PreferencesIngredients](../components/preferences/Ingredients.mdx)
+- [PreferencesEquipment](../components/preferences/Equipment.mdx)
+- [PreferencesFooter](../components/preferences/Footer.mdx)

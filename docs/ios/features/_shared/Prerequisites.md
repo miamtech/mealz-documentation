@@ -1,5 +1,5 @@
 ### Packages
-To have the Mealz functioning properly, you must install our packages `MealziOSSDK`, `MealzUIiOSSDK` & `MealzNaviOSSDK`.
+To have the Mealz functioning properly, you must install our package `MealziOSSDK`.
 [Here are the instructions](/docs/ios/overview/installation)
 
 ### Initialize Miam

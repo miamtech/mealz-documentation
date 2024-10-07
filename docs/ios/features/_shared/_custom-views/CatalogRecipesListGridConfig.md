@@ -1,8 +1,7 @@
 #### Catalog Recipes List Grid Config
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let recipesListGridConfig = CatalogRecipesListGridConfig(
     numberOfColumns: 2, 
