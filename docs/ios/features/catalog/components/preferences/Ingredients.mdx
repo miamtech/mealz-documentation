@@ -1,0 +1,76 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Ingredients
+
+This template allows you to customize the Ingredients section of the Preferences page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomPreferencesIngredientsView: PreferencesIngredientsProtocol {
+            public func content(params: PreferencesIngredientsParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomPreferencesIngredientsView: PreferencesIngredientsProtocol {
+
+        public init() {}
+        public func content(params: PreferencesIngredientsParameters) -> some View {
+            VStack {
+                ToggleTitle(
+                    title: Localization.preferences.tastesTitle.localised,
+                    isExpanded: params.isExpanded,
+                    toggleIsExpanded: { withAnimation { params.isExpanded.toggle() } })
+                if params.isExpanded {
+                    MealzPreferencesTagsListView(
+                        tags: params.ingredientsTag,
+                        geometry: params.geometry,
+                        onToggleTag: { tag in
+                        params.onTogglePreference(tag.tag.id)
+                    },
+                    onAddTagTapped: params.onGoToSearch)
+                }
+            }
+                .padding(.horizontal, Dimension.sharedInstance.mlPadding)
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct PreferencesIngredientsParameters {
+    /// The differerent types of ingredient (like Eggs)
+    public let ingredientsTag: [CheckableTag]
+    /// The geometry so that the users can tap a tag & apply it
+    public let geometry: GeometryProxy
+    /// Whether or not all options are available to be seen
+    @Binding public var isExpanded: Bool
+    /// A closure that selects this ingredient option. Multiple options can be selected at the same time
+    public let onTogglePreference: (String) -> Void
+    /// A closure that opens up the PreferencesSearch page where users can add more blacklisted ingredients
+    public let onGoToSearch: () -> Void
+```
+
+- [PreferencesIngredientsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferenceingredientsprotocol)

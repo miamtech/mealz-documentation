@@ -1,8 +1,7 @@
 #### Catalog View - `CatalogViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let catalogViewOptions = CatalogViewOptions(
     catalogToolbar: TypeSafeCatalogToolbar(/* your new view*/),

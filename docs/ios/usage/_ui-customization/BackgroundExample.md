@@ -43,7 +43,7 @@ values={[
 <TabItem value="uiKit">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 let customBase = MealzBaseNavCoordinator.Constructor(
     navigationController: navController,
@@ -58,7 +58,7 @@ MealPlannerFeatureNavCoordinator(
 <TabItem value="swiftUI">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 MealzCatalogFeatureSwiftUI(baseViews: customBaseViews)
 ```

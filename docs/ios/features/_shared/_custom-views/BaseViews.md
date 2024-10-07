@@ -5,7 +5,6 @@
 #### Base Views - `BasePageViewParameters`
 
 ```swift
-import MealzUIiOSSDK
 import MealziOSSDK
 
 static let baseViews = BasePageViewParameters(

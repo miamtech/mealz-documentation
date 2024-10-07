@@ -29,8 +29,6 @@ let mealzCatalogFeature = MealzCatalogFeatureUIKit() // this is a standalone UIN
 self.present(mealzCatalogFeature, animated: true)
 ```
 
-You will need to import the `MealzNavModuleIOS`.
-
 ### Customizing
 
 You can completely configure all the templates & pages in the Catalog Feature.
@@ -51,7 +49,6 @@ To change your `RecipeCardView()` you'll just need to replace it with one of the
 
 ```swift
 import MealziOSSDK
-import MealzNavModuleIOS
 
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipeId: /* your String recipe id */)
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipe: /* your Recipe object */)
@@ -81,7 +78,6 @@ To change your `RecipeCardView()` you'll just need to replace it with one of the
 
 ```swift
 import MealziOSSDK
-import MealzNavModuleIOS
 
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipeId: /* your String recipe id */)
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipe: /* your Recipe object */)
@@ -120,8 +116,6 @@ let mealzFavoritesFeature = MealzFavoritesFeatureUIKit(
 self.present(mealzFavoritesFeature, animated: true)
 ```
 
-You will need to import the `MealzNavModuleIOS`.
-
 ### Customizing
 
 You can completely configure all the templates & pages in the Favorites Feature.
@@ -149,8 +143,6 @@ let mealzMyMealsFeature = MealzMyMealsFeatureUIKit(
 // where you will present or push the UINavigationController 
 self.present(mealzMyMealsFeature, animated: true)
 ```
-
-You will need to import the `MealzNavModuleIOS`.
 
 ### Customizing
 
