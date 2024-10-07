@@ -61,7 +61,7 @@ The Catalog is made up of 8 base pages, with an additional 2 more being optional
 ## Steps
 
 We've made using Mealz as simple as possible. 
-All you'll need to do is import `MealzNavModuleIOS`.
+All you'll need to do is import `MealziOSSDK`.
 
 <Tabs
 defaultValue="uiKit"
@@ -76,7 +76,7 @@ We use a UIKit coordinator to have proper navigation functionality & experience.
 At a minimum, you'll just need to pass in a `navigationController`.
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 let navController = // your nav controller from the button or tab opening view
 let baseConstructor = MealzBaseNavCoordinator.Constructor(
@@ -97,7 +97,7 @@ All the navigation of the Catalog Feature is provided by us (using a UIKit contr
 Our wrapper is a one line that you can add to your project as a tab, modal, or standalone page.
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 VStack { // VStack is optional, you can this like any SwiftUI component
    MealzCatalogFeatureSwiftUI()

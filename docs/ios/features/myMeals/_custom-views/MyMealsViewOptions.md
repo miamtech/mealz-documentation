@@ -1,8 +1,7 @@
 #### MyMeals - `MyMealsViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let myMealsViewOptions = MyMealsViewOptions(
     recipeCard: TypeSafeMyMealRecipeCard(/* your new view*/),
@@ -10,5 +9,5 @@ static let myMealsViewOptions = MyMealsViewOptions(
 )
 ```
 Protocols:
-- [MyMealRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/mymealrecipecardprotocol)
-- [RecipeCardLoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipecardloadingprotocol)
+- [MyMealRecipeCard](../components/MyMealRecipeCard.mdx)
+- [RecipeCardLoading](../../recipe-card/components/RecipeCardLoading.mdx)
