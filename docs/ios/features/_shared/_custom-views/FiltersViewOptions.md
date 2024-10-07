@@ -1,8 +1,7 @@
 #### Filters - `FiltersViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let filtersViewOptions = FiltersViewOptions(
     header: TypeSafeFiltersHeader(/* your new view*/),
@@ -11,8 +10,8 @@ static let filtersViewOptions = FiltersViewOptions(
     background: TypeSafeBackground(/* your new view*/)
 )
 ```
-Protocols:
-- [FiltersHeaderProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filtersheaderprotocol)
-- [FiltersCTAProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filtersctaprotocol)
-- [FiltersSectionProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filterssectionprotocol)
-- [BackgroundProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/backgroundprotocol)
+Components:
+- [FiltersHeader](../../catalog/components/filters/Header.mdx)
+- [FiltersCTA](../../catalog/components/filters/CTA.mdx)
+- [FiltersSection](../../catalog/components/filters/Section.mdx)
+- [Background](../../base-page-views/Background.mdx)

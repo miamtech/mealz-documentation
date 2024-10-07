@@ -1,8 +1,7 @@
 #### Products - `RecipeDetailsProductViewOptions`
 
 ```swift
-import MealzUIModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 static let recipeDetailsProductViewOptions = RecipeDetailsProductViewOptions(
     ignoredProduct = TypeSafeRecipeDetailsIgnoredProduct(/* your new view*/),
@@ -11,8 +10,8 @@ static let recipeDetailsProductViewOptions = RecipeDetailsProductViewOptions(
     loadingProduct = TypeSafeLoading(/* your new view*/)
 )
 ```
-Protocols:
-- [RecipeDetailsIgnoredProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsignoredproductprotocol)
-- [RecipeDetailsUnaddedProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsunaddedproductprotocol)
-- [RecipeDetailsAddedProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsaddedproductprotocol)
-- [LoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/loadingprotocol)
+Components:
+- [RecipeDetailsIgnoredProduct](../components/products/RecipeDetailsIgnoredProduct.mdx)
+- [RecipeDetailsUnaddedProduct](../components/products/RecipeDetailsUnaddedProduct.mdx)
+- [RecipeDetailsAddedProductProtocol](../components/products/RecipeDetailsAddedProduct.mdx)
+- [RecipeDetailsLoadingProduct](../components/products/RecipeDetailsLoadingProduct.mdx)

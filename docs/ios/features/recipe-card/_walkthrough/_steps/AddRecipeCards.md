@@ -16,7 +16,7 @@ values={[
 <TabItem value="uiKit">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipeId: /* your String recipe id */)
 // then add it to whatever View you're currently inside
@@ -26,7 +26,7 @@ mealzStandaloneRecipeCard.view.addTo(cell, Pin(.all))
 <TabItem value="swiftUI">
 
 ```swift
-import MealzNavModuleIOS
+import MealziOSSDK
 
 MealzStandaloneRecipeCardSwiftUI(recipeId: /* your String recipe id */)
 ```
@@ -45,8 +45,7 @@ values={[
 <TabItem value="uiKit">
 
 ```swift
-import MealzNavModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(recipe: /* your Recipe object */)
 // then add it to whatever View you're currently inside
@@ -56,8 +55,7 @@ mealzStandaloneRecipeCard.view.addTo(cell, Pin(.all))
 <TabItem value="swiftUI">
 
 ```swift
-import MealzNavModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 MealzStandaloneRecipeCardSwiftUI(recipe: /* your Recipe object */)
 ```
@@ -87,8 +85,7 @@ values={[
 <TabItem value="uiKit">
 
 ```swift
-import MealzNavModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 mealzStandaloneRecipeCard = MealzStandaloneRecipeCardUIKit(criteria: /* your SuggestionsCriteria object */)
 // then add it to whatever View you're currently inside
@@ -98,8 +95,7 @@ mealzStandaloneRecipeCard.view.addTo(cell, Pin(.all))
 <TabItem value="swiftUI">
 
 ```swift
-import MealzNavModuleIOS
-import MiamIOSFramework
+import MealziOSSDK
 
 MealzStandaloneRecipeCardSwiftUI(criteria: /* your SuggestionsCriteria object */)
 ```
