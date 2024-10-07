@@ -12,7 +12,7 @@ If you want to want to start ABTesting some design for our features, you have th
 
 But in order for us to inform you about the performance of the different versions your are ABTesting, our library needs to know which version it is currently showing, so that we can update our analytics events with an identifier or the version.
 
-In order to inform the library of the Abtested version currently showed, you can call:
+In order to inform the library of the Abtested version currently shown, you can call:
 
 ```ts
 window.miam.analytics.setAbTestKey(key: string)
@@ -24,7 +24,6 @@ Ideally this needs to be called before the call to `setSupplierToken`, as the in
 
 Imagine for example that you have a doubt on the text of the button "Add all products to cart" of the recipe-details. You set up an ABTest campain with version 'A' being the current state of the component with the text "Add all products to cart" and version 'B' being the test for a new text "Add everything".
 
-On your side you set up your website so that version 'A' is showed to 50% of users and version 'B' to the other 50%.
-If for all users that are showed version 'A', you call `window.miam.analytics.setAbTestKey('A')` and for all users that are showed version 'B', you call `window.miam.analytics.setAbTestKey('B')`, we can then provide you with the performances of each version.
+On your side, you configure your website so that version 'A' is shown to 50% of users and version 'B' to the other 50%. If you call `window.miam.analytics.setAbTestKey('A')` for all users shown version 'A', and `window.miam.analytics.setAbTestKey('B')` for those shown version 'B', we can then provide you with the performance data for each version.
 
-By example we could tell you that version 'A' has 25% clicks than version 'B' but that the users that are showed version 'B' are 30% more inclined to remove products addes by Mealz components from their cart, which can then help you make an informed decision about the best of the two versions.
+For example, we could tell you that version 'A' has 25% more clicks than version 'B', but users shown version 'B' are 30% more likely to remove products added by Mealz components from their cart. This data can help you make an informed decision about the best version.

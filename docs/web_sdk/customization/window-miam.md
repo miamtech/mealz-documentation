@@ -24,7 +24,7 @@ props: {aString: 'foo bar', aNumber: 5}
   :::warning
     **Deprecated**, prefer using `supplier.setupWithToken` as it initialises the analytics
   :::
-- `setAbTestKey: (key: string) => void` Inform the library of any [ABTest](./set-up-abtest.md) version being showed wit `key` and identifier for the version
+- `setAbTestKey: (key: string) => void` Inform the library of any [ABTest](./set-up-abtest.md) version being showed with `key` and identifier for the version
 
 ## window.miam.basket
 - `basketIsReady$: Observable<boolean>`: Emits true when Mealz's basket has successfully loaded for the first time. Does not emit anything before or after that.
@@ -41,6 +41,11 @@ props: {aString: 'foo bar', aNumber: 5}
   :::
 - `recipeCount: () => Observable<number>`: A BehaviorSubject that emits the current number of recipes in Mealz' Basket once (it waits for the Basket to be initialized to emit).
 - `openPreview: () => void`: Opens the recipe-modal in basket preview mode to display the recipes currently in the basket (Same action as when clicking on the FAB in the recipe-catalog)
+- `overrideTransferUrl: (url: string)`: Use in the devtools on an affiliated website to override the redirection url when transferring the cart to your website.
+  Ex: Calling overrideTransferUrl('http://localhost:3000/recipes') will make the redirection url become 'http://localhost:3000/recipes?{PARAMS}'
+  :::warning
+    Only for debug purposes
+  :::
 
 ## window.miam.basketSync
 See [basket synchronization](../set-up-and-usage/basket-synchronization)
