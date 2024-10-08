@@ -16,7 +16,7 @@ Mealz provides you a bundle of features that you can add to your website.
   from
 
 :::note
-Currently, SSR (Server-Side Rendering) is only available for the recipe card feature.
+Currently, SSR (Server-Side Rendering) is only available for the recipe card feature and the catalog feature (WIP).
 :::
 
 ### The recipe cards (SSR)

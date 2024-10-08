@@ -15,13 +15,13 @@ export class Mealz {
   const mealzToken = 'aToken';
   // TS only
   miam = (window as any).miam as MiamInterface;
-  // You can then replace all 'window.miam' by 'this.miam'
+  // You can then replace all 'window.mealz' by 'this.miam'
 
   constructor() {
-    window.miam.supplier.setupWithToken(mealzToken);
-    window.miam.basketSync.definePushProductsToBasket(this.pushProductsToBasket)
-    window.miam.basket.initialize(); // If you want Mealz's basket to be fetched on startup instead of being fetched the first time it is needed
-    window.miam.hook.setHookCallback(this.hookCallback)
+    window.mealz.supplier.setupWithToken(mealzToken);
+    window.mealz.basketSync.definePushProductsToBasket(this.pushProductsToBasket)
+    window.mealz.basket.initialize(); // If you want Mealz's basket to be fetched on startup instead of being fetched the first time it is needed
+    window.mealz.hook.setHookCallback(this.hookCallback)
   }
 
   /////////////// POS ///////////////
@@ -29,28 +29,28 @@ export class Mealz {
   // Call this method from your app on init with the id of the store or with null / undefined if no store is selected
   // And when the user choses a store
   loadStore(storeId) {
-    window.miam.pos.load(storeId)
+    window.mealz.pos.load(storeId)
   }
 
   /////////////// LOGIN/LOGOUT ///////////////
 
   // Call this method from your app when the user logs in
   handleLogin(user) {
-    window.miam.user.loadWithExternalId(user.id, user.cookiesAccepted()).subscribe(() => {
+    window.mealz.user.loadWithExternalId(user.id, user.cookiesAccepted()).subscribe(() => {
       alert("User logged in on Mealz!")
     });
   }
 
   // Call this method from your app when the user logs out
   handleLogout() {
-    window.miam.user.reset()
+    window.mealz.user.reset()
   }
 
   /////////////// BASKET-SYNC ///////////////
 
   // Call this method at the point of your app where the user's cart is updated
   sendCartToMealz(cart) {
-    window.miam.basketSync.retailerBasketChanged(
+    window.mealz.basketSync.retailerBasketChanged(
       // Your products aren't probably on the format {id, quantity}
       // so you need to map them to our ComparableProducts type
       cart.products.map(product => {
@@ -61,7 +61,7 @@ export class Mealz {
 
   // Call this method at the point of your app where the user's cart is paid
   sendPaymentNotificationToMealz(cart) {
-    window.miam.basketSync.handlePayment(cart.price);
+    window.mealz.basketSync.handlePayment(cart.price);
   }
 
   pushProductsToBasket(products: ComparableProducts[]) {
