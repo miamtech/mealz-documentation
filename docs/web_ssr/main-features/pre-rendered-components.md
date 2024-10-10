@@ -19,7 +19,7 @@ The error code will match the [HTTP response status codes convention](https://de
 
 ## HTTP request headers
 
-Certain informations are needed to display all of our components. In order to not have too much parameters on each route, these informations are passed as mandatory HTTP request headers on all requests to components endpoints
+Some informations are needed to display all of our components. In order to not have too much parameters on each route, these informations are passed as mandatory HTTP request headers on all requests to custom elements endpoints
 
 ```json
 {
