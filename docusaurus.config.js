@@ -41,7 +41,7 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "4.2",
+            label: "5.0",
             path: "/"
           },
           "4.1": {
@@ -69,7 +69,7 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "4.2",
+            label: "5.0",
             path: "/"
           },
           "4.1": {
@@ -164,7 +164,7 @@ export default {
             to: "docs/android/Introduction",
             items: [
               {
-                label: "4.2",
+                label: "5.0",
                 to: "docs/android/Introduction",
                 activeBaseRegex: "docs\/android\/[^0-9][^/]",
               },
@@ -191,7 +191,7 @@ export default {
             to: "docs/ios/Introduction",
             items: [
               {
-                label: "4.2",
+                label: "5.0",
                 to: "docs/ios/Introduction",
                 activeBaseRegex: "docs\/ios\/[^0-9][^/]",
               },
