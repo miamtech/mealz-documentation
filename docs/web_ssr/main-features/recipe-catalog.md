@@ -17,9 +17,9 @@ It consists of several pages that route to one another:
 
 - The [**home page**](#home-page), the intended starting point of the experience, which displays the categories of your catalog, each categories displaying the first recipes they contain
 ![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Recipe catalog")
-- The **favorite page (WIP)**, which shows the list of recipes added as favorites by a connected user
+- The **favorite page**, which shows the list of recipes added as favorites by a connected user
 ![Catalog favorites](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/favorites.png "Catalog favorites")
-- The **list page (WIP)**, which shows a filtered list of your catalog of recipes
+- The **list page**, which shows a filtered list of your catalog of recipes
 ![Catalog list search](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalogSearch.png "Catalog list search")
 - The **categories page (WIP)**, which shows the list of recipes in a category
 ![Catalog list](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/catalogList.png "Catalog list")
@@ -33,6 +33,8 @@ All pages display a **toolbar (WIP)** that has :
 Each pages also displays a floating button showing the number of recipes currently added to the user's cart
 On a click on this button, the **"My meals" drawers** appears:
 ![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "My meals")
+
+The category, favorites and list pages all send a response with only 20 recipes in the list, but client-side they all automatically fetch more recipes on scroll.
 
 ## Home Page
 
@@ -69,16 +71,30 @@ Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-reques
 GET http://MEALZ_SSR_API_URL/API_VERSION/catalog?store_id=max_recipes_per_category=6&display_recipe_variant=2
 ```
 
-## Category Page (WIP)
+## Category Page
 
 The base url for the catalog category page will be the following:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog-category
+GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/category
 ```
 
 - Parameters :
+  - `category_id: string`:
+  **_(mandatory)_** the id of the category to show. By default the url of the link "See all" on the home page will add this id to the queryParam categoryId (ex: http://localhost/catalog/category?categoryId=ID), you can get the id from here and send it as param of the catalog/category endpoint
 
-## Favorites Page (WIP)
+  - `store_id: string`:
+  **_(Recommended)_** We need your store ID to display the prices of the recipes, to fetch the recipes in basket informations and to hide recipes with primary ingredients not available in your store, so ideally it should be passed if the user has chosen a store
+
+  - `pricebook_key: string = 'DEFAULT'`:
+  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
+
+  - `display_infos: boolean = false`:
+  **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
+
+  - `display_recipe_variant: number = 1`:
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+
+## Favorites Page
 
 The base url for the catalog favorites page will be the following:
 ```
@@ -86,6 +102,17 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog-favorites
 ```
 
 - Parameters :
+  - `store_id: string`:
+  **_(Recommended)_** We need your store ID to display the prices of the recipes, to fetch the recipes in basket informations and to hide recipes with primary ingredients not available in your store, so ideally it should be passed if the user has chosen a store
+
+  - `pricebook_key: string = 'DEFAULT'`:
+  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
+
+  - `display_infos: boolean = false`:
+  **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
+
+  - `display_recipe_variant: number = 1`:
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
 
 ## List Page (WIP)
 
