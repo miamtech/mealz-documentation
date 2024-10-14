@@ -108,12 +108,6 @@ export default {
           },
           "8.5": {
             banner: 'none'
-          },
-          "8.4": {
-            banner: 'none'
-          },
-          "8.3": {
-            banner: 'none'
           }
         }
       },
