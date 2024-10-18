@@ -37,11 +37,11 @@ Lastly, if the user pays their cart, Mealz needs to be updated because:
 
 ## How to setup the basket-sync ?
 
-Based on the previous explanation, there are 3 points of communication between the retailer & Mealz in the basket-sync process, and all methods needed for this communication are in `window.miam.basketSync`.
+Based on the previous explanation, there are 3 points of communication between the retailer & Mealz in the basket-sync process, and all methods needed for this communication are in `window.mealz.basketSync`.
 
 > Mealz uses a simplified type to describe products for those methods :
 > `ComparableProducts { id: string, quantity: number }`
-> You can also find the interface for this type just like _miam-interface.ts_, the file name is _comparable-product.ts_
+> You can also find the interface for this type just like _mealz-interface.ts_, the file name is _comparable-product.ts_
 
 - Sending the user's cart to Mealz is done with `retailerBasketChanged(products: ComparableProducts[]): void`
 
@@ -52,7 +52,7 @@ This method needs to be called each time the user's basket is updated (:warning:
 export class Mealz {
   // Call this method at the point of your app where the user's cart is updated
   sendCartToMealz(cart) {
-    window.miam.basketSync.retailerBasketChanged(
+    window.mealz.basketSync.retailerBasketChanged(
       // Your products aren't probably on the format {id, quantity}
       // so you need to map them to our ComparableProducts type
       cart.products.map((product) => {
@@ -70,7 +70,7 @@ export class Mealz {
 export class Mealz {
   // Call this method at the point of your app where the user's cart is paid
   sendPaymentNotificationToMealz(cart) {
-    window.miam.basketSync.handlePayment(cart.price);
+    window.mealz.basketSync.handlePayment(cart.price);
   }
 }
 ```
@@ -85,7 +85,7 @@ export class Mealz {
 // Example Setup
 export class Mealz {
   constructor() {
-    window.miam.basketSync.definePushProductsToBasket(
+    window.mealz.basketSync.definePushProductsToBasket(
       this.pushProductsToBasket
     );
   }
@@ -103,13 +103,13 @@ export class Mealz {
 ```
 
 - (Optional but highly recommended) Initially, Mealz's basket will not be fetched until necessary (when a recipe will be added, or when the user wants to see the list of recipes they added for example). But that means that several requests will take place at some point of the user's experience, potentially slowing it a little, especially if their internet connexion is slow.
-  If you want to avoid this, and also if you want to avoid the first step of the basket-sync (where Mealz checks that no products have been removed before the basket-sync started), you can call `window.miam.basket.initialize()` just after sending the token, which will fetch the basket on startup.
+  If you want to avoid this, and also if you want to avoid the first step of the basket-sync (where Mealz checks that no products have been removed before the basket-sync started), you can call `window.mealz.basket.initialize()` just after sending the token, which will fetch the basket on startup.
 
 ```ts
 // Example Setup
 export class Mealz {
   constructor() {
-    window.miam.basket.initialize(); // If you want Mealz's basket to be fetched on startup instead of being fetched the first time it is needed
+    window.mealz.basket.initialize(); // If you want Mealz's basket to be fetched on startup instead of being fetched the first time it is needed
   }
 }
 ```

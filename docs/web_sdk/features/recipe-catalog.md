@@ -31,7 +31,7 @@ Its structure is divided into multiple parts:
 
 If you're planning to implement the catalog. You'll probably need to configure `setStickyHeaderHeight(YOUR_HEADER_HEIGHT_IN_PIXEL: number)
 
-(called with `window.miam.setStickyHeaderHeight(YOUR_HEADER_HEIGHT_IN_PIXEL: number)`).
+(called with `window.mealz.setStickyHeaderHeight(YOUR_HEADER_HEIGHT_IN_PIXEL: number)`).
 You will have to call this method every time your sticky header height changes.
 this value is used by our catalog header which have a sticky behaviour but requires to know your current sticky header height at any time.
 
