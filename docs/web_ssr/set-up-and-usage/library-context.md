@@ -12,7 +12,7 @@ To simplify this part of the setup, we will provide you a single token that you 
 To load the token, use:
 
 ```js
-window.miam.supplier.setupWithToken(token: string)
+window.mealz.supplier.setupWithToken(token: string)
 ```
 
 ```ts
@@ -21,7 +21,7 @@ export class Mealz {
   mealzToken = "aToken";
 
   constructor() {
-    window.miam.supplier.setupWithToken(mealzToken);
+    window.mealz.supplier.setupWithToken(mealzToken);
   }
 }
 ```
@@ -36,12 +36,12 @@ However, any push to basket action on Mealz side cannot happen without a valid s
 To inform the library of the selected store, use:
 
 ```js
-window.miam.pos.load(posExternalId: string || number)
+window.mealz.pos.load(posExternalId: string || number)
 ```
 
 :::warning
 
-If you do not have any store selected, simply call this method with `null` or `undefined` as parameter. **All features of the library that need a store won't start until miam.pos.load is called.** (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)
+If you do not have any store selected, simply call this method with `null` or `undefined` as parameter. **All features of the library that need a store won't start until mealz.pos.load is called.** (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)
 
 :::
 
@@ -55,7 +55,7 @@ export class Mealz {
   // Call this method from your app on init with the id of the store or with null / undefined if no store is selected
   // And when the user choses a store
   loadStore(storeId) {
-    window.miam.pos.load(storeId);
+    window.mealz.pos.load(storeId);
   }
 }
 ```
