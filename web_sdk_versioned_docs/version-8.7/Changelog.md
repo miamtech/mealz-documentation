@@ -20,7 +20,7 @@ sidebar_position: 11
 #### Fixed
 - *no-supplier-onboarding*:
   - Could be opened again after it was closed
-- *meal-planner*:
+- *meals-planner*:
   - Fix ingredients-regrouped banner would be displayed even if not necessary
   - Fix page refresh on the basket-preview when deleting or updating an entry, or modifying recipe quantities
   - Fix basket-preview progress bar did not refresh correctly
