@@ -8,7 +8,7 @@ sidebar_position: 11
 
 #### Breaking changes:
 - *product-card*:
-  - Design has changed to accomodate for the incoming promotions update:
+  - Design has changed to accommodate the upcoming promotions update:
     - the products img and infos are in a row instead of a column
     - price & CTA have moved to a second row between the infos and the replace / ignore buttons
     - Replace and ignore buttons are now on the third row
@@ -26,7 +26,7 @@ sidebar_position: 11
   - Renamed to window.mealz
 - *window.mealz*:
   - *user.setLanguage()*:
-    - for configuration purposes, the client is now required to call `window.miam.user.setLanguage('...')` with the desired language in ISO 639-1 format or their custom language code if using Mealz-API-SSR
+    - for configuration purposes, the client is now required to call `window.mealz.user.setLanguage('...')` with the desired language in ISO 639-1 format or their custom language code if using Mealz-API-SSR
   - *basketSync.definePushProductsToBasket*:
     - renamed method to *definePushProductsToCart* to make the distinction between the term Basket (= Mealz side) and Cart (= Retailer side)
   - *basket-synchronization*:
@@ -66,7 +66,7 @@ sidebar_position: 11
 
 #### Internal:
 - *interceptor-service*:
-  - Moved version number to another file so the we update it only one time
+  - Moved the version number to a separate file so that we only need to update it once.
 - *analytics*:
   - Use mealz-shared-analytics instead of internal service
 - *retailer-cart-demo*:
@@ -80,7 +80,7 @@ sidebar_position: 11
   - *catalog*:
     - Add methods to open filter and preferences modal
     - Add loadMoreRecipes method
-- Replaced the previous mean of keeping a session id in the requests (cookies) with a new header session-id with the value kept in sessionStorage
+- Replaced the previous method of storing the session ID in cookies with a new session-id header, with the value stored in sessionStorage.
 
 
 ## Upgrading from 8.7
@@ -88,20 +88,19 @@ sidebar_position: 11
 #### Setup
 - Change all window.miam with window.mealz
 - Change `window.mealz.basketSync.definePushProductsToBasket` to `window.mealz.basketSync.definePushProductsToCart`
-- If planning to use Mealz-SSR-API: Add a call to `window.mealz.user.setLanguage()` after `window.miam.supplier.setupWithToken`
+- If planning to use Mealz-SSR-API: Add a call to `window.mealz.user.setLanguage()` after `window.mealz.supplier.setupWithToken`
 
 #### Components
 
 **Recipe card**:
-- If you have overrided the badge, the drink badge will either override your override, or be overriden itself. You should probably consider overriding it with your current badge until you decide to set an override for the drink badge specifically
+- If you have overridden the badge, the drink badge will either override your change or be overridden itself. You should consider overriding it with your current badge until you decide to set a specific override for the drink badge.
 
 **Counter-input**:
-- The counter-input on the product-card now has a bicolor style
-- The counter-inputs on the other components now don't have the .ghost and .square classes
-- Fix you overrides how you see fit
+- The counter-input on the product-card now has a bicolor style, which adds the class '.bi-color' to the component and removes '.ghost' and '.small' class to the buttons
+- Check if the new 'bi-color' parameter requires you to update your overrides of the component
 
 **Miam-price**:
-- Make sure your overrides still are working, and consider moving them to the new class to be sure for later
+- Make sure your overrides are still working, and consider moving them to the new class to prepare for future updates
 
 **Product-card**:
-- A lot of style has changed (see in the CHangelog for the full details). Consider doing a full checkup on the style, and maybe ask us for advice on changing your mockups, especially if you are interested by the promotions update that will come later to fill the current blanks in the product-card
+- A lot of style has changed (see the Changelog for full details). Consider doing a full checkup on the style, and feel free to ask us for advice on updating your mockups, especially if you are interested in the promotions update that will come later to fill the current blanks in the product-card
