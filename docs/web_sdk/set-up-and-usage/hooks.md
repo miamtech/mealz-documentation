@@ -14,7 +14,7 @@ However this callback does nothing by default, it is up to you to decide what yo
 > - If the user tries to add a recipe to their cart before having chosen a store, you probably want to redirect them to the page on which they can choose one.
 > - If the user tries to add a recipe to their cart before logging in, you probably want to redirect them to your login page.
 
-You can set this callback with `window.miam.hook.setHookCallback(callback: (isLogged, isPosValid) => boolean): void`.
+You can set this callback with `window.mealz.hook.setHookCallback(callback: (isLogged, isPosValid) => boolean): void`.
 
 - isLogged is true if the user is logged from Mealz's perspective (i.e. if you have called our login method)
 - isPosValid is true if the user has chosen a store and if Mealz knows this store (i.e. you have set the PoS & the PoS exists in our database)
@@ -24,7 +24,7 @@ You can set this callback with `window.miam.hook.setHookCallback(callback: (isLo
 // Example Setup
 export class Mealz {
   constructor() {
-    window.miam.hook.setHookCallback(this.hookCallback)
+    window.mealz.hook.setHookCallback(this.hookCallback)
   }
 
   hookCallback(isLogged, isPosValid) => {
