@@ -34,7 +34,7 @@ Each pages also displays a floating button showing the number of recipes current
 On a click on this button, the **"My meals" drawers** appears:
 ![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "My meals")
 
-The category, favorites and list pages all send a response with only 20 recipes in the list, but client-side they all automatically fetch more recipes on scroll.
+The category, favorites and list pages each return a response with only 20 recipes in the list, but more recipes are automatically fetched on scroll from the client-side.
 
 ## Home Page
 
