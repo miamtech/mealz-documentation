@@ -8,14 +8,14 @@ At the end of our setup, here's what the dummy setup class looks like :
 
 ```ts
 // TS only
-import MiamInterface from 'webc-miam/interfaces/miam-interface';
+import MealzInterface from 'webc-miam/interfaces/mealz-interface';
 
 // Example Setup
 export class Mealz {
   const mealzToken = 'aToken';
   // TS only
-  miam = (window as any).miam as MiamInterface;
-  // You can then replace all 'window.mealz' by 'this.miam'
+  mealz = (window as any).mealz as MealzInterface;
+  // You can then replace all 'window.mealz' by 'this.mealz'
 
   constructor() {
     window.mealz.supplier.setupWithToken(mealzToken);

@@ -41,7 +41,7 @@ Based on the previous explanation, there are 3 points of communication between t
 
 > Mealz uses a simplified type to describe products for those methods :
 > `ComparableProducts { id: string, quantity: number }`
-> You can also find the interface for this type just like _miam-interface.ts_, the file name is _comparable-product.ts_
+> You can also find the interface for this type just like _mealz-interface.ts_, the file name is _comparable-product.ts_
 
 - Sending the user's cart to Mealz is done with `retailerBasketChanged(products: ComparableProducts[]): void`
 

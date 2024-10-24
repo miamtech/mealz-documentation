@@ -41,7 +41,7 @@ window.mealz.pos.load(posExternalId: string || number)
 
 :::warning
 
-If you do not have any store selected, simply call this method with `null` or `undefined` as parameter. **All features of the library that need a store won't start until miam.pos.load is called.** (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)
+If you do not have any store selected, simply call this method with `null` or `undefined` as parameter. **All features of the library that need a store won't start until mealz.pos.load is called.** (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)
 
 :::
 

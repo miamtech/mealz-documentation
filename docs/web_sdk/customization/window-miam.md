@@ -50,9 +50,9 @@ props: {aString: 'foo bar', aNumber: 5}
 ## window.mealz.basketSync
 See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
-- `definePushProductsToBasket: (pushProductsToBasket: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket changes to update the user's cart accordingly
+- `definePushProductsToCart: (pushProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket changes to update the user's cart accordingly
   :::note
-    `pushProductsToBasket`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative
+    `pushProductsToCart`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative
   :::
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
   :::note
@@ -98,7 +98,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
   :::
 
   :::warning
-  Even without a selected store, this method needs to be called with `null` or `undefined` as parameter. All features of the library that need a store won't start until miam.pos.load is called. (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)"
+  Even without a selected store, this method needs to be called with `null` or `undefined` as parameter. All features of the library that need a store won't start until mealz.pos.load is called. (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)"
   :::
 
 - `getByAddress: (address: string, radius: string) => Observable<DocumentCollection<PointOfSale>>`
