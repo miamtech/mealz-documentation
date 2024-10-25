@@ -19,12 +19,12 @@ It consists of several pages that route to one another:
 ![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Recipe catalog")
 - The **favorite page**, which shows the list of recipes added as favorites by a connected user
 ![Catalog favorites](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/favorites.png "Catalog favorites")
-- The **list page**, which shows a filtered list of your catalog of recipes
+- The **list page (WIP)**, which shows a filtered list of your catalog of recipes
 ![Catalog list search](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalogSearch.png "Catalog list search")
-- The **categories page (WIP)**, which shows the list of recipes in a category
+- The **categories page**, which shows the list of recipes in a category
 ![Catalog list](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/catalogList.png "Catalog list")
 
-All pages display a **toolbar (WIP)** that has :
+All pages display a **toolbar** that has :
 - A search bar to search recipes by name which redirects to the **list page** if clicked from the home page, or the current page with additional filters if on the list, favorites or categories page
 - A filter button, which opens the filter drawer (which has a CTA "Apply" that redirects to the **list page**)
 - A "Preferences" button that opens the Preferences drawer, to set **global preferences** that apply in all Mealz-related features
@@ -98,7 +98,7 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/category
 
 The base url for the catalog favorites page will be the following:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog-favorites
+GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
 ```
 
 - Parameters :
@@ -118,7 +118,7 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog-favorites
 
 The base url for the catalog list page will be the following:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog-list
+GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/list
 ```
 
 - Parameters :
