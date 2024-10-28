@@ -32,10 +32,10 @@ export default {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "android",
-        path: "docs/android",
-        routeBasePath: "docs/android",
-        sidebarPath: './docs/android/sidebar.js',
+        id: "mobile",
+        path: "docs/mobile",
+        routeBasePath: "docs",
+        sidebarPath: './docs/mobile/sidebars.js',
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
         lastVersion: 'current',
@@ -45,7 +45,7 @@ export default {
             path: "/"
           },
           "4.1": {
-            banner: 'none'
+            banner: 'none',
           },
           "4.0": {
             banner: 'none'
@@ -55,34 +55,6 @@ export default {
             banner: 'unmaintained'
           }
         },
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "ios",
-        path: "docs/ios",
-        routeBasePath: "docs/ios",
-        sidebarPath: 'docs/ios/sidebar.js',
-        remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeKatex],
-        lastVersion: 'current',
-        versions: {
-          current: {
-            label: "5.0",
-            path: "/"
-          },
-          "4.1": {
-            banner: 'none'
-          },
-          "4.0": {
-            banner: 'none'
-          },
-          "3": {
-            label: "3.x",
-            banner: 'unmaintained'
-          }
-        }
       },
     ],
     [
@@ -160,22 +132,22 @@ export default {
               {
                 label: "5.0",
                 to: "docs/android/Introduction",
-                activeBaseRegex: "docs\/android\/[^0-9][^/]",
+                activeBasePath: "docs/android/",
               },
               {
                 label: "4.1",
-                to: "docs/android/4.1/Introduction",
-                activeBasePath: "docs/android/4.1/",
+                to: "docs/4.1/android/Introduction",
+                activeBasePath: "docs/4.1/android/",
               },
               {
                 label: "4.0",
-                to: "docs/android/4.0/Introduction",
-                activeBasePath: "docs/android/4.0/",
+                to: "docs/4.0/android/Introduction",
+                activeBasePath: "docs/4.0/android/",
               },
               {
                 label: "3.x",
-                to: "docs/android/3/Introduction",
-                activeBasePath: "docs/android/3/",
+                to: "docs/3/android/Introduction",
+                activeBasePath: "docs/3/android/",
               }
             ]
           },
@@ -187,22 +159,22 @@ export default {
               {
                 label: "5.0",
                 to: "docs/ios/Introduction",
-                activeBaseRegex: "docs\/ios\/[^0-9][^/]",
+                activeBasePath: "docs/ios/",
               },
               {
                 label: "4.1",
-                to: "docs/ios/4.1/Introduction",
-                activeBasePath: "docs/ios/4.1/",
+                to: "docs/4.1/ios/Introduction",
+                activeBasePath: "docs/4.1/ios/",
               },
               {
                 label: "4.0",
-                to: "docs/ios/4.0/Introduction",
-                activeBasePath: "docs/ios/4.0/",
+                to: "docs/4.0/ios/Introduction",
+                activeBasePath: "docs/4.0/ios/",
               },
               {
                 label: "3.x",
-                to: "docs/ios/3/Introduction",
-                activeBasePath: "docs/ios/3/",
+                to: "docs/3/ios/Introduction",
+                activeBasePath: "docs/3/ios/",
               }
             ]
           },
