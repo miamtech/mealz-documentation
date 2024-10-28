@@ -1,0 +1,72 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+    { label: 'Boilerplate', value: 'empty_example' },
+    { label: 'Full Example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomSearchView: SearchProtocol {
+    public func content(params: SearchParameters) -> some View {
+        // your implementation here
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomSearchView: SearchProtocol {
+    public init() {}
+    public func content(params: SearchParameters) -> some View {
+        VStack(spacing: 10.0) {
+            HStack(spacing: 10.0) {
+                HStack(spacing: 10.0) {
+                    TextField(Localization.catalog.searchTitle.localised, text: params.searchText)
+                        .frame(height: 45.0)
+                        .disableAutocorrection(true)
+                    Button(action: params.onApply, label: {
+                        Image.mealzIcon(icon: .search)
+                            .renderingMode(.template)
+                            .foregroundColor(Color.mealzColor(.white))
+                            .padding(10)
+                            .background(Color.mealzColor(.primary)).clipShape(Circle())
+                            .shadow(radius: 2.0)
+                    })
+                        .darkenView(!longerThanThreeChars)
+                        .disabled(!longerThanThreeChars)
+                }
+                    .padding([.leading], 16).frame(height: 45.0)
+                    .padding([.trailing], 2)
+                    .overlay(Capsule().stroke(Color.gray, lineWidth: 1.0))
+            }.padding(10)
+            Spacer()
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```swift
+public struct SearchParameters {
+    /// Text result from the user input, bindable
+    public let searchText: Binding<String>
+    /// A closure that executes the function passed in
+    public let onApply: () -> Void
+```
+
+- [SearchProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/searchbarprotocol)

@@ -41,8 +41,11 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "5.0",
+            label: "5.1",
             path: "/"
+          },
+          "5.0": {
+            banner: 'none',
           },
           "4.1": {
             banner: 'none',
@@ -130,9 +133,14 @@ export default {
             to: "docs/android/Introduction",
             items: [
               {
-                label: "5.0",
+                label: "5.1",
                 to: "docs/android/Introduction",
                 activeBasePath: "docs/android/",
+              },
+              {
+                label: "5.0",
+                to: "docs/5.0/android/Introduction",
+                activeBasePath: "docs/5.0/android/",
               },
               {
                 label: "4.1",
@@ -157,9 +165,14 @@ export default {
             to: "docs/ios/Introduction",
             items: [
               {
-                label: "5.0",
+                label: "5.1",
                 to: "docs/ios/Introduction",
                 activeBasePath: "docs/ios/",
+              },
+              {
+                label: "5.0",
+                to: "docs/5.0/ios/Introduction",
+                activeBasePath: "docs/5.0/ios/",
               },
               {
                 label: "4.1",
