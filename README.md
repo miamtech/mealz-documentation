@@ -45,12 +45,12 @@ Pour versionner la documentation, utilisez la commande docusaurus `docs:version`
 > <span style="color:orange">**⚠️ Attention**</span>.  
 > Pour éviter de maintenir une version en cours de développement à deux endroits différents, il vaut mieux attendre qu'une version soit figée avant de créer la version appropriée.
 
-Par exemple, pour créer une nouvelle version 1.1.0 pour le projet iOS :
+Par exemple, pour créer une nouvelle version 1.1 pour le projet Mobile :
 
 ```bash
-npm run docusaurus docs:version:ios 1.1
+npm run docusaurus docs:version:mobile 1.1
 # ou
-yarn docusaurus docs:version:ios 1.1
+yarn docusaurus docs:version:mobile 1.1
 ```
 
 Modifiez ensuite le fichier `docusaurus.config.js` afin de mettre à jour la barre de navigation, ainsi que versions `current` et `latest` du projet correspondant.

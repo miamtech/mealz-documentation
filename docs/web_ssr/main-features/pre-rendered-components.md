@@ -19,19 +19,23 @@ The error code will match the [HTTP response status codes convention](https://de
 
 ## HTTP request headers
 
-Sending requests with the mandatory parameters alone is not sufficient to retrieve our components; you will also need to include HTTP headers in your requests.
+Some informations are needed to display all of our components. In order to not have too much parameters on each route, these informations are passed as mandatory HTTP request headers on all requests to custom elements endpoints
 
 ```json
 {
   "Authorization": "user_id <user-token>",
   "Supplier-token": "<your-supplier-token>",
-  "Language-id": "<your-language-id>"
+  "Language-id": "<your-language-id>",
+  "Session-id": "<a-unique-id>"
 }
 ```
 
 - **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in, the user token must be replaced with an [authless token](./pre-rendered-components#authless-user) following the same format.
 
-- **Supplier-token**: We will provide you with your supplier token (in Base64 format). This token allows us to identify you.
+- **Supplier-token**: We will provide you with your supplier token (in Base64 format). This token allows us to identify you and serve data pertinent for your website.
+:::info
+  The token also contains constants linked to the environment, which means we will send you 2 tokens: a token for production, and a token for testing and development. 
+:::
 
 - **Language-id**: I18n header. Set this header to either the [language ISO code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) alone or the language ISO code combined with your retail name:
 
@@ -41,6 +45,8 @@ Sending requests with the mandatory parameters alone is not sufficient to retrie
 }
 ```
 See [Internationalisation](/docs/web_ssr/customization/internationalization) for how to configure a custom I18n file to override our base texts with your own.
+- **Session-id**: A unique identifier to differentiate sessions from one another (for example a uuid). This helps us keep things consistent during a session.
+> For example if a user sees a recipe on a shelf, clicks on a product and goes to the product page, then goes back, they would expect to see the same recipe on the shelf. With the session-id, we are able to return the same recipe if the products passed in parameters are the same as a previous request with the same session-id
 
 ## Authless user
 Even if the user is not logged into your website, you might want to allow them to add products to their basket.
