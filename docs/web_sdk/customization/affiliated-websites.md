@@ -42,7 +42,7 @@ This means that, when they are redirected to your website, they expect to be on 
 **Which means that we need you to provide us a way to override the chosen store !**
 
 Just like hookCallback, Mealz needs a callback that it can call when it needs to override the store.
-You can set this callback with `window.miam.hook.setForcePosCallback: (callback: (posExtId: string) => boolean) => void`.
+You can set this callback with `window.mealz.hook.setForcePosCallback: (callback: (posExtId: string) => boolean) => void`.
 
   :::note
     `posExtId` the id (in your database) of the store to force
@@ -54,7 +54,7 @@ You can set this callback with `window.miam.hook.setForcePosCallback: (callback:
 // Example Setup
 export class Mealz {
   constructor() {
-    window.miam.hook.setForcePosCallback(this.forceStoreCallback)
+    window.mealz.hook.setForcePosCallback(this.forceStoreCallback)
   }
 
   forceStoreCallback(storeId) => {
