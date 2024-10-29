@@ -1,0 +1,59 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+    { label: 'Boilerplate', value: 'empty_example' },
+    { label: 'Full Example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomTitleView: BaseTitleProtocol {
+    public func content(params: TitleParameters) -> some View {
+        // your implementation here
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomTitleView: BaseTitleProtocol {
+    public init() {}
+    public func content(params: TitleParameters) -> some View {
+        return VStack {
+            Text(params.title)
+                .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleBigStyle)
+                .foregroundColor(Color.mealzColor(.primary))
+            if let subtitle = params.subtitle {
+                 Text(subtitle)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleSmallStyle)
+                    .foregroundColor(Color.mealzColor(.primary))
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```swift
+public struct TitleParameters {
+    /// Main text
+    public let title: String
+    /// Subtext
+    public let subtitle: String?
+```
+
+- [BaseTitleProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basetitleprotocol)

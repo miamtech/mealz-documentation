@@ -1,0 +1,77 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### RecipeCardLoading
+
+To create your own recipe card loading template you create a class that implements `RecipeCardLoadingProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomRecipeCardLoadingView: RecipeCardLoadingParameters {
+    public func content(params: RecipeCardLoadingParameters) -> some View {
+        // your imp here
+    }
+}
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomRecipeCardLoadingView: RecipeCardLoadingParameters {
+    public init() {}
+    public func content(params: RecipeCardLoadingParameters) -> some View {
+        let dimensions = Dimension.sharedInstance
+        let callToActionHeight: CGFloat = 70
+        let pictureHeight = params.recipeCardDimensions.height - callToActionHeight
+
+        return VStack(spacing: 0.0) {
+        Rectangle()
+        .fill(Color.mealzColor(.lightBackground))
+        .padding(0)
+        .frame(width: params.recipeCardDimensions.width, height: pictureHeight)
+        HStack {
+        RoundedRectangle(cornerRadius: dimensions.mCornerRadius)
+        .fill(Color.mealzColor(.lightBackground))
+        .frame(width: 40, height: 40)
+        Spacer()
+        RoundedRectangle(cornerRadius: dimensions.mCornerRadius)
+        .fill(Color.mealzColor(.lightBackground))
+        .frame(width: 100, height: 40)
+    }
+        .frame(height: callToActionHeight)
+        .padding(.horizontal, Dimension.sharedInstance.mlPadding)
+    }
+        .frame(width: params.recipeCardDimensions.width, height: params.recipeCardDimensions.height)
+        .cornerRadius(12.0)
+    }
+}
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct RecipeCardLoadingParameters {
+    /// Sets the width & height for the loading recipe card
+    public let recipeCardDimensions: CGSize
+```
+
+- [RecipeCardLoadingProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipecardloadingprotocol)
