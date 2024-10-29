@@ -4,6 +4,38 @@ sidebar_position: 11
 
 ## Changelog
 
+## v9.0.1 - [24/10/2024]
+
+#### Updated:
+- *basket-synchro*:
+  - Fixed some issues with mix of retailer cart and Mealz basket actions
+  - Now compare basket with basket entry and not retailer cart, had to adapt most logics
+  - basketEntry has now attribute quantity and quantity_to_add, adapting basket update routes that uses from-ingredient route
+  - Now store previousSupplierCart to be able to compare it with current supplier cart
+  - Adjust quantity on basket entry and not item as it didn't work properly on replace item with different quantities
+  - Improved logic on recipe deletion
+  - Logic needed to replace item has moved to match basket synchro process
+- *recipe-details*:
+  - Remaining price is now calculated on basketEntry total price * **quantity_to_add** and not **quantity** anymore
+- *counter-input*:
+  - Now add class disabled on whole counter input to be able to override style
+- *replace-item*:
+  - Now specifies number of guests when using /items/search route
+
+#### Internal:
+- *replace-item*:
+  - Add guest parameter to search route
+
+#### Fixed:
+- *recipe-details*:
+  - Fixed the recipe-details picture's height on smaller screens
+- *basket.service*:
+  - Replace route /baskets/**basketID**/update_pricebook with /baskets/update_pricebook
+- *basket-synchro*:
+  - Improved unsubscribe logic that broke once testing on suppliers website
+- *mealz.basket.reset()*:
+  - Fixed usage on basket with recipes without ingredients
+
 ## v9.0.0 - [18/10/2024]
 
 #### Breaking changes:
