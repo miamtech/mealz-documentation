@@ -26,9 +26,8 @@ It consists of several pages that route to one another:
 
 All pages display a **toolbar** that has :
 - A search bar to search recipes by name which redirects to the **list page** if clicked from the home page, or the current page with additional filters if on the list, favorites or categories page
-- A filter button, which opens the filter drawer (which has a CTA "Apply" that redirects to the **list page**)
-- A "Preferences" button that opens the Preferences drawer, to set **global preferences** that apply in all Mealz-related features
 - A "Favorites" button which redirects to the **favorites page** 
+- A "Preferences" button that opens the Preferences drawer, enabling users to set **global preferences** for recipes based on include and exclude tags (e.g., gluten-free, vegan, or exclude specific ingredients). These preferences are automatically managed and applied across all Mealz-related features, excluding favorites, for a tailored experience without additional configuration.
 
 Each pages also displays a floating button showing the number of recipes currently added to the user's cart
 On a click on this button, the **"My meals" drawers** appears:
@@ -59,7 +58,6 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog
 
   - `display_recipe_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
-
 
 ### Example :
 
@@ -94,6 +92,9 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/category
   - `display_recipe_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
 
+  - `search: string`:
+  **_(Optional)_** This parameter should be specified if the user has used the search bar. The search term should be retrieved from the URL parameter search and passed unaltered to refine the recipe results based on the search input.
+
 ## Favorites Page
 
 The base url for the catalog favorites page will be the following:
@@ -114,6 +115,9 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
   - `display_recipe_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
 
+  - `search: string`:
+  **_(Optional)_** This parameter should be specified if the user has used the search bar. The search term should be retrieved from the URL parameter search and passed unaltered to refine the recipe results based on the search input.
+
 ## List Page (WIP)
 
 The base url for the catalog list page will be the following:
@@ -122,6 +126,20 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/list
 ```
 
 - Parameters :
+  - `store_id: string`:
+  **_(Recommended)_** We need your store ID to display the prices of the recipes, to fetch the recipes in basket informations and to hide recipes with primary ingredients not available in your store, so ideally it should be passed if the user has chosen a store
+
+  - `pricebook_key: string = 'DEFAULT'`:
+  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
+
+  - `display_infos: boolean = false`:
+  **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
+
+  - `display_recipe_variant: number = 1`:
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+
+  - `search: string`:
+  **_(Optional)_** This parameter should be specified if the user has used the search bar. The search term should be retrieved from the URL parameter search and passed unaltered to refine the recipe results based on the search input.
 
 ## Routing
 
