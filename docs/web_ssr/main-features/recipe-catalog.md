@@ -59,9 +59,6 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog
   - `display_recipe_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
 
-  - `search: string`:
-  **_(Optional)_** This parameter should be specified if the user has used the search bar. The search term should be retrieved from the URL parameter search and passed unaltered to refine the recipe results based on the search input.
-
 ### Example :
 
 :::warning
@@ -129,6 +126,20 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/list
 ```
 
 - Parameters :
+  - `store_id: string`:
+  **_(Recommended)_** We need your store ID to display the prices of the recipes, to fetch the recipes in basket informations and to hide recipes with primary ingredients not available in your store, so ideally it should be passed if the user has chosen a store
+
+  - `pricebook_key: string = 'DEFAULT'`:
+  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
+
+  - `display_infos: boolean = false`:
+  **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
+
+  - `display_recipe_variant: number = 1`:
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+
+  - `search: string`:
+  **_(Optional)_** This parameter should be specified if the user has used the search bar. The search term should be retrieved from the URL parameter search and passed unaltered to refine the recipe results based on the search input.
 
 ## Routing
 
