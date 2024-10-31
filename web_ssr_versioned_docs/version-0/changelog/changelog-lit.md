@@ -4,20 +4,6 @@ sidebar_position: 2
 
 # Mealz components Changelog 
 
-## 1.0.0 [24/10/2024]
-
-#### Breaking changes:
-- *window.miam*:
-  - Renamed to window.mealz
-
-#### Updated:
-- *catalog*:
-  - created catalog.css for shared styles between catalog components
-
-#### Fixed:
-- *like-button*:
-  - State of button was not updated properly
-
 ## 0.5.0 [03/10/2024]
 
 #### Added:

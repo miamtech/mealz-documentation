@@ -99,8 +99,11 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "0.1",
+            label: "1",
             path: "/"
+          },
+          "0": {
+            banner: 'none'
           },
         }
       },
@@ -234,10 +237,15 @@ export default {
             to: "docs/web_ssr/Introduction",
             items: [
               {
-                label: "0.1",
+                label: "v1",
                 to: "docs/web_ssr/Introduction",
                 activeBaseRegex: "docs/web_ssr/[^0-9][^/]",
-              }
+              },
+              {
+                label: "v0",
+                to: "docs/web_ssr/0/Introduction",
+                activeBasePath: "docs/web_ssr/0",
+              },
             ]
           },
           { to: "https://en.mealz.ai/", label: "Enterprise", position: "left" },
