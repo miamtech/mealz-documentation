@@ -19,11 +19,14 @@ It consists of several pages that route to one another:
 ![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Recipe catalog")
 - The **favorite page**, which shows the list of recipes added as favorites by a connected user
 ![Catalog favorites](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/favorites.png "Catalog favorites")
+- The **list page (WIP)**, which shows a filtered list of your catalog of recipes
+![Catalog list search](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalogSearch.png "Catalog list search")
 - The **categories page**, which shows the list of recipes in a category
 ![Catalog list](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/catalogList.png "Catalog list")
 
 All pages display a **toolbar** that has :
-- A search bar to search recipes by name which reloads the current page with additional filters
+- A search bar to search recipes by name which redirects to the **list page** if clicked from the home page, or the current page with additional filters if on the list, favorites or categories page
+- A filter button, which opens the filter drawer (which has a CTA "Apply" that redirects to the **list page**)
 - A "Preferences" button that opens the Preferences drawer, to set **global preferences** that apply in all Mealz-related features
 - A "Favorites" button which redirects to the **favorites page** 
 
@@ -31,7 +34,7 @@ Each pages also displays a floating button showing the number of recipes current
 On a click on this button, the **"My meals" drawers** appears:
 ![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "My meals")
 
-The category and favorites pages each return a response with only 20 recipes in the list, but more recipes are automatically fetched on scroll from the client-side.
+The category, favorites and list pages each return a response with only 20 recipes in the list, but more recipes are automatically fetched on scroll from the client-side.
 
 ## Home Page
 
@@ -57,8 +60,6 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog
   - `display_recipe_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
 
-  - `search: string`:
-  **_(Optional)_** This parameter should be specified if the user has utilized the search bar to refine results based on a search term.
 
 ### Example :
 
@@ -93,9 +94,6 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/category
   - `display_recipe_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
 
-  - `search: string`:
-  **_(Optional)_** This parameter should be specified if the user has utilized the search bar to refine results based on a search term.
-
 ## Favorites Page
 
 The base url for the catalog favorites page will be the following:
@@ -116,8 +114,14 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
   - `display_recipe_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
 
-  - `search: string`:
-  **_(Optional)_** This parameter should be specified if the user has utilized the search bar to refine results based on a search term.
+## List Page (WIP)
+
+The base url for the catalog list page will be the following:
+```
+GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/list
+```
+
+- Parameters :
 
 ## Routing
 
