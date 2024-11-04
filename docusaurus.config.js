@@ -75,6 +75,9 @@ export default {
             label: "9.0",
             path: "/"
           },
+          "8.8": {
+            banner: 'none'
+          },
           "8.7": {
             banner: 'none'
           },
@@ -203,6 +206,11 @@ export default {
                 label: "9.0",
                 to: "docs/web_sdk/Introduction",
                 activeBaseRegex: "docs/web_sdk/[^0-9][^/]",
+              },
+              {
+                label: "8.8",
+                to: "docs/web_sdk/8.8/Introduction",
+                activeBaseRegex: "docs/web_sdk/8.8",
               },
               {
                 label: "8.7",
