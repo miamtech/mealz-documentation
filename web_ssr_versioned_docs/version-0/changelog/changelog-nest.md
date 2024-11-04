@@ -4,50 +4,6 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog 
 
-## 1.0.0 [24/10/2024]
-
-#### Breaking changes:
-- *window.miam*:
-  - Renamed to window.mealz
-
-#### Added:
-- *catalog-category*
-  - Added component + controller for JS injection
-- *catalog-favorites*
-  - Added component + controller for JS injection
-- *catalog-home*
-  - Added controller for JS injection
-- *like-button*
-  - Added controller for JS injection
-- *recipe-card*
-  - Added controller for JS injection
-- *recipe-card-cta*
-  - Added controller for JS injection
-- *recipe-pricing*
-  - Added controller for JS injection
-- *catalog-breadcrumbs*
-  - Added component
-- *catalog-toolbar*
-  - Added component
-- *my-meals-button*
-  - Added component
-    -*http.service*
-- Now handles errors and build header from this service, throw error when category_id is required but not provided
-
-#### Updated:
-- *catalog*:
-  - Now fetches recipe sponsor on catalogs pages
-- *catalog-category*:
-  - update routes from /catalog/category/ID to /catalog/category?id=ID
-- *recipe-card*:
-  - if no suggestion is given for recipe in shelf, throws NotFoundException
-- *ng-miam-sdk*:
-  - updated to 9.0.1 on prod and uat
-
-#### Fixed:
-- *catalog-favorites*:
-  - Fix new logic on like button
-
 ## 0.2.1 [23/09/2024]
 
 #### Fixed:
