@@ -4,6 +4,12 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.7.2 - [28/10/2024]
+
+#### Removed
+- *recipe-card-cta*:
+  - Removed recipe.show event
+
 ## v8.7.1 - [17/10/2024]
 
 #### Updated

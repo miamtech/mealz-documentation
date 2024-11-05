@@ -4,6 +4,24 @@ sidebar_position: 2
 
 # Mealz components Changelog 
 
+## 0.6.0 [31/10/2024]
+
+#### Removed:
+-*store-locator*:
+  - Removed radius selector and changed default radius to 50km
+  - Removed radiusOption attribute
+
+#### Updated:
+- *catalog*:
+  - created catalog.css for shared styles between catalog components
+-*store-locator*:
+  - Now opens the list of stores directly in webmobile after searching by address or geolocation
+  - Now shows the home delivery stores in first position
+
+#### Fixed:
+- *like-button*:
+  - State of button was not updated properly
+
 ## 0.5.0 [03/10/2024]
 
 #### Added:
