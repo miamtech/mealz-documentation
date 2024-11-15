@@ -34,7 +34,7 @@ If the action is not completed after 5 seconds (updated on your cart and in our 
 :::note
 
 The diagram above illustrates the default basket-sync process. However, some use cases differ from it:
-- Actions from basket transfer, authless basket transfer, and the meal planner require us to update our basket first. Then, we send the action list to your cart and, based on the cart you return, adjust our basket accordingly.
+- Actions from basket transfer, authless basket transfer, and the meals planner require us to update our basket first. Then, we send the action list to your cart and, based on the cart you return, adjust our basket accordingly.
 
 :::
 
@@ -78,7 +78,7 @@ export class Mealz {
 }
 ```
 
-- **`handlePayment(total: number): void`** Notifies Mealz of a successful payment, with the total price of the paid cart.
+- **`handlePayment(total: number): void`** - Notifies Mealz of a successful payment, with the total price of the paid cart.
 
 ```ts
 // Example Setup
