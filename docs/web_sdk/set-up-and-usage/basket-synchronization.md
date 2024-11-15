@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Basket synchronization
 
-This section is complex, but quite critical: this is where we make sure the items are correctly added to / removed from the user's cart when products were added or removed from Mealz fetaures.
+This section is complex, but quite critical: this is where we make sure the items are correctly added to / removed from the user's cart when products were added or removed from Mealz features.
 
 > In this section and everywhere in this tutorial, we refer to Mealz' cart as "the basket" and to your cart as "your cart", to avoid any confusion between the two.
 
@@ -17,33 +17,48 @@ So the process will not start until you send the first user's cart's contents to
 
 When both basket and cart are received, Mealz checks if any products are in lesser quantities in the user's cart than in Mealz' basket. If there are, meaning that the user have done modifications to their cart before the synchronization started, those products are removed from Mealz' basket until quantities are the same in the basket and the cart.
 
-Then, whenever the retailer sends to Mealz the user's cart because it has been modified, Mealz performs the same check to check if the user has removed products added by Mealz in the cart and removes the excess from Mealz' basket.
+Whenever the retailer sends an updated user's cart to Mealz, Mealz checks if the user has either:
+- Removed any products previously added by Mealz and removes the product from its basket.
+- Lowered the quantity of any products previously added by Mealz and updates the quantity of the product in the basket.
 
-When the user adds products to their basket or change a products' quantity from Mealz's components, Mealz compares the newest basket to the oldest one, and sends to the retailer the list of products to add or remove.
+![Basket sync from retailer action diagram](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/explanations/BasketSynchroV2-retailer-action.png "Basket sync from retailer action diagram")
+
+When the user adds, changes the quantity of, or removes products from Mealz's components, Mealz sends the retailer a list of products to add, update, or remove.
+
+We only update our basket once you send us your new cart.
+
+If the action is not completed after 5 seconds (updated on your cart and in our basket), we roll back our components to the state before the action.
+
+![Basket sync from retailer action diagram](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/explanations/BasketSynchroV2-mealz-action.png "Basket sync from retailer action diagram")
+
+:::note
+
+The diagram above illustrates the default basket-sync process. However, some use cases differ from it:
+- Actions from basket transfer, authless basket transfer, and the meal planner require us to update our basket first. Then, we send the action list to your cart and, based on the cart you return, adjust our basket accordingly.
+
+:::
 
 Lastly, if the user pays their cart, Mealz needs to be updated, because:
 
 - Just as the user's cart will be reset, Mealz needs to reset the basket to start afresh for the next user's cart
 - For analytics purposes, Mealz needs to know that the cart has been paid, and the total price paid for the cart, so that we can present you with stats of how many products of this cart were added from Mealz's features
 
-![Basket sync diagram](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/explanations/basket_sync.png "Basket sync diagram")
-
 > To recap:
 >
 > - Mealz needs to know the content of the user's cart every time it changes
-> - If an update comes from you and there is more of a product in Mealz' basket than in the user's cart, the correction is always done on our basket
+> - If we receive an update from you indicating that Mealz's basket contains more of a product than the user's cart, we will always adjust our basket accordingly.
 > - Products will be added / removed from the user's cart by Mealz only on actions performed in our components
-> - If the cart is correctly sent to us every time it changes as mentionned earlier, only the quantities corresponding to the user's inputs will be asked to be added / removed by Mealz
+> - If the cart is correctly sent to us each time it changes, as mentioned earlier, Mealz will only request additions or removals that match the user's inputs.
 
 ## How to setup the basket-sync ?
 
-Based on the previous explaination, there are 3 points of communication between the retailer & Mealz in the basket-sync process, and all methods needed for this communication are in `window.mealz.basketSync`.
+Based on the previous explanation, there are 3 points of communication between the retailer & Mealz in the basket-sync process, and all methods needed for this communication are in `window.mealz.basketSync`.
 
 > Mealz uses a simplified type to describe products for those methods :
 > `ComparableProducts { id: string, quantity: number }`
 > You can also find the interface for this type just like _miam-interface.ts_, the file name is _comparable-product.ts_
 
-- Sending the user's cart to Mealz is done with `retailerBasketChanged(products: ComparableProducts[]): void`
+- **`retailerBasketChanged(products: ComparableProducts[]): void`** - Sends the updated cart to Mealz.
 
 This method needs to be called each time the user's basket is updated (:warning: **even if the changes have nothing to do with products added by Mealz !**)
 
@@ -63,7 +78,7 @@ export class Mealz {
 }
 ```
 
-- `handlePayment(total: number): void` is the way for you to tell Mealz that the user has paid their cart, with the total price of the paid cart.
+- **`handlePayment(total: number): void`** Notifies Mealz of a successful payment, with the total price of the paid cart.
 
 ```ts
 // Example Setup
@@ -77,9 +92,7 @@ export class Mealz {
 
 > :warning: This method needs to be called **before you send to the library the cart reset on your side** or else, Mealz will empty the basket before sending the event to our analytics, which means we will not be able to inform you of Mealz' impact on your sales
 
-- The last method is a little more complicated. When Mealz will want to send you the products to update in the user's cart, the library will need a way to send those products to you. The simplest way of achieving this is having a method that you can pass a callback to, so we can call this callback anytime products need to be added / removed.
-  To do this, you will need to call
-  `definePushProductsToBasket(pushProductsToBasket: (products: ComparableProduct[]) => void): void;`
+- **`definePushProductsToBasket(pushProductsToBasket: (products: ComparableProduct[]) => void): void`** - Defines a callback that we can call to push products to your basket.
 
 ```ts
 // Example Setup
@@ -113,3 +126,9 @@ export class Mealz {
   }
 }
 ```
+
+:::info
+
+If you encounter synchronization issues, please check the debug logs in the console. Additionally, feel free to inform us of your specific use case, and we will work to find a solution for you.
+
+:::
