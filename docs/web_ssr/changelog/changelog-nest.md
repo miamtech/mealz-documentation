@@ -4,6 +4,63 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog 
 
+## 1.1.0 [15/11/2024]
+
+#### Added:
+- Added `mealz-session-id` to request headers
+- Added Redis configuration for caching
+- *catalog-category*
+  - Implemented empty state for scenarios where no recipes match the selected criterias.
+  - Added search functionality
+  - Integrated user preferences
+- *catalog-favorites*
+  - Added search functionality
+- *catalog-home*
+  - Integrated user preferences
+- *catalog-list*
+  - Added component + controller for JS injection
+- *catalog-toolbar*
+  - Added preferences badge count
+
+#### Updated:
+- *catalog-toolbar*
+  - Removed unused filters
+- *catalog-favorites*
+  - Removed preferences button
+
+#### Internal:
+- Added a cache controller to manage Redis cache through ng-miam-sdk
+- Enabled caching for `getBasket`, `getPointOfSaleByExtId`, `getByRecipeId`, `getRecipeById`, `getRecipePricing`
+
+#### Fixed:
+- *catalog-home*:
+  - Added back arrow to "See All" button.
+- *generate-authless-token*
+  - Added error handling for missing or invalid supplier token
+- *http.service*
+  - Added null checks for supplier data to avoid errors when supplierId is undefined or null
+- *point-of-sales.service*
+  - Added a check to ensure `pos` is defined before attempting to access `id`
+
+## 1.0.2 [08/11/2024]
+
+#### Added:
+- Added logs for missing required query parameters
+
+#### Fixed:
+- *catalog*:
+  - Made the *display_recipe_variant* query paramater optional
+
+## 1.0.1 [04/11/2024]
+
+#### Updated:
+- *urls*:
+  - Moved every routes from v0 to v1
+
+#### Fixed:
+- *recipe-card*
+  - Fixed suggested recipe-card
+
 ## 1.0.0 [24/10/2024]
 
 #### Breaking changes:
