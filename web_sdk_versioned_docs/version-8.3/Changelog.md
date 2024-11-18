@@ -4,6 +4,38 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.3.13 - [14/10/2024]
+
+#### Fixed:
+- *user*:
+  - Fixed too much authless creation requests
+
+## v8.3.12 - [14/10/2024]
+
+#### Fixed:
+- *product-card*:
+  - Fix unavailable product cards not displaying
+
+## v8.3.11 - [03/10/2024]
+
+#### Fixed:
+- *product-card*:
+  - Fix basket entries without a selected item would make the page crash
+
+## v8.3.10 - [12/09/2024]
+
+#### Fixed:
+- *window.miam*:
+  - basket.confirm emptied the basket while confirming it, which prevented basket.confirm event sending
+
+## v8.3.9 - [22/07/2024]
+
+#### Fixed:
+- *preferences*:
+  - "meal_type" tags could be researched in preferences_search, but were not displayed in preferences.
+- *recipe-card*:
+  - Fixed recipe loading logic in ngOnChanges method to remove unnecessary calls to loadRecipeFromContext
+
 ## v8.3.8 - [28/06/2024]
 
 #### Added:

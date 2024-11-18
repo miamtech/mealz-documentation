@@ -4,6 +4,56 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.6.7 - [15/11/2024]
+
+Merged 8.5.8 in 8.6 -> See v8.5.8 for changes
+
+## v8.6.6 - [05/11/2024]
+
+Merged 8.3.13 in 8.6 -> See v8.3.13 for changes
+
+## v8.6.5 - [14/10/2024]
+
+#### Fixed:
+- *add-recipe-card*:
+  - Fix 2px flickering because of its border size
+- *basket-transfer*:
+  - cachedRecipe check could go for an infinite loop if cachedRecipe was set in sessionStorage from outside of the SDK before the check
+  - Fixed transfer didn't wait for POS to be initialised before checking for forcing POS
+- *basket-service*:
+  - The route for updating the pricebook could empty Mealz' basket
+  - The route for updating the pricebook could be called with a falsy pricebook name
+
+#### Internal:
+- *basketService*:
+  - Removed useless param "merge_with" on refresh current basket route
+- *packagesService*:
+  - removed unused filter user_preferences
+
+Merged 8.3.12 in 8.6 -> See v8.3.12 for changes
+
+## v8.6.4 - [03/10/2024]
+
+Merged 8.5.5 in 8.6 -> See v8.5.5 for changes
+
+## v8.6.3 - [09/09/2024]
+
+Merged 8.3.10 in 8.6 -> See v8.3.10 for changes
+
+#### Updated:
+- *recipe-details-infos*:
+  - Now when no recipe info (difficulty, preparation time, cooking time) is available, its badge is not displayed
+
+- *recipe-filters*:
+  - Updated behaviour where confirming filter without selecting any filter option will go to catalog list page nonetheless
+
+#### Fixed:
+- *recipe-details*:
+  - Fixed issue where when opening a recipe modal without having any POS selected, the products-picker component was still shown in loading state
+
+- *catalog-toolbar*:
+  - added toolbar anchor width to prevent intersectionObserver glitches
+
 ## v8.6.2 - [03/09/2024]
 
 Merged 8.5.2 in 8.6 -> See v8.5.1 & v8.5.2 for changes
