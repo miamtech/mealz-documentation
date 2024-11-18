@@ -4,6 +4,31 @@ sidebar_position: 2
 
 # Mealz components Changelog 
 
+## 1.0.2 [15/11/2024]
+
+#### Added:
+- *catalog*
+- Added support for preferences
+
+#### Updated:
+- *catalog-toolbar*
+  - Removed unused filters
+
+#### Fixed
+- *catalog-home*:
+  - Added back arrow to "See All" button
+  - Fixed gap issue in category header for smaller screens
+- *like-button*:
+  - Corrected icon color on hover
+- *recipe-card*
+  - Fixed recipe-card width for smaller screens
+- *recipe-pricing*:
+  - Encapsulated hidden and active classes
+
+## 1.0.1 [31/10/2024]
+
+merged 0.6.1 into 1.0. See 0.6.1 for changes
+
 ## 1.0.0 [24/10/2024]
 
 #### Breaking changes:

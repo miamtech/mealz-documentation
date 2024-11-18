@@ -4,6 +4,34 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.5.8 - [14/11/2024]
+
+#### Fixed:
+- Basket could be updated by retailer during confirmation - Added a lock on it to make the synchronization wait
+
+## v8.5.7 - [05/11/2024]
+
+Merged 8.3.13 in 8.5 -> See v8.3.13 for changes
+
+## v8.5.6 - [14/10/2024]
+
+Merged 8.3.12 in 8.5 -> See v8.3.12 for changes
+
+## v8.5.5 - [03/10/2024]
+
+Merged 8.3.11 in 8.5 -> See v8.3.11 for changes
+
+## v8.5.4 - [18/09/2024]
+
+#### Fixed:
+- *basket-preview*:
+  - Opening the basket preview in no-supplier mode with no POS chosen did not open the store-locator
+  - Added missing analytics event on basket transfer
+
+## v8.5.3 - [09/09/2024]
+
+Merged 8.3.10 in 8.5 -> See v8.3.10 for changes
+
 ## v8.5.2 - [03/09/2024]
 
 #### Fixed:

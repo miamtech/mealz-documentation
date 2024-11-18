@@ -4,6 +4,15 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.8.2 - [15/11/2024]
+
+Merged 8.5.8 in 8.8 -> See v8.5.8 for changes
+
+## v8.8.1 - [05/11/2024]
+
+Merged 8.3.13 in 8.8 -> See v8.3.13 for changes
+Updated mealz-component to 0.6
+
 ## v8.8.0 - [31/10/2024]
 
 #### Updated:
