@@ -1,0 +1,69 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomMealsInBasketButtonSuccessView: MealsInBasketButtonSuccessProtocol {
+            public func content(params: MealsInBasketButtonSuccessParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomMealsInBasketButtonSuccessView: MealsInBasketButtonSuccessProtocol {
+
+        public init() {}
+        public func content(params: MealsInBasketButtonSuccessParameters) -> some View {
+            Button {
+                params.onNavigateToMyMeals()
+            } label: {
+                HStack(spacing: Dimension.sharedInstance.lPadding) {
+                    Image.mealzIcon(icon: .cutlery)
+                        .renderingMode(.template)
+                        .foregroundColor(Color.mealzColor(.standardLightText))
+                    Text(Localization.myMeals.mealsAdded(numberOfMeals: Int32(params.mealsCount)).localised)
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigBoldStyle)
+                        .foregroundColor(Color.mealzColor(.standardLightText))
+                    Image.mealzIcon(icon: .arrow)
+                        .renderingMode(.template)
+                        .foregroundColor(Color.mealzColor(.standardLightText))
+                }
+                    .padding(Dimension.sharedInstance.lPadding)
+            }
+                .background(Color.mealzColor(.darkestGray))
+                .clipShape(Capsule())
+                .padding(Dimension.sharedInstance.lPadding)
+            }
+        }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct MealsInBasketButtonSuccessParameters {
+    /// The number of recipes currently in the basket
+    public let mealsCount: Int
+    /// A closure to naviage to the basket or MyMeals page
+    public let onNavigateToMyMeals: () -> Void
+```
+
+- [MealsInBasketButtonSuccessProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/mealsinbasketbuttonsuccessprotocol)
