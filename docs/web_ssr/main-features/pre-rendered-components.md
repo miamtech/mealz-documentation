@@ -68,3 +68,5 @@ which will return an object:
   "authless_id": "<generated-authless-token>"
 }
 ```
+
+- **Profiling**: **_(Optional)_** Indicates whether user profiling is enabled. Set this header to `"true"` or `"false"` to reflect the user's profiling status. If not provided, the default value is `"true"`.
