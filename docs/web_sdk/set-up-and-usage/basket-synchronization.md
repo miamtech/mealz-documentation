@@ -92,18 +92,18 @@ export class Mealz {
 
 > :warning: This method needs to be called **before you send to the library the cart reset on your side** or else, Mealz will empty the basket before sending the event to our analytics, which means we will not be able to inform you of Mealz' impact on your sales
 
-- **`definePushProductsToBasket(pushProductsToBasket: (products: ComparableProduct[]) => void): void`** - Defines a callback that we can call to push products to your basket.
+- **`definePushProductsToCart(pushProductsToCart: (products: ComparableProduct[]) => void): void`** - Defines a callback that we can call to push products to your basket.
 
 ```ts
 // Example Setup
 export class Mealz {
   constructor() {
-    window.mealz.basketSync.definePushProductsToBasket(
-      this.pushProductsToBasket
+    window.mealz.basketSync.definePushProductsToCart(
+      this.pushProductsToCart
     );
   }
 
-  pushProductsToBasket(products: ComparableProducts[]) {
+  pushProductsToCart(products: ComparableProducts[]) {
     products.forEach((product) => {
       if (product.quantity > 0) {
         // Add {quantity} number of products in the cart
