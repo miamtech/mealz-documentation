@@ -20,7 +20,8 @@ path: 'https://www.yourdomain.com/thepath',
 props: {aString: 'foo bar', aNumber: 5}
 }
 ```
-- `init: (domain: string, optimizeKey: string) => void` Initializes the analytics
+- `init: (domain: string) => void` Initializes the analytics
+
   :::warning
     **Deprecated**, prefer using `supplier.setupWithToken` as it initializes the analytics
   :::
