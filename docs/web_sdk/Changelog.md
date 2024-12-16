@@ -4,6 +4,97 @@ sidebar_position: 11
 
 ## Changelog
 
+## v9.0.6 - [13/12/2024]
+
+#### Added:
+- *window.mealz.config.mealzLogs(param)*:
+  - Call method in order to filter mealz logs with 'none' < 'error' < 'warn' < 'all' as parameter
+
+#### Updated:
+- *basket-sync*:
+  - Now adding a basketEntry on status initial from the replace-item view also fetches the required quantity
+  - Added sync method to update Mealz basket with retailer cart if updates were not caught manually
+  - Timeout on action is now set to 10 seconds
+  - Change remove condition to `quantity < 1` rather than `quantity === 0` in order to prevent edge cases
+- *product-card*:
+  - Now uses `sponsored` attribute from item to display sponsor badge
+- *replace-item*:
+  - Now displays sponsored badge, item weight and price per unit
+- *my-meals*:
+  - Added picture to no meals view and centered the view on the modal
+
+#### Fixed:
+- *basket-sync*:
+  - Fixed `compareProducts` method that wrongly compared mealz basket with retailer cart
+- *recipe-details*
+  - Fix guests update request being sent on SSR component init
+  - Fixed loaders in footer were infinite when the basket actions timed out
+
+#### Internal:
+- *deepClone*:
+  - Moved deepCloneWithClass to its own specific file
+- *product-badges*:
+  - Split the product badges (sponsored, capacity, price per unit) into a new component
+
+## v9.0.5 - [29/11/2024]
+
+#### Fixed:
+- *preferences*
+  - Only cache preferences for SSR
+- *window.miam.analytics.eventSent$*:
+  - Fixed a duplicated origin and missing "/miam" in the path
+- *recipe-details*:
+  - Fix guests update request being sent on component init
+- *basket-sync*:
+  - Removing a recipe with deleted products tried to remove said products again from retailer cart
+  - Fix recipe tried to be removed/udpated/added again if precedent request had failed
+
+## v9.0.4 - [21/11/2024]
+
+#### Fixed:
+- *recipe-details*:
+  - Fixed an issue where loaders would get stuck when attempting to update the number of guests for a recipe not present in the basket.
+
+#### Updated:
+- *basket-synchro*:
+  - Now handles authless basket transfer
+
+#### Internal:
+- Added StatesService to hold various global states and avoid circular dependencies
+
+## v9.0.3 - [20/11/2024]
+
+#### Fixed:
+- *basket-synchro*:
+  - Now works for every basket entry updates from *meals planner*
+
+## v9.0.2 - [15/11/2024]
+
+#### Added:
+- *preferences-component*:
+  - webc-miam-preferences-modal is now available in DOM and can be opened through mealzInternal.catalog.openPreferences()
+
+#### Updated:
+- *basket-synchro*:
+  - Added flexibility to specify whether the callback should be invoked with a single BasketEntry or an array of BasketEntry objects.
+  - Added cdr.detectChanges() to loading indicators to improve responsiveness and provide a smoother user experience.
+- *product-card*:
+  - Slight design tweaks
+- *recipe-details*:
+  - Added disabled state to guest counter input when updates are being made to the basket
+
+#### Fixed:
+- *basket-synchro*:
+  - Resolved issue with recipe removal when ingredients are shared across multiple recipes.
+
+#### Internal
+- *mealzInternal.catalog*:
+  - Add *preferencesCount* observable to display number of selected preferences
+  - Add *openPreferences* method to open preference modal
+  - Add *preferencesModalChanged* observable to notify when preferences have changed
+
+Merged 8.3.13 in 9.0 -> See v8.3.13 for changes
+
 ## v9.0.1 - [24/10/2024]
 
 #### Updated:
