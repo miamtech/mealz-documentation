@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
-## 1.2.0 [13/12/2024]
+## 1.2.0 [UAT: 13/12/2024 - PROD: Unreleased]
 
 ### Added:
 - *http.service*
