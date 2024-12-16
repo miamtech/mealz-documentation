@@ -20,16 +20,15 @@ path: 'https://www.yourdomain.com/thepath',
 props: {aString: 'foo bar', aNumber: 5}
 }
 ```
-- `init: (domain: string, optimizeKey: string) => void` Initialises the analytics
+- `init: (domain: string, optimizeKey: string) => void` Initializes the analytics
   :::warning
-    **Deprecated**, prefer using `supplier.setupWithToken` as it initialises the analytics
+    **Deprecated**, prefer using `supplier.setupWithToken` as it initializes the analytics
   :::
-- `setAbTestKey: (key: string) => void` Inform the library of any [ABTest](./set-up-abtest.md) version being showed with `key` and identifier for the version
 
 ## window.mealz.basket
 - `basketIsReady$: Observable<boolean>`: Emits true when Mealz's basket has successfully loaded for the first time. Does not emit anything before or after that.
 - `initialize: () => void`: Fetch the first Basket early (before any action requires it on Mealz's side), so you can start the [basket-sync](../set-up-and-usage/basket-synchronization) earlier
-- `reset: () => void`: Resets Mealz' basket : empties all products & recipes added by the user.
+- `reset: () => void`: Resets Mealz's basket : empties all products & recipes added by the user.
   :::info
     We recommend that you use `basket.reset()` when the user empties their cart on your website, to avoid the recipes being kept in a "in-basket" state but with no products and displayed at a price of 0.
     
@@ -39,13 +38,8 @@ props: {aString: 'foo bar', aNumber: 5}
   :::info
     If you have different pricebooks, they need to have been sent to our API so you can change them with `basket.updatePricebook()`. The pricebookName should be the same that the one sent to our API
   :::
-- `recipeCount: () => Observable<number>`: A BehaviorSubject that emits the current number of recipes in Mealz' Basket once (it waits for the Basket to be initialized to emit).
+- `recipeCount: () => Observable<number>`: A BehaviorSubject that emits the current number of recipes in Mealz's Basket once (it waits for the Basket to be initialized to emit).
 - `openPreview: () => void`: Opens the recipe-modal in basket preview mode to display the recipes currently in the basket (Same action as when clicking on the FAB in the recipe-catalog)
-- `overrideTransferUrl: (url: string)`: Use in the devtools on an affiliated website to override the redirection url when transferring the cart to your website.
-  Ex: Calling overrideTransferUrl('http://localhost:3000/recipes') will make the redirection url become 'http://localhost:3000/recipes?{PARAMS}'
-  :::warning
-    Only for debug purposes
-  :::
 
 ## window.mealz.basketSync
 See [basket synchronization](../set-up-and-usage/basket-synchronization)
@@ -89,7 +83,6 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 - `setHookCallback(callback: (isLogged, isPosValid) => boolean) => void`: [Set up hook callback](../set-up-and-usage/hooks)
 - `setForcePosCallback: (callback: (posExtId: string) => boolean) => void`: [Receiving baskets from affiliated websites](./affiliated-websites)
 
-
 ## window.mealz.pos
 - `load: (externalId) => void`: Call to inform Mealz that the point of sale has been updated. Either initialized or updated.
 
@@ -122,8 +115,8 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
     It sends the number of **ingredients** and not of products because the SDK has no way of knowing the quantity of the potential products NOT added. 
   :::
 - `shouldDisplayIngredientPicturesOnRecipeCard: (should: boolean) => void`: If true is passed, recipe-cards will diplay pictures of the ingredients.
-- `setDefaultIngredientPicture: (url: string) => void`: Set a default url for if there aren't any picture for an ingredient
-- `setDefaultRecipePicture: (url: string) => void`: Set a default url for if there aren't any picture for a recipe
+- `setDefaultIngredientPicture: (url: string) => void`: Set a default url to use if there aren't any picture for an ingredient
+- `setDefaultRecipePicture: (url: string) => void`: Set a default url to use if there aren't any picture for a recipe
 - `setDifficultyLevels: (levels: { value: number, label: string }[]) => void`: Override default labels for difficulty levels
   :::note
     `levels`: The list of labels to override for each difficulty (difficulties are respectively **1: Easy, 2: Medium, 3: Hard**).
@@ -139,7 +132,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 - `setPromotionsUrl: (url: string) => void`: Inform Mealz of the url where the promotions are
 
 ## window.mealz.supplier
-- `setupWithToken: (token: string) => void`: [Inform the library of who you are](../set-up-and-usage/inform-the-library#inform-the-library-of-who-you-are)
+- `setupWithToken: (token: string) => void`: [Inform the library of who you are](../set-up-and-usage/library-context#inform-the-library-of-who-you-are)
 - `setOrigin: (origin: string) => void`: set the origin to put in Mealz's requests headers
   :::warning
     **Deprecated**, prefer using `supplier.setupWithToken` as it automatically sets the origin
@@ -154,8 +147,9 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
   :::
 
 ## window.mealz.user
-- `loadWithExtId: (id, forbidProfiling = false) => void`: [Log in user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout-optional)
-- `reset: () => void`: [Log out user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout-optional)
+- `loadWithExtId: (id, forbidProfiling = false) => void`: [Log in user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout)
+- `loadWithAuthlessId: (id, forbidProfiling = false) => void`: configure our sdk to use the authless id
+- `reset: () => void`: [Log out user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout)
 - `setFavoriteItems: (favoriteProductIds: string[]) => Observable<object>`: If your website has a "favorite products" feature, you can pass the ids of all products which the user has marked as favorites, so they can be prioritized when adding a recipe to their cart, if one of them is returned as a matching product for the recipe.
   :::note
     `favoriteProductIds`:  an array of product ids, passed as string
@@ -175,6 +169,8 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
     ```
   :::
 
+- `updateForbidProfiling: (forbidProfiling: boolean, userId: string, isAuthless = false) => void`: Update the value of `forbidProfiling` for the current user and load back user with user id or authless id
+
 ## window.mealz.events
 - `storeLocatorOpened: () => Observable<boolean>` Emits either `true` when the store locator is opened or `false` when it's closed
 
@@ -186,7 +182,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
     This setter is **mandatory** for our catalog-header to get fixed at the right position when scrolling. Without it, our header might get fixed above or behind your header
   :::
 
-* `setDefaultScrollElementGetter: (callback: () => HTMLElement) => void`: **Heavily recommended** Pass a callback that returns the default scroll container of the page so mealz modal can block the scroll when opened.
+* `setDefaultScrollElementGetter: (callback: () => HTMLElement) => void`: **Heavily recommended** Pass a callback that returns the default scroll container of the page so Mealz's modal can block the scroll when opened.
   :::info
     Default callback returns document.body. Call setDefaultScrollElementGetter(() => null) if you don't want the modal to block scroll on background.
   :::

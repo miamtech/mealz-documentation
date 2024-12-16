@@ -24,7 +24,11 @@ window.mealz.user.loadWithExternalId(userID: string, forbidProfiling: boolean).s
 - userId: a unique identifier that we can recognize the user by
 - forbidProfiling: true if the user has refused all cookies and false if they have accepted them (if true, personalized content will be desactivated).
 
-When your user log out, call `window.mealz.user.reset()` to disconnect the user from Mealz. Additionally, when the user logs out, you must pass the authless ID in the headers, as detailed in the [Pre-rendered Components](../main-features/pre-rendered-components) section.
+:::warning
+Do not forget to remove the authless-id you stored and pass in the headers as detailed in the [HTTP request headers](../main-features/pre-rendered-components#http-request-headers) section
+:::
+
+When your user log out, call `window.mealz.user.reset()` to disconnect the user from Mealz. Additionally, when the user logs out, you must generate a new authless ID and pass it in the headers, as detailed in the [Pre-rendered Components](../main-features/pre-rendered-components) section.
 
 ```ts
 // Example Setup
