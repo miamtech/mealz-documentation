@@ -27,7 +27,8 @@ Some informations are needed to display all of our components. In order to not h
   "Authless-id": "<authless-token>", // if "Authorization" is not provided
   "Supplier-token": "<your-supplier-token>",
   "Language-id": "<your-language-id>",
-  "Session-id": "<a-unique-id>"
+  "Session-id": "<a-unique-id>",
+  "profiling": "<true/false>"
 }
 ```
 
@@ -50,6 +51,8 @@ Some informations are needed to display all of our components. In order to not h
 See [Internationalisation](/docs/web_ssr/customization/internationalization) for how to configure a custom I18n file to override our base texts with your own.
 - **Session-id**: A unique identifier to differentiate sessions from one another (for example a uuid). This helps us keep things consistent during a session.
 > For example if a user sees a recipe on a shelf, clicks on a product and goes to the product page, then goes back, they would expect to see the same recipe on the shelf. With the session-id, we are able to return the same recipe if the products passed in parameters are the same as a previous request with the same session-id
+
+- **profiling**: **_(Optionnal)_** Default value is true. If passed with a `false` value, informs Mealz that the profiling permissions have been refused by the user in the cookies. Deactivates all personalization in all Mealz features.
 
 ## Authless user
 Even if the user is not logged into your website, you might want to allow them to add products to their basket.

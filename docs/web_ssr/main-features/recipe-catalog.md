@@ -29,9 +29,12 @@ All pages display a **toolbar** that has :
 - A "Favorites" button which redirects to the **favorites page** 
 - A "Preferences" button that opens the Preferences drawer, enabling users to set **global preferences** for recipes based on include and exclude tags (e.g., gluten-free, vegan, or exclude specific ingredients). These preferences are automatically managed and applied across all Mealz-related features, excluding favorites, for a tailored experience without additional configuration.
 
-Each pages also displays a floating button showing the number of recipes currently added to the user's cart
+Each pages also displays a floating button showing the number of recipes currently added to the user's cart.
+
 On a click on this button, the **"My meals" drawers** appears:
 ![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "My meals")
+
+Clicking the trash icons next of the recipes in the drawer will remove said recipes from the cart, which will remove all products from the cart as if they were removed individually from the recipe details drawer. Clicking "See products" on a recipe will open the recipe details drawer, as if the corresponding recipe-card was clicked.
 
 The category, favorites and list pages each return a response with only 20 recipes in the list, but more recipes are automatically fetched on scroll from the client-side.
 

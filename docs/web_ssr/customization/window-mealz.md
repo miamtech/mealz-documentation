@@ -169,7 +169,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
     ```
   :::
 
-- `updateForbidProfiling: (forbidProfiling: boolean, userId: string, isAuthless = false) => void`: Update the value of `forbidProfiling` for the current user and load back user with user id or authless id
+- `updateForbidProfiling: (forbidProfiling: boolean, userId: string, isAuthless = false) => void`: Informs Mealz that the profiling permission has changed during execution. It can be used for both logged mode and authless mode (ex: logged user : `updateForbidProfiling(true, '12345')` | authless user: `updateForbidProfiling(true, 'MEALZ-AUTHLESS-12345', true)`)
 
 ## window.mealz.events
 - `storeLocatorOpened: () => Observable<boolean>` Emits either `true` when the store locator is opened or `false` when it's closed
