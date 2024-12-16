@@ -19,7 +19,7 @@ It consists of several pages that route to one another:
 ![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Recipe catalog")
 - The **favorite page**, which shows the list of recipes added as favorites by a connected user
 ![Catalog favorites](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/favorites.png "Catalog favorites")
-- The **list page (WIP)**, which shows a filtered list of your catalog of recipes
+- The **list page**, which shows a filtered list of your catalog of recipes (currently the only application of the list page is for the search results)
 ![Catalog list search](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalogSearch.png "Catalog list search")
 - The **categories page**, which shows the list of recipes in a category
 ![Catalog list](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/catalogList.png "Catalog list")
@@ -121,7 +121,7 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
   - `search: string`:
   **_(Optional)_** This parameter should be specified if the user has used the search bar. The search term should be retrieved from the URL parameter search and passed unaltered to refine the recipe results based on the search input.
 
-## List Page (WIP)
+## List Page
 
 The base url for the catalog list page will be the following:
 ```
