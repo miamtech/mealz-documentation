@@ -63,6 +63,9 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
     `total`: The total price of the cart paid
   :::
 
+## window.mealz.config
+- `mealzLogs: (param: 'all' | 'warn' | 'error' | 'none') => void`: The `mealzLogs` function configures log visibility: `'all'` shows all logs, `'warn'` shows warnings and errors, `'error'` shows only errors, and `'none'` hides all logs.
+
 ## window.mealz.features
 - `enableVideoRecipes: () => void`: Call to enable recipes to display a video instead of their picture, if the recipe has a video
 - `enableArticlesInCatalog: () => void`: Enable having Mealz's articles appearing in a dedicated category in the recipe-catalog component
