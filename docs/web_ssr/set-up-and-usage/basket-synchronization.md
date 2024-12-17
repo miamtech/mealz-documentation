@@ -132,3 +132,38 @@ export class Mealz {
 If you encounter synchronization issues, please check the debug logs in the console. Additionally, feel free to inform us of your specific use case, and we will work to find a solution for you.
 
 :::
+
+## What if Mealz is not active and my cart changes ?
+
+If Mealz is not active on the page (because none of our features are currently displayed and the script tags have been removed from the DOM), **You do not have to worry much about the basket-sync** !
+
+There are only a few things at this point for you to remember as to ensure no problems happen later:
+
+#### Notify us of the cart contents during setup
+
+Each time you display Mealz features and go through the setup process, **send us the up-to-date cart**. The basket-sync algorithm will check for any products removed since its last run and will update Mealz's basket to reflect only the current products in the user's cart.
+
+#### Notify us when the user logs in
+
+http://localhost:3000/mealz-documentation/docs/web_ssr/set-up-and-usage/login-and-logout#when-mealz-scripts-are-not-active
+
+If the user logs in while Mealz is not active, you will need to call the /merge-authless-basket route to inform us of the login (see [here](/docs/web_ssr/set-up-and-usage/login-and-logout#when-mealz-scripts-are-not-active)). 
+
+This ensures that if the authless user had a cart, Mealz will merge this cart with their "logged in" cart. The next time Mealz features are displayed and the basket-sync runs, it will use the merged cart as a basis.
+
+#### Notify us when the cart is paid
+
+If the cart is paid while Mealz is not active (which will likely be the case), **keep us informed**. There is a route that you can call to do the same thing as `window.mealz.basketSync.handlePayment` does :
+
+```
+POST http://MEALZ_SSR_API_URL/API_VERSION/basket/handle-payment
+```
+
+- Parameters:
+  - `store_id: string`: **_(Mandatory)_** The store chosen for the paid cart.
+
+- Body: The method requires the same cart object you send with retailerBasketChanged. This is necessary for Mealz to run a final basket-sync cycle to detect any products removed from the cart since the last sync.
+
+:::tip
+Think of this route as performing the same actions as `retailerBasketChanged` followed by `handlePayment`
+:::
