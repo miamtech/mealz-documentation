@@ -4,6 +4,89 @@ sidebar_position: 2
 
 # Mealz components Changelog 
 
+## 1.2.0 [13/12/2024]
+
+#### Updated:
+- Removed the `starting-data` attribute from HTML after it has been successfully read for the following components:
+  - *catalog-category*
+  - *catalog-favorites*
+  - *catalog-home*
+  - *catalog-list*
+  - *catalog-toolbar*
+  - *recipe-card-cta*
+  - *recipe-pricing*
+
+#### Fixed:
+- Fixed margins & selectors after semantic tags were added in SSR-API
+- *catalog-load-more*
+  - Catch failed requests and log to console instead of displaying in HTML
+
+#### Internal
+- *recipe-card*
+  - Handle `path` and `categoryId` in starting data for analytics
+  - New recipe.show event sent when recipe-card is 80% in viewport for 1s
+- *catalog-toolbar*
+  - Handle `path` in starting data for analytics
+- *my-meals-button*
+  - Handle starting data with `path` for analytics
+- *viewport-listener*:
+  - Create class
+
+## 1.1.2 [29/11/2024]
+
+#### Fixed:
+- *catalog*
+  - Fix only the home page had a padding at the bottom
+
+## 1.1.1 [25/11/2024]
+
+#### Fixed:
+- *catalog-favorites*
+  - Fix infinite loader
+
+## 1.1.0 [22/11/2024]
+
+#### Added:
+- *catalog-favorites*
+  - Added auto-load more recipes on scroll
+- *catalog-list*
+  - Added auto-load more recipes on scroll
+- *catalog-toolbar*
+  - Added preferences loader
+
+#### Updated:
+- *catalog-toolbar*
+  - Reset stickyObserver when new value is given using mealz.setStickyHeaderHeight(...)
+
+#### Internal:
+- *catalog-load-more*
+  - Added component to group load more functionality
+
+## 1.0.2 [15/11/2024]
+
+#### Added:
+- *catalog*
+- Added support for preferences
+
+#### Updated:
+- *catalog-toolbar*
+  - Removed unused filters
+
+#### Fixed
+- *catalog-home*:
+  - Added back arrow to "See All" button
+  - Fixed gap issue in category header for smaller screens
+- *like-button*:
+  - Corrected icon color on hover
+- *recipe-card*
+  - Fixed recipe-card width for smaller screens
+- *recipe-pricing*:
+  - Encapsulated hidden and active classes
+
+## 1.0.1 [31/10/2024]
+
+merged 0.6.1 into 1.0. See 0.6.1 for changes
+
 ## 1.0.0 [24/10/2024]
 
 #### Breaking changes:

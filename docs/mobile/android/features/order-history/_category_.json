@@ -1,6 +1,6 @@
 {
-  "label": "Changelogs",
-  "position": 8,
+  "label": "Order History",
+  "position": 7,
   "link": {
     "type": "generated-index"
   }

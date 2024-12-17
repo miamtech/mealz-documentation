@@ -1,0 +1,181 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'Boilerplate', value: 'empty_example' },
+{ label: 'Full Example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.baseComponent.swapper.Swapper
+import ai.mealz.sdk.components.baseComponent.swapper.SwapperParameters
+
+
+class MyCustomSwapper:  Swapper {
+
+    @Composable
+    override fun Content(params: SwapperParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.baseComponent.swapper.Swapper
+import ai.mealz.sdk.components.baseComponent.swapper.SwapperParameters
+
+
+class MyCustomSwapper : Swapper {
+
+    enum class MultiSelectorOption {
+        Option,
+        Background,
+    }
+
+    @Composable
+    override fun Content(params: SwapperParameters) {
+
+        val state = params.state
+        val optionList = state.options
+
+        val scope = rememberCoroutineScope()
+
+        require(optionList.size >= 2) { "This composable requires at least 2 options" }
+        require(optionList.keys.contains(params.selectedOption)) { "Invalid selected option [${state.selectedOption}]" }
+
+        LaunchedEffect(key1 = optionList, key2 = params.selectedOption) {
+            state.selectOption(scope, optionList.keys.indexOf(params.selectedOption))
+        }
+
+        Layout(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+                .clip(RoundedCornerShape(size = sPadding))
+                .background(
+                    color = Colors.backgroundLightGrey,
+                    shape = RoundedCornerShape(size = xlRoundedCorner)
+                )
+                .padding(sPadding),
+            content = {
+                params.options.values.forEachIndexed { index, option ->
+                    Box(
+                        modifier = Modifier
+                            .layoutId(MultiSelectorOption.Option)
+                            .clip(RoundedCornerShape(size = xlRoundedCorner))
+                            .clickable {
+                                params.onOptionSelect(params.options.keys.elementAt(index))
+                                state.selectOption(scope, index)
+                            },
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        SwapperElement(option, state.selectedIndex == index.toFloat())
+                    }
+                    Box(
+                        modifier = Modifier
+                            .layoutId(MultiSelectorOption.Background)
+                            .background(primary, shape = RoundedCornerShape(size = xlRoundedCorner))
+                    )
+                }
+            }
+        ) { measurables, constraints ->
+            val optionWidth = constraints.maxWidth / params.options.size
+            val optionConstraints = Constraints.fixed(
+                width = optionWidth,
+                height = constraints.maxHeight,
+            )
+            val optionPlaceables = measurables
+                .filter { measurable -> measurable.layoutId == MultiSelectorOption.Option }
+                .map { measurable -> measurable.measure(optionConstraints) }
+            val backgroundPlaceable = measurables
+                .first { measurable -> measurable.layoutId == MultiSelectorOption.Background }
+                .measure(optionConstraints)
+            layout(
+                width = constraints.maxWidth,
+                height = constraints.maxHeight,
+            ) {
+                backgroundPlaceable.placeRelative(
+                    x = (state.selectedIndex * optionWidth).toInt(),
+                    y = 0,
+                )
+                optionPlaceables.forEachIndexed { index, placeable ->
+                    placeable.placeRelative(
+                        x = optionWidth * index,
+                        y = 0,
+                    )
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun SwapperElement(option: SwapperOption, isSelect: Boolean) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            option.icon?.let {
+            Icon(
+                painter = painterResource(id = it),
+                contentDescription = "guests icon",
+                tint = if (isSelect) white else boldText,
+                modifier = Modifier
+                    .size(mIconHeight)
+                    .padding(start = sPadding)
+                )
+            Spacer(Modifier.width(sPadding))
+            }
+            Text(
+                text = option.title,
+                style = bodySmall,
+                color = if (isSelect) white else boldText,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(horizontal = sPadding),
+            )
+        }
+    }
+
+    data class MultiSelectorState(
+        val options: Map<String, SwapperOption>,
+        val selectedOption: String,
+    ) {
+        val selectedIndex: Float
+        get() = _selectedIndex.value
+
+        private var _selectedIndex = Animatable(options.keys.indexOf(selectedOption).toFloat())
+
+        private val animationSpec = tween<Float>(
+            durationMillis = 200,
+            easing = FastOutSlowInEasing,
+        )
+
+        fun selectOption(scope: CoroutineScope, index: Int) {
+            scope.launch {
+                _selectedIndex.animateTo(
+                    targetValue = index.toFloat(),
+                    animationSpec = animationSpec,
+                )
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+
+### Swapper params
+
+```kotlin
+data class SwapperParameters(
+    val options: Map<String, SwapperOption>,
+    val state: SwapperImp.MultiSelectorState,
+    val selectedOption: String,
+    val onOptionSelect: (String) -> Unit
+)
+
+data class SwapperOption(val title: String, val icon: Int? = null)
+```
