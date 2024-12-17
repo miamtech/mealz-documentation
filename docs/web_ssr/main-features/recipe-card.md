@@ -34,9 +34,6 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card
   - `pricebook_key: string = 'DEFAULT'`:
   **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
 
-  - `profiling: boolean = true`:
-  **_(Optional)_** set to false if user refused profiling
-
   - `display_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see below for examples)
 

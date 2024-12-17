@@ -74,4 +74,3 @@ which will return an object:
 {
   "authless_id": "<generated-authless-token>"
 }
-```
