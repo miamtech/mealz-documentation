@@ -1,0 +1,102 @@
+---
+sidebar_position: 7
+---
+
+import ImageWithText from '@site/src/components/ImageWithText';
+import EventProperties from '../_shared/analytics/event-properties.md'
+
+
+# Analytics
+
+The library uses analytics to track key user interactions and improve the overall experience.
+You can listen to the events we send and integrate them into your own analytics systems for tailored insights using `window.mealz.analytics.eventSent$`.
+See [window.mealz.analytics](./customization/window-miam#windowmealzanalytics) for more details.
+
+## Events
+
+### Recipe card
+
+<ImageWithText
+  url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeCard.png"
+  text="
+  <ul>
+    <li><b>recipe.show</b>: When 80%+ of the recipe card is on the screen for 1 second</li>
+    <li><b>recipe.display</b>: Click on the recipe card to open the details</li>
+    <li><b>recipe.like</b>: Click on the heart button when recipe is not liked</li>
+    <li><b>recipe.unlike</b>: Click on the heart button when recipe is liked</li>
+  </ul>
+  "
+  alt="Recipe card"
+  caption="Recipe card"
+  imageMaxWidth="250px"
+  flexDirection="row-reverse"
+/>
+
+### Recipe catalog
+
+![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Recipe catalog")
+
+- **category.display**: Click on "See all" on a category
+- **preferences.display**: Click on "Preferences"
+- **liked.display**: Click on "Favorites"
+- **basket.display**: Click on "X products in your cart"
+
+### Preferences
+
+- **pageview**: Each time you land on the page
+
+### Recipe details
+
+<ImageWithText
+  url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail1.png"
+  text="
+  <ul>
+    <li><b>pageview</b>: Each time you land on the page</li>
+    <li><b>recipe.like</b>: Click on the heart button when recipe is not liked</li>
+    <li><b>recipe.unlike</b>: Click on the heart button when recipe is liked</li>
+    <li><b>recipe.change-guests</b>: Change of guests using the counter</li>
+    <li><b>recipe.close</b>: Click on the Cross button or the blurry background</li>
+    <li><b>entry.add-all</b>: Click on 'Add X products (XX,XX€)'</li>
+    <li><b>recipe.continue</b>: Click on 'Continue'</li>
+    <li><b>recipe.shopping.display</b>: Click on 'Shopping' tab</li>
+    <li><b>recipe.cooking.display</b>: Click on 'Cooking' tab</li>
+    <li><b>home.display</b>: Click on 'See more recipes'</li>
+  </ul>
+  "
+  alt="Recipe details"
+  caption="Recipe details"
+  imageMaxWidth="300px"
+  imageMaxHeight="500px"
+  flexDirection="row-reverse"
+/>
+
+### Product card
+
+<ImageWithText
+  url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipe_product-card.png"
+  text="
+  <ul>
+    <li><b>entry.add</b>: Click on the cart button</li>
+    <li><b>entry.replace</b>: Click on the 'Replace' button</li>
+    <li><b>entry.delete</b>: Change quantity to zero</li>
+    <li><b>entry.ignore</b>: Click on the 'Ignore' button</li>
+  </ul>
+  "
+  alt="Product cards"
+  caption="Product cards"
+  imageMaxWidth="300px"
+/>
+
+### Basket interactions
+
+- **entry.added**: Each time an entry is succesfully added to the basket
+- **entry.deleted**: Each time an entry is succesfully removed from the basket
+- **entry.replaced**: Each time an entry is succesfully replaced
+
+### Payment
+
+- **payment.started**: When the user enter the payment journey
+- **payment.confirmed**: When the user has succesfully paid the basket
+- **basket.confirmed**: Once the payment is finished
+
+<EventProperties/>

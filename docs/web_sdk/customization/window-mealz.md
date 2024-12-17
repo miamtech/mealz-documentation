@@ -20,10 +20,12 @@ path: 'https://www.yourdomain.com/thepath',
 props: {aString: 'foo bar', aNumber: 5}
 }
 ```
-- `init: (domain: string, optimizeKey: string) => void` Initialises the analytics
+- `init: (domain: string) => void` Initialises the analytics
+
   :::warning
     **Deprecated**, prefer using `supplier.setupWithToken` as it initialises the analytics
   :::
+
 - `setAbTestKey: (key: string) => void` Inform the library of any [ABTest](./set-up-abtest.md) version being showed with `key` and identifier for the version
 
 ## window.mealz.basket
