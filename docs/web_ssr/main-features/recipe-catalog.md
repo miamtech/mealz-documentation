@@ -19,7 +19,7 @@ It consists of several pages that route to one another:
 ![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Recipe catalog")
 - The **favorite page**, which shows the list of recipes added as favorites by a connected user
 ![Catalog favorites](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/favorites.png "Catalog favorites")
-- The **list page (WIP)**, which shows a filtered list of your catalog of recipes
+- The **list page**, which shows a filtered list of your catalog of recipes (currently the only application of the list page is for the search results)
 ![Catalog list search](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalogSearch.png "Catalog list search")
 - The **categories page**, which shows the list of recipes in a category
 ![Catalog list](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/catalogList.png "Catalog list")
@@ -29,9 +29,12 @@ All pages display a **toolbar** that has :
 - A "Favorites" button which redirects to the **favorites page** 
 - A "Preferences" button that opens the Preferences drawer, enabling users to set **global preferences** for recipes based on include and exclude tags (e.g., gluten-free, vegan, or exclude specific ingredients). These preferences are automatically managed and applied across all Mealz-related features, excluding favorites, for a tailored experience without additional configuration.
 
-Each pages also displays a floating button showing the number of recipes currently added to the user's cart
+Each pages also displays a floating button showing the number of recipes currently added to the user's cart.
+
 On a click on this button, the **"My meals" drawers** appears:
 ![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "My meals")
+
+Clicking the trash icon next to a recipe in the drawer will remove that recipe from the cart, along with all its associated products. This action is equivalent to removing each product individually from the recipe details drawer. Clicking "See products" on a recipe will open the recipe details drawer, just as if the corresponding recipe card was clicked.
 
 The category, favorites and list pages each return a response with only 20 recipes in the list, but more recipes are automatically fetched on scroll from the client-side.
 
@@ -118,7 +121,7 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
   - `search: string`:
   **_(Optional)_** This parameter should be specified if the user has used the search bar. The search term should be retrieved from the URL parameter search and passed unaltered to refine the recipe results based on the search input.
 
-## List Page (WIP)
+## List Page
 
 The base url for the catalog list page will be the following:
 ```
