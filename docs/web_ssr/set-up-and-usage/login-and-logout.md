@@ -86,13 +86,13 @@ export class Mealz {
 
 ## When Mealz scripts are not active
 
-If your user logs in when Mealz scripts are not active, there is the question of what to do the next time our components are displayed.
+If a user logs in when the Mealz scripts are not active, you need to decide how to handle the situation the next time our components are displayed.
 
-If at this moment on startup you do the startup "normally" and pass to us the user-id, Mealz will treat the new user as-is and not as a continuation of the previous user. Which is fine, except if your website autorises unlogged carts and if the unlogged user had already pushed some recipes to cart.
+If, at startup, you proceed normally and pass the user ID to us, Mealz will treat the new user as a new session rather than a continuation of the previous session. This is generally acceptable, except if your website allows unlogged carts and the unlogged user had already added some recipes to the cart.
 
 > **If that happens, the user will lose the recipes they had previously added to their cart !**
 
-To avoid this situation, there is a route you can call to inform Mealz that the unlogged user with a authless-id has logged and to transfer their current cart to their user-id:
+To avoid this situation, you can call a specific route to inform Mealz that an unlogged user with an authless-id has logged in, and to transfer their current cart to their new user-id:
 
 The route to **transfer the authless basket**:
 
@@ -105,7 +105,7 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/basket/merge-authless-basket?authless_i
   - `store_id: string`: **_(Mandatory)_** the id of the current store chosen by the user
 
 :::info
-  As the route transfers the basket of the authless-id to the user-id, you of course need to use the `Authorization: user_id` header when calling it and not the `Authless-id` header
+Since the route transfers the basket from the authless-id to the user-id, you need to use the `Authorization: user_id` header when calling it, instead of the `Authless-id` header.
 :::
 
 

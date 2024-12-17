@@ -34,7 +34,7 @@ Each pages also displays a floating button showing the number of recipes current
 On a click on this button, the **"My meals" drawers** appears:
 ![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "My meals")
 
-Clicking the trash icons next of the recipes in the drawer will remove said recipes from the cart, which will remove all products from the cart as if they were removed individually from the recipe details drawer. Clicking "See products" on a recipe will open the recipe details drawer, as if the corresponding recipe-card was clicked.
+Clicking the trash icon next to a recipe in the drawer will remove that recipe from the cart, along with all its associated products. This action is equivalent to removing each product individually from the recipe details drawer. Clicking "See products" on a recipe will open the recipe details drawer, just as if the corresponding recipe card was clicked.
 
 The category, favorites and list pages each return a response with only 20 recipes in the list, but more recipes are automatically fetched on scroll from the client-side.
 
