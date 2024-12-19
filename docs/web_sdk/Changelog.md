@@ -4,6 +4,12 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.0.7 - [16/12/2024]
+
+#### Updated:
+- *my-meals*:
+  - Reverted the no meals commit as it was potentially breaking
+
 ## v9.0.6 - [13/12/2024]
 
 #### Added:
