@@ -49,8 +49,8 @@ sidebar_position: 12
 - *product-card*:
   - New view for unavailable state
 - *modal*
-- Adjusted CSS using ">" selectors to prevent styles from affecting multiple simultaneously displayed modals
-- Removed the footer with the CTA "Add X products (XX,XX€)" in the "Cooking" tab
+  - Adjusted CSS using ">" selectors to prevent styles from affecting multiple simultaneously displayed modals
+  - Removed the footer with the CTA "Add X products (XX,XX€)" in the "Cooking" tab
 - *product-card-skeleton*:
   - Updated design regression
 - *window.mealz.supplier.setupWithToken*
