@@ -40,7 +40,7 @@ Currently, we only handle **immediate discounts**. We plan to support fidelity d
 
 The sale indicators are linked to the product, so changing the product will update the indicators accordingly.
 
-## Catalog Page Dedicated to Promotions
+## Catalog Page Dedicated to Promotions:
 
 The promotion banner redirects users to the promotion page.
 ![Promotion banner](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/promotion-banner.png "Promotion banner")
