@@ -4,9 +4,21 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
-## 1.2.0 [UAT: 13/12/2024 - PROD: Unreleased]
+## 1.2.0 [20/12/2024]
 
 ### Added:
+- *catalog-history*
+  - Added component + controller for JS injection
+  - Added search functionality
+  - Added "no history" view
+- *catalog-tabs*
+  - Added tabs for Favorites / History
+- *drawer*
+  - Added component
+- *history-order*
+  - Added component
+- *recipe-card*
+  - Added a variant
 - *http.service*
   - Added `profiling` as an optional header for all routes, defaulting to `true`
   - Added `profiling=off` query param in all requests to `miam-api` when the profiling header value is "false"
@@ -17,6 +29,8 @@ sidebar_position: 1
   - Removed the `profiling` query param from the `recipe-card` route
 - *recipe-pricing*
   - Removed the `profiling` query param from the `recipe-pricing` route
+- *catalog-toolbar*
+  - Renamed the favorites button to my space
 
 #### Fixed:
 - baskets/handle-payment route now takes as body the current retailer car in order to sync the basket with the cart before confirming it
