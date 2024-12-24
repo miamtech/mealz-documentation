@@ -1,0 +1,17 @@
+Index: docs/web_ssr/customization/list-scan.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>---\nsidebar_position: 3\n---\n\n# Scanning a groceries list (CSR)\n\n:::info\nList scan is currently a CSR feature.\n:::\n\nFind the SDK documentation [here](/mealz-documentation/docs/web_sdk/customization/list-scan).
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/docs/web_ssr/customization/list-scan.md b/docs/web_ssr/customization/list-scan.md
+--- a/docs/web_ssr/customization/list-scan.md	(revision f540fb2c67dc09f4f94919d644b6aea6361505ae)
++++ b/docs/web_ssr/customization/list-scan.md	(date 1734963285777)
+@@ -8,4 +8,4 @@
+ List scan is currently a CSR feature.
+ :::
+ 
+-Find the SDK documentation [here](/mealz-documentation/docs/web_sdk/customization/list-scan).
+\ No newline at end of file
++Find the SDK documentation [here](/mealz-documentation/docs/web_sdk/customization/list-scan).

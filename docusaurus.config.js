@@ -72,8 +72,11 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "9.0",
+            label: "9.1",
             path: "/"
+          },
+          "9.0": {
+            banner: 'none'
           },
           "8.8": {
             banner: 'none'
@@ -203,9 +206,14 @@ export default {
             to: "docs/web_sdk/Introduction",
             items: [
               {
-                label: "9.0",
+                label: "9.1",
                 to: "docs/web_sdk/Introduction",
                 activeBaseRegex: "docs/web_sdk/[^0-9][^/]",
+              },
+              {
+                label: "9.0",
+                to: "docs/web_sdk/9.0/Introduction",
+                activeBaseRegex: "docs/web_sdk/9.0",
               },
               {
                 label: "8.8",
