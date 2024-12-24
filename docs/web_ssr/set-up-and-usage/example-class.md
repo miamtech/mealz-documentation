@@ -19,6 +19,7 @@ export class Mealz {
 
   constructor() {
     window.mealz.supplier.setupWithToken(mealzToken);
+    window.mealz.user.setLanguage('en');
     window.mealz.basketSync.definePushProductsToCart(this.pushProductsToBasket)
     window.mealz.basket.initialize(); // If you want Mealz's basket to be fetched on startup instead of being fetched the first time it is needed
     window.mealz.hook.setHookCallback(this.hookCallback)

@@ -4,6 +4,38 @@ sidebar_position: 2
 
 # Mealz components Changelog 
 
+## 1.2.1 [20/12/2024]
+
+#### Added:
+- *catalog*
+  - Added support for store-locator
+- *recipe-promotion*
+  - Added css for component
+- *promotions-banner*
+  - Added css for component, is hidden by default and must be displayed manually
+- *catalog-history*
+  - Added component
+  - Open drawer of the clicked order
+  - Added "no history" view
+- *catalog-tabs*
+  - Added component
+- *drawer*
+  - Added component
+- *history-order*
+  - Added component
+- *recipe-card*
+  - Added style for a new variant
+
+#### Updated:
+- *recipe-card*
+  - Updated some css to match mock ups
+- *viewport-listener*:
+  - Handle unsubscription to prevent memory leaks
+
+#### Fixed:
+- *catalog-favorites*
+  - Fixed an infinite loader issue when the user hadn't marked any recipes as favorites
+
 ## 1.2.0 [13/12/2024]
 
 #### Updated:

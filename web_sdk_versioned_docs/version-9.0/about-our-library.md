@@ -4,22 +4,17 @@ sidebar_position: 2
 
 import ImageSideBySide from '@site/src/components/ImageSideBySide';
 
-# Our features
+# About our library
 
-## Features you can add to your website with the Mealz Library
+## Which features can I add to my website using ngMiam
 
-Mealz provides you a bundle of features that you can add to your website.
+With ngMiam, Mealz provides you a bundle of features that you can add to your website.
 
 - Recipe cards that you can insert in-between products to inspire the client
 - A catalog of recipes so your clients have a page on your website where they can search for inspiration
-- Reminders of recipes that you can insert in your basket page so the clients can remember from where the products come
-  from
+- Reminders of recipes that you can insert in your basket page so the clients can remember from where the products come from
 
-:::note
-Currently, SSR (Server-Side Rendering) is only available for the recipe card feature and the catalog feature (WIP).
-:::
-
-### The recipe cards (SSR)
+### The recipe cards
 
 The main Mealz feature is giving you access to a recipe card component that you can insert in between products in any shelf of your website. With those recipes appearing in the shelves among the products that the client came to look for, they may be inspired by the recipe and click on it. They will then see all products needed to make that recipe and discover that they can, in a single click, add to their cart all these products !
 
@@ -29,37 +24,37 @@ Here is an example of a recipe card inserted between two products:
 
 If the user clicks on the main CTA, the title or the image, a drawer will appear (by default on the right side of the page) to display the list of ingredients needed for the recipe:
 
-<ImageSideBySide
-firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail1.png"
-firstAlt="Details top"
-firstCaption="Details top"
-firstImageMaxWidth="600px"
-secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail2.png"
-secondAlt="Details bottom"
-secondCaption="Details bottom"
-secondImageMaxWidth="600px"
+<ImageSideBySide 
+  firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail1.png"
+  firstAlt="Details top"
+  firstCaption="Details top"
+  firstImageMaxWidth="600px"
+  secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail2.png"
+  secondAlt="Details bottom"
+  secondCaption="Details bottom"
+  secondImageMaxWidth="600px"
 />
 <br/><br/>
-<ImageSideBySide
-firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail1-lg.png"
-firstAlt="Details top on a large screen"
-firstCaption="Details top on a large screen"
-firstImageMaxWidth="600px"
-secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail2-lg.png"
-secondAlt="Details bottom on a large screen"
-secondCaption="Details bottom on a large screen"
-secondImageMaxWidth="600px"
+<ImageSideBySide 
+  firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail1-lg.png"
+  firstAlt="Details top on a large screen"
+  firstCaption="Details top on a large screen"
+  firstImageMaxWidth="600px"
+  secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail2-lg.png"
+  secondAlt="Details bottom on a large screen"
+  secondCaption="Details bottom on a large screen"
+  secondImageMaxWidth="600px"
 />
 <br/><br/>
-<ImageSideBySide
-firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail1-sm.png"
-firstAlt="Details top on a small screen"
-firstCaption="Details top on a small screen"
-firstImageMaxWidth="600px"
-secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail2-sm.png"
-secondAlt="Details bottom on a small screen"
-secondCaption="Details bottom on a small screen"
-secondImageMaxWidth="600px"
+<ImageSideBySide 
+  firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail1-sm.png"
+  firstAlt="Details top on a small screen"
+  firstCaption="Details top on a small screen"
+  firstImageMaxWidth="600px"
+  secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail2-sm.png"
+  secondAlt="Details bottom on a small screen"
+  secondCaption="Details bottom on a small screen"
+  secondImageMaxWidth="600px"
 />
 <br/><br/>
 
@@ -86,7 +81,7 @@ Once the user has added the recipe to their cart, the component is updated to re
 
 ### The recipe catalog
 
-The other main feature Mealz offers is the [catalog](../main-features/recipe-catalog):
+The other main feature Mealz offers is the [catalog](./features/recipe-catalog):
 
 ![Catalog](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Catalog")
 
@@ -112,9 +107,9 @@ Finally, if any recipes has been added to the user's cart, a button appears at t
 ![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "Basket preview")
 <br/>
 
-### The recipe reminders (CSR)
+### The recipe reminders
 
-To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](../main-features/recipe-tags) component, to remind the user why a product is in their basket.
+To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](./features/recipe-tags) component, to remind the user why a product is in their basket
 
 Imagine your cart page looks like this:
 
@@ -122,29 +117,29 @@ Imagine your cart page looks like this:
 
 If you insert the recipe-tags component into each product component of your cart, you may have something that looks like this:
 
-<ImageSideBySide
-firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTags.png"
-firstAlt="Fake cart with tags"
-firstCaption="Closed"
-firstImageMaxWidth="600px"
-secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsOpen.png"
-secondAlt="Fake cart with tags open"
-secondCaption="Opened"
-secondImageMaxWidth="600px"
+<ImageSideBySide 
+  firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTags.png"
+  firstAlt="Fake cart with tags"
+  firstCaption="Closed"
+  firstImageMaxWidth="600px"
+  secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsOpen.png"
+  secondAlt="Fake cart with tags open"
+  secondCaption="Opened"
+  secondImageMaxWidth="600px"
 />
 <br/><br/>
 
 If you don't like the look, the component can also be a small tag that could for example look like this:
 
-<ImageSideBySide
-firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsReduced.png"
-firstAlt="Fake cart with reduced tags"
-firstCaption="Closed"
-firstImageMaxWidth="600px"
-secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsReducedOpen.png"
-secondAlt="Fake cart with reduced tags open"
-secondCaption="Opened"
-secondImageMaxWidth="600px"
+<ImageSideBySide 
+  firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsReduced.png"
+  firstAlt="Fake cart with reduced tags"
+  firstCaption="Closed"
+  firstImageMaxWidth="600px"
+  secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsReducedOpen.png"
+  secondAlt="Fake cart with reduced tags open"
+  secondCaption="Opened"
+  secondImageMaxWidth="600px"
 />
 <br/><br/>
 
