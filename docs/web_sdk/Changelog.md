@@ -2,6 +2,8 @@
 sidebar_position: 12
 ---
 
+## Changelog
+
 ## v9.1.0 - [20/12/2024]
 
 #### Added:
@@ -83,8 +85,6 @@ sidebar_position: 12
   - Add scroll to product card event
 - *out-of-stock-overlay*:
   - Created new component that overlay product card when a product is out of stock
-
-## Changelog
 
 ## v9.0.7 - [16/12/2024]
 
