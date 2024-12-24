@@ -151,6 +151,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 - `loadWithExtId: (id, forbidProfiling = false) => void`: [Log in user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout)
 - `loadWithAuthlessId: (id, forbidProfiling = false) => void`: configure our sdk to use the authless id
 - `reset: () => void`: [Log out user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout)
+- `setLanguage: (lang: string) => void`: Used for configuration purposes, you are now required to call this function with the desired language in ISO 639-1 format or your custom language code
 - `setFavoriteItems: (favoriteProductIds: string[]) => Observable<object>`: If your website has a "favorite products" feature, you can pass the ids of all products which the user has marked as favorites, so they can be prioritized when adding a recipe to their cart, if one of them is returned as a matching product for the recipe.
   :::note
     `favoriteProductIds`:  an array of product ids, passed as string
