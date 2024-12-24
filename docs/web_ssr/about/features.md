@@ -84,7 +84,7 @@ Once the user has added the recipe to their cart, the component is updated to re
 ![Recipe added](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeCardAdded.png "Recipe added")
 <br/>
 
-### The recipe catalog (CSR)
+### The recipe catalog
 
 The other main feature Mealz offers is the [catalog](../main-features/recipe-catalog):
 
