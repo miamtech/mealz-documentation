@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Enable order history
 
-Our library provides the capability to enable order history, offering users to easily track their past orders directly within the catalog. This feature introduces a redesigned "My Space" section, which includes two dedicated tabs: **Favorites** and **History**.
+Our library provides the functionality to enable order history, allowing users to easily track their past orders directly within the catalog. This feature introduces a newly redesigned "My Space" section, which includes two dedicated tabs: **Favorites** and **History**.
 
 ![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-history.png "History tab")
 
