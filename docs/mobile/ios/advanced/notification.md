@@ -16,7 +16,3 @@ By default, notifications are disabled.
 You must provide content for the events you wish to enable for this to work.
 :::
 
-# Analytics
-
-To follow along to our analytics events, you can call:
-<Analytics />
