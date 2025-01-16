@@ -1,0 +1,16 @@
+```swift
+public class MealzManager: ObservableObject {
+    public static let sharedInstance = MealzManager()
+
+   private init() {
+    // set the redirection when the user has not selected a store
+    Mealz.shared.user.setStoreLocatorRedirection { yourFunctionToChangeStore() }
+
+    Mealz.shared.Core(init: { coreBuilder in
+            coreBuilder.sdkRequirement(init: { requirementBuilder in
+                requirementBuilder.key = key
+            })
+        })
+    }
+}
+```

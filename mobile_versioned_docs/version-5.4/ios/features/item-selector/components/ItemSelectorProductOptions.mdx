@@ -1,0 +1,69 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Item Selector Product Options
+
+To create your own Item Selector product options template you create a class that implements `ItemSelectorProductOptionsProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomItemSelectorProductOptionsView: ItemSelectorOptionProductsProtocol {
+            public func content(params: ItemSelectorOptionProductsParameters) -> some View {
+                // your imp here
+            }
+        }
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomItemSelectorProductOptionsView: ItemSelectorOptionProductsProtocol {
+
+        public init() {}
+
+        public func content(params: ItemSelectorOptionProductsParameters) -> some View {
+            ForEach(params.products, id: \.self) { product in
+                HStack {
+                    ItemSelectorProductRow(
+                        product: product,
+                        onSelectProduct: params.onItemSelected
+                    )
+                }.onTapGesture {
+                    params.onSeeItemDetails(product.id)
+                }
+            }
+        }
+        // ItemSelectorProductRow defined in ItemSelectorSelectedProduct
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct ItemSelectorOptionProductsParameters {
+    /// The replacement proucts from different brands
+    public let products: [Item]
+    /// A closure that will select this product & navigate back to the Basket
+    public let onItemSelected: (Item) -> Void
+    /// A closure to see the details of the item if the retailer provides it
+    public let onSeeItemDetails: (String) -> Void
+```

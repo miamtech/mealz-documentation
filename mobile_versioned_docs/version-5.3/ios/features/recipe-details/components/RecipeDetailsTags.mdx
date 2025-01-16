@@ -1,0 +1,119 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### RecipeDetailsTags
+
+To create your own recipe detail tags template you create a class that implements `RecipeDetailsTagsProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomRecipeDetailsTagsView: RecipeDetailsTagsProtocol {
+        public func content(params: RecipeDetailsTagsParameters) -> some View {
+            // your imp here
+        }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```swift
+        import SwiftUI
+        import MealziOSSDK
+        import mealzcore
+
+        @available(iOS 14.0, *)
+        public struct MyCustomRecipeDetailsTagsView: RecipeDetailsTagsProtocol {
+        public func content(
+            params: RecipeDetailsTagsParameters
+        ) -> some View {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(params.title)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleStyle)
+                    .padding(.vertical, Dimension.sharedInstance.lPadding)
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                tags(tags: params.tags)
+            }
+        }
+
+        @ViewBuilder
+        public func tags(tags: [RecipeDetailTags]) -> some View {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(tags, id: \.id) { tag in
+                        HStack {
+                            if let picture = tag.mealzIcon {
+                                picture
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(Color.mealzColor(.standardDarkText))
+                            } else if let iconUrl = tag.iconUrl {
+                                AsyncImage(url: iconUrl) { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 20, height: 20)
+                                        .clipped()
+                                }
+                            }
+                            Text(tag.text)
+                                .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBoldStyle)
+                                .foregroundColor(Color.mealzColor(.standardDarkText))
+                                .lineLimit(1)
+                        }
+                            .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
+                            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumStyle)
+                            .background(Capsule().fill(Color.mealzColor(.lightBackground)))
+                    }
+                }
+                    .frame(maxWidth: .infinity)
+                    .padding(Dimension.sharedInstance.lPadding)
+            }
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct RecipeDetailsTagsParameters {
+    /// The recipe title
+    public let title: String
+    /// The difficulty of the recipe (Easy, Medium, Difficult)
+    public let difficulty: Int
+    /// Time to prepare, cook, & rest
+    public let totalTime: String
+    /// Time to prepare
+    public let preparationTime: String
+    /// Time to cook
+    public let cookingTime: String
+    /// Time to let the meal sit after being cooked
+    public let restingTime: String
+    /// Tags for the recipe (equipment, time, etc)
+    public let tags: [RecipeDetailTags]
+```
+
+where
+
+```swift
+public struct RecipeDetailTags: Identifiable {
+    public let mealzIcon: Image?
+    public let iconUrl: URL?
+    public let text: String
+    public let tagName: String
+    public var id = UUID()
+}
+```

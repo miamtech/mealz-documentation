@@ -1,0 +1,72 @@
+```swift
+public struct MealzSelectedControlView<Selection: SelectedControlEnum & Equatable & Hashable>: View {
+    @Binding var selection: Selection
+    let options: [Selection]
+
+    public var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                Rectangle()
+                    .fill(Color.mealzColor(.lightBackground))
+                Rectangle()
+                    .fill(Color.mealzColor(.primary))
+                    .cornerRadius(Dimension.sharedInstance.xlCornerRadius)
+                    .padding(2)
+                    .frame(width: geometry.size.width / 2, height: 50)
+                    .offset(x: selection == options[0] ? geometry.size.width * -0.25 : geometry.size.width  * 0.25, y: 0)
+                    .animation(.interactiveSpring(), value: selection)
+                    .frame(maxWidth: .infinity)
+
+                HStack(spacing: 0) {
+                    ForEach(options, id: \.self) { option in
+                        SelectedControlTabView(
+                            title: option.title,
+                            icon: option.icon,
+                            isSelected: selection == option
+                        ) {
+                            selection = option
+                        }
+                        .frame(width: geometry.size.width / 2)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .frame(height: 50)
+        .cornerRadius(Dimension.sharedInstance.xlCornerRadius)
+        .padding(.horizontal, Dimension.sharedInstance.lPadding)
+        .padding(.vertical, Dimension.sharedInstance.sPadding)
+    }
+}
+
+@available(iOS 14, *)
+private struct SelectedControlTabView: View {
+    let title: String
+    let icon: MealzIcons?
+    let isSelected: Bool
+    let onSelect: () -> Void
+
+    var body: some View {
+        Button(action: {
+            withAnimation { onSelect() }
+        }) {
+            HStack {
+                if let icon {
+                    Image.mealzIcon(icon: icon)
+                        .resizable()
+                        .renderingMode(.template)
+                        .frame(width: 18, height: 18)
+                }
+                Text(title)
+                    .lineLimit(1)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigStyle)
+            }
+            .foregroundColor(
+                isSelected ?
+                Color.mealzColor(.standardLightText) :
+                    Color.mealzColor(.standardDarkText)
+            )
+        }
+    }
+}
+```
