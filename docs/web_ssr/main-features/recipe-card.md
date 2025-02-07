@@ -118,7 +118,7 @@ The base url for the recipe-card is the following:
 GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
 ```
 
-Where you would call the /recipe-card route multiple times with each time a `surrounding_products_ids` urlParam, you can instead call this route with a `surrounding_products_ids` urlParam with all `surrounding_products_ids` params values in a Array as value. 
+Where you would call the /recipe-card route multiple times with each time a `surrounding_products_ids` urlParam, you can instead call this route with a `surrounding_products_ids` urlParam with all `surrounding_products_ids` params values in an Array as value. 
 
 For example, instead of calling:
 ```
@@ -161,7 +161,7 @@ const recipeCardsHTML = multipleRecipesHTML.split('</mealz-recipe-card>')
   **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see below for examples)
 
   - `orientation: 'vertical' | 'horizontal' = 'vertical'`:
-  **_(Optional)_** Select the orientation for the display of the card (see below for examples)
+  **_(Optional)_** Select the orientation for the display of the card (see above for examples)
 
   - `current_products_ids: string[]`:
   **_(Optional)_** takes an array of product ids with a high priority on the suggestion. Does not have any effect if not paired with surrounding_products_ids

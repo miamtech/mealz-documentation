@@ -37,7 +37,7 @@ sidebar_position: 11
   - Add a CSS class to the recipe card CTA button to allow easier customization
 
 #### Internal:
-- Adedd new method for the route recipes/search in RecipesService
+- Added new method for the route recipes/search in RecipesService
 
 ## v8.8.4 - [10/01/2025]
 

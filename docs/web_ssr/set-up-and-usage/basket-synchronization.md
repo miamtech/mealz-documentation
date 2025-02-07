@@ -93,7 +93,7 @@ export class Mealz {
 > :warning: This method needs to be called **before you send to the library the cart reset on your side** or else, Mealz will empty the basket before sending the event to our analytics, which means we will not be able to inform you of Mealz' impact on your sales
 
 - **`definePushProductsToCart(pushProductsToCart: (products: ComparableProduct[]) => void): void`** - Defines a callback that we can call to push products to your basket. This callback will be called everytime the user makes an action on our components that should update its cart.
-  - The parameter `products` that it is called with is an Array of ComparableProducts which have a positive quantity if the product needs to be **added to the cart** and negative if it needs to be **removed from the cart**. (Any product replacement will result in the suppression of the previous product and then adding the new one).
+  - The callback is called with a param `products`, which is an Array of ComparableProducts which have a positive quantity if the product needs to be **added to the cart** and negative if it needs to be **removed from the cart**. (Any product replacement will result in the suppression of the previous product and then adding the new one).
 
 ```ts
 // Example Setup
