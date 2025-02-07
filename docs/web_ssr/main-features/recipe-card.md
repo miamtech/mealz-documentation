@@ -16,7 +16,7 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz's fa
 
 The base url for the recipe-card is the following:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card
 ```
 
 - Parameters :
@@ -46,9 +46,6 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card
   - `serves: number`
   **_(Optional)_** Override the default number of guests set for the recipe
 
-  - `display_infos: boolean = false`:
-  **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
-
 > Displaying a fixed recipe can be tempting if you want to have control on the content appearing on your website, but it also means that the users will always see the same recipes at the same places and may not stay interested, while our algorithm has some random elements to it that makes the content vary between sessions, giving the user more inspiration.
 
 ### Example :
@@ -60,13 +57,13 @@ Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-reques
 A recipe contextualized with surrounding products **_(Recommended)_**:
 
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["214086","1254022"]&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["214086","1254022"]&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
 ```
 
 A fixed recipe:
 
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=15123&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=15123&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
 ```
 
 ### Display variants
@@ -111,3 +108,63 @@ The customizable text contents for this component are the following:
 ```
 
 See [Internationalisation](/docs/web_ssr/customization/internationalization) for more information on how to configure a custom I18n file to override our base texts with your own.
+
+## Fetching multiple recipe cards at once
+
+For performance purposes, we have created another route for the recipe-cards that you can call to fetch multiple cards at once. Whereas the single card route has multiple "modes" (with a recipeId or with the surrounding products Ids), this route is only intended to be used with the surroundingProductsIds param.
+
+The base url for the recipe-card is the following:
+```
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
+```
+
+Where you would call the /recipe-card route multiple times with each time a `surrounding_products_ids` urlParam, you can instead call this route with a `surrounding_products_ids` urlParam with all `surrounding_products_ids` params values in a Array as value. 
+
+For example, instead of calling:
+```
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["id1","id2"]
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["id3","id4"]
+```
+You can call:
+```
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple?surrounding_products_ids=[["id1","id2"],["id3","id4"]]
+```
+
+Unlike all other routes, you probably do not want to add the returned HTML to your page directly as this this route returns all recipe-cards in a single HTML string. You probably want to separate the cards into multiple strings and then add each card between the correct products on the page.
+
+Here is an example of separating the cards:
+```js
+const multipleRecipesHTML = fetch(`${MEAL_API_URL}/recipe-card/multiple?${params}`, headers)
+const recipeCardsHTML = multipleRecipesHTML.split('</mealz-recipe-card>')
+    .filter(text => text.includes('<mealz-recipe-card'))
+    .map(text => text + '</mealz-recipe-card>')
+```
+
+:::info
+  Do note that the cards will be returned in the order corresponding to the order of the `surrounding_products_ids` param. (i.e. the first cards is build using the first element in the array)
+:::
+
+- Parameters :
+
+  - `surrounding_products_ids: string[][]`:
+  **_(Mandatory)_** an array of arrays of productIds. You can see it as an array of multiples of the surrounding_products_ids param from the /recipe-card route.
+  
+    _We do a JSON.parse() to read this input so make sure to use JSON.stringify() or an equivalent to build this param. eg: `JSON.stringify([['id1', 'id2'], ['id3', 'id4']])`_
+
+  - `store_id: string`:
+  **_(Recommended)_** We need your store ID to display the price of the recipe, so ideally it should be passed if the user has chosen a store
+
+  - `pricebook_key: string = 'DEFAULT'`:
+  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
+
+  - `display_variant: number = 1`:
+  **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see below for examples)
+
+  - `orientation: 'vertical' | 'horizontal' = 'vertical'`:
+  **_(Optional)_** Select the orientation for the display of the card (see below for examples)
+
+  - `current_products_ids: string[]`:
+  **_(Optional)_** takes an array of product ids with a high priority on the suggestion. Does not have any effect if not paired with surrounding_products_ids
+
+  - `serves: number`
+  **_(Optional)_** Override the default number of guests set for the recipe

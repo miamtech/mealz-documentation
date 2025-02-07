@@ -97,7 +97,7 @@ To avoid this situation, you can call a specific route to inform Mealz that an u
 The route to **transfer the authless basket**:
 
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/basket/merge-authless-basket?authless_id=xxx&store_id=xxx
+GET https://MEALZ_SSR_API_URL/API_VERSION/basket/merge-authless-basket?authless_id=xxx&store_id=xxx
 ```
 
 - Parameters :

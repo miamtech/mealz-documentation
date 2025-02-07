@@ -4,6 +4,82 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.5 - [07/02/2025]
+
+#### Added:
+- *window.mealz.basketSync*:
+  - Added `defineAddProductsToCart` and `defineRemoveProductsFromCart` as an optional replacement for `definePushProductsToCart` to separate products added and removed
+
+#### Fixed:
+- *replace-item*:
+  - Fix error when trying to replace an item that was unavailable
+- *preferences*:
+  - Removed unnecessary tags requests that were done on script init
+- *analytics*:
+  - Event methods are now queued if library is not initialised yet instead of not being sent
+
+#### Internal:
+- *recipe-details*:
+  - Use price from BasketEntry instead of fetching items/price
+- *basket-preview-product*:
+  - Use price from BasketEntry instead of fetching items/price
+
+## v9.1.4 - [31/01/2025]
+
+#### Internal:
+- *analytics*:
+  - Fixed analytics disabling needed two separate tokens on the client side
+
+## v9.1.3 - [31/01/2025]
+
+#### Fixed:
+- *basket*:
+  - Fixed incorrect field name on recipes fetch which made the request return more data than necessary
+
+## v9.1.2 - [17/01/2025]
+
+#### Fixed:
+- *recipe-details*
+  - Price briefly showing "0,00 €" when reopening a recipe in the cart. The price is now hidden during loading
+
+#### Internal:
+- *pricings*:
+  - Updated `price_per_serve` attribute to `price-per-serve`
+
+## v9.1.1 - [10/01/2025]
+
+#### Added:
+- *recipe-catalog*
+  - Add search functionality to history tab
+
+#### Updated:
+- *analytics*:
+  - Can now disable events tracking from supplierToken
+- *packages*:
+  - Now when retrieving packages, we filter with forced_completion_perc to prevent replacing sponsored product with a non-sponsored one
+- *history*:
+  - The "explore our catalog" button when there is no order history now redirects to the catalog url defined with mealz.router.setRecipeCatalogUrl('...')
+- *drawer-history*:
+  - Now refreshing page with drawer history opened will open it back
+- *recipe-card*:
+  - Added the attribute aria-hidden="true" to recipe picture as redundant with recipe label
+
+#### Fixed:
+- *analytics*:
+  - Called setAffiliate method when the value changes from localStorage
+- *basket-synchro*:
+  - Fix skip condition that was wrongly update from `=== 0` to `< 1`
+- *replace-item*:
+  - Fix regression where selected item was not at the top of the list
+- *store-locator*:
+  - getByCoordinates had inverted coordinates parameters in miam-interface
+
+#### Internal:
+- *window.mealzInternal.user.setSessionId*:
+  - New method to synchronize the session ID with SSR
+
+Merged 9.0.8 in 9.1 -> See v9.0.8 for changes
+
 ## v9.1.0 - [20/12/2024]
 
 #### Added:

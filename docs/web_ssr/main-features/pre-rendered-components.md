@@ -65,7 +65,7 @@ you must also call `window.mealz.user.loadWithAuthlessId(<authless_id>)` in your
 The route to generate the **Authless Token**:
 
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/generate-authless-token
+GET https://MEALZ_SSR_API_URL/API_VERSION/generate-authless-token
 ```
 
 which will return an object:
