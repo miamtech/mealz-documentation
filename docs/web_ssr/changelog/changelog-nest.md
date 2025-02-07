@@ -4,6 +4,57 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 1.2.4 [07/01/2025]
+
+#### Added:
+- *recipe-card*:
+  - Added a new route /recipe-card/multiple to fetch more than one card at once. It takes an array of surrounding_products_ids as input and returns a HTML of all cards
+
+## 1.2.3 [31/01/2025]
+
+#### Internal:
+- *catalog-category*
+  - Added analytics path to starting-data so mealz-components can send pageview event
+- *catalog-favorites*
+  - Added analytics path to starting-data so mealz-components can send pageview event
+- *retailer-cart*:
+  - Added basket sync on demo start up as first basket change call is dedicated to sync
+
+## 1.2.2 [17/01/2025]
+
+#### Fixed:
+- *recipes*:
+  - Fixed number of guests for recipes in the basket, ensuring the number of guests remains as it was when the recipe was added to the basket
+- *recipe-card*
+  - Fixed JSON parsing error for surroundingProductsIds by adding a try-catch block
+  - Prevent null reference errors when accessing recipe pricing data
+- *recipe-pricing*
+  - Load discounted ingredients count when the recipe is already in the basket
+
+#### Internal:
+- Added a new page to the demo simulate a retailer cart and interactions with the products (add, update, remove)
+
+## 1.2.1 [10/01/2025]
+
+#### Updated:
+- *recipe-card*:
+  - Added the attribute aria-hidden="true" to recipe picture as redundant with recipe label
+
+#### Fixed:
+- Fixed CORS configuration to allow all localhost origins, removing the restriction to only port 4200
+- *recipe-card*:
+  - Favorite button was still displayed when user was not logged
+
+## Internal:
+- *recipes*
+  - Updated `page_size` and `page_number`search request params
+- *catalog-home*
+  - Added `sessionId` to starting-data to synchronize session id with SDK
+- *recipe-card*
+    - Added `sessionId` to starting-data to synchronize session id with SDK
+- *catalog-home*:
+  - Added analytics path & category id to starting-data so mealz-components can send category.display event
+
 ## 1.2.0 [20/12/2024]
 
 ### Added:

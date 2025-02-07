@@ -18,7 +18,7 @@ This way, your server doesn't have to know which Mealz components are displayed 
 
 The base url for this route is:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/styles
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles
 ```
 
 Which will return data in the following format:
@@ -48,17 +48,17 @@ All of our components use a base Design System for many of their subparts.
 This means that one route will need to be called each and every time **there is at least one Mealz component on your page**:
 
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/styles/base
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/base
 ```
 
 The following route will fetch all CSS **for displaying recipe-cards**:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/styles/recipe-card
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/recipe-card
 ```
 
 The following route will fetch all CSS **for displaying the catalog**:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/styles/catalog
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog
 ```
 :::warning
   Since the catalog displays recipe-cards, **it contains the CSS for the recipe-cards as well**
@@ -68,22 +68,22 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/styles/catalog
 
 The following route will fetch all CSS **for displaying the catalog's home page only**:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-home
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-home
 ```
 
 The following route will fetch all CSS **for displaying the catalog's category page only**:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-category
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-category
 ```
 
 The following route will fetch all CSS **for displaying the catalog's favorites page only**:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-favorites
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-favorites
 ```
 
 The following route will fetch all CSS **for displaying the catalog's list page only**:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-list
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-list
 ```
 :::info
   Since the catalog-home displays recipe-cards, **these will contain the CSS for the recipe-cards as well**

@@ -42,7 +42,7 @@ The category, favorites and list pages each return a response with only 20 recip
 
 The base url for the catalog home page is the following:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog
+GET https://MEALZ_SSR_API_URL/API_VERSION/catalog
 ```
 
 - Parameters :
@@ -69,14 +69,14 @@ Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-reques
 :::
 
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog?store_id=max_recipes_per_category=6&display_recipe_variant=2
+GET https://MEALZ_SSR_API_URL/API_VERSION/catalog?store_id=max_recipes_per_category=6&display_recipe_variant=2
 ```
 
 ## Category Page
 
 The base url for the catalog category page will be the following:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/category
+GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/category
 ```
 
 - Parameters :
@@ -102,7 +102,7 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/category
 
 The base url for the catalog favorites page will be the following:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
+GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
 ```
 
 - Parameters :
@@ -125,7 +125,7 @@ GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
 
 The base url for the catalog list page will be the following:
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/list
+GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/list
 ```
 
 - Parameters :

@@ -22,7 +22,7 @@ Our library provides the functionality to enable order history, allowing users t
 3. Once the order history feature is enabled, you can fetch data for the "My Space" page using the following API base URL:
 
 ```
-GET http://MEALZ_SSR_API_URL/API_VERSION/catalog/my-space
+GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/my-space
 ```
 
 - Parameters :

@@ -92,7 +92,8 @@ export class Mealz {
 
 > :warning: This method needs to be called **before you send to the library the cart reset on your side** or else, Mealz will empty the basket before sending the event to our analytics, which means we will not be able to inform you of Mealz' impact on your sales
 
-- **`definePushProductsToCart(pushProductsToCart: (products: ComparableProduct[]) => void): void`** - Defines a callback that we can call to push products to your basket.
+- **`definePushProductsToCart(pushProductsToCart: (products: ComparableProduct[]) => void): void`** - Defines a callback that we can call to push products to your basket. This callback will be called everytime the user makes an action on our components that should update its cart.
+  - The callback is called with a param `products`, which is an Array of ComparableProducts which have a positive quantity if the product needs to be **added to the cart** and negative if it needs to be **removed from the cart**. (Any product replacement will result in the suppression of the previous product and then adding the new one).
 
 ```ts
 // Example Setup
@@ -115,7 +116,7 @@ export class Mealz {
 }
 ```
 
-- (Optional but highly recommended) Initially, Mealz's basket will not be fetched until necessary (when a recipe will be added, or when the user wants to see the list of recipes they added for example). But that means that several requests will take place at some point of the user's experience, potentially slowing it a little, especially if their internet connexion is slow.
+- **(Optional but highly recommended) `window.mealz.basket.initialize()`** Initially, Mealz's basket will not be fetched until necessary (when a recipe will be added, or when the user wants to see the list of recipes they added for example). But that means that several requests will take place at some point of the user's experience, potentially slowing it a little, especially if their internet connexion is slow.
   If you want to avoid this, and also if you want to avoid the first step of the basket-sync (where Mealz checks that no products have been removed before the basket-sync started), you can call `window.mealz.basket.initialize()` just after sending the token, which will fetch the basket on startup.
 
 ```ts
@@ -123,6 +124,41 @@ export class Mealz {
 export class Mealz {
   constructor() {
     window.mealz.basket.initialize(); // If you want Mealz's basket to be fetched on startup instead of being fetched the first time it is needed
+  }
+}
+```
+
+- **(Optional) `defineAddProductsToCart` and `defineRemoveProductsFromCart`** As an alternative to `definePushProductsToCart`, you can also use `defineAddProductsToCart` and `defineRemoveProductsFromCart`. They work the same, but whereas `pushProductsToCart` is suppose to do the work of both adding and removing products from the cart, `addProductsToCart` should only add products to the cart and `removeProductsFromCart` should only remove products from the cart.
+    - Like for `pushProductsToCart`, the parameter `products` will be an Array of ComparableProducts which have a positive quantity for `addProductsToCart` and negative for `removeProductsFromCart`. (Any product replacement will result both callbacks being called - one to remove the previous product and one to add the new one).
+
+:::warning
+  You should use **either** `definePushProductsToCart` **or** `defineAddProductsToCart` and `defineRemoveProductsFromCart`.
+
+  You should not use **both** `definePushProductsToCart` **and** `defineAddProductsToCart` and `defineRemoveProductsFromCart`.
+:::
+
+```ts
+// Example Setup
+export class Mealz {
+  constructor() {
+    window.mealz.basketSync.defineAddProductsToCart(
+      this.addProductsToCart
+    );
+    window.mealz.basketSync.defineRemoveProductsFromCart(
+      this.removeProductsFromCart
+    );
+  }
+
+  addProductsToCart(products: ComparableProducts[]) {
+    products.forEach((product) => {
+      // Add {quantity} number of products in the cart
+    });
+  }
+
+  removeProductsFromCart(products: ComparableProducts[]) {
+    products.forEach((product) => {
+      // Remove {quantity * -1} number of products from the cart
+    });
   }
 }
 ```

@@ -7,7 +7,7 @@ sidebar_position: 6
 The SSR API follows a versioning strategy to ensure backward compatibility and allow for iterative updates without disrupting existing integrations. Each version of the API is accessed through the following URL format:
 
 ```
-http://MEALZ_SSR_API_URL/API_VERSION/...
+https://MEALZ_SSR_API_URL/API_VERSION/...
 ```
 
 `API_VERSION`: This specifies the version of the API you are using, such as **v0**, **v1**, **v2**, etc.

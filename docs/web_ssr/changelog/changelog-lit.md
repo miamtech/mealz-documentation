@@ -4,6 +4,33 @@ sidebar_position: 2
 
 # Mealz components Changelog 
 
+## 1.2.2 [10/01/2025]
+
+#### Added:
+- *catalog*:
+  - Added category.display event on click on "See all" / the title of a category
+
+#### Updated:
+- *headers*:
+  - requests for `load-more` and `drawer` now uses authlessId if needed in authorization header
+
+#### Fixed:
+- *catalog-load-more*
+  - Fixed the auto-load more recipes on scroll for unconnected users
+- *toolbar*:
+  - Added CSS class for toolbar to do full width on Firefox
+- *store-locator*:
+  - In getByCoordinates, lat and lng parameters were inverted
+
+#### Internal:
+- Synchronize the session id with SDK during initialization for the following components:
+  - *catalog-category*
+  - *catalog-favorites*
+  - *catalog-history*
+  - *catalog-home*
+  - *catalog-list*
+  - *recipe-card*
+
 ## 1.2.1 [20/12/2024]
 
 #### Added:
