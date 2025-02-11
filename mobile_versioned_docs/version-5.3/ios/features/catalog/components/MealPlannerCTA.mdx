@@ -1,0 +1,94 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# MealPlannerCTA
+
+This template allows you to customize the CTA that will open the Meal Planner feature on the Catalog.
+Unless you have enabled the Meal Planner feature manually, the button will not appear.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomMealPlannerCTAView: MealPlannerCTAProtocol {
+            public func content(params: MealPlannerCTAViewParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomMealPlannerCTAView: MealPlannerCTAProtocol {
+
+        public init() {}
+        public func content(params: MealPlannerCTAViewParameters) -> some View {
+            Button {
+                params.onTapGesture()
+            } label: {
+                HStack {
+                    VStack {
+                        Text(Localization.myBudget.myBudget.localised)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleBigStyle)
+                            .foregroundColor(Color.mealzColor(.unpureWhite))
+                        Spacer()
+                            .frame(height: 10)
+                        Text(Localization.myBudget.myBudgetSubtext.localised)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleMediumStyle)
+                            .foregroundColor(Color.mealzColor(.unpureWhite))
+                    }
+                    Spacer()
+                    Image.mealzIcon(icon: .caret)
+                        .renderingMode(.template)
+                        .foregroundColor(Color.mealzColor(.white))
+                }
+                    .padding(.vertical, 30)
+                    .padding()
+            }
+                .frame(maxWidth: .infinity, minHeight: 100)
+                .background(
+                //                    used to only show part of the pic we want (1/2 the quiche)
+                    GeometryReader { geometry in
+                        ZStack {
+                            Color(.black)
+                            Image.mealzIcon(icon: .mealPlannerCTA)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .opacity(0.60)
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .offset(y: geometry.size.height / 2.5)
+                        }
+                    }
+                )
+                .clipShape(RoundedRectangle(cornerRadius: Dimension.sharedInstance.buttonCornerRadius))
+            }
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct MealPlannerCTAViewParameters {
+    /// A closure that navigates the user to the Meal Planner Feature
+    public let onTapGesture: () -> Void
+```
+
+- [MealPlannerCTAProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/mealplannerctaprotocol)
