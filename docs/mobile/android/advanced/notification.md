@@ -1,5 +1,5 @@
 import Toaster from './_shared/_miamManager/_analytics-notifiers/Toaster.md';
-import Analytics from './_shared/_miamManager/_analytics-notifiers/Analytics.md';
+
 
 # Notifications
 
@@ -16,7 +16,3 @@ By default, notifications are disabled.
 You must provide content for the events you wish to enable for this to work.
 :::
 
-# Analytics
-
-To follow along to our analytics events, you can call:
-<Analytics />
