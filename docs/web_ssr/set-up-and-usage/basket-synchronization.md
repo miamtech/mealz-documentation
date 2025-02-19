@@ -164,23 +164,18 @@ POST http://MEALZ_SSR_API_URL/API_VERSION/basket/handle-payment
   - `order_id: string`: **_(Optional)_** The orderId for the cart that was paid. This can help us double-check that the route hasn't already been called for this order-id, which could cause problems in our stats.
 
 - Body: The method requires the same cart object you send with retailerBasketChanged, in addition to the total price of the cart. This is necessary for Mealz to run a final basket-sync cycle to detect any products removed from the cart since the last sync.
-  - The body is expected to be in JSON format, with one attribute `totalPrice` for the total price of the user's cart (Mealz products & retailer products included), and the other attribute `products` being an array using the same structure as the ComparableProducts described above. See below for an example: 
+  - The body is expected to be in JSON format **(:warning: Do not forget to set the Content-Type header to application/json)**
+  - The body has one attribute `totalPrice` for the total price of the user's cart **(Mealz products & retailer products included)**
+  - The body has an other attribute `products` being an array using the same structure as the **ComparableProducts** described above.
+
+See below for an example of body for the /handle-payment route: 
 ```json
 {
   "totalPrice": 12.34,
   "products": [
-    {
-      "id": "id1",
-      "quantity": 2
-    },
-    {
-      "id": "id2",
-      "quantity": 1
-    },
-    {
-      "id": "id3",
-      "quantity": 4
-    }
+    { "id": "id1", "quantity": 2 },
+    { "id": "id2", "quantity": 1 },
+    { "id": "id3", "quantity": 4 }
   ],
 }
 ```
