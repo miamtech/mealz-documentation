@@ -1,0 +1,192 @@
+---
+sidebar_position: 2
+label: "How to use"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# How to use Catalog 
+
+As we said on the previous page, there are two ways to use the catalog :
+
+    - Basic implementation : an all-in-one component that embeds the navigation and all needed other components
+    - Custom implementation : were you can handle navigation by yourself and link components that you need
+
+## Basic implementation 
+
+For this implementation you will need CatalogJourney component, it's an all-in-one  component merging all the available feature of the catalog.
+It includes a direct link to recipe collections. 
+
+### XML usage
+
+### Add CatalogJourney into your view 
+
+<Tabs defaultValue="xml" groupId="code-example"
+values={[
+{ label: 'fragment_catalog.xml', value: 'xml' },
+{ label: 'catalogFragment.kt', value: 'kotlin' },
+]}>
+
+<TabItem value="xml">
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_catalog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ai.mealz.sdk.components.catalogJourney.CatalogJourney
+        android:id="@+id/catalog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+```
+</TabItem>
+<TabItem value="kotlin">
+
+```kotlin
+class CatalogFragment : Fragment() {
+
+    private var _binding: FragmentCatalogBinding? = null
+
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        _binding = FragmentCatalogBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        root.findViewById<CatalogJourney>(R.id.catalog)
+
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+### Direct link to a catalog collection using XML
+
+In order to access direclty to a collection you should pass collection's **id** and **title** 
+as parametter durring your navigation to catalogFragment
+
+<Tabs defaultValue="xml" groupId="code-example"
+values={[
+{ label: 'fragment_catalog.xml', value: 'xml' },
+{ label: 'catalogFragment.kt', value: 'kotlin' },
+]}>
+
+<TabItem value="xml">
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_catalog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ai.mealz.sdk.components.catalogJourney.CatalogJourney
+        android:id="@+id/catalog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+```
+</TabItem>
+<TabItem value="kotlin">
+
+```kotlin
+class CatalogFragment : Fragment() {
+
+    private var _binding: FragmentCatalogBinding? = null
+
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        _binding = FragmentCatalogBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        root.findViewById<CatalogJourney>(R.id.catalog).apply {
+            bind(categoryId = getArguments().getString("id"), categoryTitle = getArguments().getString("title"))
+        }
+
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+
+### Compose implementation
+
+```koltin
+fun MyPage(){
+    Column {
+        CatalogJourney.View()
+    }
+}
+```
+
+### Direct link to a catalog collection using jetpack compose 
+
+If you pass as input at least an id of recipe collection CatalogJourney will 
+directly open this collection. 
+You can pass a title and a subtitle as well
+
+```koltin
+ NavHost( modifier = Modifier.padding(padding),
+          navController = navController,
+          startDestination = "home") {
+    composable("home") {
+        Box {
+            Home()
+        }
+    }
+    composable("catalog/{id}&{title}") {
+        CatalogJourney.View(
+            it.arguments?.getString("id") ?: "",
+            it.arguments?.getString("title") ?: ""
+        )
+    }
+}
+```
+
+### Get recipe collection data
+
+:::info
+You can find the whole list of collections and their ids on  <a target="https://partners.miam.tech/" href='https://partners.miam.tech/'> **Mealz Partners**</a> 
+:::
+
+You can get all Catalog home page's collection list with :
+
+```kotlin
+Mealz.catalog.getCatalogCategories { listOfCat : List<CatalogCategory> ->
+    // Do stuff here
+    println(listOfCat.map { "${it.id} ${it.title}" })
+}
+```
+
+## Custom implementation
+
+:::info
+Incoming documentation
+:::

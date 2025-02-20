@@ -1,0 +1,146 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### OrderDetailsRecipeCard
+
+To create your own recipe card template you create a class that implements `OrderDetailsRecipeCardProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomOrderDetailsRecipeCardView: OrderDetailsRecipeCardProtocol {
+      public func content(params: OrderDetailsRecipeCardParameters) -> some View {
+            // your imp here
+        }
+}
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomOrderDetailsRecipeCardView: OrderDetailsRecipeCardProtocol {
+    public init() {}
+    public func content(params: OrderDetailsRecipeCardParameters) -> some View {
+        return ZStack {
+            AsyncImage(url: params.data.imageURL) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .padding(0)
+                    .frame(
+                        width: Dimension.sharedInstance.orderDetailsRecipeCardWidth,
+                        height: Dimension.sharedInstance.orderDetailsRecipeCardHeight
+                    )
+                    .clipped()
+            }
+                .contentShape(Rectangle()) // this fixes gesture detector overflow to other cards
+                .padding(0)
+            LinearGradient(
+                gradient: Gradient(
+                colors: [Color.clear, Color.black.opacity(0.3)]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+                .frame(
+                    width: Dimension.sharedInstance.orderDetailsRecipeCardWidth,
+                    height: Dimension.sharedInstance.orderDetailsRecipeCardHeight
+                )
+            VStack(alignment: .trailing, spacing: 0) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 2) {
+                        if params.data.isSponsored {
+                            ForEach(params.data.sponsorLogos, id: \.self) { sponsorUrlString in
+                                if let url = URL(string: sponsorUrlString) {
+                                    AsyncImage(url:url) { image in
+                                        image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .padding(.vertical, Dimension.sharedInstance.sPadding)
+                                            .padding(.horizontal, Dimension.sharedInstance.mPadding)
+                                            .background(
+                                                Capsule().fill(Color.mealzColor(.white))
+                                            )
+                                     }
+                                        .frame(
+                                            width: 50,
+                                            alignment: .topLeading
+                                        )
+                                }
+                            }
+                        }
+                    }
+                     Spacer()
+                    if params.isInBasket {
+                        alreadyInBasketFlag()
+                    }
+                }.padding(Dimension.sharedInstance.mPadding)
+                Spacer()
+                HStack(alignment: .bottom) {
+                    Text(params.data.title)
+                        .foregroundColor(Color.mealzColor(.white))
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigBoldStyle)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+                        .minimumScaleFactor(0.75)
+                    Spacer()
+                    MealzSmallGuestView(guests: Int(params.data.numberOfGuests))
+                }.padding(Dimension.sharedInstance.mPadding)
+            }
+        }
+            .frame(
+                width: Dimension.sharedInstance.orderDetailsRecipeCardWidth,
+                height: Dimension.sharedInstance.orderDetailsRecipeCardHeight
+            )
+            .background(Color.mealzColor(.white))
+            .cornerRadius(Dimension.sharedInstance.lCornerRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: Dimension.sharedInstance.lCornerRadius)
+            .stroke(Color.mealzColor(.border), lineWidth: 1.0))
+            .onTapGesture(perform: params.showRecipeDetails)
+    }
+
+    @ViewBuilder
+    func alreadyInBasketFlag() -> some View {
+        Image.mealzIcon(icon: .basketCheck)
+            .renderingMode(.template)
+            .resizable()
+            .frame(width: 16, height: 14)
+            .padding(.vertical, Dimension.sharedInstance.mlPadding)
+            .padding(.horizontal, Dimension.sharedInstance.mPadding)
+            .foregroundColor(Color.mealzColor(.primary))
+            .background(Capsule().fill(Color.mealzColor(.white)))
+    }
+}
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct OrderDetailsRecipeCardParameters {
+    /// All the data we need for the recipe card
+    public let data: RecipeCardData
+    /// Boolean that determines if the recipe is in the basket
+    @Binding var isInBasket: Bool
+    /// Function to open the Recipe Details page
+    public let showRecipeDetails: () -> Void
+```
+
+- [OrderDetailsRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/orderdetailsrecipecardprotocol)

@@ -1,0 +1,66 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### OrderHistorySearch
+
+To create your own search bar that returns previous orders, you create a class that implements `OrderHistorySuccessSearch`.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+        ```kotlin
+import ai.mealz.sdk.components.orderHistory.success.order.OrderHistorySuccessSearch
+import ai.mealz.sdk.components.orderHistory.success.order.OrderHistorySuccessSearchParameters
+
+class MyCustomOrderHistorySuccessSearchImp : OrderHistorySuccessSearch {
+    @Composable
+    override fun Content(params: OrderHistorySuccessSearchParameters) {
+        // your imp here
+    }
+}
+```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.orderHistory.success.order.OrderHistorySuccessSearch
+import ai.mealz.sdk.components.orderHistory.success.order.OrderHistorySuccessSearchParameters
+
+class MyCustomOrderHistorySuccessSearchImp : OrderHistorySuccessSearch {
+    @Composable
+    override fun Content(params: OrderHistorySuccessSearchParameters) {
+        Column(
+            Modifier.padding(
+                vertical = Dimension.mPadding,
+                horizontal = Dimension.mPadding
+            ),
+            verticalArrangement = Arrangement.spacedBy(
+                Dimension.sSpacerHeight
+            )
+        ) {
+            SearchBar(
+                Localisation.orderHistory.searchBarText.localised,
+                params.onChange
+            )
+        }
+    }
+}
+```
+    </TabItem>
+</Tabs>
+
+with
+
+```kotlin
+/**
+ * A class that holds parameters for the order history success search.
+ *
+ * @property onChange A callback function to be invoked when the search has changed, prompting the search.
+ */
+class OrderHistorySuccessSearchParameters(val onChange: (String) -> Unit)
+```

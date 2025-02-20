@@ -1,0 +1,112 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## info
+
+To create your own recipe detail info template you have to create class that implement `RecipeDetailInfo`
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomRecipeDetailInfo.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.info.RecipeDetailInfo
+import ai.mealz.sdk.components.recipeDetail.success.info.RecipeDetailInfoParameters
+
+
+class MyCustomRecipeDetailInfo: RecipeDetailInfo {
+
+    @Composable
+    override fun Content(params: RecipeDetailInfoParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeDetail.success.info.RecipeDetailInfo
+import ai.mealz.sdk.components.recipeDetail.success.info.RecipeDetailInfoParameters
+
+
+class MyCustomRecipeDetailInfo: RecipeDetailInfo {
+
+    @Composable
+    override fun Content(params: RecipeDetailHeaderParameters) {
+        params.recipe.attributes?.let { attributes ->
+            Box {
+                AsyncImage(
+                    model = attributes.mediaUrl,
+                    contentDescription = "Recipe Image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .height(280.dp)
+                        .fillMaxWidth()
+                )
+                if (params.isLikeEnable) {
+                    Row(
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                    ) {
+                        LikeButton(RectangleShape, recipeId = params.recipe.id).Content()
+                    }
+                }
+                if (params.showGuestCounter) {
+                    Box(
+                        Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(16.dp)
+                    ) {
+
+                        TemplateDI.recipeDetail.success.info.counter?.view?.Content(
+                            params = CounterParameters(
+                                initialCount = params.guestCount,
+                                isDisable = params.isUpdating,
+                                isLoading = params.isUpdating,
+                                onCounterChanged = { counterValue -> params.updateGuest(counterValue) },
+                                minValue = 1,
+                                maxValue = 99
+                            )
+                        ) ?: TemplateDI.defaultViews.counter?.view?.Content(
+                            params = CounterParameters(
+                                initialCount = params.guestCount,
+                                isDisable = params.isUpdating,
+                                isLoading = params.isUpdating,
+                                onCounterChanged = { counterValue -> params.updateGuest(counterValue) },
+                                minValue = 1,
+                                maxValue = 99
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+     
+```
+</TabItem>
+</Tabs>
+
+### Info params 
+
+```kotlin
+data class RecipeDetailInfoParameters(
+    val recipe: Recipe, // full recipe
+    val guestCount: Int, // number of personne sharing the meal
+    val isUpdating: Boolean, // true is you should disable button
+    val isLikeEnable: Boolean, // if true you can show like button
+    val showGuestCounter: Boolean, // it true you should show guest counter
+    val updateGuest: (Int) -> Unit, // to call when changing the number of guest
+    val closeDetail: () -> Unit // close this view
+)
+```

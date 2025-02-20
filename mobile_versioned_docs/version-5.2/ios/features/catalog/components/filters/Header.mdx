@@ -1,0 +1,53 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Header
+
+This template allows you to customize the Header at the top of the Filters page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomFiltersHeaderView: FiltersHeaderProtocol {
+            public func content(params: FiltersHeaderParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomFiltersHeaderView: FiltersHeaderProtocol {
+
+        public init() {}
+        public func content(params: FiltersHeaderParameters) -> some View {
+            EmptyView() // is default empty as we do not display anything
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct FiltersHeaderParameters {
+    /// A closure that applies closes the page
+    public let onCloseFilters: () -> Void
+```
+
+- [FiltersHeaderProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filtersheaderprotocol)
