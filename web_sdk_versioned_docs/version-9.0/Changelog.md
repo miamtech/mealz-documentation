@@ -4,6 +4,41 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.0.11 - [11/04/2025]
+
+#### Fixed:
+- *basket-transfer*:
+  - Fixed basket transfer from affiliated websites could fail if the user was not logged - now correctly waits for authless-id before making the request
+
+Merged 8.8.10 in 9.0 -> See v8.8.10 for changes
+
+## v9.0.10 - [30/01/2025]
+
+#### Added:
+- *preferences*
+  - Add a CSS class to the preferences modal to allow easier customization
+
+#### Fixed:
+- *preferences*
+  - The preferences modal would close prematurely in SSR; it now closes only after the cache has been updated
+  - Searched tags are now limited to ingredients only
+
+Merged 8.8.7 in 9.0 -> See v8.8.7 for changes
+
+## v9.0.9 - [16/01/2025]
+
+#### Fixed:
+- *basket-synchro*:
+  - Fix skip condition that was wrongly update from `=== 0` to `< 1`
+
+## v9.0.8 - [10/01/2025]
+
+#### Updated:
+- *product-card*:
+  - Now displays sponsored badge without needing the recipe to have sponsors
+
+Merged 8.8.4 in 9.0 -> See v8.8.4 for changes
+
 ## v9.0.7 - [16/12/2024]
 
 #### Updated:

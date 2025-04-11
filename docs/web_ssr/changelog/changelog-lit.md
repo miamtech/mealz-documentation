@@ -4,6 +4,39 @@ sidebar_position: 2
 
 # Mealz components Changelog 
 
+## 1.2.5 [28/03/2025]
+
+#### Fixed:
+- *catalog-favorites*:
+  - Fixed init state was incorrectly set, now the hidden state of the elements are set on prerender and only updated on render
+  - Removed unused loader on start
+
+## 1.2.4 [21/03/2025]
+
+#### Fixed:
+- Recipe-cards CSS was lacking the rules to remove margins on p tags that are in the catalog CSS
+- *catalog-load-more*
+  - The auto-load more recipes on scroll was triggered even when no more recipes were available
+- *catalog-history*:
+  - The history-order cards now use a CSS variable for their width that uses the same base value as the recipe-cards by default
+- *catalog-toolbar*:
+  - Back button now does a native back action instead of redirecting to the home page
+- *recipe-pricing*:
+  - Prevent price displaying `NaN` When price starting data is null
+
+## 1.2.3 [31/01/2025]
+
+#### Internal
+- *catalog-category*
+  - Added pageview event
+- *catalog-favorites*
+  - Added pageview event
+- *catalog-home*
+  - Added pageview event
+  - Added category.show event, triggered when category is 80% in viewport for 1s
+- *catalog-toolbar*
+  - Added search event
+
 ## 1.2.2 [10/01/2025]
 
 #### Added:

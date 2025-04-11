@@ -4,6 +4,75 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.12 - [04/04/2025]
+
+#### Fixed:
+- *basket-sync*:
+  - Replacing a product with the same quantity could result in a quantity of 0
+
+## v9.1.11 - [03/04/2025]
+
+#### Fixed:
+- *recipe-details*:
+  - Fixed null error on out-of-stock check
+
+## v9.1.10 - [03/04/2025]
+
+#### Fixed:
+- *recipe-details*
+  - Fixed an issue where opening recipe-details from SSR did not correctly update the guest count
+- *basket-sync*:
+  - Does not send to retailer actions with a quantity of 0 anymore
+  - Compared quantity to add with the quantity of deleted entries, resulting in ADD actions with negative quantities
+- *basket-preview*:
+  - Price was displayed on 3 lines
+
+#### Internal:
+- *store-out-of-stock-service*:
+  - Now when adding a product times out, it updates its status into out-of-stock and store it in session-storage
+
+## v9.1.9 - [28/03/2025]
+
+#### Fixed:
+- *preferences*:
+  - Filter tags by supplier
+
+#### Internal:
+- Remove tagsWhitelist from:
+  - *environment.ts*
+  - *environment.uat.ts*
+  - *environment.prod.ts*
+
+## v9.1.8 - [26/03/2025]
+
+#### Fixed:
+- *recipes-service*:
+  - Turned recipeDetailsOpened$ to a Subject to prevent stale data emissions on init
+
+## v9.1.7 - [21/03/2025]
+
+#### Fixed:
+- Translations files after 9.1.6
+
+## v9.1.6 - [21/03/2025]
+
+#### Fixed:
+- *meals-planner*:
+  - Can now open again list of ingredients from recipe in the meals planner view
+- *replace-item*:
+  - Fixed replacing item from the product view in basket-preview
+- *order-history*:
+  - Fixed drawer script was called twice when order-history was called in webc
+  - Fixed favorites tab did not work when order-history was called in webc
+  - Fixed calls to ssr were blocked because they were caught by the interceptor
+  - SDK now uses mealz-components@1.2 as history does not exist in 0.7
+- *basket-sync*:
+  - Basket-sync could sometimes try to compare the retailer cart & the basket before fetching the entries, resulting in not deleting the entries that were not in the retailer cart anymore
+
+#### Internal:
+- *analytics*:
+  - Handle `journey` property on events
+
 ## v9.1.5 - [07/02/2025]
 
 #### Added:
@@ -161,6 +230,41 @@ Merged 9.0.8 in 9.1 -> See v9.0.8 for changes
   - Add scroll to product card event
 - *out-of-stock-overlay*:
   - Created new component that overlay product card when a product is out of stock
+
+## v9.0.11 - [11/04/2025]
+
+#### Fixed:
+- *basket-transfer*:
+  - Fixed basket transfer from affiliated websites could fail if the user was not logged - now correctly waits for authless-id before making the request
+
+Merged 8.8.10 in 9.0 -> See v8.8.10 for changes
+
+## v9.0.10 - [30/01/2025]
+
+#### Added:
+- *preferences*
+  - Add a CSS class to the preferences modal to allow easier customization
+
+#### Fixed:
+- *preferences*
+  - The preferences modal would close prematurely in SSR; it now closes only after the cache has been updated
+  - Searched tags are now limited to ingredients only
+
+Merged 8.8.7 in 9.0 -> See v8.8.7 for changes
+
+## v9.0.9 - [16/01/2025]
+
+#### Fixed:
+- *basket-synchro*:
+  - Fix skip condition that was wrongly update from `=== 0` to `< 1`
+
+## v9.0.8 - [10/01/2025]
+
+#### Updated:
+- *product-card*:
+  - Now displays sponsored badge without needing the recipe to have sponsors
+
+Merged 8.8.4 in 9.0 -> See v8.8.4 for changes
 
 ## v9.0.7 - [16/12/2024]
 
