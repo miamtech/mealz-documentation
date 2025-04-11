@@ -81,8 +81,11 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "9.1",
+            label: "9.2",
             path: "/"
+          },
+          "9.1": {
+            banner: 'none'
           },
           "9.0": {
             banner: 'none'
@@ -165,7 +168,7 @@ export default {
                 to: "docs/5.2/android/Introduction",
                 activeBasePath: "docs/5.2/android/",
               },
-              
+
               {
                 label: "5.0-5.1",
                 to: "docs/5.0/android/Introduction",
@@ -208,7 +211,7 @@ export default {
                 to: "docs/5.2/ios/Introduction",
                 activeBasePath: "docs/5.2/ios/",
               },
-              
+
               {
                 label: "5.0-5.1",
                 to: "docs/5.0/ios/Introduction",
@@ -237,9 +240,14 @@ export default {
             to: "docs/web_sdk/Introduction",
             items: [
               {
-                label: "9.1",
+                label: "9.2",
                 to: "docs/web_sdk/Introduction",
                 activeBaseRegex: "docs/web_sdk/[^0-9][^/]",
+              },
+              {
+                label: "9.1",
+                to: "docs/web_sdk/9.1/Introduction",
+                activeBaseRegex: "docs/web_sdk/9.1",
               },
               {
                 label: "9.0",

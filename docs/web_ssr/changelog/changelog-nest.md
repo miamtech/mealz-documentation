@@ -4,6 +4,88 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 1.2.13 [03/04/2025]
+
+#### Fixed:
+- Resolved issue where recipe details always opened with 4 guests by refining guest count logic in : *catalog-category*, *catalog-favorites*, *catalog-home*, *catalog-list*, *my-space*
+- *catalog-home*:
+  - Did not have an empty state for extreme cases of contradictory preferences
+
+#### Internal:
+- Removed unused `serves` query param in load-more functionality for: *catalog-category*, *catalog-favorites*, *catalog-list*, *my-space*
+
+## 1.2.12 [31/03/2025]
+
+#### Internal:
+- Changed all urls from unpkg to cdn.jsdelivr/npm to avoid unpkg that was down on 31/03/2025
+
+## 1.2.11 [28/03/2025]
+
+#### Fixed:
+- *catalog-favorites*:
+  - Fixed init state was incorrect
+
+#### Internal:
+- Fixed log in case of missing auth headers
+
+## 1.2.10 [26/03/2025]
+
+#### Fixed:
+- Updated to webc-miam@9.1.8 to fix bug on basket-preview opening the last added recipes instead of the one clicked in some cases
+- miam-api prod URL had an unnecessary "/"
+
+## 1.2.9 [24/03/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Optimized performances for the /recipe-card route: Should reduce response times by 150 to 200ms
+
+## 1.2.8 [21/03/2025]
+
+#### Fixed:
+- Better logging for supplier-token errors
+- *catalog-routing*:
+  - Added redirecting url for my-space for the catalog-routing config for supplier 23
+- *catalog-toolbar*:
+  - Removed href for the back button as now the component does a native back action client-side
+- *recipe-card*:
+  - Optimized performances for the /recipe-card/multiple route: Should reduce response times by 150 to 200ms
+
+#### Internal:
+- Fixed coverage rules to be at 100%
+- Gave access in the starting data of `recipe-pricing` if the recipe is already in the basket
+
+## 1.2.7 [07/03/2025]
+
+#### Updated:
+- Added automatic completion filters for all routes returning recipe-cards - recipes without their primary ingredient available in the store will not appear anymore
+
+#### Fixed:
+- Fixed null error when store_id was not provided for all routes returning recipe-cards
+
+## 1.2.6 [28/02/2025]
+
+#### Internal:
+- Added unit tests to all services
+- *git-hooks*:
+  - Added a pre-push hook that runs tests before pushing anything upstream
+- *demo-app*:
+  - retailer-cart: Added basket sync on demo start up as first basket change call is dedicated to sync
+  - Fixed generate-authless route call asking for headers
+- *catalog-category*
+  - Added analytics path to starting-data so mealz-components can send pageview event
+- *catalog-favorites*
+  - Added analytics path to starting-data so mealz-components can send pageview event
+- *retailer-cart*:
+  - Added basket sync on demo start up as first basket change call is dedicated to sync
+## 1.2.5 [21/02/2025]
+
+#### Fixed:
+- *handle-payment*:
+  - Fixed possible concurrency errors and undefined errors
+  - Does not try to confirm an empty basket
+  - Correctly sends the analytics events
+
 ## 1.2.4 [07/01/2025]
 
 #### Added:
