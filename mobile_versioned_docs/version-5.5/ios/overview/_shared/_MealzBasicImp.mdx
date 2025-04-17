@@ -1,0 +1,16 @@
+```swift
+public class MealzManager: ObservableObject {
+    public static let sharedInstance = MealzManager()
+
+   private init() {
+
+    Mealz.shared.Core(init: { coreBuilder in
+            // set provider key
+            coreBuilder.sdkRequirement(init: { requirementBuilder in
+                 requirementBuilder.key = self.providerKey
+            })
+        })
+    }
+}
+
+```

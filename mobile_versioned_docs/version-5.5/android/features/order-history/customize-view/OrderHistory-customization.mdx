@@ -1,0 +1,52 @@
+---
+sidebar_position: 3
+label: OrderHistory customization
+---
+
+# OrderHistory customization
+
+If you want to fully customize this component we recommend copying the code into your Mealz template configuration.
+You can remove the code you do not override.
+
+```kotlin
+orderHistory {
+    success {
+        lazyListLoader {
+            view = MyCustomLazyLoaderView()
+        }
+        order {
+            view = MyCustomOrderView()
+            numberOfRecipeBeforeOverflow = myCustomNumberOfRecipes
+        }
+        search {
+            view = MyCustomOrderHistorySuccessSearchView()
+        }
+        orderDetail {
+            header {
+                view = MyCustomOrderDetailsHeaderView()
+            }
+            recipeCard {
+                view = MyCustomOrderDetailsRecipeCardView()
+            }
+        }
+        spacingBetweenCard: Int = myCustomSpacing
+    }
+    loading {
+         view = MyCustomItemSelectorLoadingView()
+    }
+    empty {
+         view = MyCustomItemSelectorEmptyView()
+    }
+}
+```
+
+```kotlin
+class MiamTemplateManager {
+    init {
+        MiamTheme.Template 
+        {
+         // <---- copy above code here 
+        }
+    }
+}
+```

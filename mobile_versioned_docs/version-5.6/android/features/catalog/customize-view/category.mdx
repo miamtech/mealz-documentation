@@ -1,0 +1,98 @@
+---
+sidebar_position: 1
+label: "Categories"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Category
+
+This template allows you to customize the Categories lines on the home page of the catalog
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: "MyCustomCatalogCategoriesPageCategory.kt", value: "empty_example" },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+class MyCustomCatalogCategoriesPageCategory: CatalogCategoriesPageCategory {
+
+    @Composable
+    override fun Content(params: CatalogCategoriesPageCategoryParameters) {
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+class MyCustomCatalogCategoriesPageCategory: CatalogCategoriesPageCategory {
+    
+    @Composable
+    override fun Content(param: CatalogCategoriesPageCategoryParameters) {
+        Column {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(medium)
+            ) {
+                Column {
+                    param.category.attributes?.title?.let {
+                        Text(
+                            text = it,
+                            color = black,
+                            style = subtitleBold
+                        )
+                    }
+                    param.category.subtitle?.let {
+                        Text(
+                            text = it,
+                            color = black,
+                            modifier = Modifier.padding(top = small)
+                        )
+                    }
+                }
+            }
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(medium)
+                    .clickable { param.goToCategoryPage(param.category) },
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text(
+                    text = Localisation.catalog.showAll.localised,
+                    style = TextStyle(textDecoration = TextDecoration.Underline),
+                    color = primary
+                )
+            }
+            LazyRow(horizontalArrangement = Arrangement.spacedBy(small)) {
+                items(
+                    key = { item: Recipe -> item.id },
+                    items = (param.category.relationships?.recipes?.data ?: emptyList())
+                ) { recipe ->
+                    Box(
+                        modifier = Modifier.width(large)
+                    ) {
+                        RecipeJourney.View(recipe = recipe, isInShelve = false)
+                    }
+                }
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+# Params
+
+```kotlin
+data class CatalogCategoriesPageCategoryParameters(
+    val category: Package, // usefull field of this object are id, title and subtitle
+    val recipesId: List<String>, list of ids in this category
+    val goToCategoryPage: (category: Package) -> Unit // to navigate to a specific category package
+)
+```

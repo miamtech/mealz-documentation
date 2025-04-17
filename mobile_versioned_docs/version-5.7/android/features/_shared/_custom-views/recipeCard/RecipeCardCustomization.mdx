@@ -1,0 +1,765 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import UseStringResource from '../../../../_code/_utils/UseStringResource.mdx'
+
+## RecipeCard
+
+RecipeCard is one of the most use components, it has three customization states: **success**, **loading** & **empty**
+
+## RecipeCard customisation setting
+
+If you want to fully customize this component we recommend copying the code into your Mealz template configuration.
+You can remove the code you don't want to overwrite.
+
+```kotlin
+MiamTheme.Template {
+    recipeCard {
+        success {
+            // Deprecated you should use catalog and shelf instead
+            view = RecipeCardSuccessCustomView()
+            catalog {
+                view = RecipeCardCatalogSuccessCustomView()
+            }
+            shelf {
+                view = RecipeCardShelfSuccessCustomView()
+            }
+        }
+        loading {
+            // Deprecated you should use catalog and shelf instead
+            view = RecipeCardLoadingCustomView()
+            catalog {
+                view = RecipeCardCatalogLoadingCustomView()
+            }
+            shelf {
+                view = RecipeCardShelfLoadingCustomView()
+            }
+        }
+    }
+}
+```
+
+## RecipeCard Success
+
+Recipe card success is one of those three states, it's visible when all data has been fetched without any error. 
+To create your own recipe card success template you create a class that implements `RecipeCardSuccess`
+
+:::warning
+View temmplate is **Deprecated** you must use **catalog** and **shelf** instead
+::: 
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'RecipeCardSuccessCustomView.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccess
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccessParams
+
+class RecipeCardSuccessCustomView: RecipeCardSuccess {
+
+    @Composable
+    override fun Content(params: RecipeCardSuccessParams) {
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+package ai.mealz.sdk.components.recipeCard.success
+
+import ai.mealz.core.helpers.formatPrice
+import ai.mealz.core.localisation.Localisation
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import ai.mealz.sdk.components.baseComponent.likeButton.LikeButton
+import kotlinx.coroutines.flow.MutableStateFlow
+
+class RecipeCardSuccessImp: RecipeCardSuccess {
+    @Composable
+    override fun Content(params: RecipeCardSuccessParams) {
+        Surface(
+            border = BorderStroke(1.dp, ai.mealz.sdk.theme.Colors.lightgrey),
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .height(300.dp)
+        ) {
+            Column {
+                Box {
+                    params.recipe.attributes?.let {
+                        RecipeCardImageView(it.mediaUrl) { params.goToDetail() }
+                    }
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.TopStart),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        if (params.isSponsor) {
+                            SponsorLogo(params.sponsorLogo)
+                        } else {
+                            Spacer(Modifier.weight(1f))
+                        }
+                        if (params.likeIsEnabled) {
+                            RecipeLikeButton(params.recipe.id)
+                        }
+                    }
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.BottomStart)
+                            .padding(12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.Bottom
+                    ) {
+                        RecipeCardTitleView(params.recipeTitle, Modifier.weight(1f))
+                        BadgeViewGuest(params.guest)
+                    }
+                }
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ;
+                    Box(modifier = Modifier.width(70.dp)) {
+                        PricePerPerson(params.recipe.attributes?.price?.pricePerServe ?: 0.0)
+                    }
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                    ) {
+                        RecipeCardCTAView(params.isInCart) {
+                            params.goToDetail()
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun RecipeCardImageView(recipePicture: String, goToDetail: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .height(225.dp)
+            .fillMaxWidth()
+    ) {
+        AsyncImage(
+            model = recipePicture,
+            contentDescription = "Recipe Picture",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .height(225.dp)
+                .fillMaxWidth()
+                .clickable { goToDetail() }
+        )
+        Box(
+            modifier = Modifier
+                .height(225.dp)
+                .fillMaxWidth()
+                .background(brush = Brush.verticalGradient(colors = listOf(Color.Transparent, ai.mealz.sdk.theme.Colors.black)))
+        ) {
+        }
+    }
+}
+
+@Composable
+fun SponsorLogo(sponsorLogo: String?) {
+    if (sponsorLogo != null) {
+        Surface(
+            shape = RoundedCornerShape(100.dp),
+            color = ai.mealz.sdk.theme.Colors.white,
+            elevation = 1.dp,
+            modifier = Modifier.padding(8.dp)
+        ) {
+            AsyncImage(
+                model = sponsorLogo,
+                contentDescription = "sponsor picture",
+                contentScale = ContentScale.Inside,
+                modifier = Modifier
+                    .heightIn(0.dp, 40.dp)
+                    .padding(2.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun RecipeCardTitleView(title: String, modifier: Modifier = Modifier) {
+    Text(
+        text = title,
+        maxLines = 2,
+        style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight(700), lineHeight = 24.sp),
+        color = ai.mealz.sdk.theme.Colors.white,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun RecipeLikeButton(recipeId: String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp, end = 8.dp),
+        horizontalArrangement = Arrangement.End
+    ) {
+        LikeButton(recipeId = recipeId).Content()
+    }
+}
+
+@Composable
+fun RecipeCardCTAView(
+    isInCart: Boolean,
+    actionOnClick: () -> Unit
+) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+
+        Surface(
+            modifier = Modifier
+                .clip(RoundedCornerShape(8.dp))
+                .border(
+                    border = BorderStroke(1.dp, if (isInCart) ai.mealz.sdk.theme.Colors.primary else Color.Transparent),
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .clickable { actionOnClick() },
+            elevation = 8.dp
+        ) {
+            Row(
+                Modifier
+                    .background(if (isInCart) ai.mealz.sdk.theme.Colors.white else ai.mealz.sdk.theme.Colors.primary)
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Image(
+                    painter = painterResource(if (isInCart) ai.mealz.sdk.ressource.Image.check else ai.mealz.sdk.ressource.Image.cart),
+                    contentDescription = "recipe is in cart icon",
+                    colorFilter = ColorFilter.tint(if (isInCart) ai.mealz.sdk.theme.Colors.primary else ai.mealz.sdk.theme.Colors.white),
+                    modifier = Modifier
+                        .size(24.dp)
+                )
+                Text(
+                    text = if (isInCart) Localisation.recipe.showDetails.localised else Localisation.recipe.add.localised,
+                    color = if (isInCart) ai.mealz.sdk.theme.Colors.primary else ai.mealz.sdk.theme.Colors.white,
+                    style = ai.mealz.sdk.theme.Typography.bodyBold
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun PricePerPerson(price: Double) {
+    val formattedPrice = price.formatPrice()
+    Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)) {
+        Text(
+            text = formattedPrice,
+            style = ai.mealz.sdk.theme.Typography.subtitleBold,
+            textAlign = TextAlign.Left,
+            maxLines = 2,
+            color = ai.mealz.sdk.theme.Colors.primary
+        )
+        Text(
+            text = Localisation.myMeals.perPerson.localised,
+            style = ai.mealz.sdk.theme.Typography.bodySmall,
+            textAlign = TextAlign.Left,
+            color = ai.mealz.sdk.theme.Colors.grey
+        )
+    }
+}
+
+@Composable
+internal fun BadgeViewGuest(numberOfGuests: MutableStateFlow<Int>) {
+
+    val numberOfGuestsState by numberOfGuests.collectAsState()
+    Row(
+        Modifier.width(100.dp),
+        horizontalArrangement = Arrangement.End
+    ) {
+        Surface(shape = RoundedCornerShape(100.dp), color = ai.mealz.sdk.theme.Colors.white) {
+            Row(modifier = Modifier.padding(horizontal = 4.dp)) {
+                Text(
+                    numberOfGuestsState.toString(),
+                    style = ai.mealz.sdk.theme.Typography.bodyBold.copy(
+                        fontWeight = FontWeight.Black,
+                        fontSize = 16.sp
+                    ),
+                )
+                Icon(
+                    painter = painterResource(id = ai.mealz.sdk.ressource.Image.miamGuest),
+                    contentDescription = "guests icon",
+                    Modifier
+                        .size(24.dp)
+                        .padding(start = 2.dp)
+                )
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+### Params
+
+
+:::warning
+RecipeCardSuccessParams is **Deprecated** you must use **catalog** and **shelf** instead
+::: 
+
+
+```kotlin
+data class RecipeCardSuccessParams(
+    val recipe: Recipe, // full recipe object Deprecated
+    val recipeTitle: String, //
+    val recipePicture: String,
+    val isInShelve: Boolean, //  false if recipe is in our catalog component
+    val goToDetail: () -> Unit, // action to trigger navigation to detail
+    val guest: MutableStateFlow<Int>, // number of guest on recipe
+    val isInCart: Boolean, // true if user have had the recipe to mealz basket
+    val isSponsor: Boolean, // true if recipe has a sponsor
+    val sponsorLogo: String?, 
+    val likeIsEnabled: Boolean //  true if like feature has been enabled in configuration
+)
+```
+
+### Catalog
+
+You can choose to have to differents design for the recipe card in our catalog and in your shelf.
+Regarding your need you can create two templates or only one implementing both catalog and shelf
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'RecipeCardSuccessCustomView.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccessShelf
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccessShelfParams
+
+class RecipeCardSuccessShelfCustomView: RecipeCardSuccessShelf {
+
+    @Composable
+    override fun Content(params: RecipeCardSuccessShelfParams) {
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```kotlin
+class RecipeCardSuccessCatalogImp : RecipeCardSuccessCatalog {
+    @Composable
+    override fun Content(params: RecipeCardSuccessCatalogParams) {
+        Surface(
+            border = BorderStroke(1.dp, lightgrey),
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .height(330.dp)
+        ) {
+            Column {
+                Box {
+                    CatalogRecipeCardImageView(params.recipePicture) {params.goToDetail() }
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.TopStart),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        if (params.isSponsor) SponsorLogo(params.sponsorLogo, Modifier)
+                        else Spacer(Modifier.weight(1f))
+                    }
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.BottomStart)
+                            .padding(12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.Bottom
+                    ) {
+                        RecipeCardTitleView(params.recipeTitle, Modifier.weight(1f), white)
+                        GuestBadge(params.guest, Modifier)
+                    }
+                }
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    PricePerPerson(params.pricePerServe)
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        horizontalArrangement = Arrangement.End
+                    ) {
+                        CatalogRecipeCardCTAView(params.mealzRecipeId, params.isInCart) {
+                            params.goToDetail()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun CatalogRecipeCardImageView(recipePicture: String, goToDetail: () -> Unit) {
+        Box(
+            modifier = Modifier
+                .height(260.dp)
+                .fillMaxWidth()
+        ) {
+            AsyncImage(
+                model = recipePicture,
+                contentDescription = "Recipe Picture",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .height(260.dp)
+                    .fillMaxWidth()
+                    .clickable { goToDetail() }
+            )
+            Box(
+                modifier = Modifier
+                    .height(225.dp)
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(Color.Transparent, Color.Black,),
+                            0f,  // TODO: set start
+                            900f,
+                        )
+                    )
+            )
+        }
+    }
+
+    @Composable
+    fun CatalogRecipeCardCTAView(
+        recipeId: String,
+        isInCart: Boolean,
+        actionOnClick: () -> Unit
+    ) {
+        Row(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            LikeButton(recipeId = recipeId).Content()
+            Spacer(modifier = Modifier.width(4.dp))
+            RecipeCardCTAView(isInCart){ actionOnClick()}
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+### Catalog params
+
+```kotlin
+data class RecipeCardSuccessCatalogParams (
+      val recipeTitle: String, 
+      val mealzRecipeId: String, // recipe id in mealz data base
+      val recipePicture: String, 
+      val recipePrice: Double,
+      val recipeIngredients: Map<String,String>, // name of ingredient / ImageURL 
+      val goToDetail: () -> Unit, // action to open recipe detail
+      val guest: MutableStateFlow<Int>, 
+      val isInCart: Boolean, // true if recipe is in cart
+      val isSponsor: Boolean, //  true if recipe has a sponsor
+      val sponsorLogo: String?,
+      val likeIsEnabled: Boolean //  true is like feature has been enabled
+){
+      val pricePerServe : Double
+           get() {
+                val guest : Double =  if (guest.value == 0) 1.0 else guest.value.toDouble()
+                return   recipePrice / guest
+           }
+ }
+
+```
+
+### Shelf
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'RecipeCardSuccessCustomView.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccessShelf
+import ai.mealz.sdk.components.recipeCard.success.RecipeCardSuccessShelfParams
+
+class RecipeCardSuccessShelfCustomView: RecipeCardSuccessShelf {
+
+    @Composable
+    override fun Content(params: RecipeCardSuccessShelfParams) {
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+class RecipeCardSuccessShelfCustomView : RecipeCardSuccessShelf {
+    @Composable
+    override fun Content(params: RecipeCardSuccessShelfParams) {
+        Surface(
+            border = BorderStroke(1.dp, Colors.lightgrey),
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .height(230.dp)
+                .padding(8.dp)
+        ) {
+            Row {
+                Box {
+                    RecipeCardImageView(params.recipePicture, params.sponsorLogo, sponsorAlignment = Alignment.BottomStart, with = 180.dp ) { params.goToDetail() }
+                    Box(modifier = Modifier
+                        .padding(8.dp)
+                        .align(Alignment.TopEnd)) {
+                        LikeButton(recipeId = params.mealzRecipeId).Content()
+                    }
+                    RecipeFlap(modifier = Modifier.align(Alignment.TopStart))
+                    GuestBadge(params.guest,Modifier.padding(8.dp).align(Alignment.BottomEnd))
+                }
+                Column(verticalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(vertical = 8.dp)
+                    .weight(1f)) {
+                    RecipeCardTitleView(params.recipeTitle, Modifier.padding(horizontal = 12.dp), Colors.boldText)
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        PricePerPerson(params.pricePerServe)
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                        ) {
+                            RecipeCardCTAView(params.isInCart) {
+                                params.goToDetail()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+### Shelf params
+
+```kotlin
+data class RecipeCardSuccessShelfParams (
+      val recipeTitle: String, 
+      val mealzRecipeId: String, // recipe id in mealz data base
+      val recipePicture: String, 
+      val recipePrice: Double,
+      val recipeIngredients: Map<String,String>, // name of ingredient / ImageURL 
+      val goToDetail: () -> Unit, // action to open recipe detail
+      val guest: MutableStateFlow<Int>, 
+      val isInCart: Boolean, // true if recipe is in cart
+      val isSponsor: Boolean, //  true if recipe has a sponsor
+      val sponsorLogo: String?,
+      val likeIsEnabled: Boolean //  true is like feature has been enabled
+){
+      val pricePerServe : Double
+           get() {
+                val guest : Double =  if (guest.value == 0) 1.0 else guest.value.toDouble()
+                return   recipePrice / guest
+           }
+ }
+
+```
+
+### Ressources 
+
+
+<UseStringResource localisationExample = {"Localisation.recipe.showDetails.localised"}/>
+
+
+| Name | Ressource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| showDetails | com_miam_recipe_is_in_cart | Voir le détail | Show details |
+| add | com_miam_recipe_add | Ajouter les ingrédients | Add ingredients |
+| perPerson | com_miam_my_meals_per_person | /pers.| /pers. |
+
+## Loading
+
+As for Success state basic Laoding view has been **deprecated** you must use catalog and shelf loading.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'RecipeCardLoadingCustomView.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.recipeCard.loading.RecipeCardLoading
+
+
+class RecipeCardLoadingCustomView: RecipeCardLoading {
+
+    @Composable
+    override fun Content() {
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+import ai.mealz.sdk.components.recipeCard.loading.RecipeCardLoading
+
+
+class RecipeCardLoadingCustomView: RecipeCardLoading {
+
+    @Composable
+    override fun Content() {
+        Column(Modifier.fillMaxWidth().padding(vertical= 16.dp), horizontalAlignment = Alignment.CenterHorizontally){
+            CircularProgressIndicator()
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+### Loading catalog
+
+You can choose to have to differents design for the recipe card in our catalog and in your shelf.
+Regarding your needs you can create two templates or only one implementing both catalog and shelf loading
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'RecipeCardLoadingShelfCustomView.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.recipeCard.loading.catalog.RecipeCardLoadingCatalog
+import ai.mealz.sdk.components.recipeCard.loading.catalog.RecipeCardLoadingCatalogParams
+
+class RecipeCardLoadingCatalogCustomView:  RecipeCardLoadingCatalog {
+
+    // RecipeCardLoadingCatalogParams is an Object without properties
+    @Composable
+    override fun Content(params :  RecipeCardLoadingCatalogParams) { 
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+import ai.mealz.sdk.components.recipeCard.loading.catalog.RecipeCardLoadingCatalog
+import ai.mealz.sdk.components.recipeCard.loading.catalog.RecipeCardLoadingCatalogParams
+
+class RecipeCardLoadingCatalogCustomView: RecipeCardLoadingCatalog {
+
+    @Composable
+    override fun Content(params :  RecipeCardLoadingCatalogParams) {
+        Column(Modifier.fillMaxWidth().padding(vertical= 16.dp), horizontalAlignment = Alignment.CenterHorizontally){
+            CircularProgressIndicator()
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+### Loading shelf
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'RecipeCardLoadingShelfCustomView.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.recipeCard.loading.shelf.RecipeCardLoadingShelf
+import ai.mealz.sdk.components.recipeCard.loading.shelf.RecipeCardLoadingShelfParams
+
+class RecipeCardLoadingShelfCustomView:  RecipeCardLoadingShelf {
+
+    // RecipeCardLoadingShelfParams is an Object without properties
+    @Composable
+    override fun Content(params :  RecipeCardLoadingShelfParams) { 
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+import ai.mealz.sdk.components.recipeCard.loading.catalog.RecipeCardLoadingShelf
+import ai.mealz.sdk.components.recipeCard.loading.catalog.RecipeCardLoadingShelfParams
+
+class RecipeCardLoadingShelfCustomView: RecipeCardLoadingShelf {
+
+    @Composable
+    override fun Content(params :  RecipeCardLoadingShelfParams) {
+        Column(Modifier.fillMaxWidth().padding(vertical= 16.dp), horizontalAlignment = Alignment.CenterHorizontally){
+            CircularProgressIndicator()
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+

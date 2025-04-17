@@ -1,0 +1,77 @@
+import SharedAuthLess from '../../shared/advanced/AuthLess.mdx';
+import SharedGetPriceOrRedirect from '../../shared/advanced/GetPriceOrRedirect.mdx';
+
+# User customisation
+
+Mealz can provide a personalized experience for customers. 
+To achieve this we propose two solutions:
+
+- Preferences: Locally stored _Actionable without customer consent by the retailer_
+- Profiling : Back hosted tastes _Can be disabled by the customer_
+
+:::note
+These two solutions are GDPR-compliant
+:::
+
+## Preferences
+
+Our preferences feature uses the native IOS local storage for persistence.
+
+ ```swift
+
+// inside MealzViewConfig
+static let catalogConfig = CatalogFeatureConstructor(
+   usesPreferences: true, // set this to true
+
+// when creating Feature
+// feature = MealzCatalogFeatureSwiftUI( // <--- for SwiftUI
+feature = MealzCatalogFeatureUIKit(
+    catalogFeatureConstructor: MealzViewConfig.catalogConfig, // <--- this is what we add
+)
+```
+
+## Profiling
+
+Mealz offers your customers a fully personalized experience based on their tastes.
+Our AI will learn from the customer's choices and suggest more and more specific recipes and
+product.
+
+This feature can be disabled by the customer if they wish.
+
+To do this, we expose this function:
+
+```swift 
+// file MealzManager.swift
+import mealzcore
+
+public class MealzManager {
+    // allow profiling -> can we use your personal data to provide custom recipes?
+    Mealz.shared.user.setProfilingAllowance(allowance: true)
+}
+```
+
+## Like recipe
+
+You can disable the Like feature as well
+
+```swift 
+// file MealzManager.swift
+import mealzcore
+
+public class MealzManager {
+    // allow users to heart recipes
+    Mealz.shared.user.setEnableLike(isEnable: true)
+}
+```
+
+:::note
+The like feature will be set to TRUE by default
+:::
+
+## AuthLess
+
+<SharedAuthLess platform="ios"/>
+
+## Get Price Or Redirect
+
+<SharedGetPriceOrRedirect platform="ios"/>

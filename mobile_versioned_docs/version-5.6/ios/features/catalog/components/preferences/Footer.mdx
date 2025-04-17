@@ -1,0 +1,61 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Footer
+
+This template allows you to customize the Footer section of the Preferences page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomPreferencesFooterView: PreferencesFooterProtocol {
+            public func content(params: PreferencesFooterParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomPreferencesFooterView: PreferencesFooterProtocol {
+
+        public init() {}
+        public func content(params: PreferencesFooterParameters) -> some View {
+            return ApplyOrClearCTA(
+                applyButtonText: Localization.preferences.apply.localised,
+                clearButtonText: Localization.preferences.reset.localised,
+                apply: params.onApplied,
+                clear: params.onClosed)
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct PreferencesFooterParameters {
+    /// The number of recipes that will be returned based on the current criteria
+    public let recipesFound: Int?
+    /// A closure to apply the preferences & close the page
+    public let onApplied: () -> Void
+    /// A closure to close the page without applying
+    public let onClosed: () -> Void
+```
+
+- [PreferencesFooterProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesfooterprotocol)

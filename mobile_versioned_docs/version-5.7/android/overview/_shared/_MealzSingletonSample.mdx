@@ -1,0 +1,21 @@
+```kotlin
+object MealzManager {
+
+    private var isInitialized = false
+
+    public fun initialize(applicationContext: Context) {
+        if (isInitialized) return
+        isInitialized = true
+    }
+}
+```
+
+```kotlin
+// MainActivity.kt
+
+class MainActivity: ComponentActivity(), CoroutineScope by CoroutineScope(Dispatchers.Main) {
+
+private fun initMealz() {
+    MealzManager.initialize(this@MainActivity)
+}
+```

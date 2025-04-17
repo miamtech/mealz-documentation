@@ -1,0 +1,96 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Steps
+
+To create your own recipe detail steps template you create a class that implements `RecipeDetailsStepsProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+    { label: 'Boilerplate', value: 'empty_example' },
+    { label: 'Full Example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomRecipeDetailsStepsView: RecipeDetailsStepsProtocol {
+    public func content(params: RecipeDetailsStepsParameters) -> some View {
+        // your imp here
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+import mealzcore
+
+    @available(iOS 14, *)
+    public struct MealzRecipeDetailsStepsView: RecipeDetailsStepsProtocol {
+        let addLinesUnderneath: Bool
+        public init(addLinesUnderneath: Bool = false) {
+            self.addLinesUnderneath = addLinesUnderneath
+        }
+        public func content(params: RecipeDetailsStepsParameters) -> some View {
+            VStack(alignment: .leading) {
+                Text("\(params.steps.count) \(Localization.recipe.steps.localised)")
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleStyle)
+                    .padding()
+                VStack {
+                    ForEach(Array(params.steps.enumerated()), id: \.offset) { index, step in
+                        RecipeDetailStep(
+                            stepNumber: index + 1,
+                            stepDescription: step.attributes?.stepDescription ?? "")
+                         if addLinesUnderneath && index < params.steps.count - 1 {
+                            Divider()
+                         }
+                    }
+                     .padding(.bottom)
+                 }.frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+
+
+    @available(iOS 14, *)
+    struct RecipeDetailStep : View {
+        var stepNumber: Int
+        var stepDescription: String
+
+        var body: some View {
+            HStack{
+                Text("\(stepNumber)")
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.subtitleStyle)
+                    .foregroundColor(Color.mealzColor(.standardDarkText))
+                    .frame(width: 40, height: 40)
+                    .background(
+                         Circle().fill(Color.mealzColor(.lightBackground)))
+                    .padding(.horizontal)
+                Text(stepDescription)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigStyle)
+                    .foregroundColor(Color.mealzColor(.standardDarkText))
+                    .padding(.trailing, 16).frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct RecipeDetailsStepsParameters {
+    /// The active cooking step the user is on. For example, the first step is usually "Cut the vegetables."
+    public let activeStep: Binding<Int>
+    /// Each of the steps to display that the user can interact with. For example, a step could be "Add a pinch of salt."
+    public let steps: [RecipeStep]
+```
+
+- [RecipeDetailsStepsProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsstepsprotocol)

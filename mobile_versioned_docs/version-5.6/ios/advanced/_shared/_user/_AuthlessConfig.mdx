@@ -1,0 +1,17 @@
+```swift
+public class MealzManager: ObservableObject {
+    public static let sharedInstance = MealzManager()
+
+   private init() {
+
+    Mealz.shared.Core(init: { coreBuilder in
+            coreBuilder.sdkRequirement(init: { requirementBuilder in
+                requirementBuilder.key = key
+            })
+            coreBuilder.option(init: { config in
+                config.isAnonymousModeEnabled = true
+            })
+        })
+    }
+}
+```

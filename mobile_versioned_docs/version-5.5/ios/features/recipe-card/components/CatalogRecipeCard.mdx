@@ -1,0 +1,165 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### CatalogRecipeCard
+
+To create your own recipe card template you create a class that implements `CatalogRecipeCardProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomRecipeCardView: CatalogRecipeCardProtocol {
+      public func content(params: CatalogRecipeCardParameters) -> some View {
+            // your imp here
+        }
+}
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomRecipeCardView: CatalogRecipeCardProtocol {
+    public init() {}
+    public func content(params: CatalogRecipeCardParameters) -> some View {
+        let dimensions = Dimension.sharedInstance
+        let callToActionHeight: CGFloat = 70
+        let pictureHeight = params.recipeCardDimensions.height - callToActionHeight
+
+        func showTimeAndDifficulty() -> Bool {
+            return params.recipeCardDimensions.height >= 320
+        }
+
+        return VStack(spacing: 0.0) {
+            VStack(spacing: 0.0) {
+                ZStack {
+                    AsyncImage(url: params.recipe.pictureURL) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .padding(0)
+                            .frame(width: params.recipeCardDimensions.width, height: pictureHeight)
+                            .clipped()
+                    }
+                        .contentShape(Rectangle()) // this fixes gesture detector overflow to other cards
+                        .padding(0)
+                    LinearGradient(
+                        gradient: Gradient(
+                        colors: [Color.clear, Color.black.opacity(0.3)]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    VStack(alignment: .trailing, spacing: 0) {
+                        LikeButton(likeButtonInfo: LikeButtonInfo(
+                             recipeId: params.recipe.id))
+                        .padding(dimensions.mPadding)
+                        Spacer()
+                        HStack {
+                            Text(params.recipe.title)
+                                .foregroundColor(Color.mealzColor(.white))
+                                .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigBoldStyle)
+                                .lineLimit(2)
+                                .multilineTextAlignment(.leading)
+                                .minimumScaleFactor(0.75)
+                            Spacer()
+                            MealzSmallGuestView(guests: Int(params.numberOfGuests))
+                        }.padding(Dimension.sharedInstance.mlPadding)
+                    }
+                }
+                    .padding(0)
+                    .frame(width: params.recipeCardDimensions.width, height: pictureHeight)
+                    .clipped()
+                HStack {
+                    MealzPricePerPerson(pricePerGuest: params.recipe.attributes?.price?.pricePerServe ?? params.recipePrice)
+                    Spacer()
+                    CallToAction(cardWidth: params.recipeCardDimensions.width, isCurrentlyInBasket: params.isCurrentlyInBasket) {
+                        params.onAddToBasket(params.recipe.id)
+                    }
+                }
+                    .frame(height: callToActionHeight)
+                    .padding(.horizontal, Dimension.sharedInstance.mlPadding)
+            }
+        }
+            .onTapGesture { params.onShowRecipeDetails(params.recipe.id) }
+            .padding(0)
+            .frame(width: params.recipeCardDimensions.width, height: params.recipeCardDimensions.height)
+            .background(Color.mealzColor(.white))
+            .cornerRadius(Dimension.sharedInstance.lCornerRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: Dimension.sharedInstance.lCornerRadius)
+            .stroke(Color.mealzColor(.border), lineWidth: 1.0))
+    }
+
+    internal struct CallToAction: View {
+        let cardWidth: CGFloat
+        let isCurrentlyInBasket: Bool
+        let callToAction: () -> Void
+        var body: some View {
+            VStack {
+                if cardWidth >= 225 {
+                    MealzAddAllToBasketCTA(callToAction: callToAction, isCurrentlyInBasket: isCurrentlyInBasket)
+                } else {
+                    Button(action: callToAction, label: {
+                        if isCurrentlyInBasket {
+                            Image.mealzIcon(icon: .basketCheck)
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                        } else {
+                            Image.mealzIcon(icon: .basket)
+                                .renderingMode(.template)
+                                .resizable()
+                                .foregroundColor(Color.mealzColor(.white))
+                                .frame(width: 24, height: 24)
+                        }
+                    })
+                        .padding(Dimension.sharedInstance.mlPadding)
+                        .background(Color.mealzColor(isCurrentlyInBasket ? .white : .primary))
+                        .cornerRadius(Dimension.sharedInstance.buttonCornerRadius)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Dimension.sharedInstance.buttonCornerRadius)
+                        .stroke(isCurrentlyInBasket ? Color.mealzColor(.primary) : Color.clear, lineWidth: 1))
+                }
+            }
+        }
+    }
+}
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct CatalogRecipeCardParameters {
+    /// The width & height of the recipe card
+    public var recipeCardDimensions: CGSize
+    /// The Recipe object of the current Recipe Card
+    public var recipe: Recipe
+    /// The price of the Recipe, which updates when it is added to the baket
+    public var recipePrice: Double
+    /// The number of guests that are in the recipe
+    public var numberOfGuests: Int
+    /// Boolean on whether the Recipe is currently in the basket. This can change the CTA text
+    public var isCurrentlyInBasket: Bool
+    /// A closure that executes the function in the "Call To Action" of the recipe card. This is usally "add to basket", so the navigation is to the Basket
+    public var onAddToBasket: (String) -> Void
+    /// A closure that opens the RecipeDetails, passing in the recipeId
+    public var onShowRecipeDetails: (String) -> Void
+```
+
+- [CatalogRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogrecipecardprotocol)

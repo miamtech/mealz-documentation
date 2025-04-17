@@ -1,0 +1,75 @@
+---
+sidebar_position: 2
+label: "Floating"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Floating customisation
+
+This template allows you to put an overlay that will be present on main page.
+
+Here you have a specific configuration that lets you choose where to put this overlay.
+by default it's set to `Alignment.BottomEnd`.
+
+You can configure it this way : 
+
+```kotlin
+import androidx.compose.ui.Alignment
+
+ catalog {
+    success {
+        loating {
+            view = // regular template here ,
+            footerAlignment = Alignment <- 
+        }
+    }
+}
+```
+
+Then to create your regular template :
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: "myCustomCatalogFloating.kt", value: "empty_example" },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+class MyCustomCatalogFloating: CatalogFloating {
+
+    @Composable
+    override fun Content(params: CatalogFloatingParameters) {
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+ class MyCustomCatalogFloatingImp : CatalogFloating {
+
+    private val myMealButtonVM: MyMealButtonViewModel = MyMealButtonViewModel()
+    @Composable
+    override fun Content(params: CatalogFloatingParameters) {
+        MyMealButton.View(myMealButtonVM = myMealButtonVM) {
+            params.onClickAction()
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+:::info
+In our Sample we are showing the number or meals currently in the basket at the bottom of screen 
+:::
+
+## Params
+
+```kotlin
+data class CatalogFloatingParameters(
+    val onClickAction: () -> Unit // to call on click on default implementation redirect to my mealz
+)
+```

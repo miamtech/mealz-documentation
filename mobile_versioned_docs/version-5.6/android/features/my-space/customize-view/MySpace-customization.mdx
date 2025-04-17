@@ -1,0 +1,32 @@
+---
+sidebar_position: 3
+label: OrderHistory customization
+---
+
+# MySpace customization
+
+If you want to fully customize this component we recommend copying the code into your Mealz template configuration.
+You can remove the code you do not override.
+
+```kotlin
+mySpace {
+    swapper {
+        view = MyCustomSwapperView
+    }
+    floating {
+        view = MyCustomMySpacingFloatingButtonView
+        footerAlignment = Alignment
+    }
+}
+```
+
+```kotlin
+class MiamTemplateManager {
+    init {
+        MiamTheme.Template 
+        {
+         // <---- copy above code here 
+        }
+    }
+}
+```

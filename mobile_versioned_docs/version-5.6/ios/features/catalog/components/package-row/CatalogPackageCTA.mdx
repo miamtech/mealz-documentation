@@ -1,0 +1,84 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# CatalogPackageCTA
+
+This template allows you to customize the Call to Action button above each Package that will open the Catalog Results page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomCatalogPackageCTAView: CatalogPackageCTAProtocol {
+            public func content(params: CatalogPackageCTAParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomCatalogPackageCTAView: CatalogPackageCTAProtocol {
+
+        public init() {}
+        public func content(params: CatalogPackageCTAParameters) -> some View {
+            HStack(alignment: .bottom) {
+                VStack(alignment: .leading) {
+                    Text(params.title)
+                        .foregroundColor(Color.mealzColor(.primaryText))
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleBigStyle)
+                        .lineLimit(1)
+                    if let subtitle = params.subtitle {
+                        Text(subtitle)
+                            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyStyle)
+                            .lineLimit(1)
+                    }
+                }
+                Button( action: {
+                    params.onSeeAllRecipes()
+                }, label: {
+                    HStack {
+                        Text(Localization.catalog.showAll.localised)
+                            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigBoldStyle)
+                            .foregroundColor(Color.mealzColor(.primary))
+                        Image.mealzIcon(icon: .arrow)
+                            .renderingMode(.template)
+                            .foregroundColor(Color.mealzColor(.primary))
+                    }
+                })
+            }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical, Dimension.sharedInstance.lPadding)
+                .padding(.horizontal, Dimension.sharedInstance.mPadding)
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct CatalogPackageCTAParameters {
+    /// The name of the package collection
+    public let title: String
+    /// The description or the copy of the package collection, if it exists
+    public let subtitle: String?
+    /// CTA to open the Catalog Results page with all the recipes from the collection
+    public let onSeeAllRecipes: () -> Void
+```
+
+- [CatalogPackageCTAProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/catalogpackagectaprotocol)

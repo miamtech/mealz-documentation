@@ -41,9 +41,18 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "5.4",
+            label: "5.7",
             path: "/"
           },
+            "5.6": {
+              banner: 'none',
+            },
+            "5.5": {
+              banner: 'none',
+            },
+            "5.4": {
+              banner: 'none',
+            },
             "5.3": {
               banner: 'none',
             },
@@ -154,9 +163,24 @@ export default {
             to: "docs/android/Introduction",
             items: [
               {
-                label: "5.4",
+                label: "5.7",
                 to: "docs/android/Introduction",
                 activeBasePath: "docs/android/",
+              },
+              {
+                label: "5.6",
+                to: "docs/5.6/android/Introduction",
+                activeBasePath: "docs/5.6/android/",
+              },
+              {
+                label: "5.5",
+                to: "docs/5.5/android/Introduction",
+                activeBasePath: "docs/5.5/android/",
+              },
+              {
+                label: "5.4",
+                to: "docs/5.4/android/Introduction",
+                activeBasePath: "docs/5.4/android/",
               },
               {
                 label: "5.3",
@@ -197,9 +221,24 @@ export default {
             to: "docs/ios/Introduction",
             items: [
               {
-                label: "5.4",
+                label: "5.7",
                 to: "docs/ios/Introduction",
                 activeBasePath: "docs/ios/",
+              },
+              {
+                label: "5.6",
+                to: "docs/5.6/ios/Introduction",
+                activeBasePath: "docs/5.6/ios/",
+              },
+              {
+                label: "5.5",
+                to: "docs/5.5/ios/Introduction",
+                activeBasePath: "docs/5.5/ios/",
+              },
+              {
+                label: "5.4",
+                to: "docs/5.4/ios/Introduction",
+                activeBasePath: "docs/5.4/ios/",
               },
               {
                 label: "5.3",

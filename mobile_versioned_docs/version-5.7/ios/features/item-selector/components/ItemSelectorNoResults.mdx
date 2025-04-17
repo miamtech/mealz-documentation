@@ -1,0 +1,73 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Item Selector No Results
+
+To create your own Item Selector no results template you create a class that implements `ItemSelectorNoResultsProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomItemSelectorNoResultsView: ItemSelectorNoResultsProtocol {
+            public func content(params: ItemSelectorNoResultsParameters) -> some View {
+                // your imp here
+            }
+        }
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomItemSelectorNoResultsView: ItemSelectorNoResultsProtocol {
+
+        public init() {}
+        public func content(params: ItemSelectorNoResultsParameters) -> some View {
+            VStack {
+                Image.mealzIcon(icon: .feelingBlue)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 200)
+                Text(params.title)
+                    .foregroundColor(Color.mealzColor(.primary))
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleMediumStyle)
+                if let subtitle = params.subtitle {
+                    Text(subtitle)
+                        .foregroundColor(Color.mealzColor(.primaryText))
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.subtitleStyle)
+                }
+            }
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct ItemSelectorNoResultsParameters {
+    /// The No Results main text
+    public let title: String
+    /// The No Results subtext
+    public let subtitle: String?
+    /// If the replaced item does not have substitutes
+    public let hasNoSubstitutes: Bool
+    /// Closure to close the Item Selector
+    public let goBack: () -> Void
+```

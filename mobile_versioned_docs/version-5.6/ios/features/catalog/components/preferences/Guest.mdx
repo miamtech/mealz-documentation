@@ -1,0 +1,66 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Guest
+
+This template allows you to customize the Guest section of the Preferences page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomPreferencesGuestView: PreferencesGuestProtocol {
+            public func content(params: PreferencesGuestParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomPreferencesGuestView: PreferencesGuestProtocol {
+
+        public init() {}
+        public func content(params: PreferencesGuestParameters) -> some View {
+            VStack {
+                HStack {
+                    Text(Localization.preferences.numberOfGuests.localised)
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleMediumStyle)
+                    Spacer()
+                    MealzGuestCounter(currentGuests: params.guests, withBorder: true) { count in
+                        params.onGuestChanged(count)
+                    }
+                }
+                    .padding(Dimension.sharedInstance.mPadding)
+            }
+                .frame(maxWidth: .infinity)
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct PreferencesGuestParameters {
+    /// The number of guests that the recipes will be optimizing for
+    @Binding public var guests: Int
+    /// A closure to update the number of guests
+    public let onGuestChanged: (Int) -> Void
+```
+
+- [PreferencesGuestProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/preferencesguestprotocol)

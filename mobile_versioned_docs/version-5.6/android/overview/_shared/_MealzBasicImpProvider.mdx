@@ -1,0 +1,22 @@
+```kotlin
+import ai.mealz.core.Mealz
+import ai.mealz.core.init.sdkRequirement
+import android.content.Context
+
+object MealzManager {
+
+    private var isInitialized = false
+    private val PROVIDER_KEY = "YOUR_KEY"
+
+    public fun initialize(applicationContext: Context) {
+        if (isInitialized) return
+        Mealz.Core {
+            sdkRequirement {
+                key = PROVIDER_KEY
+                context = applicationContext
+            }   
+        }
+        isInitialized = true
+    }
+}
+```

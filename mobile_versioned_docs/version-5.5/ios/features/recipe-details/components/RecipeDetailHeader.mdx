@@ -1,0 +1,183 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Header
+
+The Header is a customizable component on the RecipeDetail that includes the photo & guest counter;
+to create your own recipe detail header you create a class that implements `RecipeDetailsHeaderProtocol`
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+    { label: 'Boilerplate', value: 'empty_example' },
+    { label: 'Full Example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomRecipeDetailsHeaderView: RecipeDetailsHeaderProtocol {
+public func content(params: RecipeDetailsHeaderParameters) -> some View {
+      // your imp here
+    }
+}
+    ```
+
+</TabItem>
+<TabItem value="full_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MealzRecipeDetailsHeaderView: RecipeDetailsHeaderProtocol {
+    public init() {}
+    let imageHeight:CGFloat = 400
+    public func content(params: RecipeDetailsHeaderParameters) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack {
+                    Button {
+                     params.onRecipeDetailsClosed()
+                    } label: {
+                        Image.mealzIcon(icon: .caret)
+                        .renderingMode(.template)
+                        .rotationEffect(Angle(degrees: 180))
+                    }.frame(width: 40, height: 40)
+                    .foregroundColor(Color.mealzColor(.primary))
+                    .background(Color.white)
+                    .clipShape(Circle()).padding()
+                    Spacer()
+                    LikeButton(likeButtonInfo: LikeButtonInfo(recipeId: params.recipeId)).padding(16)
+                }
+                Spacer()
+                if !params.isForMealPlanner {
+                    RecipeDetailsGuestCount(
+                        currentGuests: params.currentGuests,
+                        updateGuest: params.onUpdateGuests)
+                }
+            }
+                .background(
+            mediaImageView(mediaURL: params.mediaURL)
+                .frame(height: imageHeight),
+            alignment: .top)
+                .frame(maxWidth: .infinity)
+                .frame(height: imageHeight)
+            Text(params.title)
+                .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleStyle)
+                .padding(.bottom, Dimension.sharedInstance.sPadding)
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+            MealzRecipeDetailsTagsView(tags: params.tags)
+        }
+    }
+
+    internal struct RecipeDetailsGuestCount: View {
+        private let currentGuests: Int
+        private let updateGuest: (Int) -> Void
+        init(currentGuests: Int, updateGuest: @escaping (Int) -> Void) {
+            self.currentGuests = currentGuests
+            self.updateGuest = updateGuest
+    }
+    public var body: some View {
+        HStack{
+            Spacer()
+            HStack{
+                Button {
+                    updateGuest(max((currentGuests - 1), 1))
+                } label: {
+                    Image.mealzIcon(icon: .minus)
+                    .renderingMode(.template).foregroundColor(Color.mealzColor(.primaryText))
+                }
+                Text("\(currentGuests)")
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBoldStyle)
+                    .frame(minWidth: 10, alignment: .center)
+                    .foregroundColor(Color.mealzColor(.darkestGray))
+                Image.mealzIcon(icon: .guests)
+                    .renderingMode(.template)
+                    .foregroundColor(Color.mealzColor(.darkestGray))
+                Button {
+                    updateGuest(currentGuests + 1)
+                } label: {
+                    Image.mealzIcon(icon: .plus)
+                    .renderingMode(.template).foregroundColor(Color.mealzColor(.primaryText))
+                }
+            }
+                .padding(8)
+                .background(Capsule().foregroundColor(Color.white))
+                .padding(16)
+        }
+    }
+}
+
+    @ViewBuilder
+    private func mediaImageView(mediaURL: String?) -> some View {
+        if let urlString = mediaURL, let url = URL(string: urlString) {
+            AsyncImage(url: url) { image in
+                image
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(height: imageHeight)
+                .clipped()
+            }
+        } else {
+            Image.mealzIcon(icon: .pan)
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct RecipeDetailsHeaderParameters {
+    /// The picture URL of the recipe
+    public let mediaURL: String?
+    /// The recipe title
+    public let title: String
+    @available(*, deprecated, message: "Moved to RecipeDetailsTags")
+    /// The difficulty of the recipe (Easy, Medium, Difficult)
+    public let difficulty: Int
+    @available(*, deprecated, message: "Moved to RecipeDetailsTags")
+    /// Time to prepare, cook, & rest
+    public let totalTime: String
+    @available(*, deprecated, message: "Moved to RecipeDetailsTags")
+    /// Time to prepare
+    public let preparationTime: String
+    @available(*, deprecated, message: "Moved to RecipeDetailsTags")
+    /// Time to cook
+    public let cookingTime: String
+    @available(*, deprecated, message: "Moved to RecipeDetailsTags")
+    /// Time to let the meal sit after being cooked
+    public let restingTime: String
+    @available(*, deprecated, message: "Like Button moved to RecipeDetailsFloatingNavigationProtocol")
+    /// If the retailer allows the Mealz Like feature
+    public let isLikeEnabled: Bool
+    /// Recipe Id of the recipe
+    public let recipeId: String
+    /// Guest count set by the recipe
+    public let recipeGuests: Int
+    /// Guest count set by the user
+    public let currentGuests: Int
+    /// Boolean if the guest count is updating
+    public let guestUpdating: Bool
+    /// If this Recipe is being used from our Mealz Meal Planner feature
+    public let isForMealPlanner: Bool
+    @available(*, deprecated, message: "Moved to RecipeDetailsTags")
+    /// Tags for the recipe (equipment, time, etc)
+    public let tags: [RecipeDetailTags]
+    @available(*, deprecated, message: "Close Recipe Details Button moved to RecipeDetailsFloatingNavigationProtocol")
+    /// Closure to close Page
+    public let onRecipeDetailsClosed: () -> Void
+    /// Closure to update the guest count
+    public let onUpdateGuests: (Int) -> Void
+```
+
+- [RecipeDetailsHeaderProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsheaderprotocol)

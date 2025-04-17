@@ -1,0 +1,142 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### OrderHistoryPreviousOrderCard
+
+To create your own recipe card template you create a class that implements `PreviousOrderCardProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomPreviousOrderCardView: PreviousOrderCardProtocol {
+      public func content(params: PreviousOrderCardParameters) -> some View {
+            // your imp here
+        }
+}
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomPreviousOrderCardView: PreviousOrderCardProtocol {
+    public init() {}
+    private let maxImages = 4
+    private let imageSize: CGFloat = 55
+    public func content(params: PreviousOrderCardParameters) -> some View {
+        VStack(spacing: Dimension.sharedInstance.lPadding) {
+            HStack(spacing: -20) {
+                ForEach(0..<min(maxImages, params.images.count), id: \.self) { index in
+                    recipeCardImage(recipeImage: params.images[index])
+                }
+                if params.images.count > maxImages {
+                    remainingRecipes(remaining: params.images.count - maxImages)
+                }
+                Spacer()
+            }
+            HStack {
+                orderedOnTag(date: params.orderDate)
+                Spacer()
+                viewRecipe(openOrder: params.openOrderDetails)
+            }
+        }
+            .padding(Dimension.sharedInstance.lPadding)
+            .background(Color.mealzColor(.white))
+            .overlay(
+                RoundedRectangle(
+                    cornerRadius: Dimension.sharedInstance.buttonCornerRadius
+                )
+                    .stroke(Color.mealzColor(.border), lineWidth: 1)
+            )
+            .padding(.horizontal, Dimension.sharedInstance.lPadding)
+            .padding(.vertical, Dimension.sharedInstance.sPadding)
+            .onTapGesture(perform: params.openOrderDetails)
+    }
+
+    @ViewBuilder
+    func recipeCardImage(recipeImage: URL) -> some View {
+        AnyView(AsyncImage(url: recipeImage) { image in
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .id(recipeImage.absoluteString)
+        })
+            .frame(width: imageSize, height: imageSize)
+            .clipShape(Circle())
+            .overlay(
+                Circle().stroke(Color.mealzColor(.unpureWhite), lineWidth: 3)
+            )
+    }
+
+    @ViewBuilder
+    func remainingRecipes(remaining: Int) -> some View {
+        Text("+\(remaining)")
+            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleStyle)
+            .foregroundColor(Color.mealzColor(.standardDarkText))
+            .frame(width: imageSize, height: imageSize)
+            .background(Color.mealzColor(.lightBackground))
+            .clipShape(Circle())
+    }
+
+    @ViewBuilder
+    func orderedOnTag(date: String) -> some View {
+        Text(date.withCString { dateAsC in
+            String(format:
+                Localization.orderHistory.orderedOn(date: date).localised, dateAsC)
+        })
+            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyStyle)
+            .foregroundColor(Color.mealzColor(.standardDarkText))
+            .padding(Dimension.sharedInstance.mPadding)
+            .background(Capsule().fill(Color.mealzColor(.lightBackground)))
+    }
+
+    @ViewBuilder
+    func viewRecipe(openOrder: @escaping () -> Void) -> some View {
+        Button(action: openOrder, label:  {
+            Text(Localization.orderHistory.seePreviousOrder.localised)
+                .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.subtitleStyle)
+                .foregroundColor(Color.mealzColor(.standardDarkText))
+                .padding(Dimension.sharedInstance.mPadding)
+                .background(
+                    RoundedRectangle(
+                        cornerRadius: Dimension.sharedInstance.buttonCornerRadius
+                    )
+                    .fill(Color.mealzColor(.lightBackground))
+                )
+        })
+    }
+}
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct PreviousOrderCardParameters {
+    /// Image of the recipes in the order
+    public let images: [URL]
+    /// List of recipe data objects
+    public let recipes: [RecipeCardData]
+    /// Date the order was purchased
+    public let orderDate: String
+    /// Callback to see the order details
+    public let openOrderDetails: () -> Void
+```
+
+- [PreviousOrderCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/previousordercardprotocol)

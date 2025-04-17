@@ -1,0 +1,69 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import MealzSelectedControlView from '../../_shared/_components/_code/MealzSelectedControlView.mdx';
+
+
+### MySpaceSelectedControl
+
+To create your own MySpace Selected Control template you create a class that implements `MySpaceSelectedControlProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomMySpaceSelectedControlView: MySpaceSelectedControlProtocol {
+    public func content(params: MySpaceSelectedControlParameters) -> some View {
+        // your imp here
+    }
+}
+```
+    </TabItem>
+    <TabItem value="full_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+import mealzcore
+
+@available(iOS 14, *)
+public struct MyCustomMySpaceSelectedControlView: MySpaceSelectedControlProtocol {
+    public func content(params: MySpaceSelectedControlParameters) -> some View {
+        MealzSelectedControlView(
+            selection: params.$selection,
+            options: [.favorites, .history]
+        )
+    }
+}
+```
+       <MealzSelectedControlView />
+
+    </TabItem>
+</Tabs>
+
+
+with
+
+```swift
+public struct MySpaceSelectedControlParameters {
+    /// Current tab, either favorites or history
+    @Binding public var selection: MySpaceSelectedControlPage
+```
+
+where
+
+```swift
+public enum MySpaceSelectedControlPage: SelectedControlEnum {
+    case favorites
+    case history
+```
+
+- [MySpaceSelectedControlParameters](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/myspaceselectedcontrolparameters)

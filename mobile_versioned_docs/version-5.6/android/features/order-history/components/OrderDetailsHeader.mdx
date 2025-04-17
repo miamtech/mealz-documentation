@@ -1,0 +1,90 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### OrderDetailsHeader
+
+
+To create your own Order Details Header, you create a class that implements `OrderHistorySuccessOrderDetailHeader`.
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.orderHistory.success.order.orderDetail.header.OrderHistorySuccessOrderDetailHeader
+import ai.mealz.sdk.components.orderHistory.success.order.orderDetail.header.OrderHistorySuccessOrderDetailHeaderParameters
+
+class MyCustomOrderHistorySuccessOrderDetailHeaderImp : OrderHistorySuccessOrderDetailHeader {
+    @Composable
+        override fun Content(params: OrderHistorySuccessOrderDetailHeaderParameters) {
+        // your imp here
+    }
+}
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.orderHistory.success.order.orderDetail.header.OrderHistorySuccessOrderDetailHeader
+import ai.mealz.sdk.components.orderHistory.success.order.orderDetail.header.OrderHistorySuccessOrderDetailHeaderParameters
+
+class MyCustomOrderHistorySuccessOrderDetailHeaderImp : OrderHistorySuccessOrderDetailHeader {
+    @Composable
+    override fun Content(params: OrderHistorySuccessOrderDetailHeaderParameters) {
+        Header(
+            Localisation.orderHistory.orderedOn(params.date).localised,
+            true,
+            params.back
+        )
+    }
+}
+
+@Composable
+fun Header(text: String, textIsCentered: Boolean, goBack: () -> Unit) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .padding(Dimension.mPadding)
+    ) {
+        Box(
+            Modifier
+                .clip(RoundedCornerShape(Dimension.mPadding))
+                .background(Colors.backgroundSecondary)
+                .clickable { goBack() }
+        ) {
+            Image(
+                painter = painterResource(Image.previous),
+                contentDescription = "previous",
+                modifier = Modifier.padding(Dimension.mPadding)
+            )
+        }
+        Text(
+            modifier = Modifier
+            .padding(
+                horizontal = Dimension.lPadding,
+                vertical = Dimension.mPadding
+            )
+            .align(Alignment.Center),
+            text = text,
+            style = Typography.subtitleBold,
+            color = Colors.boldText
+        )
+    }
+}
+```
+    </TabItem>
+</Tabs>
+
+with
+
+```kotlin
+class OrderHistorySuccessOrderDetailHeaderParameters(
+    val date: String,
+    val back: () -> Unit
+)
+```

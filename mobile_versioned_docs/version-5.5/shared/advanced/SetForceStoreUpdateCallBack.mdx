@@ -1,0 +1,18 @@
+export var platform
+
+import AndroidSetForceStoreUpdateCallback from '../../android/advanced/_shared/_environment/_SetForceStoreUpdateCallBack.mdx'
+
+import IosSetForceStoreUpdateCallback from '../../ios/advanced/_shared/_environment/_SetForceStoreUpdateCallBack.mdx'
+
+
+export function SetForceStoreUpdateCallback(props){
+    if(props.platform == "android") { return <AndroidSetForceStoreUpdateCallback /> } else return <IosSetForceStoreUpdateCallback />
+}
+
+When using our SDK without a store, your users will be prompted by the "Select a Store" page.
+Occasionally, they will decline this popup.
+To prevent infinite loading or empty views that are blocked due to the user being storeless, we have created a function `SetForceStoreUpdateCallback`.
+
+This function should navigate the user back to a certain page or a simple "return" to leave the current Mealz view they clicked.
+
+<SetForceStoreUpdateCallback platform= {props.platform}/>

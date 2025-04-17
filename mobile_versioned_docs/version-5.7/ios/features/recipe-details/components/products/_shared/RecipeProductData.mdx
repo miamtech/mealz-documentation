@@ -1,0 +1,35 @@
+```swift
+public struct RecipeProductData {
+    /// The unit price of the product
+    public let unitPrice: Double
+    /// Name of the product
+    public let name: String
+    /// Brand of the product (if it has one)
+    public let brand: String?
+    /// How much the product contains (ex: 60 g)
+    public let capacity: String
+    /// The number of products
+    public let productQuantity: Int
+    /// The Unit of the product (ex: g, kg, etc)
+    public let productUnit: String
+    /// The formatted price (ex: $34.53 or €34.23)
+    public let formattedProductPrice: String
+    /// Checked imageURL  of the product
+    public let pictureURL: String
+    /// The name of the specified ingredient (ex: banana)
+    public let ingredientName: String
+    /// The amount of products asked by the recipe
+    public let ingredientQuantity: Float
+    /// The unit used by the recipe for this ingredient (ex: g, kg, etc)
+    public let ingredientUnit: String?
+    /// If other recipes use this product as well, this variable tells how many recipes overall share
+    public let numberOfOtherRecipesSharingThisIngredient: Int
+    /// The number of guests for the recipe set by the user
+    public let guestsCount: Binding<Int>
+    /// The number of guests for the recipe set by the Recipe
+    public let defaultRecipeGuest: Int
+    /// If the product has been sponsored by one of Mealz's partners
+    public let isSponsored: Bool
+    /// The EAN (barcode number)
+    public let ean: String
+```

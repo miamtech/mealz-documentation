@@ -1,0 +1,175 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### OrderHistoryPreviousOrderCard
+
+To create your own recipe card template you create a class that implements `OrderHistorySuccessOrderDetailRecipeCard`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+```kotlin
+import ai.mealz.sdk.components.orderHistory.success.order.orderDetail.recipeCard.OrderHistorySuccessOrderDetailRecipeCard
+import ai.mealz.sdk.components.orderHistory.success.order.orderDetail.recipeCard.OrderHistorySuccessOrderDetailRecipeCardParameters
+
+class MyCustomOrderHistorySuccessOrderDetailRecipeCardImp : OrderHistorySuccessOrderDetailRecipeCard {
+    @Composable
+        override fun Content(params: OrderHistorySuccessOrderDetailRecipeCardParameters) {
+        // your imp here
+    }
+}
+```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+```kotlin
+import ai.mealz.sdk.components.orderHistory.success.order.orderDetail.recipeCard.OrderHistorySuccessOrderDetailRecipeCard
+import ai.mealz.sdk.components.orderHistory.success.order.orderDetail.recipeCard.OrderHistorySuccessOrderDetailRecipeCardParameters
+
+class MyCustomOrderHistorySuccessOrderDetailRecipeCardImp : OrderHistorySuccessOrderDetailRecipeCard {
+@Composable
+    override fun Content(params: OrderHistorySuccessOrderDetailRecipeCardParameters) {
+        Box(
+            Modifier
+                .clip(RoundedCornerShape(mRoundedCorner))
+                .clickable {
+                    params.onClick()
+                }
+        ) {
+            RecipeCardImageView(params.recipeImage)
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.TopStart),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                if (params.isSponsor) SponsorLogo(params.sponsorLogo, Modifier)
+                Spacer(Modifier.weight(1f))
+                if (params.isInCart) AlreadyInBasketBadge()
+            }
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomStart)
+                    .padding(12.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Bottom
+            ) {
+                RecipeCardTitleView(params.recipeTitle, Modifier.weight(1f), white)
+                GuestBadge(params.recipeGuest, Modifier)
+            }
+        }
+    }
+}
+
+
+@Composable
+internal fun GuestBadge(numberOfGuests: Int, modifier: Modifier) {
+    Row(horizontalArrangement = Arrangement.Center, modifier = modifier) {
+        Surface(shape = RoundedCornerShape(xlRoundedCorner), color = white) {
+            Row(
+                modifier = Modifier.padding(horizontal = mPadding, vertical = sPadding),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    numberOfGuests.toString(),
+                    style = Typography.bodyBold,
+                )
+                Icon(
+                    painter = painterResource(id = Image.miamGuest),
+                    contentDescription = "guests icon",
+                    Modifier
+                        .size(mIconHeight)
+                        .padding(start = sPadding)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+internal fun AlreadyInBasketBadge() {
+    Surface(
+        shape = RoundedCornerShape(xlRoundedCorner),
+        color = white,
+        elevation = 1.dp,
+        modifier = Modifier
+        .padding(mPadding),
+    ) {
+        Icon(
+            painter = painterResource(id = Image.basketChecked),
+            contentDescription = "check basket icon",
+            Modifier
+                .size(xlIconHeight)
+                .padding(mPadding),
+            tint = Colors.primary
+        )
+    }
+}
+
+@Composable
+fun RecipeCardImageView(recipePicture: String) {
+    Box(
+        modifier = Modifier
+            .height(orderHistoryRecipeCardHeight)
+            .fillMaxWidth()
+    ) {
+        AsyncImage(
+            model = recipePicture,
+            contentDescription = "Recipe Picture",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .height(orderHistoryRecipeCardHeight)
+                .fillMaxWidth()
+        )
+        Box(
+            modifier = Modifier
+                .height(225.dp)
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .background(
+                    Brush.verticalGradient(
+                        listOf(Color.Transparent, Color.Black),
+                        0f,
+                        900f,
+                    )
+                )
+        )
+    }
+}
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```kotlin
+/**
+ * A class that holds parameters for the order history success order detail recipe card.
+ *
+ * @property recipeTitle The title of the recipe.
+ * @property recipeGuest The number of guests the recipe is intended for.
+ * @property recipeImage The URL or path to the recipe image.
+ * @property isOnSelectionMode Boolean flag indicating if the recipe card is in selection mode.
+ * @property isInCart Boolean flag indicating if the recipe is already in the cart.
+ * @property isDisable Boolean flag indicating if the recipe card is disabled.
+ * @property isSponsor Boolean flag indicating if the recipe is sponsored.
+ * @property sponsorLogo The URL or path to the sponsor's logo. This can be null.
+ * @property onClick A callback function to be invoked when the recipe card is clicked.
+ */
+class OrderHistorySuccessOrderDetailRecipeCardParameters(
+    val recipeTitle: String,
+    val recipeGuest: Int,
+    val recipeImage: String,
+    val isOnSelectionMode: Boolean,
+    val isInCart: Boolean,
+    val isSponsor: Boolean,
+    val sponsorLogo: String?,
+    val onClick: () -> Unit
+)
+```

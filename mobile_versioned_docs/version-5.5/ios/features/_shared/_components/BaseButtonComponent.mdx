@@ -1,0 +1,57 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+    { label: 'Boilerplate', value: 'empty_example' },
+    { label: 'Full Example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomButtonView: BaseButtonProtocol {
+    public func content(params: BaseButtonParameters) -> some View {
+        // your implementation here
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomButtonView: BaseButtonProtocol {
+    public init() {}
+    public func content(params: BaseButtonParameters) -> some View {
+        Button {
+            params.onButtonAction()
+        } label: {
+            Text(params.buttonText)
+              .padding(8)
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```swift
+public struct BaseButtonParameters {
+    /// Text that displays on the button
+    public let buttonText: String
+    /// Boolean on whether or not the button has been pressed yet
+    public let buttonPressed: Bool
+    /// A closure that executes the function passed in
+    public let onButtonAction: () -> Void
+```
+
+- [BaseButtonProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basebuttonprotocol)

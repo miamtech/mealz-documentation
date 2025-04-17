@@ -1,0 +1,67 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# SearchTag
+
+This template allows you to customize the SearchTag section of the Preferences page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomPreferencesSearchTagView: PreferencesSearchTagProtocol {
+            public func content(params: PreferencesSearchTagParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomPreferencesSearchTagView: PreferencesSearchTagProtocol {
+
+        public init() {}
+        public func content(params: PreferencesSearchTagParameters) -> some View {
+            VStack {
+                Button(action: params.onButtonAction, label: {
+                    HStack {
+                        Text(params.buttonText)
+                            .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigStyle)
+                            .foregroundColor(Color.mealzColor(.standardDarkText))
+                        Spacer()
+                    }.padding(Dimension.sharedInstance.mlPadding)
+                })
+                Divider()
+            }.frame(maxWidth: .infinity)
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct BaseButtonParameters {
+    /// Text that displays on the button
+    public let buttonText: String
+    /// Boolean on whether or not the button has been pressed yet
+    public let buttonPressed: Bool
+    /// A closure that executes the function passed in
+    public let onButtonAction: () -> Void
+```
+
+- [BaseButtonProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/basebuttonprotocol)
