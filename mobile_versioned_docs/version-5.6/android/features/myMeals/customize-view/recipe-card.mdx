@@ -1,0 +1,148 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# My Meals Recipe Card
+
+This template allows you to override the recipe cards on the My Meals page.
+
+You can configure it this way :
+
+```kotlin
+import androidx.compose.ui.Alignment
+
+myMeal {
+    loading { view = /* your view */ }
+    empty { view = /* your view */ }
+    itemSelectorCTA { view = /* your view */ }
+    title { view = /* your view */ }
+    recipeCard { success { view = /* your view */ } } // Recipe Card here
+}
+```
+
+Then to create your regular template :
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: "Boilerplate", value: "empty_example" },
+          { label: 'Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```kotlin
+        class MyCustomMyMealRecipeCard: MyMealRecipeCardSuccess {
+
+        @Composable
+        override fun Content(params: MyMealRecipeCardSuccessParameters) {
+            // Your custom design here
+        }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```kotlin
+        class MyCustomMyMealRecipeCard : MyMealRecipeCardSuccess {
+
+        private val myMealButtonVM: MyMealButtonViewModel = MyMealButtonViewModel()
+        @Composable
+        override fun Content(params: MyMealRecipeCardSuccessParameters) {
+            Surface(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .border(
+                        width = 1.dp,
+                        color = Colors.disabledText,
+                        shape = RoundedCornerShape(8.dp)
+                    )
+            ) {
+                Row(
+                    Modifier.padding(8.dp)
+                ) {
+                    RecipeImage(imageUrl = params.recipe.attributes?.mediaUrl ?: "", params.guestCount, params.openRecipeDetail)
+                    Column(Modifier.padding(start = 8.dp)) {
+                        Row {
+                            Text(
+                                text = params.recipe.attributes?.title ?: "",
+                                style = Typography.subtitleBold,
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier
+                                    .width(130.dp)
+                                    .clickable { params.openRecipeDetail() },
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            DeleteButton(params.isDeleting, params.delete)
+                        }
+                        Text(
+                            text = Localisation.myMeals.products(params.numberOfProductsInRecipe).localised,
+                            style = Typography.bodySmall,
+                            color = Colors.disabledText
+                        )
+                        TotalPrice(price = params.totalPrice)
+                        PricePerPerson(
+                            params.totalPrice,
+                            params.guestCount
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextButton(
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = params.openRecipeDetail,
+                        ) {
+                            Row {
+                                Text(
+                                    text = Localisation.recipe.showBasketPreview.localised,
+                                    style = Typography.subtitle,
+                                    color = Colors.primary
+                                )
+                                Icon(
+                                    painter = painterResource(Image.previous),
+                                    contentDescription = "Icon arrow view products",
+                                    modifier = Modifier
+                                        .size(22.dp)
+                                        .graphicsLayer {
+                                            translationY = 4.dp.toPx()
+                                            rotationZ = 180f
+                                        }
+                                    .padding(top = 4.dp),
+                                    tint = Colors.primary
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```kotlin
+data class MyMealRecipeCardSuccessParameters(
+    /// Recipe object containing all data you'll need
+    val recipe: Recipe,
+    /// Total price of the recipe products
+    val totalPrice: Double,
+    /// Number of guests the recipe is designed for
+    val guestCount: Int,
+    /// Number of products added to basket
+    val numberOfProductsInRecipe: Int,
+    /// If the user has deleted the recipe
+    val isDeleting: Boolean,
+    /// Will open the Recipe Details deature
+    val openRecipeDetail: () -> Unit,
+    /// Function to delete the recipe products from the basket
+    val delete: () -> Unit
+)
+```
+
+## Resources
+
+
+| Name | Resource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| myMealsProducts | com_miam_my_meals_products | produits | products |
+| showProducts | com_miam_recipe_check_basket_preview | Voir les produits | Show products |
+| title | com_miam_catalog_filter_search_placeholder | Rechercher | Search |
+| perPerson | com_miam_my_meals_per_person_text | soit %s/pers. | that\'s %s/pers. |

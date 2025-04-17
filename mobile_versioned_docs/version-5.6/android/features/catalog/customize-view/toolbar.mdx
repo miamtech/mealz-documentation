@@ -1,0 +1,320 @@
+---
+sidebar_position: 4
+label: "Toolbar"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Toolbar
+
+This template allows you to customize the toolbar at the top of the catalog page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: "myCustomCatalogSuccessToolbarImp.kt", value: "empty_example" },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+class MyCustomCatalogSuccessToolbarImp: CatalogSuccessToolbar {
+
+    @Composable
+    override fun Content(params: CatalogSuccessToolbarParameters) {
+        // Your custom design here 
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+class MyCustomCatalogSuccessToolbarImp : CatalogSuccessToolbar {
+    @Composable
+    override fun Content(params: CatalogSuccessToolbarParameters) {
+        if (params.elementHeight > params.elementMinHeight) {
+            Column(
+                Modifier
+                    .offset { params.scrollOffset }
+                    .height(params.elementHeight)) {
+                Box(Modifier.fillMaxWidth()) {
+                    Row(Modifier.padding(large), verticalAlignment = Alignment.CenterVertically) {
+                        if (params.content != CatalogContent.CATEGORIES_LIST) {
+                            Box(
+                                Modifier
+                                    .clip(RoundedCornerShape(medium))
+                                    .background(backgroundSecondary)
+                                    .clickable { params.goToBack() }
+                            ) {
+                                Image(
+                                    painter = painterResource(previous),
+                                    contentDescription = "previous",
+                                    modifier = Modifier.padding(medium)
+                                )
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(large))
+                        Column {
+                            Text(
+                                text = if (params.currentSearchString?.isNotBlank() == true
+                                ) "\"${params.currentSearchString}\"" else params.currentPackageTitle
+                                    ?: Localisation.catalog.title.localised,
+                                style = subtitleBold,
+                            )
+                            params.currentSubtitle?.let {
+                                Text(
+                                    text = it,
+                                    style = Typography.subtitle.copy(fontSize = medium),
+                                    color = Colors.disabledText
+                                )
+                            }
+                        }
+                    }
+                }
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    if (params.filterAreEnable) {
+                        Tags(
+                            Localisation.catalog.preferencesTitle.localised,
+                            gear,
+                            params.getActivePreferenceCount(),
+                            Modifier.weight(1.3f),
+                            params.openPreferences
+                        )
+                    }
+                    if (params.content == CatalogContent.CATEGORIES_LIST) {
+                        Tags(
+                            Localisation.catalog.favoriteTitle.localised,
+                            favorite,
+                            0,
+                            Modifier
+                                .weight(1f)
+                                .padding(start = 10.dp),
+                            params.goToFavorite
+                        )
+                    }
+                }
+                Divider(Modifier.fillMaxWidth())
+                BottomToolbar(
+                    params.getActiveFilterCount(),
+                    params.getActivePreferenceCount(),
+                    params.content,
+                    false,
+                    params.goToBack,
+                    params.goToFavorite,
+                    params.openPreferences,
+                    params.openFilter
+                ) { params.openSearch() }
+            }
+
+        } else {
+            BottomToolbar(
+                params.getActiveFilterCount(),
+                params.getActivePreferenceCount(),
+                params.content,
+                true,
+                params.goToBack,
+                params.goToFavorite,
+                params.openPreferences,
+                params.openFilter
+            ) { params.openSearch() }
+        }
+    }
+
+
+    @Composable
+    private fun BottomToolbar(
+        activeFilterNumber: Int,
+        activePreferencesNumber: Int,
+        content: CatalogContent,
+        isCollapse: Boolean = false,
+        goToBack: () -> Unit,
+        goToFavorite: () -> Unit,
+        openPreferences: () -> Unit,
+        openFilter: () -> Unit,
+        openSearch: () -> Unit
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+        ) {
+            Row {
+                if (isCollapse && content != CatalogContent.CATEGORIES_LIST) {
+                    Surface(
+                        shape = CircleShape,
+                        elevation = 0.dp,
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .clickable { goToBack() }
+                    ) {
+                        Image(
+                            painter = painterResource(previous),
+                            contentDescription = "previous",
+                            colorFilter = ColorFilter.tint(boldText),
+                        )
+                    }
+                }
+                Surface(
+                    shape = CircleShape,
+                    elevation = 0.dp,
+                    modifier = Modifier
+                        .padding(medium)
+                        .clickable { openSearch() }
+                ) {
+                    Image(
+                        painter = painterResource(search),
+                        contentDescription = "search",
+                        colorFilter = ColorFilter.tint(boldText),
+                    )
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (TemplateDI.catalog.success.toolbar.enableFilters) {
+                    IconWithBadge(activeFilterNumber, filter, openFilter)
+                }
+                if (isCollapse) {
+                    IconWithBadge(activePreferencesNumber, gear, openPreferences)
+                    if (content == CatalogContent.CATEGORIES_LIST) {
+                        Surface(
+                            shape = CircleShape,
+                            elevation = 0.dp,
+                            modifier = Modifier
+                                .padding(medium)
+                                .clickable { goToFavorite() }
+                        ) {
+                            Image(
+                                painter = painterResource(favorite),
+                                contentDescription = "favorite",
+                                colorFilter = ColorFilter.tint(boldText),
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun Tags(
+        text: String,
+        icon: Int,
+        activeNumber: Int = 0,
+        modifier: Modifier,
+        action: () -> Unit
+    ) {
+        Surface(
+            shape = CircleShape,
+            color = backgroundSecondary,
+            elevation = 0.dp,
+            modifier = modifier.clickable { action() }
+        ) {
+            Row(
+                Modifier.padding(horizontal = xLarge, vertical = large),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+                Image(
+                    painter = painterResource(icon),
+                    contentDescription = "tag icon",
+                    colorFilter = ColorFilter.tint(boldText),
+                )
+                Spacer(modifier = Modifier.width(medium))
+                Text(
+                    text = text,
+                    style = subtitleBold,
+                    color = boldText
+                )
+
+                if (activeNumber != 0) {
+                    Spacer(modifier = Modifier.width(medium))
+                    Box(
+                        modifier = Modifier
+                            .size(large)
+                            .clip(CircleShape)
+                            .background(black)
+                    ) {
+                        Text(
+                            text = activeNumber.toString(),
+                            color = backgroundSecondary,
+                            modifier = Modifier.align(Alignment.Center)
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun IconWithBadge(activeNumber: Int, icon: Int, action: () -> Unit) {
+        Box(Modifier.clickable { action() }) {
+            Surface(
+                shape = CircleShape,
+                modifier = Modifier.padding(medium)
+            ) {
+                Image(
+                    painter = painterResource(icon),
+                    contentDescription = "icon",
+                    colorFilter = ColorFilter.tint(boldText),
+                )
+            }
+            if (activeNumber != 0) {
+                Box(
+                    modifier = Modifier
+                        .size(large)
+                        .clip(CircleShape)
+                        .background(black)
+                        .align(Alignment.TopEnd)
+                ) {
+                    Text(
+                        text = activeNumber.toString(),
+                        color = white,
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+## Params
+
+```kotlin
+data class CatalogSuccessToolbarParameters(
+    val scrollOffset: IntOffset, // scroll state of main page
+    val elementHeight: Dp, // current toolbar height
+    val elementMinHeight: Dp, // min height for toolbar
+    val elementMaxHeight: Dp, // max height for toolbar
+    val content: CatalogContent, // which is current page name
+    val currentPackageTitle: String? = null, // not null if you are in a package result page
+    val currentSearchString: String? = null, // not null if you are in a search result page 
+    val currentSubtitle: String? = null, / not null if you are in a package result page
+    val filterAreEnable: Boolean, // show or hide filter button
+    val openFilter: () -> Unit, // action to open filter page
+    val openSearch: () -> Unit, // action to open search page
+    val goToFavorite: () -> Unit, // action to open favorite page
+    val openPreferences: () -> Unit,  // action to open preference page
+    val getActiveFilterCount: () -> Int, // return number of actives filter
+    val getActivePreferenceCount: () -> Int, //  return number of actives preference
+    val goToBack: () -> Unit // navigate back
+)
+```
+
+## Resources
+
+
+| Name | Resource ID | Value Fr | Value Eng |
+| - | - | - | - |
+| favoriteTitle | com_miam_catalog_filter_search_placeholder | Rechercher | Search |
+| preferencesTitle | com_miam_catalog_filter_search_placeholder | Rechercher | Search |
+| title | com_miam_catalog_filter_search_placeholder | Rechercher | Search |
