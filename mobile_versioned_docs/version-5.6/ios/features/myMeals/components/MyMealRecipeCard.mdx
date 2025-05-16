@@ -1,0 +1,155 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### MyMealRecipeCard
+
+To create your own recipe card template you create a class that implements `MyMealRecipeCardProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomMyMealsRecipeCardView: MyMealRecipeCardProtocol {
+      public func content(params: MyMealRecipeCardParameters) -> some View {
+            // your imp here
+        }
+}
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```swift
+import SwiftUI
+import mealzcore
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomMyMealsRecipeCardView: MyMealRecipeCardProtocol {
+    public init() {}
+    public func content(params: MyMealRecipeCardParameters) -> some View {
+        let pictureSize = params.recipeCardDimensions.height - (Dimension.sharedInstance.mlPadding * 2)
+
+        func showTimeAndDifficulty() -> Bool {
+            return params.recipeCardDimensions.height >= 320
+        }
+
+        func showCTA() -> Bool {
+            return params.recipeCardDimensions.height >= 225
+        }
+
+        return VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                ZStack(alignment: .bottomTrailing) {
+                    AsyncImage(url: params.recipe.pictureURL) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: pictureSize, height: pictureSize)
+                        .cornerRadius(Dimension.sharedInstance.mCornerRadius)
+                    }
+                    MealzSmallGuestView(guests: params.numberOfGuests)
+                        .padding(Dimension.sharedInstance.mPadding)
+                }
+                    .frame(width: pictureSize, height: pictureSize)
+                    .clipped()
+                Spacer()
+                   .frame(width: Dimension.sharedInstance.mPadding)
+                VStack(alignment: .leading, spacing: Dimension.sharedInstance.mPadding) {
+                HStack(alignment: .top) {
+                    Text(params.recipe.title)
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleStyle)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.8)
+                        .frame(height: 40)
+                    Spacer()
+                    Button {
+                        params.onDeleteRecipe()
+                    } label: {
+                        if params.isDeleting {
+                            ProgressLoader(color: Color.mealzColor(.primary), size: 20)
+                        } else {
+                            Image.mealzIcon(icon: .trash)
+                                .renderingMode(.template)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(Color.mealzColor(.grayText))
+                        }
+                    }
+                }
+                Text(String(format: String.localizedStringWithFormat(
+                    Localization.myMeals.products(
+                        numberOfProducts: Int32(params.numberOfProductsInRecipe)).localised,
+                        params.numberOfProductsInRecipe),
+                        params.numberOfProductsInRecipe))
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumBoldStyle)
+                        .foregroundColor(Color.mealzColor(.grayText))
+                PricePerPersonView(price: params.recipePrice, numberOfGuests: params.numberOfGuests)
+                Button(action: {
+                    params.onShowRecipeDetails(params.recipe.id)
+                }, label: {
+                    Text(Localization.myMeals.seeProducts.localised)
+                        .foregroundColor(Color.mealzColor(.standardDarkText))
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyStyle)
+                })
+                    .padding(Dimension.sharedInstance.mlPadding)
+                    .frame(maxWidth: .infinity)
+                    .frame(maxHeight: 40)
+                    .background(
+                        RoundedRectangle(cornerRadius: Dimension.sharedInstance.buttonCornerRadius)
+                            .fill(Color.mealzColor(.lightGray)))
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .padding(Dimension.sharedInstance.mPadding)
+        }
+            .onTapGesture {
+                params.onShowRecipeDetails(params.recipe.id)
+            }
+            .frame(height: params.recipeCardDimensions.height)
+            .frame(maxWidth: .infinity)
+            .cornerRadius(Dimension.sharedInstance.mCornerRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12.0)
+                .stroke(Color.mealzColor(.border), lineWidth: 1.0)
+                )
+            .padding(.horizontal, Dimension.sharedInstance.mPadding)
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct MyMealRecipeCardParameters {
+    /// The width & height of the recipe card
+    public let recipeCardDimensions: CGSize
+    /// The Recipe object of the meal
+    public let recipe: Recipe
+    /// The number of guests the recipe is designed for
+    public let numberOfGuests: Int
+    /// The price of the recipe
+    public let recipePrice: Double
+    /// The total number of products in the recipe
+    public let numberOfProductsInRecipe: Int
+    /// A boolean set to true when the user has begun to delete the recipe
+    public let isDeleting: Bool
+    /// A closure to delete the recipe, & all it's ingredients, from the basket
+    public let onDeleteRecipe: () -> Void
+    /// A closure that opens the RecipeDetails, passing in the recipeId
+    public let onShowRecipeDetails: (String) -> Void
+```
+
+- [MyMealRecipeCardProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/mymealrecipecardprotocol)

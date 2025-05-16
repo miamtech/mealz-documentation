@@ -1,0 +1,19 @@
+export var platform
+
+import AndroidSendBasketToMealz from '../../android/advanced/_shared/_basket/_SendBasketToMealz.mdx'
+
+import IosSendBasketToMealz from '../../ios/advanced/_shared/_basket/_SendBasketToMealz.mdx'
+
+
+export function SendBasketToMealz(props){
+    if(props.platform == "android") { return <AndroidSendBasketToMealz /> } else return  <IosSendBasketToMealz />
+}
+
+Mealz listens & subscribes to the retailer basket.
+However, sometimes events occur that Mealz does not hear & the sync is not complete.
+For example, starting the app anew or resetting the basket can potentially damage the sync process.
+To facilitate the connection between the Mealz Basket & the retailer basket, we have a function `SendBasketToMealz`.
+
+This function accepts the retailer products as a list & will instantly update the list of products that Mealz stores locally.
+
+<SendBasketToMealz platform= {props.platform}/>

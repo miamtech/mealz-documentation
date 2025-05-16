@@ -1,0 +1,57 @@
+---
+sidebar_position: 2
+label: "Floating"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# MySpaceFloating
+
+This template allows you to put an overlay that will be present on main page.
+
+Then to create your regular template:
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+```kotlin
+class MyCustomMySpaceFloating: MySpaceFloating {
+
+    @Composable
+    override fun Content(params: MySpaceFloatingParameters) {
+        // Your custom design here
+    }
+}
+```
+    </TabItem>
+    <TabItem value="full_example">
+```kotlin
+class MyCustomMySpaceFloating : MySpaceFloating {
+
+    private val myMealButtonVM: MyMealButtonViewModel = MyMealButtonViewModel()
+    @Composable
+    override fun Content(params: MySpaceFloatingParameters) {
+        MyMealButton.View(myMealButtonVM = myMealButtonVM) {
+            params.onClickAction()
+        }
+    }
+}
+```
+    </TabItem>
+</Tabs>
+
+:::info
+In our Sample we are showing the number or meals currently in the basket at the bottom of screen
+:::
+
+## Params
+
+```kotlin
+data class MySpaceFloatingParameters(
+    val onClickAction: () -> Unit // to call on click on default implementation redirect to my mealz
+)
+```

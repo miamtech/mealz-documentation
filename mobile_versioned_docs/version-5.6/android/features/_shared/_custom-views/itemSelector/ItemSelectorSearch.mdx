@@ -1,0 +1,136 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Search
+
+To create your own Search template you create a class that implements `ItemSelectorSearch`
+
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+{ label: 'MyCustomItemSelectorHeader.kt', value: 'empty_example' },
+{ label: 'example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+```kotlin
+import ai.mealz.sdk.components.itemSelector.search.ItemSelectorSearch
+import ai.mealz.sdk.components.itemSelector.search.ItemSelectorSearchParameters
+
+
+class MyCustomItemSelectorSearch: ItemSelectorSearch {
+
+    @Composable
+    override fun Content(params: ItemSelectorSearchParameters) {
+        // Your custom design here 
+       
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```kotlin
+import ai.mealz.sdk.components.itemSelector.search.ItemSelectorSearch
+import ai.mealz.sdk.components.itemSelector.search.ItemSelectorSearchParameters
+
+internal class MyCustomItemSelectorSearch: ItemSelectorSearch {
+    @Composable
+    override fun Content(params: ItemSelectorSearchParameters) {
+        Column(Modifier.padding(vertical = 24.dp, horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            SearchBar(params)
+            if (params.ingredientName.isNotEmpty()) {
+                IngredientInfo(params)
+            }
+        }
+    }
+
+    @Composable
+    private fun SearchBar(params: ItemSelectorSearchParameters) {
+        var textFieldValue by remember { mutableStateOf(TextFieldValue("")) }
+
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .border(
+                    border = BorderStroke(1.dp, ai.mealz.sdk.theme.Colors.grey),
+                    shape = RoundedCornerShape(6.dp)
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            TextField(
+                leadingIcon = { Icon(Icons.Filled.Search, "Search icon") },
+                trailingIcon = {
+                    if (textFieldValue.text.isNotEmpty()) {
+                        Icon(
+                            Icons.Filled.Close, "Close icon",
+                            Modifier.clickable { textFieldValue = textFieldValue.copy(text = "") }
+                        )
+                    }
+                },
+                value = textFieldValue,
+                onValueChange = {
+                    textFieldValue = it
+                    params.onChanges(it.text)
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    disabledTextColor = Color.Transparent,
+                    backgroundColor = Color.White,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
+                ),
+                placeholder = {
+                    Text(
+                        params.searchPlaceholder,
+                        style = TextStyle(fontSize = 16.sp),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                singleLine = true,
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+
+    @Composable
+    private fun IngredientInfo(params: ItemSelectorSearchParameters) {
+        Surface(
+            shape = RoundedCornerShape(6.dp),
+            color = ai.mealz.sdk.theme.Colors.backgroundSecondary,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "${params.ingredientName.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }} :",
+                    style = TextStyle(fontSize = 14.sp)
+                )
+                Spacer(Modifier.width(2.dp))
+                Text(
+                    text = "${params.ingredientQuantity} ${params.ingredientUnit}",
+                    style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Black)
+                )
+            }
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+### Search params
+
+```kotlin
+data class ItemSelectorSearchParameters(
+    val ingredientName: String, // current ingredient needed in recipe to replace 
+    val ingredientQuantity: Int, // current ingredient needed quantity in recipe
+    val ingredientUnit: String, // current ingredient unit (litre , grammes ...)
+    val searchPlaceholder: String, 
+    val onChanges: (String) -> Unit
+)
+```

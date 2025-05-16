@@ -1,0 +1,63 @@
+---
+sidebar_position: 3
+label: ItemSelector customization
+---
+
+import Header from "../../_shared/_custom-views/itemSelector/ItemSelectorHeader.mdx";
+import Loading from "../../_shared/_custom-views/itemSelector/ItemSelectorLoading.mdx";
+import SelectedItem from "../../_shared/_custom-views/itemSelector/ItemSelectorSelectedItem.mdx"
+import Search from "../../_shared/_custom-views/itemSelector/ItemSelectorSearch.mdx"
+import Success from "../../_shared/_custom-views/itemSelector/ItemSelectorSuccess.mdx"
+import Empty from "../../_shared/_custom-views/itemSelector/ItemSelectorEmpty.mdx"
+
+# ItemSelector customization
+
+If you want to fully customize this component we recommend copying the code into your Mealz template configuration.
+You can remove the code you do not override.
+
+```kotlin
+itemSelector{
+    header {
+         view = MyCustomItemSelectorHeaderView()
+    }
+    search {
+         view = MyCustomItemSelectorSearchView()
+    }
+    selectedItem{
+         view = MyCustomItemSelectorItemSelectedView()
+    }
+    success {
+        view = MyCustomItemSelectorSuccessView()
+    }
+    loading {
+         view = MyCustomItemSelectorLoadingView()
+    }
+    empty {
+         view = MyCustomItemSelectorEmptyView()
+    }
+}
+```
+
+```kotlin
+class MiamTemplateManager {
+    init {
+        MiamTheme.Template 
+        {
+         // <---- copy above code here 
+        }
+    }
+}
+```
+
+
+<img src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/android/customization/ItemSelectorSuccess.png" alt="templating success" />
+<img src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/android/customization/ItemSelectorLoading.png" alt="templating loading" />
+<img src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/android/customization/ItemSelectorEmpty.png" alt="templating empty" />
+
+
+<Header/>
+<Search/>
+<SelectedItem/>
+<Loading/>
+<Success/>
+<Empty/>

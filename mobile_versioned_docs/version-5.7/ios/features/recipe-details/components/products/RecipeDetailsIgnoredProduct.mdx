@@ -1,0 +1,97 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### Ignored
+
+To create your own recipe detail product ignore template you create a class that implements `RecipeDetailsIgnoredProductProtocol`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+  values={[
+      { label: 'Boilerplate', value: 'empty_example' },
+      { label: 'Full Example', value: 'full_example' },
+  ]}>
+<TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+import mealzcore
+
+@available(iOS 14, *)
+public struct MyCustomRecipeDetailsIgnoredProductView: RecipeDetailsIgnoredProductProtocol {
+
+public init() {}
+    public func content(params: RecipeDetailsIgnoredProductParameters) -> some View {
+        // Your custom design here
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+```swift
+import SwiftUI
+import MealziOSSDK
+import mealzcore
+
+@available(iOS 14, *)
+public struct MealzRecipeDetailsIgnoredProductView: RecipeDetailsIgnoredProductProtocol {
+    public init() {}
+    public func content(params: RecipeDetailsIgnoredProductParameters) -> some View {
+        VStack {
+            HStack {
+                Text(params.ingredientName.capitalizingFirstLetter())
+                    .padding(Dimension.sharedInstance.mPadding)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyBigBoldStyle)
+                Spacer()
+                if let ingredientQuantity = params.ingredientQuantity,
+                    let unit = params.ingredientUnit {
+                    Text(QuantityFormatter.companion.readableFloatNumber(
+                        value: QuantityFormatter.companion.realQuantities(
+                        quantity: ingredientQuantity,
+                        currentGuest: Int32(params.guestsCount),
+                        recipeGuest: Int32(params.defaultRecipeGuest)
+                        ),
+                    unit: unit))
+                        .padding(Dimension.sharedInstance.mPadding)
+                        .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumStyle)
+                }
+            }.frame(height:40)
+            Text(Localization.ingredient.willNotBeAdded.localised).padding(Dimension.sharedInstance.mPadding)
+                .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumStyle)
+            Button(action: params.onChooseProduct, label: {
+                Text(Localization.ingredient.chooseProduct.localised).padding(Dimension.sharedInstance.mPadding)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.bodyMediumBoldStyle)
+                    .foregroundColor(Color.mealzColor(.primary))
+            })
+                .background(Color.mealzColor(.white))
+                .cornerRadius(Dimension.sharedInstance.buttonCornerRadius)
+                .padding(Dimension.sharedInstance.mPadding)
+        }
+            .background(Color.mealzColor(.lightBackground))
+            .cornerRadius(Dimension.sharedInstance.mCornerRadius)
+            .padding(.horizontal, Dimension.sharedInstance.mPadding)
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+with
+
+```swift
+public struct RecipeDetailsIgnoredProductParameters {
+    /// Name of the underlying ingredient
+    public let ingredientName: String
+    /// Quantity of the underlying ingredient
+    public let ingredientQuantity: String?
+    /// Unit of the underlying ingredient (ex: g, kg, etc)
+    public let ingredientUnit: String?
+    /// Guest count set by the user
+    public let guestsCount: Int
+    /// Guest count of the associated recipe
+    public let defaultRecipeGuest: Int
+    /// Closure to open the Item Selector
+    public let onChooseProduct: () -> Void
+```
+
+- [RecipeDetailsIgnoredProductProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/recipedetailsignoredproductprotocol)
