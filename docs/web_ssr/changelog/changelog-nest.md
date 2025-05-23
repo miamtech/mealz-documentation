@@ -9,7 +9,7 @@ sidebar_position: 1
 #### Updated:
 - *my-space*:
   - History now has a toggle to switch the view style between 'grid' and 'list' mode
-  - Added a new param `history_style` to the /my-space route. The param only has an effect when used alongside `tab=history` and can have as value either 'grid' or 'list', defaulting to 'grid' of not passed.
+  - Added a new param `history_style` to the /my-space route. The param only has an effect when used alongside `tab=history` and can have as value either 'grid' or 'list', defaulting to 'grid' if not passed.
   - Using the new view style toggle will put in the currentUrl either `&history_style=grid` or `&history_style=list`, which can be passed to the /my-space route
 
 ## 1.2.26 [19/05/2025]

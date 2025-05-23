@@ -102,5 +102,5 @@ Similarly, on a click on the switch element, the user will be redirected with th
 **Thus, to display the tab & history style chosen by the user, you simply need to check the url for those two params and pass them to the request to /my-space directly, and you don't have to pass them if they are not present.**
 
 :::info
-If you want to only display one of the tabs or one of the history styles, you can pass the corresponding parameter to the /my-space request no matter the url and add a display: none to the tab bar or the switch so the user can't change the view.
+If you want to only display one of the tabs or one of the history styles, you can pass the corresponding parameter to the /my-space request no matter the url and add a `display: none` to the tab bar or the switch so the user can't change the view.
 :::

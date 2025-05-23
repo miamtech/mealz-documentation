@@ -20,7 +20,7 @@ sidebar_position: 2
 #### Fixed:
 - *my-meals-button*:
   - The arrow could come out of the button of mobile resolutions
-- Removed remaning occurences of miam-ds links as to not have conflicts with the version served by SSR-API
+- Removed remaining occurences of miam-ds links as to not have conflicts with the version served by SSR-API
 
 ## 1.2.7 [18/04/2025]
 
