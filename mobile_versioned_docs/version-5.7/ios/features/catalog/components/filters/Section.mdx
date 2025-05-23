@@ -1,0 +1,70 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Section
+
+This template allows you to customize the Section of the Filters page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomFiltersSectionView: FiltersSectionProtocol {
+            public func content(params: FiltersSectionParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomFiltersSectionView: FiltersSectionProtocol {
+
+        public init() {}
+        public func content(params: FiltersSectionParameters) -> some View {
+            VStack {
+                ToggleTitle(title: params.title, isExpanded: params.isExpanded, toggleIsExpanded: { withAnimation { params.isExpanded.toggle() } })
+                if params.isExpanded {
+                    ForEach(params.filters, id: \.self) { filter in
+                        RadioOrCheckButton(label: filter.uiLabel, isSelected: filter.isSelected, typeOfButton: params.typeOfInput, selectOption: {
+                            params.onFilterSelected(filter)
+                        })
+                    }
+                }
+            }
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct FiltersSectionParameters {
+    /// The name of the section, usually Difficulty, Time, etc
+    public let title: String
+    /// The options for the current FilterOption. ex: Easy, Medium
+    public let filters: [CatalogFilterOptions]
+    /// Whether or not all options are available to be seen
+    @Binding public var isExpanded: Bool
+    /// Boolean indicating if the input is a checkbox (multiple options) or radioButton (one option)
+    public let typeOfInput: TypeOfInput
+    /// A closure that selects this filter option. Multiple options can be selected at the same time
+    public let onFilterSelected: (CatalogFilterOptions) -> Void
+```
+
+- [FiltersSectionProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filterssectionprotocol)

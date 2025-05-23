@@ -1,0 +1,158 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+### OrderHistorySuccessOrder
+
+To create your own recipe card template you create a class that implements `OrderHistorySuccessOrder`
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+
+        ```kotlin
+import ai.mealz.sdk.components.orderHistory.success.order.OrderHistorySuccessOrder
+import ai.mealz.sdk.components.orderHistory.success.order.OrderHistorySuccessOrderParameters
+
+class MyCustomOrderHistorySuccessOrderImp : OrderHistorySuccessOrder {
+    @Composable
+        override fun Content(params: OrderHistorySuccessOrderParameters) {
+            // your imp here
+        }
+}
+        ```
+
+    </TabItem>
+    <TabItem value="full_example">
+
+        ```kotlin
+import ai.mealz.sdk.components.orderHistory.success.order.OrderHistorySuccessOrder
+import ai.mealz.sdk.components.orderHistory.success.order.OrderHistorySuccessOrderParameters
+
+class MyCustomOrderHistorySuccessOrderImp : OrderHistorySuccessOrder {
+    @Composable
+    override fun Content(params: OrderHistorySuccessOrderParameters) {
+        Surface(
+            modifier = Modifier
+                .padding(horizontal = lPadding)
+                .fillMaxWidth()
+                .clickable { params.goToDetail() },
+            shape = RoundedCornerShape(mRoundedCorner),
+            border = BorderStroke(mBorderWidth, Colors.border)
+        ) {
+            Column(Modifier.padding(mPadding)) {
+                Box {
+                    params.recipesPicture
+                    .forEachIndexed { index, image ->
+                        if (index < TemplateDI.orderHistory.success.order.numberOfRecipeBeforeOverflow) {
+                            RecipeCircleImage(
+                                image,
+                                Modifier.padding(start = xlPadding * index)
+                            )
+                        }
+                    }
+                    if (params.recipesPicture.size > TemplateDI.orderHistory.success.order.numberOfRecipeBeforeOverflow) {
+                        Surface(
+                            color = backgroundGrey,
+                            shape = CircleShape,
+                            modifier = Modifier
+                                .padding(start = xlPadding * TemplateDI.orderHistory.success.order.numberOfRecipeBeforeOverflow)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .height(sImageSize)
+                                        .width(sImageSize)
+                                ) {
+                                Text(
+                                    modifier = Modifier.align(Alignment.Center),
+                                    text = "+${params.recipesPicture.size - TemplateDI.orderHistory.success.order.numberOfRecipeBeforeOverflow}",
+                                    style = subtitle,
+                                    color = grey,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        }
+                    }
+                }
+                Spacer(Modifier.height(mPadding))
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Surface(
+                        color = backgroundGrey,
+                        shape = RoundedCornerShape(xlRoundedCorner),
+                    ) {
+                        Text(
+                            modifier = Modifier.padding(
+                                horizontal = mPadding,
+                                vertical = sPadding
+                            ),
+                            text = Localisation.orderHistory.orderedOn(
+                            params.orderOn
+                            ).localised,
+                            style = bodySmall,
+                            color = boldText
+                        )
+                    }
+                    Surface(
+                        shape = RoundedCornerShape(lRoundedCorner),
+                        color = backgroundGrey
+                    ) {
+                        Text(
+                            modifier = Modifier.padding(
+                                horizontal = lPadding,
+                                vertical = mPadding
+                            ),
+                            text = Localisation.orderHistory.seePreviousOrder.localised,
+                            style = bodySmallBold,
+                            color = boldText
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    internal fun RecipeCircleImage(recipeImageUrl: String, modifier: Modifier = Modifier) {
+        Surface(
+            modifier = modifier,
+            shape = CircleShape,
+            border = BorderStroke(lBorderWidth, white)
+        ) {
+            AsyncImage(
+                model = recipeImageUrl,
+                contentDescription = "recipe image",
+                contentScale = ContentScale.FillHeight,
+                modifier = Modifier
+                    .height(sImageSize)
+                    .width(sImageSize)
+            )
+        }
+    }
+}
+        ```
+    </TabItem>
+</Tabs>
+
+with
+
+```kotlin
+/**
+ * A class that holds parameters for the order history success order.
+ *
+ * @property orderOn date of last order.
+ * @property recipesPicture .order's pictures list of the recipes.
+ * @property goToDetail A callback function that open detail of the clicked order.
+ *
+ */
+class OrderHistorySuccessOrderParameters(
+    val orderOn: String,
+    val recipesPicture: List<String>,
+    val goToDetail: () -> Unit,
+)
+```

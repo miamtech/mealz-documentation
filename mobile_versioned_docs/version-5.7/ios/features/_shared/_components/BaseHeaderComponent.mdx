@@ -1,0 +1,80 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+values={[
+    { label: 'Boilerplate', value: 'empty_example' },
+    { label: 'Full Example', value: 'full_example' },
+]}>
+<TabItem value="empty_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomHeaderView: BaseHeaderProtocol {
+    public func content(params: BaseHeaderParameters) -> some View {
+        // your implementation here
+    }
+}
+```
+</TabItem>
+<TabItem value="full_example">
+
+```swift
+import SwiftUI
+import MealziOSSDK
+
+@available(iOS 14, *)
+public struct MyCustomHeaderView: BaseHeaderParameters {
+    public init() {}
+    public func content(params: BaseHeaderParameters) -> some View {
+        VStack(spacing: 0) {
+            ZStack(alignment: .center) {
+                Text(params.title)
+                    .miamFontStyle(style: MiamFontStyleProvider.sharedInstance.titleStyle)
+                    .foregroundColor(Color.mealzColor(.standardDarkText))
+                    .padding(Dimension.sharedInstance.mPadding)
+                HStack {
+                    goBackButton(goBack: params.goBack)
+                    Spacer()
+                }.frame(maxWidth: .infinity)
+            }.padding(Dimension.sharedInstance.lPadding)
+            Divider().frame(maxWidth: .infinity)
+        }
+    }
+
+    @ViewBuilder
+    func goBackButton(goBack: @escaping () -> Void) -> some View {
+        Button(action: goBack, label:  {
+            Image.mealzIcon(icon: .arrow)
+                .resizable()
+                .frame(width: 15, height: 15)
+                .rotationEffect(.degrees(180))
+                .padding(Dimension.sharedInstance.mPadding)
+                .background(
+                    RoundedRectangle(
+                        cornerRadius: Dimension.sharedInstance.buttonCornerRadius
+                    )
+                    .fill(Color.mealzColor(.lightBackground))
+                )
+        })
+    }
+
+}
+```
+</TabItem>
+</Tabs>
+
+with 
+
+```swift
+public struct BaseHeaderParameters {
+    /// The title of the page
+    public let title: String
+    /// Callback to return to the OrderHistory page
+    public let goBack: () -> Void
+```
+
+- [BaseHeaderProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/baseheaderprotocol)

@@ -2,7 +2,41 @@
 sidebar_position: 2
 ---
 
-# Mealz components Changelog 
+# Mealz components Changelog
+
+## 1.3.0 [23/05/2025]
+
+#### Added:
+- *history-order-expanded*:
+  - Added new component for the new history display in list mode
+
+#### Fixed:
+- *history-order*:
+  - Fixed orders were overlapping
+  - Fixed gap between "Ordered on" and the date
+
+## 1.2.8 [25/04/2025]
+
+#### Fixed:
+- *my-meals-button*:
+  - The arrow could come out of the button of mobile resolutions
+- Removed remaining occurences of miam-ds links as to not have conflicts with the version served by SSR-API
+
+## 1.2.7 [18/04/2025]
+
+#### Fixed:
+- *catalog-toolbar*:
+  - Remove "navigate back" on back button as already set in HTML and was triggering navigate back twice  
+
+## 1.2.6 [18/04/2025]
+
+#### Updated:
+- *catalog-favorites*:
+  - Now if unliking a recipe on the page or on the recipe-details view, the recipe will be removed from the list 
+
+#### Fixed:
+- *load-more*:
+  - Fixed issue where load-more was based on the user scroll position from the bottom of the window and not from the list element
 
 ## 1.2.5 [28/03/2025]
 

@@ -1,0 +1,67 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# CTA
+
+This template allows you to customize the Call To Action of the Filters page.
+
+<Tabs defaultValue="empty_example" groupId="code-example"
+      values={[
+          { label: 'Boilerplate', value: 'empty_example' },
+          { label: 'Full Example', value: 'full_example' },
+      ]}>
+    <TabItem value="empty_example">
+        ```swift
+        import SwiftUI
+        import mealzcore
+        import MealziOSSDK
+
+        @available(iOS 14, *)
+        public struct MyCustomFiltersCTAView: FiltersCTAProtocol {
+            public func content(params: FiltersCTAParameters) -> some View {
+                // your imp here
+            }
+    }
+        ```
+    </TabItem>
+    <TabItem value="full_example">
+        ```swift
+    import SwiftUI
+    import mealzcore
+    import MealziOSSDK
+
+    @available(iOS 14, *)
+    public struct MyCustomFiltersCTAView: FiltersCTAProtocol {
+
+        public init() {}
+        public func content(params: FiltersCTAParameters) -> some View {
+            var applyButtonText: String {
+                return String(format: String.localizedStringWithFormat(
+                Localization.catalog.showResults(numberOfResults: Int32(params.numberOfRecipes)).localised,
+                params.numberOfRecipes),
+                params.numberOfRecipes)
+            }
+            return ApplyOrClearCTA(
+                applyButtonText: applyButtonText,
+                clearButtonText: Localization.catalog.removeFilters.localised,
+                apply: params.onApply,
+                clear: params.onClear)
+        }
+    }
+        ```
+    </TabItem>
+</Tabs>
+
+## Params
+
+```swift
+public struct FiltersCTAParameters {
+    /// The number of recipes available for the current search
+    public let numberOfRecipes: Int
+    /// A closure that applies the current filters & closes the page
+    public let onApply: () -> Void
+    /// A closure that clears the current filters
+    public let onClear: () -> Void
+```
+
+- [FiltersCTAProtocol](https://miamtech.github.io/MealziOSSDKRelease/documentation/mealziossdk/filtersctaprotocol)
