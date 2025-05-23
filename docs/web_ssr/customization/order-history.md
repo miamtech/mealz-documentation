@@ -6,7 +6,7 @@ sidebar_position: 4
 
 Our library provides the functionality to enable order history, allowing users to easily track their past orders directly within the catalog. This feature introduces a newly redesigned "My Space" section, which includes two dedicated tabs: **Favorites** and **History**.
 
-![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-history.png "History tab")
+![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-history-grid.png "History tab")
 
 :::info
 Since the version **1.3.0 (26/05/2025)**, the History tab has two different styles, with a switch to swap between the two.
@@ -73,7 +73,7 @@ The "Favorites" page in the catalog will be renamed to "My Space", featuring two
 
 - **History Tab**: Displays the order history of a connected user
 
-![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-history.png "History tab")
+![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-history-grid.png "History tab")
 ![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-empty-history.png "History tab with no history")
 
 Clicking on an order in the History tab opens a drawer providing informations about the recipes included in the selected order.
