@@ -41,7 +41,7 @@ export class Mealz {
   // Call this method from your app when the user logs in or when Mealz is set up
   handleLogin(user) {
     window.mealz.user
-      .loadWithExternalId(user.id, user.cookiesAccepted())
+      .loadWithExternalId(user.id, !user.cookiesAccepted())
       .subscribe(() => {
         alert("User logged in on Mealz!");
       });
@@ -75,7 +75,7 @@ export class Mealz {
     // ...
     // generate the new authless-id via the route /generate-authless-token
     // ...
-    window.mealz.user.loadWithAuthlessId(authlessId, user.cookiesAccepted());
+    window.mealz.user.loadWithAuthlessId(authlessId, !user.cookiesAccepted());
   }
 }
 ```

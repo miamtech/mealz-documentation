@@ -4,6 +4,93 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 1.3.0 [23/05/2025]
+
+#### Updated:
+- *my-space*:
+  - History now has a toggle to switch the view style between 'grid' and 'list' mode
+  - Added a new param `history_style` to the /my-space route. The param only has an effect when used alongside `tab=history` and can have as value either 'grid' or 'list', defaulting to 'grid' if not passed.
+  - Using the new view style toggle will put in the currentUrl either `&history_style=grid` or `&history_style=list`, which can be passed to the /my-space route
+
+## 1.2.26 [19/05/2025]
+
+#### Internal:
+- Update CI to push to artifact registry
+- Added 2 more cards on shelf demo page
+- Fixed potential error on demo if there was not enough product to display cards
+
+## 1.2.25 [05/05/2025]
+
+- Removed @google-cloud/logging which had performance issues and replaced with correctly formatted console.log
+
+## 1.2.24 [02/05/2025]
+
+- Revert previous tag for performances reasons
+
+## 1.2.23 [02/05/2025]
+
+#### Internal:
+- upgraded Nest to v11
+- Added @google-cloud/logging library for better logging on GCP
+- Added new Logger service to log for GCP in uat & prod and use default Logger only for dev
+- Updated fetch to node-fetch to have the option to log response headers with response.entries()
+
+# 1.2.22 [29/04/2025]
+
+#### Fixed:
+- Handle-payment doesn't confirms the basket twice if called twice in a row
+- Added headers to the plausible calls just in case they weren't automatically passed
+
+## 1.2.21 [23/04/2025]
+
+Updated to webc-miam@9.1.15
+Updated to mealz-components@1.2.8
+
+## 1.2.20 [23/04/2025]
+
+#### Updated:
+- handle-payment route now checks the order-id param if passed to not confirm different baskets for the same order
+
+#### Internal:
+- Added more logs for plausible events in order to check if they are sent correctly
+
+## 1.2.19 [22/04/2025]
+
+#### Fixed:
+- Added url attribute in the body of requests sent to plausible, as its absence caused these requests to return a 400 error
+
+## 1.2.18 [22/04/2025]
+
+#### Internal:
+- Added more logs for headers checks on all routes
+
+## 1.2.17 [18/04/2025]
+
+Updated to mealz-components@1.2.7
+
+## 1.2.16 [18/04/2025]
+
+Updated to webc-miam@9.1.14
+Updated to mealz-components@1.2.6
+Updated to miam-ds@1.2.6
+
+#### Fixed:
+- *toolbar*: anchor was missing a navigate back
+
+#### Internal:
+- *supplier-values*:
+    - Added Marmiton default values for the env-configurator
+- *recipe-card*:
+  - Added an id on the format `mealz-recipe-card-{RECIPE-ID}`
+
+## 1.2.15 [14/04/2025]
+
+Updated to webc-miam@9.1.13
+
+## 1.2.14 [04/04/2025]
+
+Updated to webc-miam@9.1.12
+
 ## 1.2.13 [03/04/2025]
 
 #### Fixed:
