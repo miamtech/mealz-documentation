@@ -6,6 +6,40 @@ sidebar_position: 1
 
 ## 2.0.0 [Unreleased]
 
+#### Added:
+- *all-recipes-banner*
+    - New all recipes banner on catalog home
+- *catalog-list*
+    - Added `planner` to request parameters (default: false)
+    - Added `all_recipes` to request parameters (default: false)
+- *planner*
+    - Added *planner-budget-gauge* component
+    - Added *planner-current-menu* component and controller
+    - Added *planner-dashboard* component and controller
+    - Added *planner-menu-option* component
+    - Added *planner-recipe-card* component and controller
+    - Added *planner-recipe-list* component
+    - Added *planner-recipe-suggestion* component
+- *price*
+    - Add dynamic currency formatting based on language settings
+- *drawer*:
+    - New routes to fetch mandatory JS and CSS for component
+
+#### Updated:
+- *catalog-list*
+    - Updated view for planner compatibility
+- *catalog-toolbar*
+    - Updated view for planner compatibility
+- *recipe-card-cta*
+    - Updated view for planner compatibility
+- *recipe-card*
+    - Updated view for planner compatibility
+
+#### Internal:
+- Added planner page to the demo
+- Added config in the demo to test *addProductsToCart* & *removeProductsFromCart* instead of *pushProductsToCart*
+- Logging out in demo site was creating an error
+
 ## Upgrading from v1
 
 This guide outlines the breaking changes and migration steps when upgrading from v1 to v2.
