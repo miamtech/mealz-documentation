@@ -162,7 +162,15 @@ The expected format for the body is as follow
 
 - `contexts` is an array of "contexts", couples of productIds and positions that will each be used to fetch 1 recipe
 - `productIds: string[]` is the equivalent of `surrounding_products_ids` for the single recipe-card route: ids of the products (in your database) between which you will insert the corresponding recipe-card
-- `position: number`: is the position in which you intend to insert the card, and we use it to make sure the correct card can be mapped to the ids that were used to generate it. It can be for example 0,1,2,3,... (the position of the card relative to each other) or 4,8,11,... (the position of the card relative to the other products in the shelf). The positions can also represent something else if you need, as long as you can use them to match the productIds whith the correct card HTML, since we will return it as-is along with each card's html.
+- `position: number`: A unique identifier that helps match each recipe card with its corresponding position in your display.
+    
+    This value serves two purposes:
+    - It helps maintain the order of cards when they're returned to you
+    - It allows you to map each returned HTML card to its correct location in your interface
+
+    You can use sequential numbers (0, 1, 2, 3...) or non-sequential values that correspond to positions in your product grid (e.g., 4, 8, 11 if these are the actual positions among other products).
+
+    The value you provide will be returned unchanged with each card's HTML, allowing you to easily identify where each card should be placed in your interface.
 
 :::warning
   Because the body is in JSON format, this route needs to be called with a `'Content-Type': 'application/json'` header, in addition to the usual headers needed fo all API requests
