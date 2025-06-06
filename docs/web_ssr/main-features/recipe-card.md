@@ -270,3 +270,7 @@ curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#
   ]
 }
 ```
+
+And an example of result:
+![Multiple cards in shelf](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/explanations/multiple-cards-in-shelf.png "Multiple cards in shelf")
+
