@@ -230,19 +230,19 @@ curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#
     "contexts": [
         {
             "position": 0,
-            "productIds": ["205357", "150674"]
+            "productIds": ["#PRODUCT_ID_1", "#PRODUCT_ID_2"]
         },
         {
             "position": 1,
-            "productIds": ["186601", "151933"]
+            "productIds": ["#PRODUCT_ID_3", "#PRODUCT_ID_4"]
         },
         {
             "position": 2,
-            "productIds": ["144099", "205340"]
+            "productIds": ["#PRODUCT_ID_5", "#PRODUCT_ID_6"]
         },
         {
             "position": 3,
-            "productIds": ["19881", "32325"]
+            "productIds": ["#PRODUCT_ID_7", "#PRODUCT_ID_8"]
         }
     ]
 }'
