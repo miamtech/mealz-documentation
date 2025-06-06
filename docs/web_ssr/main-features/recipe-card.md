@@ -111,46 +111,14 @@ See [Internationalisation](/docs/web_ssr/customization/internationalization) for
 
 ## Fetching multiple recipe cards at once
 
-For performance purposes, we have created another route for the recipe-cards that you can call to fetch multiple cards at once. Whereas the single card route has multiple "modes" (with a recipeId or with the surrounding products Ids), this route is only intended to be used with the surroundingProductsIds param.
+For performance purposes, we have created another route for the recipe-cards that you can call to fetch multiple cards at once. Whereas the single card route has multiple "modes" (with a recipeId or with the surrounding products Ids), this route is only intended to be used with surrounding products ids.
 
-The base url for the recipe-card is the following:
+The base url for the multiple recipe cards route is the following:
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
+POST https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
 ```
-
-Where you would call the /recipe-card route multiple times with each time a `surrounding_products_ids` urlParam, you can instead call this route with a `surrounding_products_ids` urlParam with all `surrounding_products_ids` params values in an Array as value. 
-
-For example, instead of calling:
-```
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["id1","id2"]
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["id3","id4"]
-```
-You can call:
-```
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple?surrounding_products_ids=[["id1","id2"],["id3","id4"]]
-```
-
-Unlike all other routes, you probably do not want to add the returned HTML to your page directly as this this route returns all recipe-cards in a single HTML string. You probably want to separate the cards into multiple strings and then add each card between the correct products on the page.
-
-Here is an example of separating the cards:
-```js
-const multipleRecipesHTML = fetch(`${MEAL_API_URL}/recipe-card/multiple?${params}`, headers)
-const recipeCardsHTML = multipleRecipesHTML.split('</mealz-recipe-card>')
-    .filter(text => text.includes('<mealz-recipe-card'))
-    .map(text => text + '</mealz-recipe-card>')
-```
-
-:::info
-  Do note that the cards will be returned in the order corresponding to the order of the `surrounding_products_ids` param. (i.e. the first cards is build using the first element in the array)
-:::
 
 - Parameters :
-
-  - `surrounding_products_ids: string[][]`:
-  **_(Mandatory)_** an array of arrays of productIds. You can see it as an array of multiples of the surrounding_products_ids param from the /recipe-card route.
-  
-    _We do a JSON.parse() to read this input so make sure to use JSON.stringify() or an equivalent to build this param. eg: `JSON.stringify([['id1', 'id2'], ['id3', 'id4']])`_
-
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the price of the recipe, so ideally it should be passed if the user has chosen a store
 
@@ -163,8 +131,154 @@ const recipeCardsHTML = multipleRecipesHTML.split('</mealz-recipe-card>')
   - `orientation: 'vertical' | 'horizontal' = 'vertical'`:
   **_(Optional)_** Select the orientation for the display of the card (see above for examples)
 
-  - `current_products_ids: string[]`:
-  **_(Optional)_** takes an array of product ids with a high priority on the suggestion. Does not have any effect if not paired with surrounding_products_ids
-
   - `serves: number`
   **_(Optional)_** Override the default number of guests set for the recipe
+
+:::important
+  This request is a POST, because the data of the product-ids we need is a little too complex to pass via queryParams, and as such it is more practical to pass them via the body.
+:::
+
+The expected format for the body is as follow
+
+```json
+{
+  "contexts": [
+    {
+      "productIds": ["productId1", "productId2"],
+      "position": 0
+    },
+    {
+      "productIds": ["productId3", "productId4"],
+      "position": 1
+    },
+    ...
+    {
+      "productIds": ["productIdX", "productIdY"],
+      "position": n
+    }
+  ]
+}
+```
+
+- `contexts` is an array of "contexts", couples of productIds and positions that will each be used to fetch 1 recipe
+- `productIds: string[]` is the equivalent of `surrounding_products_ids` for the single recipe-card route: ids of the products (in your database) between which you will insert the corresponding recipe-card
+- `position: number`: A unique identifier that helps match each recipe card with its corresponding position in your display.
+    
+    This value serves two purposes:
+    - It helps maintain the order of cards when they're returned to you
+    - It allows you to map each returned HTML card to its correct location in your interface
+
+    You can use sequential numbers (0, 1, 2, 3...) or non-sequential values that correspond to positions in your product grid (e.g., 4, 8, 11 if these are the actual positions among other products).
+
+    The value you provide will be returned unchanged with each card's HTML, allowing you to easily identify where each card should be placed in your interface.
+
+:::warning
+  Because the body is in JSON format, this route needs to be called with a `'Content-Type': 'application/json'` header, in addition to the usual headers needed fo all API requests
+:::
+
+For example, instead of calling:
+```
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["id1","id2"]
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["id3","id4"]
+```
+You can call:
+```
+POST https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
+body: "{
+  "contexts": [
+    {
+      "productIds": ["productId1", "productId2"],
+      "position": 0
+    },
+    {
+      "productIds": ["productId3", "productId4"],
+      "position": 1
+    },
+  ]
+}"
+```
+
+Unlike all other routes, this route returns a JSON object and not a HTML string. The response format is as follow:
+
+```json
+{
+  "data": [
+    {
+      "html": "<...>",
+      "position": 0
+    },
+    {
+      "html": "<...>",
+      "position": 1
+    },
+    ...
+    {
+      "html": "<...>",
+      "position": n
+    }
+  ]
+}
+```
+
+In the `data` array, each element will have an attribute `html`, containing the same HTML as would be contained in the single recipe-card route, and an attribute `position`, with the same value as the `position` attribute linked to the product ids that were used to generate the card, so you can easily know where to insert each card in your page.
+
+:::info
+  The cards will be returned sorted by ascending position, and not necessarily in the order the product-ids were passed.
+:::
+
+Here is an example of request:
+```
+curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#STORE_ID' \
+--header 'authorization: user_id #USER_ID' \
+--header 'language-id: fr' \
+--header 'supplier-token: #SUPPLIER_TOKEN' \
+--header 'session-id: #SESSION_ID' \
+--header 'Content-Type: application/json' \
+--data '{
+    "contexts": [
+        {
+            "position": 0,
+            "productIds": ["#PRODUCT_ID_1", "#PRODUCT_ID_2"]
+        },
+        {
+            "position": 1,
+            "productIds": ["#PRODUCT_ID_3", "#PRODUCT_ID_4"]
+        },
+        {
+            "position": 2,
+            "productIds": ["#PRODUCT_ID_5", "#PRODUCT_ID_6"]
+        },
+        {
+            "position": 3,
+            "productIds": ["#PRODUCT_ID_7", "#PRODUCT_ID_8"]
+        }
+    ]
+}'
+
+// RESPONSE
+
+{
+  "data": [
+    {
+      "html": "<...>",
+      "position": 0
+    },
+    {
+      "html": "<...>",
+      "position": 1
+    },
+    {
+      "html": "<...>",
+      "position": 2
+    },
+    {
+      "html": "<...>",
+      "position": 3
+    }
+  ]
+}
+```
+
+And an example of result:
+![Multiple cards in shelf](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/explanations/multiple-cards-in-shelf.png "Multiple cards in shelf")
+
