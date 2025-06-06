@@ -175,7 +175,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=[
 ```
 You can call:
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple?surrounding_products_ids=[["id1","id2"],["id3","id4"]]
+POST https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
 body: "{
   "contexts": [
     {
