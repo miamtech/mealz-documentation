@@ -2,10 +2,15 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
+// Import images as regular images instead of SVG components
+import plugAndPlayImg from '@site/static/img/plugAndPlay.svg';
+import iaBuildinImg from '@site/static/img/iaBuildin.svg';
+import uiImg from '@site/static/img/UI.svg';
+
 const FeatureList = [
   {
     title: 'Easy to Use',
-    Svg: require('@site/static/img/plugAndPlay.svg').default,
+    imgSrc: plugAndPlayImg,
     description: (
       <>
         Mealz provide native view that can be plugged in any configuration.
@@ -14,7 +19,7 @@ const FeatureList = [
   },
   {
     title: 'Focus on What Matters',
-    Svg: require('@site/static/img/iaBuildin.svg').default,
+    imgSrc: iaBuildinImg,
     description: (
       <>
         Mealz SDK embed pre build component design to your application needs
@@ -23,21 +28,20 @@ const FeatureList = [
   },
   {
     title: 'Fit your Style',
-    Svg: require('@site/static/img/UI.svg').default,
+    imgSrc: uiImg,
     description: (
       <>
         Mealz experience and design is fully customisable 
       </>
     ),
   },
-
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({imgSrc, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img src={imgSrc} className={styles.featureSvg} alt={title} />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
