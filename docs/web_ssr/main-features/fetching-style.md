@@ -85,6 +85,14 @@ The following route will fetch all CSS **for displaying the catalog's list page 
 ```
 GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-list
 ```
+
+The following route will fetch all CSS **for displaying the catalog's my-space page only**:
+```
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/my-space
+```
+
 :::info
-  Since the catalog-home displays recipe-cards, **these will contain the CSS for the recipe-cards as well**
+  All styles routes that have the same naming convention as a component route are implied to contain **all stylesheets for included subcomponents**.
+  
+  For example, since the /catalog/catalog-home route displays recipe-cards, the route /styles/catalog/catalog-home **will contain the CSS for the recipe-cards as well**
 :::
