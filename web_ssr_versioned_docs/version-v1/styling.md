@@ -11,18 +11,18 @@ This library mainly uses global CSS variables for its style (mainly the colors).
 ```html
 <style>
   :host {
-    --mealz-ds-color-primary: blue;
-    --mealz-ds-color-background-primary: #FCFCFC;
+    --miam-ds-color-primary: blue;
+    --miam-ds-color-background-primary: #FCFCFC;
 
-    .mealz-ds-text {
+    .miam-ds-text {
       font-family: "Roboto";
     }
   }
 </style>
 ```
 
-:warning: We are currently transitioning from our old variable system to our new Design System, which has its own set of CSS variables. Any variable that does not start with --mealz-ds is meant to disappear at some point in the future.
-// TODO still relevant ? (variables in mealz-components)
+:warning: We are currently transitioning from our old variable system to our new Design System, which has its own set of CSS variables. Any variable that does not start with --miam-ds is meant to disappear at some point in the future.
+
 
 ## Component styles
 
@@ -55,6 +55,25 @@ To override the src attribute of a img tag, you can use html, but a less computa
   }
 }
 ```
+:::info
+  We are currently transitioning from an old component for icons to a new one, but now most icons and images in our library are in `<img>` tags. If you encounter our old `ng-miam-icon` component, overriding its content is better done like so:
+  ```css
+    .mealz-component__container-class {
+      ng-miam-icon {
+        svg {
+          display: none;
+        }
+
+        &::after {
+          content: url('http://storage-website/the-new-image.png')
+          display: block;
+          height: 24px;
+          width: 24px;
+        }
+      }
+    }
+  ```
+:::
 
 #### Override texts
 

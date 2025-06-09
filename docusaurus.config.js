@@ -126,10 +126,13 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "1",
+            label: "v2",
             path: "/"
           },
-          "0": {
+          "v1": {
+            banner: 'none'
+          },
+          "v0": {
             banner: 'none'
           },
         }
@@ -331,14 +334,19 @@ export default {
             to: "docs/web_ssr/Introduction",
             items: [
               {
-                label: "v1",
+                label: "v2",
                 to: "docs/web_ssr/Introduction",
                 activeBaseRegex: "docs/web_ssr/[^0-9][^/]",
               },
               {
+                label: "v1",
+                to: "docs/web_ssr/v1/Introduction",
+                activeBasePath: "docs/web_ssr/v1",
+              },
+              {
                 label: "v0",
-                to: "docs/web_ssr/0/Introduction",
-                activeBasePath: "docs/web_ssr/0",
+                to: "docs/web_ssr/v0/Introduction",
+                activeBasePath: "docs/web_ssr/v0",
               },
             ]
           },
