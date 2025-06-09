@@ -49,6 +49,14 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
   :::note
     `pushProductsToCart`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative
   :::
+- `defineAddProductsToCart: (addProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket adds new products to update the user's cart accordingly
+    :::note
+    `addProductsToCart`: a method that adds the products passed in parameter to the user's cart, method is not needed if `definePushProductsToCart` is used
+    :::
+- `defineRemoveProductsFromCart: (removeProductsFromCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket removes some products to update the user's cart accordingly
+  :::note
+  `removeProductsFromCart`: a method that removes the products passed in parameter from the user's cart (the quantity attribute of each product is a negative number to indicate that it is the quantity to remove), method is not needed if `definePushProductsToCart` is used
+  :::
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
   :::note
     `comparableProducts`: The products in the user's cart

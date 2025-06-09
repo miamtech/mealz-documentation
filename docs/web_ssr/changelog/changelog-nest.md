@@ -44,6 +44,17 @@ sidebar_position: 1
 
 This guide outlines the breaking changes and migration steps when upgrading from v1 to v2.
 
+### Removed Configuration
+
+The following configuration has been removed:
+- `mealz.features.enableGuestsInputOnMyMeals()`
+- `mealz.features.enableArticlesInCatalog()`
+
+### Updated Configuration
+
+The following configuration has been updated:
+- `mealz.basketSync.defineRemoveProductsFromCart()`: The callback is now called with products with positive quantities
+
 ### Component Renaming
 
 #### Prefix Changes

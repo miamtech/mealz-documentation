@@ -47,7 +47,15 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 - `definePushProductsToCart: (pushProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket changes to update the user's cart accordingly
   :::note
-    `pushProductsToCart`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative
+    `pushProductsToCart`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative, method is not needed if `defineAddProductsToCart` and `defineRemoveProductsFromCart` are used
+  :::
+- `defineAddProductsToCart: (addProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket adds new products to update the user's cart accordingly
+  :::note
+  `addProductsToCart`: a method that adds the products passed in parameter to the user's cart, method is not needed if `definePushProductsToCart` is used
+  :::
+- `defineRemoveProductsFromCart: (removeProductsFromCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket removes some products to update the user's cart accordingly
+  :::note
+  `removeProductsFromCart`: a method that removes the products passed in parameter from the user's cart (the quantity attribute of each product is a positive number to indicate that it is the quantity to remove), method is not needed if `definePushProductsToCart` is used
   :::
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
   :::note
@@ -60,8 +68,6 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 ## window.mealz.features
 - `enableVideoRecipes: () => void`: Call to enable recipes to display a video instead of their picture, if the recipe has a video
-- `enableArticlesInCatalog: () => void`: Enable having Mealz's articles appearing in a dedicated category in the recipe-catalog component
-- `enableGuestsInputOnMyMeals: () => void`: Call to enable guests input on My Meals view
   ![Recipe tag more recipes](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/guestsInputOnMyMeals.png "Recipe tag more recipes")
 - `enableUserPreferences: () => void`: Enable asking and setting user's preferences for more precision in the algorithm
 - `enableTagsOnRecipes: () => void`: Enable displaying tags on recipe-details
