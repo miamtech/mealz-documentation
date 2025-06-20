@@ -37,10 +37,6 @@ props: {aString: 'foo bar', aNumber: 5}
     
     Outside of this usage we don't recommand using `basket.reset()` except to quickly empty Mealz's basket for testing purposes
   :::
-- `updatePricebook: (pricebookName: string) => Observable<void>`: If you have different price tables (or pricebooks) for the same point of sale, you can call this method to let Mealz know which pricebook you are using. For example, prices could be different depending on if the user chose home delivery or drive-in
-  :::info
-    If you have different pricebooks, they need to have been sent to our API so you can change them with `basket.updatePricebook()`. The pricebookName should be the same that the one sent to our API
-  :::
 - `recipeCount: () => Observable<number>`: A BehaviorSubject that emits the current number of recipes in Mealz' Basket once (it waits for the Basket to be initialized to emit).
 - `openPreview: () => void`: Opens the recipe-modal in basket preview mode to display the recipes currently in the basket (Same action as when clicking on the FAB in the recipe-catalog)
 - `overrideTransferUrl: (url: string)`: Use in the devtools on an affiliated website to override the redirection url when transferring the cart to your website.

@@ -4,6 +4,56 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 1.3.6 [23/06/2025]
+
+#### Updated:
+- *recipe-pricing*:
+  - Reorder some logic as some variables were not set properly
+- *recipe-card*:
+  - Now listens on recipe  to fetch the updated number of guests
+
+#### Deleted:
+- *pricebook*
+  - Remove deprecated pricebook parameters
+
+## 1.3.5 [16/06/2025]
+
+#### Fixed:
+- *catalog-favorites*
+  - Fixed 'pageView' event not sended if user has no favorites
+
+## 1.3.4 [10/06/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Revert previous changes
+
+## 1.3.3 [10/06/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - If render is called and price is defined, update the view
+
+## 1.3.2 [06/06/2025]
+
+#### Updated:
+- *recipe-card-cta*:
+  - Style for new hidden class & remove hidden class after the basket data has been fetched & the CTA can be displayed when personalization is disabled
+- *like-button*:
+  - When personalization is disabled, fetch the like & update the DOM manually
+
+#### Fixed:
+- *catalog-history*:
+  - Empty view was inconsistent with the ones from the other pages
+  - Added missing pageview event
+
+## 1.3.1 [23/05/2025]
+
+#### Fixed:
+- *history-order-expanded*:
+  - card width was inconsistent
+
+
 ## 1.3.0 [23/05/2025]
 
 #### Added:

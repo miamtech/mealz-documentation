@@ -31,9 +31,6 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the price of the recipe, so ideally it should be passed if the user has chosen a store
 
-  - `pricebook_key: string = 'DEFAULT'`:
-  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
-
   - `display_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see below for examples)
 
@@ -57,13 +54,13 @@ Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-reques
 A recipe contextualized with surrounding products **_(Recommended)_**:
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["214086","1254022"]&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["214086","1254022"]&store_id=2817&serves=4&profiling=true&display_variant=3&orientation=horizontal
 ```
 
 A fixed recipe:
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=15123&store_id=2817&pricebook_key=DEFAULT&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=15123&store_id=2817&serves=4&profiling=true&display_variant=3&orientation=horizontal
 ```
 
 ### Display variants
@@ -121,9 +118,6 @@ POST https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
 - Parameters :
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the price of the recipe, so ideally it should be passed if the user has chosen a store
-
-  - `pricebook_key: string = 'DEFAULT'`:
-  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
 
   - `display_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see below for examples)
