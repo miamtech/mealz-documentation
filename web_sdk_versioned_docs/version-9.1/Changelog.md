@@ -4,6 +4,73 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.19 - [23/06/2025]
+
+#### Updated:
+- *mealzInternal*:
+  - Replaced `recipePricesInBasket$` to `recipeDataInBasket$` and added `guests` to attributes
+
+#### Removed:
+- *pricebook*:
+  - No more used, we removed all related code
+
+## v9.1.18 - [16/06/2025]
+
+#### Updated:
+- *basket-recipe-cleanup*:
+  - Now when adding product(s), if it fails, it checks if the recipe has active entries, if not it removes the recipe from users basket
+- *recipe-modal*:
+  - Removed singleton service unsubscribe to prevent listener stopping
+
+#### Fixed:
+- *recipe-modal*: Fixed store-locator behavior to only open in noSupplier mode and prevent opening when PoS hasn't loaded
+- *recipes*
+  - Resolved an issue where the `loadRecipes` function failed to load recipe titles when reloading the view, causing the recipe titles to appear blank in the basket preview
+
+## v9.1.17 - [10/06/2025]
+
+#### Updated:
+- Update wording for last order title in recipe-details, title and text in last-order modal
+
+## v9.1.16 - [05/06/2025]
+
+#### Internal:
+- *mealzInternal*:
+  - Added *recipes.getRecipeLike* to fetch the recipe-like for a recipeId
+
+## v9.1.15 - [25/04/2025]
+
+#### Updated:
+- *my-meals*:
+  - Now when removing every active ingredients from a meal, it gets removed from the basket
+
+#### Internal:
+- *basket-recipe-cleanup*:
+  - Created service to handle removing recipe without active basket entries 
+
+## v9.1.14 - [18/04/2025]
+
+#### Fixed:
+- *product-card*:
+  - Out of stock overlay now adapts to header height
+- *out-of-stock*:
+  - Now when succeeding in adding a product out-of-stock, it removes it from storage and prevent forcing the status from 'active' to 'out_of_stock'
+- *miam-ds*:
+  - Update to 1.2.6
+
+## v9.1.13 - [14/04/2025]
+
+Merged 9.0.11 in 9.1 -> See v9.0.11 for changes
+
+#### Fixed:
+- *recipe-details*:
+  - Fixed issue where updating guest number tried to update "deleted" ingredients
+
+#### Updated:
+- *replace-item*:
+  - Prevent adding out-of-stock products by disabling CTA
+  - On replace time out, it navigates to previous page rather than just removing loaders 
+
 ## v9.1.12 - [04/04/2025]
 
 #### Fixed:

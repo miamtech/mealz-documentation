@@ -4,6 +4,69 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 1.3.7 [23/06/2025]
+
+#### Fixed:
+- *demo/retailer-cart*:
+  - Optimized cart updates by only triggering the retailerBasketChanged event once after adding multiple products instead of after each individual product
+- *recipe-card*:
+  - Fixed recipe card basket detection when using suggested recipes, ensuring correct guest count is displayed for recipe cards loaded via product suggestions
+
+#### Deleted:
+- *pricebookKey*:
+  - Remove deprecated variable pricebookKey
+
+## 1.3.6 [16/06/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Fixed issue where all recipe cards in multiple route used the same guest count instead of respecting individual recipe guest settings
+- *recipe-pricing*:
+  - Fixed issue where recipe cards in catalog home beyond the first two categories used a hardcoded guest count of 4 instead of the recipe's actual guest count
+
+## 1.3.5 [11/06/2025]
+
+#### Internal:
+- *recipe-card*:
+  - Added logs for /multiple route body
+  - Added error handling for /multiple body
+
+## 1.3.4 [10/06/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Revert previous changes
+
+## 1.3.3 [10/06/2025]
+
+#### Updated:
+- If render if called and price is defined, update the view
+
+## 1.3.2 [06/06/2025]
+
+#### Fixed:
+- *catalog*:
+  - All /load-more routes were missing `shouldRemovePersonalization: false` 
+
+## 1.3.1 [06/06/2025]
+
+#### Added:
+- *styles*:
+  - Added /styles/catalog/my-space which corresponds to the styles for the /my-space route. It combines the previous routes /styles/catalog/catalog-history & /styles/catalog/catalog-favorites
+
+#### Updated:
+- *recipe-card*:
+  - Added a global configuration in supplier-tokens to disable personalization in both recipe-card routes. When disabled, the pre-rendered recipes-cards will not display the like button nor the cart CTA at prerender, and both will be displayed client-side, to avoid issues with caching between users.
+  - /multiple route now uses the new suggestion-batch route from miam-api for better performances
+- *preferences*:
+  - Preferences are disabled if personalization is disabled, meaning the button will not be rendered and if the user had any preferences set, they are removed
+
+#### Fixed:
+- *recipe-card*
+  - The /multiple route now returns a JSON array of the recipe cards instead of one HTML
+- *my-space*:
+  - Added missing paths in startingData for favorites & history
+
 ## 1.3.0 [23/05/2025]
 
 #### Updated:

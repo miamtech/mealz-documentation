@@ -4,6 +4,24 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.2.4 - [23/06/2025]
+
+#### Removed:
+- *pricebook*:
+  - No more used, we removed all related code
+
+## v9.2.3 - [10/06/2025]
+
+#### Fixed:
+- Accessibility fixes on recipes picture aria-hidden, badge alt and role lists
+
+## v9.2.2 - [09/06/2025]
+
+#### Updated:
+Improved accessibility across components (recipe-details, counter-input, like-button, modal ...) following French RGAA standards
+
+Merged 9.1.15 in 9.2 -> See v9.1.15 for changes
+
 ## v9.2.1 - [31/03/2025]
 
 #### Fixed:
