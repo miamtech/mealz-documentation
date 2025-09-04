@@ -4,6 +4,12 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.0.12 - [01/09/2025]
+
+#### Fixed:
+- *recipe-details*:
+  - Update product-cards when the selected-item of an ingredient changes after modifying the number of guests
+
 ## v9.0.11 - [11/04/2025]
 
 #### Fixed:

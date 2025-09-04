@@ -4,6 +4,67 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 1.3.16 [03/01/2025]
+
+#### Fixed:
+- *recipe-card*
+  - Changed NotFoundException throws to return null or empty arrays when no recipe suggestions found
+
+## 1.3.15 [26/08/2025]
+
+#### Added
+  - *recipe-card*
+    - Added "categoryId" body attribute in /multiple route
+
+#### Fixed:
+- *catalog-list*
+  - Fix button preferences displayed on search results despite configuration to turn them off
+
+#### Config:
+  - Update version for mealz-component to 1.3.12
+
+## 1.3.14 [06/08/2025]
+
+#### Config:
+- Updated to mealz-components@1.3.11
+
+## 1.3.13 [04/08/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Fix pricing flickering with loader
+
+## 1.3.12 [04/08/2025]
+
+#### Config:
+- Updated to mealz-components@1.3.9
+
+## 1.3.11 [04/08/2025]
+
+#### Fixed : 
+- *recipe-card*:
+  - Revert usage of store ext id in route multiple
+
+## 1.3.10 [04/08/2025]
+
+#### Updated:
+- *recipe-card*:
+  - Optimized /multiple route performance by moving dynamic data fetching to client-side
+  - Removed server-side API calls for likes, pricing, and basket data
+  - Simplified data formatting and reduced parallel API calls
+
+## 1.3.9 [24/06/2025]
+
+### Fixed:
+- *recipe-card-cta*
+  - Fix displaying CTA when shouldRemovePersonalization is true
+
+## 1.3.8 [23/06/2025]
+
+#### Config:
+- Updated to webc-miam@9.1.19
+- Updated to mealz-components@1.3.5
+
 ## 1.3.7 [23/06/2025]
 
 #### Fixed:

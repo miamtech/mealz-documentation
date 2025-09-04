@@ -4,6 +4,22 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.2.7 - [01/09/2025]
+
+#### Fixed:
+- *recipe-details*:
+  - Update product-cards when the selected-item of an ingredient changes after modifying the number of guests
+
+## v9.2.6 - [04/08/2025]
+
+#### Fixed:
+- Event analytics url for recipe.add
+
+## v9.2.5 - [23/06/2025]
+
+#### Fixed:
+- condition related to pricebook deprecated
+
 ## v9.2.4 - [23/06/2025]
 
 #### Removed:
