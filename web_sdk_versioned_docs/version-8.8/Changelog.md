@@ -14,7 +14,7 @@ sidebar_position: 11
 
 #### Fixed:
 - *recipe-details*:
-  - Mise à jour des product-cards lorsque le selected-item d'un ingrédient change après la modification du nombre de guests
+  - Update product-cards when the selected-item of an ingredient changes after modifying the number of guests.
 
 ## v8.8.10 - [20/03/2025]
 
