@@ -4,6 +4,57 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 1.3.13 [28/08/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Price per person now updates correctly when recipe products are added to or removed from basket
+
+## 1.3.12 [26/08/2025]
+
+#### Fixed:
+- *my-mealz-button*
+  - Fix z-index being too low in most cases
+
+## 1.3.11 [06/08/2025]
+
+#### Fixed:
+- *recipe-pricing*
+  - Reduce flickering price when re-render component
+- *recipe-card*
+  - Fix multiple event on recipe.show when re-render component
+
+## 1.3.10 [04/08/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Fix pricing flickering with loading
+
+## 1.3.9 [04/08/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Show pricing correctly
+
+## 1.3.8 [31/07/2025]
+
+#### Updated:
+- *like-button*:
+  - Added like data fetching from client-side
+  - Removed async calls, simplified subscription management
+- *recipe-card*:
+  - Added client-side guests retrieval from localStorage preferences
+  - Optimized guests handling with fallback to default value
+- *recipe-pricing*:
+  - Refactored pricing logic to fetch data client-side
+  - Simplified basket data subscription and price recalculation
+
+## 1.3.7 [24/06/2025]
+
+### Fixed:
+- *recipe-card-cta*
+  - Fix displaying CTA when shouldRemovePersonalization is true
+
 ## 1.3.6 [23/06/2025]
 
 #### Updated:
