@@ -4,6 +4,52 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.8.12 - [02/09/2025]
+
+#### Added:
+- *catalog-category*
+  - Add data-category-key attributes to retrieve category name normalized
+
+## v8.8.11 - [29/08/2025]
+
+#### Fixed:
+- *recipe-details*:
+  - Update product-cards when the selected-item of an ingredient changes after modifying the number of guests.
+
+## v8.8.10 - [20/03/2025]
+
+#### Updated:
+- *store-locator-warning*:
+  - Doesn't appear for any retailer anymore
+
+#### Fixed:
+- *recipe-details*:
+  - Moved the recipe.display event to the recipe-card-cta
+  - Fixed guest counter didn't update the quantities of ingredients
+  - pageview wasn't sent when the drawer was opened
+- *basket-preview*:
+  - pageview was sent when recipe-modal was closed
+
+## v8.8.9 - [07/03/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Like button was not displaying as expected in the top container.
+
+## v8.8.8 - [21/02/2025]
+
+#### Fixed:
+- *basket-transfer*:
+  - Safari blocked calls to window.open with _blank attribute, so the supplier's website couldn't be opened
+- *store-locator*
+  - The modal now closes even if the user hasn't chosen a store
+- *supplier-onboarding*:
+  - Wording didn't match the CTA anymore
+
+#### Internal:
+- *window.miam.pos.openNoSupplierOnboarding*
+  - New method to open the no supplier onboarding popup
+
 ## v8.8.7 - [30/01/2025]
 
 #### Fixed:

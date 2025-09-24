@@ -4,6 +4,18 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.20 - [01/09/2025]
+
+#### Fixed:
+- *recipe-details*:
+  - Update product-cards when the selected-item of an ingredient changes after modifying the number of guests
+
+## v9.1.19 - [23/06/2025]
+
+#### Updated:
+- *mealzInternal*:
+  - Replaced `recipePricesInBasket$` to `recipeDataInBasket$` and added `guests` to attributes
+
 ## v9.1.19 - [23/06/2025]
 
 #### Updated:
