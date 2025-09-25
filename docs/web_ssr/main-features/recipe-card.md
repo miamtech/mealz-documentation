@@ -116,6 +116,11 @@ POST https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
 ```
 
 - Parameters :
+  - `contexts: object[]`:
+  **_(Mandatory)_** An array of contexts, each containing productIds and position that will be used to fetch recipe suggestion
+    - `productIds: string[]`: Array of 2 products IDs around the place where you want to put the recipe card
+    - `position: number`: A unique identifier that helps match each recipe card with its corresponding position in your display 
+
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the price of the recipe, so ideally it should be passed if the user has chosen a store
 
@@ -127,6 +132,14 @@ POST https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
 
   - `serves: number`
   **_(Optional)_** Override the default number of guests set for the recipe
+
+  - `categoryId: string`:
+  **_(Optional)_** Category ID to filter recipes by category
+
+  - `keyword: string`:
+  **_(Optional)_** Search keyword to filter recipes by specific terms
+
+  
 
 :::important
   This request is a POST, because the data of the product-ids we need is a little too complex to pass via queryParams, and as such it is more practical to pass them via the body.
@@ -150,21 +163,30 @@ The expected format for the body is as follow
       "productIds": ["productIdX", "productIdY"],
       "position": n
     }
-  ]
+  ],
+  "categoryId": "categoryId1",
+  "keyword": "optional search keyword"
 }
 ```
 
 - `contexts` is an array of "contexts", couples of productIds and positions that will each be used to fetch 1 recipe
 - `productIds: string[]` is the equivalent of `surrounding_products_ids` for the single recipe-card route: ids of the products (in your database) between which you will insert the corresponding recipe-card
-- `position: number`: A unique identifier that helps match each recipe card with its corresponding position in your display.
+- `position: number`: A unique identifier that helps match each recipe card with its corresponding position in your display.  
+:::note
+
+ This value (`position`) serves two purposes:
+  - It helps maintain the order of cards when they're returned to you
+  - It allows you to map each returned HTML card to its correct location in your interface
+
+  You can use sequential numbers (0, 1, 2, 3...) or non-sequential values that correspond to positions in your product grid (e.g., 4, 8, 11 if > these are the actual positions among other products).
+
+  The value you provide will be returned unchanged with each card's HTML, allowing you to easily identify where each card should be placed in your interface.
+
+:::
+- `categoryId: string` (optional): Category ID to filter recipes by a specific category
+- `keyword: string` (optional): Search keyword to filter recipes by specific terms
     
-    This value serves two purposes:
-    - It helps maintain the order of cards when they're returned to you
-    - It allows you to map each returned HTML card to its correct location in your interface
-
-    You can use sequential numbers (0, 1, 2, 3...) or non-sequential values that correspond to positions in your product grid (e.g., 4, 8, 11 if these are the actual positions among other products).
-
-    The value you provide will be returned unchanged with each card's HTML, allowing you to easily identify where each card should be placed in your interface.
+   
 
 :::warning
   Because the body is in JSON format, this route needs to be called with a `'Content-Type': 'application/json'` header, in addition to the usual headers needed fo all API requests
@@ -246,7 +268,9 @@ curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#
             "position": 3,
             "productIds": ["#PRODUCT_ID_7", "#PRODUCT_ID_8"]
         }
-    ]
+    ],
+    "categoryId": "1234",
+    "keyword": "optional search keyword"
 }'
 
 // RESPONSE

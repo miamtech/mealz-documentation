@@ -4,6 +4,16 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 1.3.17 - [25/09/2025]
+
+#### Added
+- *recipe-card*
+  - Added "keyword" body attribute to /multiple route 
+
+#### Config:
+  - Update version for SDK to 9.1.21
+
+
 ## 1.3.16 [03/01/2025]
 
 #### Fixed:

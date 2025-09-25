@@ -4,6 +4,11 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.21 - [25/09/2025]
+
+### Added
+- *basket-transfer*: Added ITM supplier support with `pdvref` handling (left unchanged except on navigation where it is zero-padded to at least 5 chars) and cookie-based POS detection
+
 ## v9.1.20 - [01/09/2025]
 
 #### Fixed:
