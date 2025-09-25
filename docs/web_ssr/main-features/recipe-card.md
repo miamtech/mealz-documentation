@@ -269,7 +269,7 @@ curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#
             "productIds": ["#PRODUCT_ID_7", "#PRODUCT_ID_8"]
         }
     ],
-    "categoryId": "optional-category-id",
+    "categoryId": "1234",
     "keyword": "optional search keyword"
 }'
 
