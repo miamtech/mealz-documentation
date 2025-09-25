@@ -270,7 +270,7 @@ curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#
         }
     ],
     "categoryId": "optional-category-id",
-    "keyword": "optional-search-keyword"
+    "keyword": "optional search keyword"
 }'
 
 // RESPONSE
