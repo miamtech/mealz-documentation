@@ -2,6 +2,8 @@
 sidebar_position: 2
 ---
 
+import Badge from '@site/src/components/Badge';
+
 # Recipe card
 
 ## Overview
@@ -27,6 +29,7 @@ Finally, by clicking on the heart icon the user can add the recipe to Mealz' fav
   > :warning: It is necessary to have at least one of the preceding inputs, or the card will not display anything
 
   - `displayVariant: number = 1`: **_(Optionnal)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3. See below for examples.
+  - `contextId: string` <Badge text="since 9.2.8" color="info" href="../Changelog#v928---02102025" /> : **_(Optional)_** Identifier for grouping recipe cards to optimize batch suggestion requests in a shelf. Cards with the same `contextId` will be processed together instead of making individual requests. Typically corresponds to the card's position (e.g., "1", "2", "3").
 
 - Outputs :
   - `hide: void`: Emits an event if no recipe corresponding to the products ids was found and the card must be hidden to not have an empty card.
@@ -61,6 +64,7 @@ A fixed recipe:
   card.recipeId = "2417";
 </script>
 ```
+
 
 ### Display variants
 
