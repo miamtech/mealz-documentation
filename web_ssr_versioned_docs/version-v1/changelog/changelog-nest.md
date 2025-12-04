@@ -4,6 +4,163 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 1.3.20 - [23/10/2025]
+
+#### Internal
+- *analytics-service*
+  - Send events to bigQuery instead Plausible
+  - Add ANALYTICS_URL environment variable for analytics endpoint configuration
+  - Add ANALYTICS_ENABLED environment variable for development environment
+  - Analytics can now be disabled in development mode by setting ANALYTICS_ENABLED=false
+  - UAT and PROD environments always send analytics regardless of ANALYTICS_ENABLED setting
+
+## 1.3.19 - [16/10/2025]
+
+#### Config
+- Update version for mealz-components 1.3.13
+
+## 1.3.18 - [13/10/2025]
+
+#### Internal
+- *cache-service*
+  - UserID is now optional in cache key.
+- *pos-service*
+  - Updated pos service to remove userID from cache key usage.
+- **Logging System**:
+  - Implemented logger with Google Cloud Logging integration
+  - Added distributed tracing support using AsyncLocalStorage
+
+
+## 1.3.17 - [25/09/2025]
+
+#### Added
+- *recipe-card*
+  - Added "keyword" body attribute to /multiple route 
+
+#### Config:
+  - Update version for SDK to 9.1.21
+
+## 1.3.16 - [03/09/2025]
+
+#### Fixed:
+- *recipe-card*
+  - Changed NotFoundException throws to return null or empty arrays when no recipe suggestions found
+
+## 1.3.15 - [26/08/2025]
+
+#### Added
+  - *recipe-card*
+    - Added "categoryId" body attribute in /multiple route
+
+#### Fixed:
+- *catalog-list*
+  - Fix button preferences displayed on search results despite configuration to turn them off
+
+#### Config:
+  - Update version for mealz-component to 1.3.12
+  - Update versions for local and UAT
+
+## 1.3.14 - [06/08/2025]
+
+#### Config:
+- Update component version 1.3.11 in env
+
+## 1.3.13 - [04/08/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Fix pricing flickering with loader
+
+#### Config:
+- Update component versions in env
+
+## 1.3.12 - [04/08/2025]
+
+#### Config:
+- Update component versions in env
+
+## 1.3.11 - [04/08/2025]
+
+#### Fixed : 
+- *recipe-card*:
+  - Revert usage of store ext id in route multiple
+
+## 1.3.10 - [04/08/2025]
+
+#### Updated:
+- *recipe-card*:
+  - Optimized /multiple route performance by moving dynamic data fetching to client-side
+  - Removed server-side API calls for likes, pricing, and basket data
+  - Simplified data formatting and reduced parallel API calls
+
+## 1.3.9 [24/06/2025]
+
+### Fixed:
+- *recipe-card-cta*
+  - Fix displaying CTA when shouldRemovePersonalization is true
+
+## 1.3.8 [23/06/2025]
+
+#### Config:
+- Update SDK / Component versions in env
+
+## 1.3.7 [23/06/2025]
+
+#### Fixed:
+- *demo/retailer-cart*:
+  - Optimized cart updates by only triggering the retailerBasketChanged event once after adding multiple products instead of after each individual product
+- *recipe-card*:
+  - Fixed recipe card basket detection when using suggested recipes, ensuring correct guest count is displayed for recipe cards loaded via product suggestions
+
+#### Deleted:
+- *pricebookKey*:
+  - Remove deprecated variable pricebookKey
+
+## 1.3.6 [16/06/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Fixed issue where all recipe cards in multiple route used the same guest count instead of respecting individual recipe guest settings
+- *recipe-pricing*:
+  - Fixed issue where recipe cards in catalog home beyond the first two categories used a hardcoded guest count of 4 instead of the recipe's actual guest count
+
+
+## 1.3.4 [10/06/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Revert previous changes
+
+## 1.3.3 [10/06/2025]
+
+#### Updated:
+- If render if called and price is defined, update the view
+
+## 1.3.2 [06/06/2025]
+
+#### Fixed:
+- *catalog*:
+  - All /load-more routes were missing `shouldRemovePersonalization: false` 
+
+## 1.3.1 [06/06/2025]
+
+#### Added:
+- *styles*:
+  - Added `/styles/catalog/my-space` which corresponds to the styles for the `/my-space` route. It combines the previous routes `/styles/catalog/catalog-history` & `/styles/catalog/catalog-favorites`
+
+#### Updated:
+- *recipe-card*:
+  - Added a global configuration in supplier-tokens to disable personalization in both recipe-card routes. When disabled, the pre-rendered recipes-cards will not display the like button nor the cart CTA at prerender, and both will be displayed client-side, to avoid issues with caching between users.
+  - /multiple route now uses the new suggestion-batch route from miam-api for better performances
+- *preferences*:
+  - Preferences are disabled if personalization is disabled, meaning the button will not be rendered and if the user had any preferences set, they are removed
+
+#### Fixed:
+- *recipe-card*
+  - The /multiple route now returns a JSON array of the recipe cards instead of one HTML
+- *my-space*:
+  - Added missing paths in startingData for favorites & history
+
 ## 1.3.0 [23/05/2025]
 
 #### Updated:

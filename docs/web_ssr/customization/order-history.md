@@ -46,10 +46,6 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/my-space
     
     **_(Optional)_** Specify the style to display for the history tab: grid (default) or list. Does not have any effect if used alongside `tab=favorites`. **(See [Routing](/docs/web_ssr/customization/order-history#routing))**
 
-  - `pricebook_key: string = 'DEFAULT'`:
-    
-    **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
-
   - `display_infos: boolean = false`:
     
     **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true

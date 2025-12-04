@@ -4,6 +4,50 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.2.8 - [02/10/2025]
+
+#### Added:
+- *recipe-card*:
+  - Added `contextId` input to support per-card batched suggestion contexts (used for shelf positions)
+
+#### Internal:
+- *recipes*
+  - Replaced per-card single recipe fetches with debounced batch requests
+
+## v9.2.7 - [01/09/2025]
+
+#### Fixed:
+- *recipe-details*:
+  - Update product-cards when the selected-item of an ingredient changes after modifying the number of guests
+
+## v9.2.6 - [04/08/2025]
+
+#### Fixed:
+- Event analytics url for recipe.add
+
+## v9.2.5 - [23/06/2025]
+
+#### Fixed:
+- condition related to pricebook deprecated
+
+## v9.2.4 - [23/06/2025]
+
+#### Removed:
+- *pricebook*:
+  - No more used, we removed all related code
+
+## v9.2.3 - [10/06/2025]
+
+#### Fixed:
+- Accessibility fixes on recipes picture aria-hidden, badge alt and role lists
+
+## v9.2.2 - [09/06/2025]
+
+#### Updated:
+Improved accessibility across components (recipe-details, counter-input, like-button, modal ...) following French RGAA standards
+
+Merged 9.1.15 in 9.2 -> See v9.1.15 for changes
+
 ## v9.2.1 - [31/03/2025]
 
 #### Fixed:

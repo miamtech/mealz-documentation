@@ -53,9 +53,6 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog
   - `max_recipes_per_category = 6`:
   **_(Recommended)_** Specify a maximum number of recipes to display per category. In our base design, we have 1 row of recipes per category and recipes should ideally fill the space available. So it is in your interest to fetch exactly the number of recipes that can be displayed on 1 row on the user's screen.
 
-  - `pricebook_key: string = 'DEFAULT'`:
-  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
-
   - `display_infos: boolean = false`:
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
 
@@ -86,9 +83,6 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/category
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the prices of the recipes, to fetch the recipes in basket informations and to hide recipes with primary ingredients not available in your store, so ideally it should be passed if the user has chosen a store
 
-  - `pricebook_key: string = 'DEFAULT'`:
-  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
-
   - `display_infos: boolean = false`:
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
 
@@ -109,9 +103,6 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/favorites
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the prices of the recipes, to fetch the recipes in basket informations and to hide recipes with primary ingredients not available in your store, so ideally it should be passed if the user has chosen a store
 
-  - `pricebook_key: string = 'DEFAULT'`:
-  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
-
   - `display_infos: boolean = false`:
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
 
@@ -131,9 +122,6 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/list
 - Parameters :
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the prices of the recipes, to fetch the recipes in basket informations and to hide recipes with primary ingredients not available in your store, so ideally it should be passed if the user has chosen a store
-
-  - `pricebook_key: string = 'DEFAULT'`:
-  **_(Optional)_** the pricebook key is needed to retrieve the recipe price corresponding to the pricebook you are currently using. If your website doesn't have multiple pricebooks for the same store, this parameter is not needed.
 
   - `display_infos: boolean = false`:
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true

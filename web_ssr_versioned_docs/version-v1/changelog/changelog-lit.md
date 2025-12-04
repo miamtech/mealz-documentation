@@ -4,6 +4,106 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 1.3.15 - [04/12/2025]
+
+#### Fixed
+- *recipe-priging*
+  - Fix hidden display overrided by retailer
+
+## 1.3.14 - [03/12/2025]
+
+#### Updated
+- *recipe-card-cta*, *recipe-pricing*, *like-button*
+  - Update these components to be called individually in dedicated routes
+  
+## 1.3.11 [06/08/2025]
+
+#### Fixed:
+- *recipe-pricing*
+  - Reduce flickering price when re-render component
+- *recipe-card*
+  - Fix multiple event on recipe.show when re-render Component
+
+## 1.3.10 [04/08/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Fix pricing flickering with loading
+
+## 1.3.9 [04/08/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Show pricing correctly
+
+## 1.3.8 [31/07/2025]
+
+#### Updated:
+- *like-button*:
+  - Added like data fetching from client-side
+  - Removed async calls, simplified subscription management
+- *recipe-card*:
+  - Added client-side guests retrieval from localStorage preferences
+  - Optimized guests handling with fallback to default value
+- *recipe-pricing*:
+  - Refactored pricing logic to fetch data client-side
+  - Simplified basket data subscription and price recalculation
+
+## 1.3.7 [24/06/2025]
+
+### Fixed:
+- *recipe-card-cta*
+  - Fix displaying CTA when shouldRemovePersonalization is true
+
+## 1.3.6 [23/06/2025]
+
+### Updated:
+- *recipe-pricing*:
+  - Reorder some logic as some variables were not set properly
+- *recipe-card*:
+  - Now listens on recipe  to fetch the updated number of guests
+
+#### Deleted:
+- *pricebook*
+  - Remove deprecated pricebook parameters
+
+## 1.3.5 [16/06/2025]
+
+#### Fixed:
+- *catalog-favorites*
+  - Fixed 'pageView' event not sended if user has no favorites
+
+## 1.3.4 [10/06/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Revert previous changes
+
+## 1.3.3 [10/06/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - If render is called and price is defined, update the view
+
+## 1.3.2 [06/06/2025]
+
+#### Updated:
+- *recipe-card-cta*:
+  - Style for new hidden class & remove hidden class after the basket data has been fetched & the CTA can be displayed when personalization is disabled
+- *like-button*:
+  - When personalization is disabled, fetch the like & update the DOM manually
+
+#### Fixed:
+- *catalog-history*:
+  - Empty view was inconsistent with the ones from the other pages
+  - Added missing pageview event
+
+## 1.3.1 [23/05/2025]
+
+#### Fixed:
+- *history-order-expanded*:
+  - card width was inconsistent
+
 ## 1.3.0 [23/05/2025]
 
 #### Added:
