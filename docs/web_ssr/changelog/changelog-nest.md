@@ -361,3 +361,8 @@ This new structure applies to:
 ### Design System Renaming
 
 Our design system has been renamed from `miam-ds` to `mealz-ds`. All style classes previously using `miam-ds-...` have been updated to `mealz-ds-...`.
+
+#### CSS Custom Properties
+
+All CSS custom properties previously using the `--miam-*` prefix have been renamed to use the `--mealz-*` prefix.  
+If you override design system tokens in your own styles (e.g. in `:root` or retailer-specific styles), update any `--miam-*` variables to their `--mealz-*` equivalents.
