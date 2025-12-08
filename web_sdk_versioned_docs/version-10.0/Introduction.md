@@ -10,7 +10,11 @@ In order to be able to let you use its capabilities regardless of your Javascrip
 
 Two builds are available :
 
-- **[webc-miam](https://www.npmjs.com/package/webc-miam)** - built as a WebComponents library
+- **[webc-miam](https://www.npmjs.com/package/webc-miam)** - built as a WebComponents library  
 - **[ng-miam](https://www.npmjs.com/package/ng-miam)** - built as an Angular lib
+
+:::info
+With SDK **v10**, these bundles are primarily consumed by the Mealz SSR stack. If you need a pure client-side integration without SSR, stay on **v9.x**.
+:::
 
 This project was generated with Angular CLI version 10.2.3.

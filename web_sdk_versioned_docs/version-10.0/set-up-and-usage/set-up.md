@@ -6,7 +6,7 @@ sidebar_position: 1
 
 To prevent any unwanted side effect, we highly recommend you to follow the steps described below **in order** and **at the starting point of your app** (either in your app.component.ts if you are in Angular, in the equivalent file for other frameworks, or in a `<script>` tag in your index.html). If you want to do the setup somewhere else, please keep in mind that :
 
-- Setup needs to be done only one time per execution of the script webc-miam-lang.js
+- Setup needs to be done only one time per execution of the script `webc-miam-lang.js` (for legacy / standalone script usage of the SDK; when using SDK **v10** with the SSR project, script loading and setup are handled by the SSR stack)
 - Unless stated otherwise, doing any step of the setup multiple times can cause errors
 - Setup needs to be done before you expect our webcomponents to appear visually for the client, because all of them need at least some part of the setup to do anything
 

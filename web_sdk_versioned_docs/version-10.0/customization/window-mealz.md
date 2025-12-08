@@ -58,7 +58,9 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
   :::
 - `defineRemoveProductsFromCart: (removeProductsFromCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket removes some products to update the user's cart accordingly
   :::note
-    `removeProductsFromCart`: a method that removes the products passed in parameter from the user's cart (the quantity attribute of each product is a negative number to indicate that it is the quantity to remove)
+    `removeProductsFromCart`: a method that removes the products passed in parameter from the user's cart.
+
+    From **SDK v10**, the products passed to this callback use **positive quantities** to indicate how many units should be removed from the cart.
   :::
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
   :::note
@@ -71,8 +73,8 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 ## window.mealz.features
 - `enableVideoRecipes: () => void`: Call to enable recipes to display a video instead of their picture, if the recipe has a video
-- `enableArticlesInCatalog: () => void`: Enable having Mealz's articles appearing in a dedicated category in the recipe-catalog component
-- `enableGuestsInputOnMyMeals: () => void`: Call to enable guests input on My Meals view
+- `enableArticlesInCatalog: () => void`: **Removed in v10.0.0.** This feature and the related article category in the catalog have been removed; calling this method has no effect and it will be removed in a future major version.
+- `enableGuestsInputOnMyMeals: () => void`: **Removed in v10.0.0.** The legacy "My Meals" guests input feature is no longer available in SDK v10.
   ![Recipe tag more recipes](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/guestsInputOnMyMeals.png "Recipe tag more recipes")
 - `enableUserPreferences: () => void`: Enable asking and setting user's preferences for more precision in the algorithm
 - `enableTagsOnRecipes: () => void`: Enable displaying tags on recipe-details
@@ -87,7 +89,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
     `antiInflation`: if you want to use the anti-inflation variation of the meals-planner
   :::
   :::warning
-    Feature is working but will be reworked from the ground up in the future
+    In **SDK v10**, the legacy Meals Planner WebComponent UI has been removed. This method is kept only for specific SSR-based setups and should not be used for new standalone integrations. Refer to the Web SSR documentation for planner usage.
   :::
 - `collapseUnavailableProductsByDefault: () => void`: Call to enable collapsing of unavailable products by default in recipe-details
 
@@ -199,3 +201,10 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
   :::info
     Default callback returns document.body. Call setDefaultScrollElementGetter(() => null) if you don't want the modal to block scroll on background.
   :::
+
+## Internal APIs
+
+SDK **v10** introduces several `window.mealzInternal.*` helpers (for basket, planner, recipes, no-supplier flows, etc.) that are used by the Mealz SSR stack and internal web components.
+
+These APIs are considered **internal** and may change without notice.  
+If you need to interact with them, please refer to the Web SSR documentation or contact Mealz support before relying on them in production code.

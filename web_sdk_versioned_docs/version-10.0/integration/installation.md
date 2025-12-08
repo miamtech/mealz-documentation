@@ -6,6 +6,11 @@ sidebar_position: 2
 
 Installing our library on your website only requires you to add the following tag to your page :
 
+:::warning
+For SDK **v10**, this script tag is intended to be used in the context of the **Mealz SSR project**.  
+If you are integrating the SDK as a standalone script without SSR, please use **v9.x** and its documentation instead.
+:::
+
 ```html
  <script type="module" src="https://cdn.jsdelivr.net/npm/webc-miam@${version}/webc-miam-${lang}.js"></script>
 ```

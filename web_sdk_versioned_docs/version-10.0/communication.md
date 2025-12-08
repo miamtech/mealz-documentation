@@ -14,6 +14,11 @@ For this interface to be accessible for anyone, we inject it into the `window` o
 
 The methods and variables in `window.mealz` are grouped in thematic categories, like `window.mealz.user` or `window.mealz.recipes` for example. See [window.mealz](./customization/window-mealz) for more details on the content of each category.
 
+:::info
+In SDK **v10**, the `webc-miam` bundle and `window.mealz` interface are primarily consumed by the **Mealz SSR stack**.  
+If you plan to consume the SDK purely as a standalone script, please refer to the **v9.x** documentation.
+:::
+
 ### If you use Typescript
 
 If you use Typescript, using `window.mealz` as is will likely result in your compiler complaining that window has no object mealz.

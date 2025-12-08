@@ -6,6 +6,11 @@ sidebar_position: 1
 
 ## Getting started with the integration of ngMiam
 
+:::warning
+With SDK **v10**, the recommended integration path is through the **Mealz SSR project** (API + SSR-rendered web components).  
+The examples below assume you are either using the legacy standalone bundle or integrating the client-side part provided by SSR. For pure standalone script integrations, use **v9.x**.
+:::
+
 > :warning: Your domain will need to be registered in our API (api.miam.tech) to use our SDK. Please contact us if you experience **CORS** issues to get your domain authorized.
 
 ### What is a WebcComponents library ?

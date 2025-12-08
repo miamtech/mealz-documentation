@@ -24,7 +24,7 @@ When clicked, the recipe-tags component opens a modal displaying the list of rec
 ### Example
 
 ```html
-<ng-miam-recipe-tags></ng-miam-recipe-tags>
+<webc-miam-recipe-tags></webc-miam-recipe-tags>
 <script>
   const recipetags = document.querySelector("webc-miam-recipe-tags");
   const extId = "id1";

@@ -71,7 +71,7 @@ export class Mealz {
         // Add {quantity} number of products in the cart
       }
       else {
-        // Remove {quantity * -1} number of products from the cart
+        // Remove {quantity} number of products from the cart
       }
     })
   }

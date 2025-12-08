@@ -9,7 +9,7 @@ For any other change in style you want to make, we recommend overriding directly
 ```html
 <style>
   :host {
-    .miam-recipe-card {
+    .mealz-recipe-card {
       border-color: solid blue 1px;
     }
   }
