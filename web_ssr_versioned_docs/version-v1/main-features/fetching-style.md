@@ -26,15 +26,15 @@ Which will return data in the following format:
 ```json
 {
   "links": [
-    "https://unpkg.com/mealz-ds@2.0.0/mealz--ds.min.css",
-    "https://cdn.jsdelivr.net/npm/webc-miam@9.2.2/miam-style.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/catalog/catalog-home/catalog-home.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/recipe-card/recipe-card.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/recipe-card-cta/recipe-card-cta.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/recipe-pricing/recipe-pricing.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/like-button/like-button.css"
+    "https://unpkg.com/miam-ds@1.2.4/miam-ds.min.css",
+    "https://cdn.jsdelivr.net/npm/webc-miam@8.6.1/miam-style.css",
+    "https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/catalog/catalog-home/catalog-home.css",
+    "https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/recipe-card/recipe-card.css",
+    "https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/recipe-card-cta/recipe-card-cta.css",
+    "https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/recipe-pricing/recipe-pricing.css",
+    "https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/like-button/like-button.css"
   ],
-  "html": "<link rel=\"stylesheet\" href=\"http://localhost:4201/miam-style.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-ds@2.0.0/mealz-ds.min.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/catalog/catalog-home/catalog-home.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/recipe-card/recipe-card.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/recipe-card-cta/recipe-card-cta.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/recipe-pricing/recipe-pricing.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/like-button/like-button.css\" />"
+  "html": "<link rel=\"stylesheet\" href=\"http://localhost:4201/miam-style.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/miam-ds@1.2.4/miam-ds.min.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/catalog/catalog-home/catalog-home.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/recipe-card/recipe-card.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/recipe-card-cta/recipe-card-cta.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/recipe-pricing/recipe-pricing.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@0.3.0-alpha.4/dist/like-button/like-button.css\" />"
 }
 ```
 
@@ -85,14 +85,6 @@ The following route will fetch all CSS **for displaying the catalog's list page 
 ```
 GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/catalog-list
 ```
-
-The following route will fetch all CSS **for displaying the catalog's my-space page only**:
-```
-GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/my-space
-```
-
 :::info
-  All styles routes that have the same naming convention as a component route are implied to contain **all stylesheets for included subcomponents**.
-  
-  For example, since the /catalog/catalog-home route displays recipe-cards, the route /styles/catalog/catalog-home **will contain the CSS for the recipe-cards as well**
+  Since the catalog-home displays recipe-cards, **these will contain the CSS for the recipe-cards as well**
 :::

@@ -1,0 +1,635 @@
+---
+sidebar_position: 1
+---
+
+# Mealz SSR API Changelog
+
+## 1.3.20 - [23/10/2025]
+
+#### Internal
+- *analytics-service*
+  - Send events to bigQuery instead Plausible
+  - Add ANALYTICS_URL environment variable for analytics endpoint configuration
+  - Add ANALYTICS_ENABLED environment variable for development environment
+  - Analytics can now be disabled in development mode by setting ANALYTICS_ENABLED=false
+  - UAT and PROD environments always send analytics regardless of ANALYTICS_ENABLED setting
+
+## 1.3.19 - [16/10/2025]
+
+#### Config
+- Update version for mealz-components 1.3.13
+
+## 1.3.18 - [13/10/2025]
+
+#### Internal
+- *cache-service*
+  - UserID is now optional in cache key.
+- *pos-service*
+  - Updated pos service to remove userID from cache key usage.
+- **Logging System**:
+  - Implemented logger with Google Cloud Logging integration
+  - Added distributed tracing support using AsyncLocalStorage
+
+
+## 1.3.17 - [25/09/2025]
+
+#### Added
+- *recipe-card*
+  - Added "keyword" body attribute to /multiple route 
+
+#### Config:
+  - Update version for SDK to 9.1.21
+
+## 1.3.16 - [03/09/2025]
+
+#### Fixed:
+- *recipe-card*
+  - Changed NotFoundException throws to return null or empty arrays when no recipe suggestions found
+
+## 1.3.15 - [26/08/2025]
+
+#### Added
+  - *recipe-card*
+    - Added "categoryId" body attribute in /multiple route
+
+#### Fixed:
+- *catalog-list*
+  - Fix button preferences displayed on search results despite configuration to turn them off
+
+#### Config:
+  - Update version for mealz-component to 1.3.12
+  - Update versions for local and UAT
+
+## 1.3.14 - [06/08/2025]
+
+#### Config:
+- Update component version 1.3.11 in env
+
+## 1.3.13 - [04/08/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Fix pricing flickering with loader
+
+#### Config:
+- Update component versions in env
+
+## 1.3.12 - [04/08/2025]
+
+#### Config:
+- Update component versions in env
+
+## 1.3.11 - [04/08/2025]
+
+#### Fixed : 
+- *recipe-card*:
+  - Revert usage of store ext id in route multiple
+
+## 1.3.10 - [04/08/2025]
+
+#### Updated:
+- *recipe-card*:
+  - Optimized /multiple route performance by moving dynamic data fetching to client-side
+  - Removed server-side API calls for likes, pricing, and basket data
+  - Simplified data formatting and reduced parallel API calls
+
+## 1.3.9 [24/06/2025]
+
+### Fixed:
+- *recipe-card-cta*
+  - Fix displaying CTA when shouldRemovePersonalization is true
+
+## 1.3.8 [23/06/2025]
+
+#### Config:
+- Update SDK / Component versions in env
+
+## 1.3.7 [23/06/2025]
+
+#### Fixed:
+- *demo/retailer-cart*:
+  - Optimized cart updates by only triggering the retailerBasketChanged event once after adding multiple products instead of after each individual product
+- *recipe-card*:
+  - Fixed recipe card basket detection when using suggested recipes, ensuring correct guest count is displayed for recipe cards loaded via product suggestions
+
+#### Deleted:
+- *pricebookKey*:
+  - Remove deprecated variable pricebookKey
+
+## 1.3.6 [16/06/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Fixed issue where all recipe cards in multiple route used the same guest count instead of respecting individual recipe guest settings
+- *recipe-pricing*:
+  - Fixed issue where recipe cards in catalog home beyond the first two categories used a hardcoded guest count of 4 instead of the recipe's actual guest count
+
+
+## 1.3.4 [10/06/2025]
+
+#### Fixed:
+- *recipe-pricing*:
+  - Revert previous changes
+
+## 1.3.3 [10/06/2025]
+
+#### Updated:
+- If render if called and price is defined, update the view
+
+## 1.3.2 [06/06/2025]
+
+#### Fixed:
+- *catalog*:
+  - All /load-more routes were missing `shouldRemovePersonalization: false` 
+
+## 1.3.1 [06/06/2025]
+
+#### Added:
+- *styles*:
+  - Added `/styles/catalog/my-space` which corresponds to the styles for the `/my-space` route. It combines the previous routes `/styles/catalog/catalog-history` & `/styles/catalog/catalog-favorites`
+
+#### Updated:
+- *recipe-card*:
+  - Added a global configuration in supplier-tokens to disable personalization in both recipe-card routes. When disabled, the pre-rendered recipes-cards will not display the like button nor the cart CTA at prerender, and both will be displayed client-side, to avoid issues with caching between users.
+  - /multiple route now uses the new suggestion-batch route from miam-api for better performances
+- *preferences*:
+  - Preferences are disabled if personalization is disabled, meaning the button will not be rendered and if the user had any preferences set, they are removed
+
+#### Fixed:
+- *recipe-card*
+  - The /multiple route now returns a JSON array of the recipe cards instead of one HTML
+- *my-space*:
+  - Added missing paths in startingData for favorites & history
+
+## 1.3.0 [23/05/2025]
+
+#### Updated:
+- *my-space*:
+  - History now has a toggle to switch the view style between 'grid' and 'list' mode
+  - Added a new param `history_style` to the /my-space route. The param only has an effect when used alongside `tab=history` and can have as value either 'grid' or 'list', defaulting to 'grid' if not passed.
+  - Using the new view style toggle will put in the currentUrl either `&history_style=grid` or `&history_style=list`, which can be passed to the /my-space route
+
+## 1.2.26 [19/05/2025]
+
+#### Internal:
+- Update CI to push to artifact registry
+- Added 2 more cards on shelf demo page
+- Fixed potential error on demo if there was not enough product to display cards
+
+## 1.2.25 [05/05/2025]
+
+- Removed @google-cloud/logging which had performance issues and replaced with correctly formatted console.log
+
+## 1.2.24 [02/05/2025]
+
+- Revert previous tag for performances reasons
+
+## 1.2.23 [02/05/2025]
+
+#### Internal:
+- upgraded Nest to v11
+- Added @google-cloud/logging library for better logging on GCP
+- Added new Logger service to log for GCP in uat & prod and use default Logger only for dev
+- Updated fetch to node-fetch to have the option to log response headers with response.entries()
+
+# 1.2.22 [29/04/2025]
+
+#### Fixed:
+- Handle-payment doesn't confirms the basket twice if called twice in a row
+- Added headers to the plausible calls just in case they weren't automatically passed
+
+## 1.2.21 [23/04/2025]
+
+Updated to webc-miam@9.1.15
+Updated to mealz-components@1.2.8
+
+## 1.2.20 [23/04/2025]
+
+#### Updated:
+- handle-payment route now checks the order-id param if passed to not confirm different baskets for the same order
+
+#### Internal:
+- Added more logs for plausible events in order to check if they are sent correctly
+
+## 1.2.19 [22/04/2025]
+
+#### Fixed:
+- Added url attribute in the body of requests sent to plausible, as its absence caused these requests to return a 400 error
+
+## 1.2.18 [22/04/2025]
+
+#### Internal:
+- Added more logs for headers checks on all routes
+
+## 1.2.17 [18/04/2025]
+
+Updated to mealz-components@1.2.7
+
+## 1.2.16 [18/04/2025]
+
+Updated to webc-miam@9.1.14
+Updated to mealz-components@1.2.6
+Updated to miam-ds@1.2.6
+
+#### Fixed:
+- *toolbar*: anchor was missing a navigate back
+
+#### Internal:
+- *supplier-values*:
+    - Added Marmiton default values for the env-configurator
+- *recipe-card*:
+  - Added an id on the format `mealz-recipe-card-{RECIPE-ID}`
+
+## 1.2.15 [14/04/2025]
+
+Updated to webc-miam@9.1.13
+
+## 1.2.14 [04/04/2025]
+
+Updated to webc-miam@9.1.12
+
+## 1.2.13 [03/04/2025]
+
+#### Fixed:
+- Resolved issue where recipe details always opened with 4 guests by refining guest count logic in : *catalog-category*, *catalog-favorites*, *catalog-home*, *catalog-list*, *my-space*
+- *catalog-home*:
+  - Did not have an empty state for extreme cases of contradictory preferences
+
+#### Internal:
+- Removed unused `serves` query param in load-more functionality for: *catalog-category*, *catalog-favorites*, *catalog-list*, *my-space*
+
+## 1.2.12 [31/03/2025]
+
+#### Internal:
+- Changed all urls from unpkg to cdn.jsdelivr/npm to avoid unpkg that was down on 31/03/2025
+
+## 1.2.11 [28/03/2025]
+
+#### Fixed:
+- *catalog-favorites*:
+  - Fixed init state was incorrect
+
+#### Internal:
+- Fixed log in case of missing auth headers
+
+## 1.2.10 [26/03/2025]
+
+#### Fixed:
+- Updated to webc-miam@9.1.8 to fix bug on basket-preview opening the last added recipes instead of the one clicked in some cases
+- miam-api prod URL had an unnecessary "/"
+
+## 1.2.9 [24/03/2025]
+
+#### Fixed:
+- *recipe-card*:
+  - Optimized performances for the /recipe-card route: Should reduce response times by 150 to 200ms
+
+## 1.2.8 [21/03/2025]
+
+#### Fixed:
+- Better logging for supplier-token errors
+- *catalog-routing*:
+  - Added redirecting url for my-space for the catalog-routing config for supplier 23
+- *catalog-toolbar*:
+  - Removed href for the back button as now the component does a native back action client-side
+- *recipe-card*:
+  - Optimized performances for the /recipe-card/multiple route: Should reduce response times by 150 to 200ms
+
+#### Internal:
+- Fixed coverage rules to be at 100%
+- Gave access in the starting data of `recipe-pricing` if the recipe is already in the basket
+
+## 1.2.7 [07/03/2025]
+
+#### Updated:
+- Added automatic completion filters for all routes returning recipe-cards - recipes without their primary ingredient available in the store will not appear anymore
+
+#### Fixed:
+- Fixed null error when store_id was not provided for all routes returning recipe-cards
+
+## 1.2.6 [28/02/2025]
+
+#### Internal:
+- Added unit tests to all services
+- *git-hooks*:
+  - Added a pre-push hook that runs tests before pushing anything upstream
+- *demo-app*:
+  - retailer-cart: Added basket sync on demo start up as first basket change call is dedicated to sync
+  - Fixed generate-authless route call asking for headers
+- *catalog-category*
+  - Added analytics path to starting-data so mealz-components can send pageview event
+- *catalog-favorites*
+  - Added analytics path to starting-data so mealz-components can send pageview event
+- *retailer-cart*:
+  - Added basket sync on demo start up as first basket change call is dedicated to sync
+## 1.2.5 [21/02/2025]
+
+#### Fixed:
+- *handle-payment*:
+  - Fixed possible concurrency errors and undefined errors
+  - Does not try to confirm an empty basket
+  - Correctly sends the analytics events
+
+## 1.2.4 [07/01/2025]
+
+#### Added:
+- *recipe-card*:
+  - Added a new route /recipe-card/multiple to fetch more than one card at once. It takes an array of surrounding_products_ids as input and returns a HTML of all cards
+
+## 1.2.3 [31/01/2025]
+
+#### Internal:
+- *catalog-category*
+  - Added analytics path to starting-data so mealz-components can send pageview event
+- *catalog-favorites*
+  - Added analytics path to starting-data so mealz-components can send pageview event
+- *retailer-cart*:
+  - Added basket sync on demo start up as first basket change call is dedicated to sync
+
+## 1.2.2 [17/01/2025]
+
+#### Fixed:
+- *recipes*:
+  - Fixed number of guests for recipes in the basket, ensuring the number of guests remains as it was when the recipe was added to the basket
+- *recipe-card*
+  - Fixed JSON parsing error for surroundingProductsIds by adding a try-catch block
+  - Prevent null reference errors when accessing recipe pricing data
+- *recipe-pricing*
+  - Load discounted ingredients count when the recipe is already in the basket
+
+#### Internal:
+- Added a new page to the demo simulate a retailer cart and interactions with the products (add, update, remove)
+
+## 1.2.1 [10/01/2025]
+
+#### Updated:
+- *recipe-card*:
+  - Added the attribute aria-hidden="true" to recipe picture as redundant with recipe label
+
+#### Fixed:
+- Fixed CORS configuration to allow all localhost origins, removing the restriction to only port 4200
+- *recipe-card*:
+  - Favorite button was still displayed when user was not logged
+
+## Internal:
+- *recipes*
+  - Updated `page_size` and `page_number`search request params
+- *catalog-home*
+  - Added `sessionId` to starting-data to synchronize session id with SDK
+- *recipe-card*
+    - Added `sessionId` to starting-data to synchronize session id with SDK
+- *catalog-home*:
+  - Added analytics path & category id to starting-data so mealz-components can send category.display event
+
+## 1.2.0 [20/12/2024]
+
+### Added:
+- *catalog-history*
+  - Added component + controller for JS injection
+  - Added search functionality
+  - Added "no history" view
+- *catalog-tabs*
+  - Added tabs for Favorites / History
+- *drawer*
+  - Added component
+- *history-order*
+  - Added component
+- *recipe-card*
+  - Added a variant
+- *http.service*
+  - Added `profiling` as an optional header for all routes, defaulting to `true`
+  - Added `profiling=off` query param in all requests to `miam-api` when the profiling header value is "false"
+
+#### Updated:
+- All features now have semantic tags (p, h1, h2, h3, h4) instead of div and spans around texts
+- *recipe-card*
+  - Removed the `profiling` query param from the `recipe-card` route
+- *recipe-pricing*
+  - Removed the `profiling` query param from the `recipe-pricing` route
+- *catalog-toolbar*
+  - Renamed the favorites button to my space
+
+#### Fixed:
+- baskets/handle-payment route now takes as body the current retailer car in order to sync the basket with the cart before confirming it
+
+#### Internal:
+- Added a first basic implementation of JSONAPI data management with generic interfaces, a generic fetchAll method and models for the BasketEntries and Items.
+- *analytics*:
+  - Add `path` to recipe-card starting-data
+  - Add myMealsButtonStartingData with `path`
+  - New AnalyticsPaths enum
+- *auth-widget*:
+  - New component to handle user log status handled by cookies
+- *headers*:
+  - Added new `authless-id` attribute in header
+  - `authless-id` header is turned into authorization header for miam-api
+  - New component in demo app to handle user log status handled by cookies
+
+## 1.1.2 [29/11/2024]
+
+#### Added:
+- *basket*
+  - Added a controller and methods to handle merge authless basket
+  - Added a controller and methods to handle payment confirmation
+
+#### Fixed:
+- catalog-routing always used the dev routing file
+- *styles*:
+  - Added missing breadcrumb style on catalog-category style route
+
+## 1.1.1 [22/11/2024]
+
+#### Added:
+- *catalog-favorites*
+  - Added a controller to load more recipe cards
+- *catalog-list*
+  - Added a controller to load more recipe cards
+- *catalog-toolbar*
+  - Added preferences loader
+- *recipe*
+  - Added recipe model
+- *sponsor*
+  - Added sponsor model
+
+#### Updated:
+- *catalog-category*
+  - Updated the url from `/category?id=[category_id]` to `/category/[category-name-slug]/[category_id]`
+
+#### Updated:
+- Updated allowed origins to support additional trusted domains
+
+#### Fixed:
+- *CORS*
+  - Added support for the OPTIONS method
+- *recipes.service*
+  - Added validation for JSON response to avoid parsing errors
+  - Refactored `getRecipeSponsorLogoUrl` to use `Recipe` model methods instead of nested properties
+
+#### Internal:
+- Updated several dependencies to newer, more secure versions
+- *slug.service*
+  - Added a service to convert text to slug
+- *recipes.service*
+  - Updated the search endpoint path from `/recipes?search=[search]` to `recipes/search?name=[search]`
+
+## 1.1.0 [15/11/2024]
+
+#### Added:
+- Added `mealz-session-id` to request headers
+- Added Redis configuration for caching
+- *catalog-category*
+  - Implemented empty state for scenarios where no recipes match the selected criterias.
+  - Added search functionality
+  - Integrated user preferences
+- *catalog-favorites*
+  - Added search functionality
+- *catalog-home*
+  - Integrated user preferences
+- *catalog-list*
+  - Added component + controller for JS injection
+- *catalog-toolbar*
+  - Added preferences badge count
+
+#### Updated:
+- *catalog-toolbar*
+  - Removed unused filters
+- *catalog-favorites*
+  - Removed preferences button
+
+#### Internal:
+- Added a cache controller to manage Redis cache through ng-miam-sdk
+- Enabled caching for `getBasket`, `getPointOfSaleByExtId`, `getByRecipeId`, `getRecipeById`, `getRecipePricing`
+
+#### Fixed:
+- *catalog-home*:
+  - Added back arrow to "See All" button.
+- *generate-authless-token*
+  - Added error handling for missing or invalid supplier token
+- *http.service*
+  - Added null checks for supplier data to avoid errors when supplierId is undefined or null
+- *point-of-sales.service*
+  - Added a check to ensure `pos` is defined before attempting to access `id`
+
+## 1.0.2 [08/11/2024]
+
+#### Added:
+- Added logs for missing required query parameters
+
+#### Fixed:
+- *catalog*:
+  - Made the *display_recipe_variant* query paramater optional
+
+## 1.0.1 [04/11/2024]
+
+#### Updated:
+- *urls*:
+  - Moved every routes from v0 to v1
+
+#### Fixed:
+- *recipe-card*
+  - Fixed suggested recipe-card
+
+## 1.0.0 [24/10/2024]
+
+#### Breaking changes:
+- *window.miam*:
+  - Renamed to window.mealz
+
+#### Added:
+- *catalog-category*
+  - Added component + controller for JS injection
+- *catalog-favorites*
+  - Added component + controller for JS injection
+- *catalog-home*
+  - Added controller for JS injection
+- *like-button*
+  - Added controller for JS injection
+- *recipe-card*
+  - Added controller for JS injection
+- *recipe-card-cta*
+  - Added controller for JS injection
+- *recipe-pricing*
+  - Added controller for JS injection
+- *catalog-breadcrumbs*
+  - Added component
+- *catalog-toolbar*
+  - Added component
+- *my-meals-button*
+  - Added component
+    -*http.service*
+- Now handles errors and build header from this service, throw error when category_id is required but not provided
+
+#### Updated:
+- *catalog*:
+  - Now fetches recipe sponsor on catalogs pages
+- *catalog-category*:
+  - update routes from /catalog/category/ID to /catalog/category?id=ID
+- *recipe-card*:
+  - if no suggestion is given for recipe in shelf, throws NotFoundException
+- *ng-miam-sdk*:
+  - updated to 9.0.1 on prod and uat
+
+#### Fixed:
+- *catalog-favorites*:
+  - Fix new logic on like button
+
+## 0.2.1 [23/09/2024]
+
+#### Fixed:
+- *recipe-card*:
+  - Fixed double basket-current call
+
+#### Internal:
+- Added performance log to measure requests times
+
+## 0.2.0 [20/09/2024]
+
+#### Added:
+- *point-of-sales-service*:
+  - Added point-of-sales service with method getPointOfSaleByExtId
+- *nextJS-demo*:
+  - Added NextJS Demo to project using the SSR API
+- *catalog*:
+  - Initiated recipe catalog with home page
+- *styles*:
+  - Added routes to fetch components styles individually to add them to `<head>`
+- *i18n*:
+  - Added I18n for catalog-home, my-meals-button, recipe-pricing and recipe-card-cta
+
+#### Fixed:
+- *recipe-pricing*:
+  - Recipe pricing initial data was an object rather than a string with the value
+
+#### Internal:
+- Updated mealz-component version to 0.4.0
+- Added Nest built-in logger to project with some errors handling
+
+## 0.1.1 [03/09/2024]
+
+#### Fixed:
+- env config for uat & prod
+
+## 0.1.0 [30/08/2024]
+
+#### Added
+- *like-button*:
+    - Added a route for the component, and the associated services and views
+- *recipe-card*:
+    - Added a route for the component, and the associated services and views
+- *recipe-pricing*:
+    - Added a route for the component, and the associated services and views
+- *i18n*:
+    - POC of i18n implementation, not enough text in the served components to use yet
+- *routes*
+    - Added a generate-authless-token route to fetch an authless token for loggued out users
+- *versioning*:
+    - Added basic versioning handler on url
+
+#### Internal
+- Added baskets service
+- Added recipes service
+- Added recipe-likes service
+- Added supplier service
+- Added user service
+- Added scripts to download SDK Web-C lib and style files to each components
+- Added environment files for dev, uat and prod

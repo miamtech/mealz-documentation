@@ -4,433 +4,238 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
-## 1.3.13 [28/08/2025]
-
-#### Fixed:
-- *recipe-pricing*:
-  - Price per person now updates correctly when recipe products are added to or removed from basket
-
-## 1.3.12 [26/08/2025]
-
-#### Fixed:
-- *my-mealz-button*
-  - Fix z-index being too low in most cases
-
-## 1.3.11 [06/08/2025]
-
-#### Fixed:
-- *recipe-pricing*
-  - Reduce flickering price when re-render component
-- *recipe-card*
-  - Fix multiple event on recipe.show when re-render component
-
-## 1.3.10 [04/08/2025]
-
-#### Fixed:
-- *recipe-pricing*:
-  - Fix pricing flickering with loading
-
-## 1.3.9 [04/08/2025]
-
-#### Fixed:
-- *recipe-pricing*:
-  - Show pricing correctly
-
-## 1.3.8 [31/07/2025]
-
-#### Updated:
-- *like-button*:
-  - Added like data fetching from client-side
-  - Removed async calls, simplified subscription management
-- *recipe-card*:
-  - Added client-side guests retrieval from localStorage preferences
-  - Optimized guests handling with fallback to default value
-- *recipe-pricing*:
-  - Refactored pricing logic to fetch data client-side
-  - Simplified basket data subscription and price recalculation
-
-## 1.3.7 [24/06/2025]
-
-### Fixed:
-- *recipe-card-cta*
-  - Fix displaying CTA when shouldRemovePersonalization is true
-
-## 1.3.6 [23/06/2025]
-
-#### Updated:
-- *recipe-pricing*:
-  - Reorder some logic as some variables were not set properly
-- *recipe-card*:
-  - Now listens on recipe  to fetch the updated number of guests
-
-#### Deleted:
-- *pricebook*
-  - Remove deprecated pricebook parameters
-
-## 1.3.5 [16/06/2025]
-
-#### Fixed:
-- *catalog-favorites*
-  - Fixed 'pageView' event not sended if user has no favorites
-
-## 1.3.4 [10/06/2025]
-
-#### Fixed:
-- *recipe-pricing*:
-  - Revert previous changes
-
-## 1.3.3 [10/06/2025]
-
-#### Fixed:
-- *recipe-pricing*:
-  - If render is called and price is defined, update the view
-
-## 1.3.2 [06/06/2025]
-
-#### Updated:
-- *recipe-card-cta*:
-  - Style for new hidden class & remove hidden class after the basket data has been fetched & the CTA can be displayed when personalization is disabled
-- *like-button*:
-  - When personalization is disabled, fetch the like & update the DOM manually
-
-#### Fixed:
-- *catalog-history*:
-  - Empty view was inconsistent with the ones from the other pages
-  - Added missing pageview event
-
-## 1.3.1 [23/05/2025]
-
-#### Fixed:
-- *history-order-expanded*:
-  - card width was inconsistent
-
-
-## 1.3.0 [23/05/2025]
-
-#### Added:
-- *history-order-expanded*:
-  - Added new component for the new history display in list mode
-
-#### Fixed:
-- *history-order*:
-  - Fixed orders were overlapping
-  - Fixed gap between "Ordered on" and the date
-
-## 1.2.8 [25/04/2025]
-
-#### Fixed:
-- *my-meals-button*:
-  - The arrow could come out of the button of mobile resolutions
-- Removed remaining occurences of miam-ds links as to not have conflicts with the version served by SSR-API
-
-## 1.2.7 [18/04/2025]
-
-#### Fixed:
-- *catalog-toolbar*:
-  - Remove "navigate back" on back button as already set in HTML and was triggering navigate back twice  
-
-## 1.2.6 [18/04/2025]
-
-#### Updated:
-- *catalog-favorites*:
-  - Now if unliking a recipe on the page or on the recipe-details view, the recipe will be removed from the list 
-
-#### Fixed:
-- *load-more*:
-  - Fixed issue where load-more was based on the user scroll position from the bottom of the window and not from the list element
-
-## 1.2.5 [28/03/2025]
-
-#### Fixed:
-- *catalog-favorites*:
-  - Fixed init state was incorrectly set, now the hidden state of the elements are set on prerender and only updated on render
-  - Removed unused loader on start
-
-## 1.2.4 [21/03/2025]
-
-#### Fixed:
-- Recipe-cards CSS was lacking the rules to remove margins on p tags that are in the catalog CSS
-- *catalog-load-more*
-  - The auto-load more recipes on scroll was triggered even when no more recipes were available
-- *catalog-history*:
-  - The history-order cards now use a CSS variable for their width that uses the same base value as the recipe-cards by default
-- *catalog-toolbar*:
-  - Back button now does a native back action instead of redirecting to the home page
-- *recipe-pricing*:
-  - Prevent price displaying `NaN` When price starting data is null
-
-## 1.2.3 [31/01/2025]
-
-#### Internal
-- *catalog-category*
-  - Added pageview event
-- *catalog-favorites*
-  - Added pageview event
-- *catalog-home*
-  - Added pageview event
-  - Added category.show event, triggered when category is 80% in viewport for 1s
-- *catalog-toolbar*
-  - Added search event
-
-## 1.2.2 [10/01/2025]
-
-#### Added:
-- *catalog*:
-  - Added category.display event on click on "See all" / the title of a category
-
-#### Updated:
-- *headers*:
-  - requests for `load-more` and `drawer` now uses authlessId if needed in authorization header
-
-#### Fixed:
-- *catalog-load-more*
-  - Fixed the auto-load more recipes on scroll for unconnected users
-- *toolbar*:
-  - Added CSS class for toolbar to do full width on Firefox
-- *store-locator*:
-  - In getByCoordinates, lat and lng parameters were inverted
-
-#### Internal:
-- Synchronize the session id with SDK during initialization for the following components:
-  - *catalog-category*
-  - *catalog-favorites*
-  - *catalog-history*
-  - *catalog-home*
-  - *catalog-list*
-  - *recipe-card*
-
-## 1.2.1 [20/12/2024]
-
-#### Added:
-- *catalog*
-  - Added support for store-locator
-- *recipe-promotion*
-  - Added css for component
-- *promotions-banner*
-  - Added css for component, is hidden by default and must be displayed manually
-- *catalog-history*
-  - Added component
-  - Open drawer of the clicked order
-  - Added "no history" view
-- *catalog-tabs*
-  - Added component
-- *drawer*
-  - Added component
-- *history-order*
-  - Added component
-- *recipe-card*
-  - Added style for a new variant
-
-#### Updated:
-- *recipe-card*
-  - Updated some css to match mock ups
-- *viewport-listener*:
-  - Handle unsubscription to prevent memory leaks
-
-#### Fixed:
-- *catalog-favorites*
-  - Fixed an infinite loader issue when the user hadn't marked any recipes as favorites
-
-## 1.2.0 [13/12/2024]
-
-#### Updated:
-- Removed the `starting-data` attribute from HTML after it has been successfully read for the following components:
-  - *catalog-category*
-  - *catalog-favorites*
-  - *catalog-home*
-  - *catalog-list*
-  - *catalog-toolbar*
-  - *recipe-card-cta*
-  - *recipe-pricing*
-
-#### Fixed:
-- Fixed margins & selectors after semantic tags were added in SSR-API
-- *catalog-load-more*
-  - Catch failed requests and log to console instead of displaying in HTML
-
-#### Internal
-- *recipe-card*
-  - Handle `path` and `categoryId` in starting data for analytics
-  - New recipe.show event sent when recipe-card is 80% in viewport for 1s
-- *catalog-toolbar*
-  - Handle `path` in starting data for analytics
-- *my-meals-button*
-  - Handle starting data with `path` for analytics
-- *viewport-listener*:
-  - Create class
-
-## 1.1.2 [29/11/2024]
-
-#### Fixed:
-- *catalog*
-  - Fix only the home page had a padding at the bottom
-
-## 1.1.1 [25/11/2024]
-
-#### Fixed:
-- *catalog-favorites*
-  - Fix infinite loader
-
-## 1.1.0 [22/11/2024]
-
-#### Added:
-- *catalog-favorites*
-  - Added auto-load more recipes on scroll
-- *catalog-list*
-  - Added auto-load more recipes on scroll
-- *catalog-toolbar*
-  - Added preferences loader
-
-#### Updated:
-- *catalog-toolbar*
-  - Reset stickyObserver when new value is given using mealz.setStickyHeaderHeight(...)
-
-#### Internal:
-- *catalog-load-more*
-  - Added component to group load more functionality
-
-## 1.0.2 [15/11/2024]
-
-#### Added:
-- *catalog*
-- Added support for preferences
-
-#### Updated:
-- *catalog-toolbar*
-  - Removed unused filters
+## 2.1.1 [04/12/2025]
 
 #### Fixed
-- *catalog-home*:
-  - Added back arrow to "See All" button
-  - Fixed gap issue in category header for smaller screens
-- *like-button*:
-  - Corrected icon color on hover
-- *recipe-card*
-  - Fixed recipe-card width for smaller screens
-- *recipe-pricing*:
-  - Encapsulated hidden and active classes
+- *recipe-priging*
+  - Fix hidden display overrided by retailer
 
-## 1.0.1 [31/10/2024]
+## 2.1.0 [03/12/2025]
 
-merged 0.6.1 into 1.0. See 0.6.1 for changes
+#### Updated
+- *recipe-card-cta*, *recipe-pricing*, *like-button*
+  - Update these components to be called individually in dedicated routes
 
-## 1.0.0 [24/10/2024]
+## 2.0.2 [28/11/2025]
+
+#### Fixed
+- *planner-recipe-suggestion*
+  - Fix call order between last recipe rejection and get new suggestion functions
+
+## 2.0.1 [10/11/2025]
+
+#### Fixed:
+- *planner-recipe-suggestion*
+  - Prevent duplicate recipes from appearing in suggestions when fetching new suggestions after rejection
+- *planner-onboarding-modal*
+  - Fix text for onboarding modal menu step 1
+
+#### Internal:
+- *planner-menu-option*
+  - Add event `planner-mode-select` on menu option selection
+- *planner-current-menu*
+  - Add `recipe_source`, `journey` and `mode` information in recipe.add event
+  - Add `recipe.add` event on `planner.finalize` for each recipe added and set `recipe_source` info
+  - Add `mode`, `budget` and `journey`informations in `planner.finalize`
+- *recipe-pricing* *recipe-card*
+  - Remove function to avoid multiple calls to API on catalog drawer open. Function seems to be useless.
+
+## 2.0.0 [30/10/2025]
+
+#### Fixed:
+- *catalog-components*:
+  - Enhanced SDK robustness with `waitForMealzInternal()` for proper initialization
+  - Added method existence checks before subscription to prevent errors
+  - Improved error handling with try/catch blocks and warning logs
+- *catalog-history*:
+  - Added non-null type assertions for private properties
+  - Enhanced DOM selector handling and added `isHandlingHistory` protection against infinite recursion
+- *history-drawer*:
+  - Fixed recursive call protection and improved type safety for optional properties
+
+#### Updated:
+- *css-variables*:
+  - Migrated all CSS custom properties from `--miam-*` to `--mealz-*` across all components
+- *catalog-toolbar*:
+  - Added `flex-wrap` and `gap` for better responsive design
+- *drawer*:
+  - Simplified media queries for more consistent width handling
+- *loader*:
+  - Renamed animation from `miam-loader-spin` to `mealz-loader-spin`
+
+
+## 2.0.0-beta.9 [09/10/2025]
+
+#### Fixed:
+- *recipe-card-cta*:
+  - Fixed CTA status not updating dynamically when adding/removing recipes from menu
+  - Enhanced starting-data parsing to support both JSON payload (planner context) and plain recipe ID string (SSR cards)
+- *details-footer*:
+  - Fixed isRecipeInMenu$ subscription to re-bind when recipeId changes, preventing stale status from first recipe
+  - Added proper subscription cleanup and reactive updates for recipe changes in drawer navigation
+- *onboarding*
+  - Fixed scrollbar in modal onboarding
+  - Fixed pointer-events restoration after onboarding completion to ensure click handlers work properly on recipe suggestion elements
+  - Fixed highlighted element with huge z index which created layout inconsistency
+
+#### Updated:
+- *recipe-details*:
+  - in meals planner, when adding recipe to the menu, it closes automatically the recipe details modal
+
+## 2.0.0-beta.8 [29/09/2025]
+
+#### Updated:
+- *planner-current-menu*
+  - Updated to redirect to retailer cart URL after menu finalization instead of catalog home
+  - Added fallback to previous behavior if retailer cart URL not configured
+  - Fixed TypeScript linting issue with attribute access
+
+#### Fixed:
+- *planner-recipe-suggestion*:
+  - Fixed duplicate analytics events for recipe suggestions
+  - Added deduplication logic to only send analytics for new recipe suggestions
+- *recipe-details*:
+  - Fixed potential memory leaks in subscription management
+
+#### Internal:
+- *planner-recipe-suggestion*:
+  - Added `lastShownRecipeId` tracking to prevent duplicate analytics
+  - Enhanced `suggestionShownEvent()` method with deduplication logic
+- *recipe-details*:
+  - Refactored subscription management from array-based to Subject + takeUntil pattern
+- *onboarding*:
+  - Refactored onboarding flow and modal to improve analytics coverage and event handling
+  - Centralized onboarding analytics constants and tracking with detailed events for display, step changes, start/skip/complete
+  - Improved planner integration with openPlannerOnboardingModal helper and analytics context
+  - Simplified onboarding experience by removing scroll prevention methods and adding instant scroll handling
+  - Improved event binding performance and added CSS-based mobile detection with automatic cleanup
+
+## 2.0.0-beta.7 [23/09/2025]
+
+#### Added:
+- *onboarding*
+  - Added component with tour functionality
+  - Added localStorage tracking for onboarding completion
+  - Added scroll prevention during tours
+- *planner-onboarding*
+  - Added wrapper component for planner-specific tours
+  - Chooses tour type based on viewport: mobile uses `*-mobile` variants
+- *planner-onboarding-modal*
+  - Added new onboarding modal component with step-by-step guide
+- *planner-welcome-modal*
+  - Added component for first-time user experience
+- *recipe-details*
+  - Added recipe details onboarding for first-time users in planner mode
+
+#### Internal:
+- *planner*:
+  - Track recipe suggestions; send analytics only for new recipes
+- *recipe-details*:
+  - Replace Subscription array with Subject and takeUntil for lifecycle management
+
+## 2.0.0-beta.6 [04/09/2025]
+
+#### Added:
+- *planner*:
+  - Set menu view as default on mobile page load (width ≤ 768px) when arriving via window.location.href
+  - Added setDefaultMobileView() method to automatically show menu view on mobile
+
+#### Updated:
+- *planner-current-menu*:
+  - Mobile default view behavior: now shows menu instead of recipe view by default
+  - Only applies to initial page load, not window resize events
+- *recipe-details*:
+  - Updated button icon with Pot icon in details footer planner
+
+## 2.0.0-beta.5 [01/09/2025]
+
+#### Fixed:
+- *catalog-load-more*:
+  - Added recipeTypeId parameter to LoadMore functionality to properly filter recipes by type
+
+#### Updated:
+- *planner*:
+  - Refactored CSS for planner recipe list and suggestion components
+
+## 2.0.0-beta.4 [27/08/2025]
+
+#### Internal:
+- Refactor components styles URL system import method
+
+## 2.0.0-beta.3 [27/08/2025]
+
+#### Fixed:
+- Paths to css files in components with an other method
+
+## 2.0.0-beta.2 [26/08/2025]
+
+#### Fixed:
+- Paths to css files in components
+
+## 2.0.0-beta.1 [22/08/2025]
 
 #### Breaking changes:
-- *window.miam*:
-  - Renamed to window.mealz
+Upgraded from `miam-ds@1.2.6` to `mealz-ds@2.0.0`. The design system was renamed from `miam-ds` to `mealz-ds`, and all references were updated accordingly.
+- *catalog-breadcrumb*
+  - The component *mealz-catalog-breadcrumb* has been renamed to *mealz-breadcrumb*
+
+#### Added:
+- *accordion*
+  - Added component
+- *planner*
+  - Added *planner-abandon-modal*
+  - Added *planner-budget-gauge*
+  - Added *planner-catalog*
+  - Added *planner-current-menu*
+  - Added *planner-current-menu-modal*
+  - Added *planner-dashboard*
+  - Added *planner-form*
+  - Added *planner-menu-option*
+  - Added *planner-recipe-card*
+  - Added *planner-recipe-list*
+  - Added *planner-recipe-suggestion*
+  - Added *product-card-planner*
+  - Added *planner-open-catalog-modal*
+- *preferences*
+  - Added component
+- *recipe-details*
+  - Added planner mode
+- *url-params-handler*:
+  - Now adds url parameters depending on the drawer opened in order to open it back on refresh
+- *add-to-cart-cta*:
+  - Created Lit element (mealz-add-to-cart-cta) with interactive behavior, intersection observer for fixed button display, and event handling
+- *planner-recipe-suggestion*:
+  - Enhanced recipe suggestion functionality with preferences subscription to refresh suggestions when user preferences change
 
 #### Updated:
-- *catalog*:
-  - created catalog.css for shared styles between catalog components
-
-#### Fixed:
-- *like-button*:
-  - State of button was not updated properly
-
-## 0.5.0 [03/10/2024]
-
-#### Added:
-- *store-locator*:
-  - Added loaders on the POS select buttons after selecting a POS
-  - Added searchChange output
-- *catalog-category*
-  - Added component
-- *catalog-favorites*
-  - Added component
-- *catalog-breadcrumbs*
-  - Added component
-- *catalog-toolbar*
-  - Added component
-
-#### Fixed:
-- *like-button*
-  - now listens to recipe-like changes
-
-## 0.4.0 [20/09/2024]
-
-#### Added:
-- *catalog-category-home*:
-  - Added component with its hydration and lifecycle
+- *planner*:
+  - Updated recipe addition to menu logic to use current point of sale value across planner components
+  - Changed toBasketLoader insertion point after MealzPlannerCurrentMenu for better positioning
+  - Passes the planner selections (`toPickProducts`) to SDK when adding a recipe to menu to avoid circular dependency in SDK
+- *recipe-card*
+  - Updated recipe card width and height
+  - Added an overlay and a badge when a recipe is in the basket (applies to catalog view in the planner)
 - *recipe-pricing*
-  - Added fetch on scroll
+  - Updated layout and colors
 
 #### Fixed:
-- *recipe-card-cta*
-  - Fixed state didn't update correctly
+- *planner*:
+  - Adjusted margin for mealz-breadcrumb in planner current menu for improved layout
+  - Updated min-height for planner components to enhance layout consistency  
+  - Added padding to planner dashboard title for improved layout
 
-## 0.3.0 [20/09/2024]
+#### Removed:
+- Remove window context from calls to mealzInternal and mealz
 
-**All components except store-locator are now the hydration & lifecycle of the corresponding HTML returned by the routes from Mealz SSR API**
-**The components lifecycle use webc-miam@9.0 via the interface window.mealzInternal**
-
-#### Added:
-- *store-locator*:
-  - Added supplierName property to posIdChange event
-- *recipe-card*:
-  - Added component with its hydration and lifecycle
-- *recipe-card-cta*:
-  - Added component with its hydration and lifecycle
-- *recipe-pricing*:
-  - Added component with its hydration and lifecycle
-- *like-button*:
-  - Added component with its hydration and lifecycle
-
-## 0.3.0-alpha.1 - [17/07/2024]
-#### Fixed:
-- put "vite-plugin-static-copy" package at right place
-
-#### Updated:
-- gitlab-ci now build like-button and recipe-card
-
-## 0.3.0-alpha.0 - [17/07/2024]
-
-#### Added:
-- *like-button*:
-  - component first commit
-- *recipe-card*:
-  - component first commit
-
-## 0.2.1 - [16/07/2024]
-
-#### Fixed:
-- *store-locator*:
-  - Fixed nested CSS doesn't work for tag names
-
-## 0.2.0 - [16/07/2024]
-
-#### Added:
-- *store-locator*:
-  - When loading POS, displays a loader in the pos list
-  - No POS found indicator
-  - New radius selector for POS search
-  - New supplier selector to filter results
-  - Can now submit search using keyboard (Android / iOS / Web)
-
-#### Fixed:
-- *store-locator*:
-  - Updated the search radius default value from 10 km to 25 km.
-  - geolocationCoordinates input type changed to GeolocationPosition (was a custom Coordinates interface before)
-  - Map initialization now waits for Leaflet to be fully loaded
-  - Adjusted CSS for store-locator mobile view
-
-## 0.1.2
-
-#### Added
-- *store-locator*:
-  - Geolocation
-
-## 0.1.1
-
-#### Added
-- *store-locator*:
-  - Added some css classes to scope on elements
-  - Added miam-ds to component
-
-## 0.1.0
-
-#### Added
-- *store-locator* component
-
-#### Internal
-- Added a demo page to display the store-locator
+#### Internal:
+- *catalog-load-more*
+  - Add the auto-load more recipes on drawer scroll
+  - Prevent load-more when list is hidden
+- *no-shadow-element*:
+  - Added `elements` and `selectors` properties
+  - Added `initSelectors`and `addClickListener` methods
+- *basketPreviewState$*:
+  - replaced basketPreviewIsOpen\$ observable with basketPreviewState\$ in order to have the initial tab info rather than just a boolean
+- Refactored all components to use `mealzInternal` and `mealz` import instead of `window.mealzInternal` and `window.mealz`
+- Enhanced menu redirection logic in planner components
+- Adjusted `recipe-card` and `details-footer` to forward `toPickProducts` to `mealzInternal.planner.addRecipeToMenu`
