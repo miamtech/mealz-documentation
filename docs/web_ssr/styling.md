@@ -21,9 +21,6 @@ This library mainly uses global CSS variables for its style (mainly the colors).
 </style>
 ```
 
-:warning: We are currently transitioning from our old variable system to our new Design System, which has its own set of CSS variables. Any variable that does not start with --mealz-ds is meant to disappear at some point in the future.
-// TODO still relevant ? (variables in mealz-components)
-
 ## Component styles
 
 For any other change in style you want to make, we recommend overriding directly our components' CSS class in you own CSS. You can override style classes of our components like below.
