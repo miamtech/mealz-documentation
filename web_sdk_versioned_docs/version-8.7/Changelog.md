@@ -4,6 +4,14 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.7.4 - [15/11/2024]
+
+Merged 8.5.8 in 8.7 -> See v8.5.8 for changes
+
+## v8.7.3 - [05/11/2024]
+
+Merged 8.3.13 in 8.7 -> See v8.3.13 for changes
+
 ## v8.7.2 - [28/10/2024]
 
 #### Removed

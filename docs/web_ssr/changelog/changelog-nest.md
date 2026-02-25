@@ -4,6 +4,177 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+
+## 2.6.1 [12/02/2026]
+
+#### Internal
+- Update mealz-components to 2.6.1
+
+## 2.6.0 [12/02/2026]
+
+#### Added
+- *recipe-card-cta*
+  - Added class variants to separate default and planner usecase
+- *packages*
+  - Added `from=header` query parameter to package URLs when redirecting from the header
+  - Added analytics path to header starting-data for tracking events
+- *menu* - v2
+  - New route `GET /menu/merge-authless-menu?authless_id=...` to transfer the authless user's current menu to the logged-in user (replaces menu, no merge). Calls backend `PATCH /menus/transfer-authless`. To be used at end of auth flow when the user had built a menu while unauthenticated.
+
+#### Updated
+- *styles*
+  - Added drawer stylesheets to recipe-card
+  - Added recipe-details and like button stylesheets to recipe-card-cta
+- *planner-entry*
+  - Replaced minus and plus icon in the stepper with `<img>` to replace easily for suppliers overrides
+- *recipe-card-cta*
+  - Added the parameter `to_basket_on_click` that is provided in the starting data
+- *planner-budget-gauge* - v2
+  - Reordered layout: overflow badge now appears before the edit button
+
+#### Internal
+- *planner-onboarding-modal* - v2
+  - Refactored initialization from EJS template include to JavaScript helper module (`init-planner-onboarding-modal.min.js`)
+  
+## 2.5.1 [05/02/2026]
+
+#### Updated
+- *catalog-home-header*
+  - Increase header height to 200px on desktop for custom header
+
+## 2.5.0 [22/01/2026]
+
+#### Added
+- *planner-onboarding-modal*
+  - Added planner onboarding modal route to display onboarding content standalone.
+- *planner-current-menu* - v2
+  - Added support for prefilled recipes (featured recipes)
+
+
+#### Internal
+- Update allowed origin for webview
+- Update version for mealz-components to 2.5.0
+- Update version for SDK to 10.3.0
+
+## 2.4.2 [13/01/2026]
+
+#### Internal
+- Update version for mealz-components to 2.4.2
+
+## 2.4.1  [10/01/2026]
+
+#### Fixed
+- *catalog-list* - v2
+  - Fix `recipe_type_filter` handling and normalize query parsing (string/boolean) so the view and starting-data receive a real boolean.
+  - Fix merge regression where `recipeTypeFilter` was typed as `string` in `CatalogListService` (causing TS build failure).
+
+#### Internal
+- Update version for mealz-components to 2.4.1 and SDK to 10.2.3 - v2
+- *navigation*
+  - Manage mobile webview navigation based on User-Agent
+
+## 2.4.0 [29/12/2025]
+
+#### Internal:
+- *navigation*
+  - Manage mobile webview navigation based on User-Agent
+
+#### Added
+- *planner-quick-menu* - v2
+  - Added SSR template `planner-quick-menu.ejs` to render a compact “quick menu” (menu count + thumbnails preview).
+
+#### Updated
+- *planner-current-menu* - v2
+  - Update template structure to match planner v3 design (header/footer + suggestion area)
+  - Integrated quick menu as an alternate footer (mobile) and extracted the primary footer into `planner-current-menu.footer.ejs` to improve responsiveness/maintainability.
+- *planner-recipe-suggestion* - v2
+  - Add “Our suggestions” block with optional next suggestion card and recipe labels (prep/cooking/difficulty)
+- *planner-quick-menu* - v2
+  - Refined quick menu rendering logic and markup (thumbnail slots, data attributes, buttons).
+- *catalog-list*
+  - Added meals type filters when the catalog list is opened from the planner
+
+#### Fixed
+- *styles*
+  - Add planner entry css in catalog and catalog-home styles routes
+  - Add planner quick menu css in planner styles route
+
+## 2.3.1 [16/12/2025]
+
+#### Update
+- Update version for mealz-components to 2.3.2 and SDK to 10.2.1 - v2
+
+#### Fixed
+- *planner-menu-option* - v2
+  - Now display current menu recipe in custom menu option, not only empty plates.
+- *planner-budget-gauge* - v2
+  - Don't display budget gauge if budget is empty or 0
+- *planner-current-menu* - v2
+  - Suggested recipe detail now uses guests selected in planner entry (no fallback to 4)
+- Renamed AddToCartCtaController into NoSupplierAddToCartCtaController
+
+
+## 2.3.0 [12/12/2025]
+
+#### Added:
+- *planner-entry* - v2
+  - Added new `/v2/planner/entry` route and controller for planner home entry component
+  - Added planner entry integration in catalog home page
+  - Added planner entry template with guest stepper and menu options
+- *planner-entry.controller.spec.ts* - v2
+  - Added comprehensive unit tests for PlannerEntryController
+- *catalog-home-header*
+  - New `CatalogHomeHeaderController` with route `GET /catalog/header` to render the catalog home header
+  - Added styles includes for `catalog-home-header.css` in all style routes
+- *catalog-settings*
+  - Introduced `CatalogSettingsService` to fetch and cache supplier catalog settings
+- *packages-service*
+  - Added `getPackageSpotlights` method to retrieve and build spotlighted package CTA
+
+#### Updated:
+- *catalog-home* - v2
+  - Integrated planner entry component with current menu and custom menu data
+  - Added planner entry data fetching with error handling (feature gracefully degrades if unavailable)
+- *planner-budget-gauge* - v2
+  - Added budget edit button functionality
+  - Added formatted budget values (budgetLimitFormatted, budgetTotalFormatted) alongside numeric values
+  - Improved budget display logic with better conditional rendering
+- *planner-menu-option* - v2
+  - Updated custom menu display to always show 6 empty plate images
+  - Added new empty plate images (webp and jpg formats) for custom menu slots
+  - Removed cancel button from custom menu option
+  - Improved recipe avatar display logic
+- *planner-current-menu* - v2
+  - Changed default recipe display to always show suggestion first when available, even if menu has recipes
+  - Enhanced budget gauge initialization with formatted price values
+- *planner-recipe-suggestion* - v2
+  - Fixed button styling to always show primary style on "Add meal" button
+- *styles* - v2
+  - Added planner-entry CSS to planner styles group
+- *catalog-home*
+  - Header markup replaced with include of `catalog-home-header.ejs`
+
+#### Fixed:
+- *planner-current-menu* - v2
+  - Fixed recipe display priority to show suggestions by default
+
+#### Internal:
+- *i18n* - v2
+  - Updated French and English translations for planner menu options with new wording
+- *catalog-home.controller* - v2
+  - Added PlannerDashboardService dependency for planner entry data fetching
+  - Improved error handling for planner entry feature (warns but doesn't break if unavailable)
+
+## 2.2.2 [11/12/2025]
+
+#### Updated
+- *recipe-pricing*
+  - Now update pricing card when a product added or removed from basket
+
+#### Fixed
+- *recipe-card*
+  - Fix guests in recipeCardStartingData for multiple route
+
 ## 2.2.1 [04/12/2025]
 
 #### Config

@@ -4,6 +4,22 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.8.14 - [19/11/2025]
+
+#### Updated
+- *basket-transfer*:
+  - now handles ITM basket transfer link
+
+## v8.8.13 - [09/10/2025]
+
+#### Added:
+- *recipe-card*:
+  - Added `contextId` input to support per-card batched suggestion contexts (used for shelf positions)
+
+#### Internal:
+- *recipes*
+  - Replaced per-card single recipe fetches with debounced batch requests
+
 ## v8.8.12 - [02/09/2025]
 
 #### Added:

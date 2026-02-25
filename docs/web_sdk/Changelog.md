@@ -4,6 +4,15 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.2.11 - [04/12/2025]
+Merge 9.1.24 in 9.2 -> see v9.1.24 for changes
+
+## v9.2.10 - [28/11/2025]
+Merged 9.1.23 in 9.2 -> See v9.1.23 for changes
+
+## v9.2.9 - [30/10/2025]
+Merged 9.1.22 in 9.2 -> See v9.1.22 for changes
+
 ## v9.2.8 - [02/10/2025]
 
 #### Added:
