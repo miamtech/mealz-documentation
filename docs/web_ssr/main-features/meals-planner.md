@@ -25,6 +25,34 @@ The **Meals planner** is a full-page experience that helps users build a meal pl
 
   ![Current Menu](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/plannerCurrent.png "Current Menu")
 
+## Onboarding & help (modal)
+
+Users on first time arriving on the planner, will be greeted with a quick onboarding modal.
+
+Users can open the onboarding **help modal** at any time to understand (or re-check) how to use the meals planner.
+
+- From **`planner-entry`**: the “How it works” / help link opens the modal.
+- From the **current menu page**: the **help button** (question mark / help icon) in the header opens the modal again.
+
+This onboarding is a **step-by-step guide** displayed inside a modal (next/previous steps, “I understood” to close). It’s meant to be re-opened anytime.
+
+## Mobile view vs desktop view
+
+On **desktop**, the current menu page displays the experience as a single layout.
+
+On **mobile**, the current menu page is split into **2 separate views**:
+
+- **Suggestions + quick menu**: the recipe suggestion panel is shown, and a compact footer (“quick menu”) is displayed:
+  - Shows menu thumbnails (newest-first)
+  - Lets the user open recipe details by tapping a thumbnail
+  - Provides actions to **see the menu** and **add recipes from the catalog**
+- **Your current menu**: the menu panel is shown with the list of recipes in the menu and the primary footer (CTA + budget when available).
+
+The current menu web component keeps the URL in sync using the query parameter:
+
+- `?view=recipe`: show suggestions
+- `?view=menu`: show the menu
+
 ## SSR API routes
 
 ### Entry component (embed)
