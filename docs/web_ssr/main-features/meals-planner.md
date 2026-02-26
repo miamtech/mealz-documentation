@@ -120,6 +120,16 @@ This is stored in the SSR API routing configuration (example shape):
 }
 ```
 
+### Shareable planner URL
+
+Some clients want to use their **planner page URL** in marketing campaigns redirection (example: `https://your-website.com/meals-planner`).
+
+The behavior is:
+
+- Opening the shared planner URL should display the planner
+- If the user is already a client with a current menu, it will open his menu
+- If the user is new to the website. It will create a menu with the current suggestions
+
 ## Authentication behavior (what clients should know)
 
 - Users can **start building a menu without being authenticated** (using an authless identity), but **authentication is required to push the menu to basket**.
