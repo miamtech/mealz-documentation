@@ -69,11 +69,11 @@ Recommended styles routes for the planner:
 
 ```
 GET https://MEALZ_SSR_API_URL/API_VERSION/styles/planner
-GET https://MEALZ_SSR_API_URL/API_VERSION/styles/planner/planner-entry
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/planner-entry
 ```
 
 - `styles/planner`: everything needed for planner pages (planner + drawer + catalog-list + breadcrumb + entry, etc.)
-- `styles/planner/planner-entry`: minimal CSS for the entry block only
+- `styles/planner-entry`: minimal CSS for the entry block only
 
 ## How to integrate (client-side expectations)
 
@@ -141,22 +141,11 @@ The planner is designed to **remain usable even if no point of sale (POS) is sel
 
 - The user can still **build a menu** (authless flow), but when they try to **move recipes from the menu to the basket** (finalize), the planner will ask them to **connect / log in** first.
 
-If a user built a menu while unauthenticated (authless), you can transfer it to the logged-in user at the end of your auth flow using:
-
-```
-GET https://MEALZ_SSR_API_URL/API_VERSION/menu/merge-authless-menu?authless_id=...
-```
+If a user built a menu while unauthenticated (authless), we will transfer it to the logged-in user at the end of your auth flow using:
 
 Behavior precision: If the logged user already had a menu, it will be **overridden** by the menu created as an unauthenticated user.
 
 If you embed Mealz in constrained contexts (webviews, strict privacy modes), ensure `localStorage` is available and not fully blocked.
-
-## Deprecated routes (do not use as entrypoints)
-
-The following routes exist for legacy integrations but are deprecated:
-
-- `GET /planner` (dashboard page)
-- `GET /planner-card-link` and `GET /planner-banner-link` (planner link blocks)
 
 ## I18n
 
