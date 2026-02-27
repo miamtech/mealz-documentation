@@ -8,7 +8,7 @@ sidebar_position: 5
 
 The **Meals planner** is a full-page experience that helps users build a meal plan (a “menu”) and then push it to the retailer cart.
 
-**The only supported entrypoint is `planner-entry`**: you embed it on one of your pages (typically the catalog home), and it redirects the user to the planner experience.
+**The only supported entry point is `planner-entry`**: you embed it on one of your pages (typically the catalog home), and it redirects the user to the planner experience.
 
 - A lightweight **entry component** (`/planner/entry`) meant to be embedded on other pages. The user can:
   - Set the number of guests
@@ -27,14 +27,14 @@ The **Meals planner** is a full-page experience that helps users build a meal pl
 
 ## Onboarding & help (modal)
 
-Users on first time arriving on the planner, will be greeted with a quick onboarding modal.
+First-time users are greeted with a quick onboarding modal.
 
 Users can open the onboarding **help modal** at any time to understand (or re-check) how to use the meals planner.
 
 - From **`planner-entry`**: the “How it works” / help link opens the modal.
 - From the **current menu page**: the **help button** (question mark / help icon) in the header opens the modal again.
 
-This onboarding is a **step-by-step guide** displayed inside a modal (next/previous steps, “I understood” to close). It’s meant to be re-opened anytime.
+This onboarding is a **step-by-step guide** displayed in a modal with next/previous navigation and a **`I understood`** button to close. It is meant to be reopened anytime.
 
 ## Mobile view vs desktop view
 
@@ -48,7 +48,7 @@ On **mobile**, the current menu page is split into **2 separate views**:
   - Provides actions to **see the menu** and **add recipes from the catalog**
 - **Your current menu**: the menu panel is shown with the list of recipes in the menu and the primary footer (CTA + budget when available).
 
-The current menu web component keeps the URL in sync using the query parameter:
+The current menu web component keeps the URL in sync via the `view` query parameter:
 
 - `?view=recipe`: show suggestions
 - `?view=menu`: show the menu
@@ -113,7 +113,7 @@ You embed `planner-entry` where you want the entrypoint to appear, and you expos
 - Inject the returned HTML into your page template
 - Include the planner styles from `GET /styles/planner` in the page `<head>`
 
-Because the final HTML response sent to the browser contains the `<script type="module">` tags, the custom elements will load and hydrate normally.
+The returned HTML includes `<script type="module">` tags, allowing custom elements to initialize automatically in the browser.
 
 ### 2) Runtime HTML injection (SPA / partial refresh)
 
@@ -135,7 +135,7 @@ Those URLs are **client-dependent** and are configured on our side (per supplier
 - The URL of your **planner current menu** page
 - The URL of your **retailer cart** page (redirect target after finalization)
 
-This is stored in the SSR API routing configuration (example shape):
+This is configured in the SSR API routing (example format):
 
 ```json
 {
@@ -179,9 +179,9 @@ The planner is designed to **remain usable even if no point of sale (POS) is sel
 
 - The user can still **build a menu** (authless flow), but when they try to **move recipes from the menu to the basket** (finalize), the planner will ask them to **connect / log in** first.
 
-If a user built a menu while unauthenticated (authless), we will transfer it to the logged-in user at the end of your auth flow using:
+If a user built a menu while unauthenticated (authless), we will transfer it to the logged-in user at the end of your auth flow.
 
-Behavior precision: If the logged user already had a menu, it will be **overridden** by the menu created as an unauthenticated user.
+Note: if a logged-in user already has a menu, it will be **overridden** by the menu created as an unauthenticated user.
 
 If you embed Mealz in constrained contexts (webviews, strict privacy modes), ensure `localStorage` is available and not fully blocked.
 
@@ -189,7 +189,7 @@ If you embed Mealz in constrained contexts (webviews, strict privacy modes), ens
 
 Planner uses the same i18n override mechanism as other SSR features (see [Internationalisation](/docs/web_ssr/customization/internationalization)).
 
-Some of the main planner text keys are:
+Example planner text keys that can be overridden via i18n:
 
 ```json
 {
