@@ -4,6 +4,41 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.25 - [12/06/2026]
+
+#### Updated:
+- Update mealzSharedAnalytics to 4.12.0
+
+#### Internal:
+- *context*:
+  - Add optional `journey` parameter to `sendEvent` and forward it to mealzSharedAnalytics
+- *journey*:
+  - Use URL-based helper to compute `journey` (e.g. `meals-space-header` when `from=header`)
+
+## v9.1.24 - [03/12/2025]
+
+#### Internal
+- *context-recipes*
+  - Add extStoreId in internal recipes getPricing
+
+## v9.1.23 - [28/11/2025]
+
+#### Updated:
+- *sponsor-storytelling*
+  - Change spacing between sponsor blocks
+- Update mealzSharedAnalytics to 4.10.0
+
+#### Internal:
+- *analytics-service* - *baskets-service*
+  - Add journey to entry.added event
+  - Send entry.added event after request completion
+  - Add `add_source` to entry.added event
+
+## v9.1.22 - [23/10/2025]
+
+#### Updated:
+- Update MealzSharedAnalytics to 4.7 and add environment parameter on init
+
 ## v9.1.21 - [25/09/2025]
 
 ### Added
