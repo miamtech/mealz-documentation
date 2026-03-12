@@ -28,8 +28,10 @@ jobs:
           node-version: 20.x
           cache: npm
           cache-dependency-path: ./package-lock.json
+      - name: Clean npm cache
+        run: npm cache clean --force
       - name: Install dependencies
-        run: npm install --frozen-lockfile --non-interactive
+        run: npm ci
       - name: Build
         run: npm run build
       # 👆 Build steps
