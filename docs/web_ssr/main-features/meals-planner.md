@@ -108,11 +108,11 @@ Recommended styles routes for the planner:
 
 ```
 GET https://MEALZ_SSR_API_URL/API_VERSION/styles/planner
-GET https://MEALZ_SSR_API_URL/API_VERSION/styles/planner-entry
+GET https://MEALZ_SSR_API_URL/API_VERSION/styles/planner/planner-entry
 ```
 
 - `styles/planner`: everything needed for planner pages (planner + drawer + catalog-list + breadcrumb + entry, etc.)
-- `styles/planner-entry`: minimal CSS for the entry block only
+- `styles/planner/planner-entry`: minimal CSS for the entry block only
 
 ## How to integrate (client-side expectations)
 
@@ -219,7 +219,25 @@ Example planner text keys that can be overridden via i18n:
   },
   "PLANNER_CURRENT_MENU": {
     "ADD_MENU": "…"
-  }
+  },
+  "PLANNER_RECIPE_LIST": {
+    "SELECTION_TITLE": "…",
+    "MEAL_SINGULAR": "…",
+    "MEAL_PLURAL": "…",
+    "CHOOSE_FROM_RECIPES": "…",
+    "SUGGESTIONS": "…"
+  },
+  "PLANNER_RECIPE_SUGGESTION": {
+    "ADD": "…",
+    "OUR_SUGGESTIONS": "…",,
+    "SEE_RECIPE": "…",
+    "SWAP": "…"
+  },
+  "PLANNER_QUICK_MENU": {
+    "SEE_MENU": "…",
+    "ADD_RECIPE_ARIA": "…",
+    "MENU_PREVIEW_ARIA": "…"
+  },
 }
 ```
 
