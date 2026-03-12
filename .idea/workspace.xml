@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Changelogs" />
+    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;">
+      <change beforePath="$PROJECT_DIR$/docs/web_ssr/changelog/changelog-nest.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web_ssr/changelog/changelog-nest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web_ssr/customization/window-mealz.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web_ssr/customization/window-mealz.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feat/web-changelogs-23-12-2024" />
+        <entry key="$PROJECT_DIR$" value="feat/update-changelog" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,6 +29,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1749200938" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="develop" />
                     <option name="lastUsedInstant" value="1735051650" />
@@ -41,10 +48,6 @@
                   <RecentBranch>
                     <option name="branchName" value="feat/authless-id-header" />
                     <option name="lastUsedInstant" value="1734355741" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feat/web-changelogs" />
-                    <option name="lastUsedInstant" value="1734341707" />
                   </RecentBranch>
                 </list>
               </option>
@@ -69,9 +72,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "feat/ssr-v2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,6 +85,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-WS-251.26094.131" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -99,6 +110,8 @@
       <workItem from="1734596487488" duration="593000" />
       <workItem from="1734946897645" duration="11204000" />
       <workItem from="1735051633589" duration="421000" />
+      <workItem from="1749200921072" duration="197000" />
+      <workItem from="1749201152150" duration="666000" />
     </task>
     <task id="LOCAL-00001" summary="Updated changelog for SDK and SSR">
       <option name="closed" value="true" />
@@ -156,7 +169,31 @@
       <option name="project" value="LOCAL" />
       <updated>1734963289841</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed imports">
+      <option name="closed" value="true" />
+      <created>1744380763437</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744380763437</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added current state of Nest + Lit changelog">
+      <option name="closed" value="true" />
+      <created>1749221790616</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1749221790616</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;">
+      <option name="closed" value="true" />
+      <created>1749228183064</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1749228183064</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +207,9 @@
     <MESSAGE value="Updated doc with generate authless and loadWithAuthlessId / updateForbidProfiling" />
     <MESSAGE value="Added documentations for promotions" />
     <MESSAGE value="Changelogs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changelogs" />
+    <MESSAGE value="Fixed imports" />
+    <MESSAGE value="Added current state of Nest + Lit changelog" />
+    <MESSAGE value="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;" />
   </component>
 </project>

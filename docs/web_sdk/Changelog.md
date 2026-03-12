@@ -4,6 +4,25 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.2.11 - [04/12/2025]
+Merge 9.1.24 in 9.2 -> see v9.1.24 for changes
+
+## v9.2.10 - [28/11/2025]
+Merged 9.1.23 in 9.2 -> See v9.1.23 for changes
+
+## v9.2.9 - [30/10/2025]
+Merged 9.1.22 in 9.2 -> See v9.1.22 for changes
+
+## v9.2.8 - [02/10/2025]
+
+#### Added:
+- *recipe-card*:
+  - Added `contextId` input to support per-card batched suggestion contexts (used for shelf positions)
+
+#### Internal:
+- *recipes*
+  - Replaced per-card single recipe fetches with debounced batch requests
+
 ## v9.2.7 - [01/09/2025]
 
 #### Fixed:

@@ -35,6 +35,10 @@ props: {aString: 'foo bar', aNumber: 5}
     
     Outside of this usage we don't recommand using `basket.reset()` except to quickly empty Mealz's basket for testing purposes
   :::
+- `updatePricebook: (pricebookName: string) => Observable<void>`: If you have different price tables (or pricebooks) for the same point of sale, you can call this method to let Mealz know which pricebook you are using. For example, prices could be different depending on if the user chose home delivery or drive-in
+  :::info
+    If you have different pricebooks, they need to have been sent to our API so you can change them with `basket.updatePricebook()`. The pricebookName should be the same that the one sent to our API
+  :::
 - `recipeCount: () => Observable<number>`: A BehaviorSubject that emits the current number of recipes in Mealz's Basket once (it waits for the Basket to be initialized to emit).
 - `openPreview: () => void`: Opens the recipe-modal in basket preview mode to display the recipes currently in the basket (Same action as when clicking on the FAB in the recipe-catalog)
 
@@ -43,15 +47,15 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 - `definePushProductsToCart: (pushProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket changes to update the user's cart accordingly
   :::note
-    `pushProductsToCart`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative, method is not needed if `defineAddProductsToCart` and `defineRemoveProductsFromCart` are used
+    `pushProductsToCart`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative
   :::
 - `defineAddProductsToCart: (addProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket adds new products to update the user's cart accordingly
-  :::note
-  `addProductsToCart`: a method that adds the products passed in parameter to the user's cart, method is not needed if `definePushProductsToCart` is used
-  :::
+    :::note
+    `addProductsToCart`: a method that adds the products passed in parameter to the user's cart, method is not needed if `definePushProductsToCart` is used
+    :::
 - `defineRemoveProductsFromCart: (removeProductsFromCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket removes some products to update the user's cart accordingly
   :::note
-  `removeProductsFromCart`: a method that removes the products passed in parameter from the user's cart (the quantity attribute of each product is a positive number to indicate that it is the quantity to remove), method is not needed if `definePushProductsToCart` is used
+  `removeProductsFromCart`: a method that removes the products passed in parameter from the user's cart (the quantity attribute of each product is a negative number to indicate that it is the quantity to remove), method is not needed if `definePushProductsToCart` is used
   :::
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
   :::note
@@ -64,6 +68,8 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 ## window.mealz.features
 - `enableVideoRecipes: () => void`: Call to enable recipes to display a video instead of their picture, if the recipe has a video
+- `enableArticlesInCatalog: () => void`: Enable having Mealz's articles appearing in a dedicated category in the recipe-catalog component
+- `enableGuestsInputOnMyMeals: () => void`: Call to enable guests input on My Meals view
   ![Recipe tag more recipes](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/guestsInputOnMyMeals.png "Recipe tag more recipes")
 - `enableUserPreferences: () => void`: Enable asking and setting user's preferences for more precision in the algorithm
 - `enableTagsOnRecipes: () => void`: Enable displaying tags on recipe-details
