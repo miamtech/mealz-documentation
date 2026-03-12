@@ -4,6 +4,33 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 2.6.3 [Unreleased]
+
+#### Fixed
+- *basket-transfert-modal*
+  - Fix define component was `mealz-basket-preview` instead `mealz-basket-transfert-modal`
+
+## 2.6.2 [03/03/2026]
+
+#### Updated
+- *no-pos-selected*:
+  - Use `mealzInternal.hook.hookCallback(false, true)` to open the store selector of the supplier
+- *planner-current-menu*:
+  - When landing directly on the planner URL endpoint, default to the featured suggestions journey (prefill menu with current suggestions) without requiring the `fromFeatured` query parameter.
+  - Removed deprecated planner assets: `planner-dashboard`, `planner-card-link`, `planner-banner`.
+  - Cache current recipe URL in `sessionStorage` before opening the store selector so users return to the same recipe after POS selection
+  - Cache finalize-menu URL in `localStorage` and automatically resume finalize flow after login and POS initialization when returning to the planner
+
+#### Fixed
+- *planner-current-menu*:
+  - Prevent DOM lookup guard from blocking the footer button update when `storeId` is missing (icons are not rendered in that state).
+- *planner-onboarding*:
+  - Updated the planner onboarding with the new quick-menu component
+- *product-card-planner*:
+  - Guard against undefined `product`
+- *accordion*:
+  - Preserve slotted DOM nodes (avoid `innerHTML`) so Lit property bindings survive; fixes planner "Déjà dans le placard" items rendering empty cards
+
 ## 2.6.1 [12/02/2026]
 
 #### Fixed

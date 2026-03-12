@@ -4,6 +4,13 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 2.6.2 [26/02/2026]
+
+#### Fixed
+- Added missing scripts in no-supplier-add-to-cart-cta (drawer-view-swapper & basket-transfer-modal)
+
+#### Internal
+- Update SDK 9.1 to 9.1.26
 
 ## 2.6.1 [12/02/2026]
 
