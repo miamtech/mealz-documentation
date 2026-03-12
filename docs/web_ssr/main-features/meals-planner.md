@@ -79,6 +79,17 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/planner/current-menu
   - `store_id: string`:
   **_(Recommended)_** Used for pricing, basket sync, and consistency of planner data.
 
+### Shareable planner URL (landing)
+
+For marketing campaigns or direct links, the planner root route also renders the current menu experience (same as `current-menu`):
+
+```
+GET https://MEALZ_SSR_API_URL/v2/planner
+```
+
+- Same parameters as current-menu.
+- Behavior: if the user has a menu, it opens it; otherwise it creates one.
+
 ## Required HTTP headers
 
 All the planner routes are **SSR custom elements endpoints**, so they require the same mandatory headers as other SSR features.
