@@ -95,27 +95,32 @@ export default {
         versions: {
           current: {
             label: "9.2",
-            path: "/"
+            path: "/",
+          },
+          // Hidden "10.0" version: accessible by direct URL, not exposed in navbar
+          "10.0": {
+            banner: 'unreleased',
+            noIndex: true,
           },
           "9.1": {
-            banner: 'none'
+            banner: 'none',
           },
           "9.0": {
-            banner: 'none'
+            banner: 'none',
           },
           "8.8": {
-            banner: 'none'
+            banner: 'none',
           },
           "8.7": {
-            banner: 'none'
+            banner: 'none',
           },
           "8.6": {
-            banner: 'none'
+            banner: 'none',
           },
           "8.5": {
-            banner: 'none'
-          }
-        }
+            banner: 'none',
+          },
+        },
       },
     ],
     [
