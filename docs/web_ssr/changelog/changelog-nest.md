@@ -104,7 +104,7 @@ sidebar_position: 1
   - Added drawer stylesheets to recipe-card
   - Added recipe-details and like button stylesheets to recipe-card-cta
 - *planner-entry*
-  - Replaced minus and plus icon in the stepper with <img> to replace easily for suppliers overrides
+  - Replaced minus and plus icon in the stepper with `img` tags to replace easily for suppliers overrides
 - *recipe-card-cta*
   - Added the parameter `to_basket_on_click` that is provided in the starting data
 - *planner-budget-gauge* - v2
