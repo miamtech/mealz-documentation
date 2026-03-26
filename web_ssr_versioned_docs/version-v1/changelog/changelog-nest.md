@@ -238,7 +238,7 @@ Updated to miam-ds@1.2.6
 - *supplier-values*:
     - Added Marmiton default values for the env-configurator
 - *recipe-card*:
-  - Added an id on the format "mealz-recipe-card-{RECIPE-ID}"
+  - Added an id on the format `mealz-recipe-card-{RECIPE-ID}`
 
 ## 1.2.15 [14/04/2025]
 
