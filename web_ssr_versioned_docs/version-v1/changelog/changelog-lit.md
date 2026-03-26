@@ -107,8 +107,70 @@ sidebar_position: 2
 ## 1.3.0 [23/05/2025]
 
 #### Added:
+- *basket-preview*:
+  - Added component with interactions
+  - Added component noSupplier mode
+  - Added products view which can be hidden through supplierToken
+  - product views has number of recipes badge and clicking on it shows a modal with the recipe name list
+- *counter*:
+  - Created component
+- *basket-preview-product*:
+  - Created component
+- *mealz-modal*:
+  - Created component
+- *recipe-details*
+  - Added component
+- *skeleton*:
+  - Added CSS class mealz-skeleton-loader that can be imported when needed
+- *store-locator-drawer*
+  - Added component with interactions
 - *history-order-expanded*:
   - Added new component for the new history display in list mode
+
+#### Updated:
+- *CSS*:
+  - Replaced every color fallbacks occurrence with new colors from miam-ds
+- *drawer*:
+  - Component is now called through HTML tags and content is now passed through HTML slots
+- *no-shadow-element*:
+  - updated styleURL to be an array of URLs or a single URL and update boilerplate to handle it
+- *config*:
+  - Added styles folder to the build input
+- *basket-preview-product*:
+  - Replace basketEntryId property with basketEntry preventing stale data 
+- *slider-tabs*:
+  - Slider now updates visually when selectedTabIndex is changed from parent
+
+#### Internal:
+- *history-drawer*:
+  - The component now uses `drawer-view-swapper`
+- *recipe-addon*:
+  - Added component with interactions
+- *store-indicator*:
+    - Added component with interactions
+- *slider-tabs*:
+    - Added component with inputs / outputs
+- *sponsor-block*:
+  - Added component
+- *utils*:
+    - Add round, capitalize and stopPropagation functions
+- *models*:
+    - Add BasketEntry model
+- *product-addition*:
+  - Added component with interactions
+- *no-shadow-element*:
+  - Add `addStyles` and `removeStyles` boilerplate
+- *price*:
+  - Created component
+- *lang-to-currency*:
+  - Created a map to assign a currency to a language
+- *miam-ds*
+  - Turned miam colors into design system colors
+- *types*:
+  - Add Recipe definition
+  - Add Ingredient definition
+- *vite.config*
+  - Exclude files from build to minimize calls
 
 #### Fixed:
 - *history-order*:
@@ -120,7 +182,7 @@ sidebar_position: 2
 #### Fixed:
 - *my-meals-button*:
   - The arrow could come out of the button of mobile resolutions
-- Removed remaining occurences of miam-ds links as to not have conflicts with the version served by SSR-API
+- Removed remaning occurences of miam-ds links as to not have conflicts with the version served by SSR-API
 
 ## 1.2.7 [18/04/2025]
 
@@ -150,7 +212,7 @@ sidebar_position: 2
 #### Fixed:
 - Recipe-cards CSS was lacking the rules to remove margins on p tags that are in the catalog CSS
 - *catalog-load-more*
-  - The auto-load more recipes on scroll was triggered even when no more recipes were available
+  - The auto-load more recipes on scroll was triggered even when no more recipes were available 
 - *catalog-history*:
   - The history-order cards now use a CSS variable for their width that uses the same base value as the recipe-cards by default
 - *catalog-toolbar*:
@@ -202,7 +264,7 @@ sidebar_position: 2
 
 #### Added:
 - *catalog*
-  - Added support for store-locator
+    - Added support for store-locator
 - *recipe-promotion*
   - Added css for component
 - *promotions-banner*
@@ -246,7 +308,7 @@ sidebar_position: 2
 - Fixed margins & selectors after semantic tags were added in SSR-API
 - *catalog-load-more*
   - Catch failed requests and log to console instead of displaying in HTML
-
+  
 #### Internal
 - *recipe-card*
   - Handle `path` and `categoryId` in starting data for analytics
@@ -292,7 +354,7 @@ sidebar_position: 2
 
 #### Added:
 - *catalog*
-- Added support for preferences
+ - Added support for preferences
 
 #### Updated:
 - *catalog-toolbar*
@@ -318,6 +380,30 @@ merged 0.6.1 into 1.0. See 0.6.1 for changes
 #### Breaking changes:
 - *window.miam*:
   - Renamed to window.mealz
+
+## 0.7.0 [10/01/2025]
+
+#### Added:
+- *store-locator*:
+  - Added 3 new events: filterChange with supplierName as detail, mapSelected, listSelected
+
+## 0.6.1 [31/10/2024]
+
+0.6.0 has been unpublished an thus could not be republished.
+
+## 0.6.0 [31/10/2024]
+
+#### Removed:
+-*store-locator*:
+  - Removed radius selector and changed default radius to 50km
+  - Removed radiusOption attribute
+
+#### Updated:
+-*store-locator*:
+  - Now opens the list of stores directly in webmobile after searching by address or geolocation
+  - Now shows the home delivery stores in first position
+
+## 0.6.0 [31/10/2024]
 
 #### Updated:
 - *catalog*:
@@ -350,7 +436,7 @@ merged 0.6.1 into 1.0. See 0.6.1 for changes
 
 #### Added:
 - *catalog-category-home*:
-  - Added component with its hydration and lifecycle
+  - Added component with its hydration and lifecycle 
 - *recipe-pricing*
   - Added fetch on scroll
 
@@ -374,6 +460,7 @@ merged 0.6.1 into 1.0. See 0.6.1 for changes
   - Added component with its hydration and lifecycle
 - *like-button*:
   - Added component with its hydration and lifecycle
+
 
 ## 0.3.0-alpha.1 - [17/07/2024]
 #### Fixed:

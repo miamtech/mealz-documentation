@@ -166,7 +166,7 @@ sidebar_position: 1
 #### Updated:
 - *my-space*:
   - History now has a toggle to switch the view style between 'grid' and 'list' mode
-  - Added a new param `history_style` to the /my-space route. The param only has an effect when used alongside `tab=history` and can have as value either 'grid' or 'list', defaulting to 'grid' if not passed.
+  - Added a new param `history_style` to the /my-space route. The param only has an effect when used alongside `tab=history` and can have as value either 'grid' or 'list', defaulting to 'grid' of not passed.
   - Using the new view style toggle will put in the currentUrl either `&history_style=grid` or `&history_style=list`, which can be passed to the /my-space route
 
 ## 1.2.26 [19/05/2025]
@@ -238,7 +238,7 @@ Updated to miam-ds@1.2.6
 - *supplier-values*:
     - Added Marmiton default values for the env-configurator
 - *recipe-card*:
-  - Added an id on the format `mealz-recipe-card-{RECIPE-ID}`
+  - Added an id on the format "mealz-recipe-card-{RECIPE-ID}"
 
 ## 1.2.15 [14/04/2025]
 
@@ -328,7 +328,7 @@ Updated to webc-miam@9.1.12
 - *handle-payment*:
   - Fixed possible concurrency errors and undefined errors
   - Does not try to confirm an empty basket
-  - Correctly sends the analytics events
+  - Correctly sends the analytics events 
 
 ## 1.2.4 [07/01/2025]
 
@@ -431,6 +431,12 @@ Updated to webc-miam@9.1.12
 - *basket*
   - Added a controller and methods to handle merge authless basket
   - Added a controller and methods to handle payment confirmation
+
+#### Added:
+- *promotions-banner*:
+  - New promotions-banner component on catalog home
+- *recipe-promotion-badge*:
+  - New recipe-promotion-badge component currently displayed on recipe cards
 
 #### Fixed:
 - catalog-routing always used the dev routing file
@@ -613,17 +619,17 @@ Updated to webc-miam@9.1.12
 
 #### Added
 - *like-button*:
-    - Added a route for the component, and the associated services and views
+  - Added a route for the component, and the associated services and views
 - *recipe-card*:
-    - Added a route for the component, and the associated services and views
+  - Added a route for the component, and the associated services and views
 - *recipe-pricing*:
-    - Added a route for the component, and the associated services and views
+  - Added a route for the component, and the associated services and views
 - *i18n*:
-    - POC of i18n implementation, not enough text in the served components to use yet
+  - POC of i18n implementation, not enough text in the served components to use yet
 - *routes*
-    - Added a generate-authless-token route to fetch an authless token for loggued out users
+  - Added a generate-authless-token route to fetch an authless token for loggued out users
 - *versioning*:
-    - Added basic versioning handler on url
+  - Added basic versioning handler on url
 
 #### Internal
 - Added baskets service
