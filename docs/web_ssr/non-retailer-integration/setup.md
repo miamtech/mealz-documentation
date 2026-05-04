@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Setup
 
-As a non-retailer, your setup is a subset of the regular one described in [Set up and usage](../set-up-and-usage). This page only covers the steps you need, and links to the corresponding retailer pages for the details of each method.
+As a non-retailer, your setup is a subset of the regular one described in [Set up and usage](../category/set-up-and-usage). This page only covers the steps you need, and links to the corresponding retailer pages for the details of each method.
 
 Just like for the retailer setup, we recommend you follow these steps **in order** and **at the starting point of your app**, for the reasons explained in [Getting started](../set-up-and-usage/getting-started).
 
