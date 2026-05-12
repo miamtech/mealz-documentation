@@ -300,3 +300,76 @@ curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#
 And an example of result:
 ![Multiple cards in shelf](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/explanations/multiple-cards-in-shelf.png "Multiple cards in shelf")
 
+## Custom recipe card: recipe.show analytics {#custom-recipe-card-show-tracking}
+
+Use this when you render **your own** recipe card UI (not the SSR `<mealz-recipe-card>` HTML) but want the **same** `recipe.show` behaviour as the native card. See [Analytics](../analytics#recipe-card) for how `recipe.show` is defined.
+
+### Step 1 — Load the Web Components SDK
+
+Load the WebC / SDK script so `window.mealzInternal.analytics` is available before you attach tracking. This is the same pipeline as the built-in Lit recipe card.
+
+### Step 2 — Load the integration bundle
+
+The SSR API serves a small ES module that exposes `attachRecipeCardShowTracking`. Use an **absolute** URL so the browser can fetch it (and your bundler does not rewrite it):
+
+```
+GET https://MEALZ_SSR_API_URL/v2/client-scripts/recipe-card-show-tracking.js
+```
+
+Replace `MEALZ_SSR_API_URL` with the base origin the **browser** can reach (in Docker or split networking, often a public host, not only an internal service name).
+
+Load the file as an ES module, for example with dynamic `import()`. If you use Webpack or Next.js, you usually need `webpackIgnore: true` so the URL is not rewritten at build time:
+
+```js
+const mod = await import(/* webpackIgnore: true */ scriptUrl);
+const { attachRecipeCardShowTracking } = mod;
+```
+
+### `analyticsPath` and `categoryId`
+
+These values are forwarded to the same `recipe.show` pipeline as the native `<mealz-recipe-card>`. In Mealz analytics, **`category_id` is optional** in the event payload; when there is no category context, use an empty string.
+
+**`analyticsPath`** — logical “page” or section for analytics (second argument to `sendEvent` for `recipe.show`). It must match the **`path`** field you would put in Mealz recipe card `starting-data` for that card if it were SSR HTML, so `recipe.show` stays consistent with `recipe.display` and other events from the same placement.
+
+Typical values used in Mealz SSR flows include:
+
+| Context | Example `analyticsPath` |
+|--------|-------------------------|
+| Shelf / product-listing recipe suggestions (batch route, etc.) | `/recipes` |
+| Recipe catalog category listing | `/recipes/categories/<categoryId>` |
+| Favorites | `/recipes/liked` |
+| No dedicated segment | `''` (empty string) |
+
+Use your retailer path only if that is already what you pass when opening recipe details from that slot; **consistency with your existing Mealz `path` / event traces matters more than inventing a new string per page.**
+
+**`categoryId`** — optional. Pass the Mealz category identifier when the card is shown in a category context (same id you use elsewhere for that category). Otherwise omit it or use `''`. The integration helper defaults both `categoryId` and `analyticsPath` to `''` when omitted.
+
+### Step 3 — Attach one observer per card root
+
+For each custom card container in the DOM, call:
+
+```js
+const handle = attachRecipeCardShowTracking({
+  element,       // HTMLElement: root to observe (e.g. card wrapper)
+  recipeId,
+  analyticsPath, // same as Mealz `path` in recipe card starting-data (see above)
+  categoryId,    // optional: '' when not in a category context
+});
+```
+
+When the node is removed (virtual lists, SPA navigation), call:
+
+```js
+handle.disconnect();
+```
+
+### Optional: `mealz:recipe-show-tracked`
+
+After deduplication, the tracker may dispatch a `mealz:recipe-show-tracked` `CustomEvent` on `window`. You can use it for demos or extra UI; **production** integrations usually rely on `recipe.show` via `mealzInternal.analytics` only.
+
+### Operational notes
+
+- **API version**: Use the **`v2`** segment in the script path if your integration targets API v2. It must match the API version you use for other SSR routes.
+- **CORS**: If the script is loaded from another origin than your retailer site, the SSR API must allow your origin for this `GET` according to its CORS configuration.
+- Redirect or CDN behaviour for this route is handled on the Mealz SSR stack; clients only need the correct versioned URL.
+
