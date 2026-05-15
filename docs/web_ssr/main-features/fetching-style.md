@@ -96,39 +96,3 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/my-space
   
   For example, since the /catalog/catalog-home route displays recipe-cards, the route /styles/catalog/catalog-home **will contain the CSS for the recipe-cards as well**
 :::
-
-## Variant query parameters (v3 and onward)
-
-Starting from `API_VERSION = v3`, every component that exposes a variant query parameter on its rendering route also exposes the same parameter on the matching `/styles/...` route. Pass the variant you intend to render to make sure the response only contains the CSS files needed for that variant — instead of the union of every variant.
-
-For example, the recipe-card has three variants. Calling:
-
-```
-GET https://MEALZ_SSR_API_URL/v3/styles/recipe-card?variant=2
-```
-
-returns the CSS files needed for `recipe-card` variant 2 only (base + variant-2 overrides + embedded sub-components). The same applies to any parent endpoint that embeds variantized components, e.g.:
-
-```
-GET https://MEALZ_SSR_API_URL/v3/styles/catalog/catalog-home?recipe_card_variant=2
-```
-
-returns the CSS files needed by `catalog-home` when its recipe-cards are rendered with variant 2.
-
-The supported variant values are `1`, `2`, `3` for `recipe-card`. An invalid or missing value falls back to variant `1`.
-
-## All-variants behavior of `/v3/styles`
-
-The `GET /v3/styles` endpoint returns **every** CSS file shipped by Mealz components. Variantized components ship one base stylesheet (e.g. `recipe-card/recipe-card-base.css`) plus one stylesheet per variant (e.g. `recipe-card/variant-1/recipe-card.css`, `variant-2`, `variant-3`).
-
-The base stylesheet contains the rules shared by every variant; variant stylesheets only contain overrides scoped under `.<component-class>.variant-<N>`. This means all variant stylesheets can be loaded simultaneously without rule conflicts, even if two variants disagree on, say, `flex-direction`.
-
-If your client only ever renders one variant of a given component, prefer the more targeted endpoints documented above (e.g. `/v3/styles/recipe-card?variant=2`) to avoid shipping unused CSS to the browser.
-
-## CSS file convention for variantized components
-
-For Mealz contributors writing new variantized components in `mealz-components` (v3 branch and later):
-
-- Ship one `<component-name>/<component-name>-base.css` containing every rule shared across variants. Use bare class selectors (e.g. `.mealz-foo { ... }`) — no variant scope.
-- Ship one `<component-name>/variant-<N>/<component-name>.css` per variant. Each file must contain only `.<component-class>.variant-<N> { ... }` rules. Do not use `@import` to pull in the base stylesheet — the SSR style manifests load it alongside the variant sheet automatically.
-- Update `src/v3/styles/all-styles.manifest.ts` in `mealz-ssr-api` to reference the new files; a CI test fails the build if any `.css` file in `mealz-components/src/components` is forgotten.
