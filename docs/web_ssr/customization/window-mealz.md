@@ -17,7 +17,7 @@ In a typical integration, `window.mealz` becomes available after you inject HTML
 **V2** adds:
 
 ```
-GET https://MEALZ_SSR_API_URL/v2/mealz-window-bootstrap
+GET https://MEALZ_SSR_API_URL/API_VERSION/mealz-window-bootstrap
 ```
 
 The response is an HTML fragment that contains **only** the script that loads Mealz's client-side **services** (no Lit component or other Mealz SSR markup). After that script runs, `window.mealz` and `window.mealzInternal` are available, and you can use the APIs documented below.
