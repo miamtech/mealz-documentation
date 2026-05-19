@@ -72,6 +72,34 @@ Non-numeric `guests` attribute values are ignored (Mealz falls back to its defau
 Other Mealz guest controls in the components still update the guest count. If yours should be the only source of truth, hide Mealz guest inputs — for example using [Styling](../styling) overrides with `display: none` rules.
 :::
 
+## Custom CTA content by basket state
+
+If you need to change the CTA label or inner content in JavaScript (rather than via CSS), the host element exposes the current basket state in two ways you can read at any time — including **before hydration**:
+
+- the `in-basket` attribute (`"true"` or `"false"`)
+- the `in-basket` class on `<mealz-no-supplier-add-to-cart-cta>`
+
+Both are set during SSR and kept in sync after hydration. When the status changes (for example after the user adds the recipe to the basket), the component also dispatches an `inBasketStatus` event whose `detail` is a boolean (`true` or `false`).
+
+Apply your content on load, then re-apply whenever the status changes:
+
+```js
+const cta = document.querySelector('mealz-no-supplier-add-to-cart-cta');
+
+function applyCustomContent(cta) {
+  const inBasket = cta.getAttribute('in-basket') === 'true';
+  // or: cta.classList.contains('in-basket')
+  // update the static and fixed buttons inside `cta`…
+}
+
+applyCustomContent(cta);
+cta.addEventListener('inBasketStatus', () => applyCustomContent(cta));
+```
+
+:::info
+Since the component renders two buttons (static and fixed), do not apply the same customization to both if you override their content.
+:::
+
 ## How to integrate it
 
 The integration is the same as for any other [pre-rendered custom element](../main-features/pre-rendered-components):
