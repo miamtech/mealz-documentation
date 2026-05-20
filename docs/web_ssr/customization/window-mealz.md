@@ -10,6 +10,22 @@ The window.mealz object still has a lot more methods and attributes that can mak
   Except for the methods mentioned in [Set up and usage](../category/set-up-and-usage), none of the methods listed in this section are necessary if the basic implementation is good enough for you. But if you want or need more customization, you may need to call some of those methods.
 :::
 
+## Need to use window.mealz without a mealz component ?
+
+In a typical integration, `window.mealz` becomes available after you inject HTML from a Mealz SSR route (the response includes the Mealz client-side **services** together with the component markup). If you only need the JavaScript API and **do not** want to fetch a Mealz component, you can load **only those services** from a minimal fragment instead.
+
+**V2** adds:
+
+```
+GET https://MEALZ_SSR_API_URL/API_VERSION/mealz-window-bootstrap
+```
+
+The response is an HTML fragment that contains **only** the script that loads Mealz's client-side **services** (no Lit component or other Mealz SSR markup). After that script runs, `window.mealz` and `window.mealzInternal` are available, and you can use the APIs documented below.
+
+:::warning
+Use the same [mandatory HTTP headers](../main-features/pre-rendered-components#http-request-headers) as for any other Mealz SSR API request when you call this route from your server.
+:::
+
 ## window.mealz.analytics
 - `eventSent$: Observable<string>` Each time Mealz sends an analytics event, it emits its content as a stringified JSON of the following format:
 
