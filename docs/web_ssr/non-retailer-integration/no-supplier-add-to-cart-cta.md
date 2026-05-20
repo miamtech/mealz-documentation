@@ -33,7 +33,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta
   **_(Mandatory)_** the id of the recipe in your database. Our backend resolves it to the matching Mealz recipe via its external id, so you can just pass whichever id you already use for that recipe on your side.
 
   - `guests: number`:
-  **_(Optional)_** override the default number of guests for the recipe.
+  **_(Optional)_** sets the **initial** number of guests when the HTML is rendered. After hydration, the CTA keeps using the same guest count as the rest of Mealz on the page (for example when the user changes guests with a Mealz guest control). If you drive guest count from **your own** UI, see [Guest count after load](#guest-count-after-load).
 
 ### Example
 
@@ -52,6 +52,53 @@ With an explicit guest count:
 ```
 GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=22509&guests=6
 ```
+
+## Guest count after load
+
+The CTA uses the guest count when adding the recipe to the Mealz basket (same behaviour as the regular recipe card). The count is **not limited** to the value from the initial SSR request: it **follows updates** from other Mealz UI on the page that change the number of guests.
+
+If your site maintains its own guest selector next to the recipe, push changes into the custom element so Mealz stays in sync:
+
+```js
+document.querySelector('mealz-no-supplier-add-to-cart-cta')
+  ?.setAttribute('guests', String(nextCount));
+```
+
+:::info
+Non-numeric `guests` attribute values are ignored (Mealz falls back to its default behaviour for an unset count).
+:::
+
+:::warning
+Other Mealz guest controls in the components still update the guest count. If yours should be the only source of truth, hide Mealz guest inputs — for example using [Styling](../styling) overrides with `display: none` rules.
+:::
+
+## Custom CTA content by basket state
+
+If you need to change the CTA label or inner content in JavaScript (rather than via CSS), the host element exposes the current basket state in two ways you can read at any time — including **before hydration**:
+
+- the `in-basket` attribute (`"true"` or `"false"`)
+- the `in-basket` class on `<mealz-no-supplier-add-to-cart-cta>`
+
+Both are set during SSR and kept in sync after hydration. When the status changes (for example after the user adds the recipe to the basket), the component also dispatches an `inBasketStatus` event whose `detail` is a boolean (`true` or `false`).
+
+Apply your content on load, then re-apply whenever the status changes:
+
+```js
+const cta = document.querySelector('mealz-no-supplier-add-to-cart-cta');
+
+function applyCustomContent(cta) {
+  const inBasket = cta.getAttribute('in-basket') === 'true';
+  // or: cta.classList.contains('in-basket')
+  // update the static and fixed buttons inside `cta`…
+}
+
+applyCustomContent(cta);
+cta.addEventListener('inBasketStatus', () => applyCustomContent(cta));
+```
+
+:::info
+Since the component renders two buttons (static and fixed), do not apply the same customization to both if you override their content.
+:::
 
 ## How to integrate it
 
