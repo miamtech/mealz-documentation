@@ -168,3 +168,44 @@ const recipeCardsHTML = multipleRecipesHTML.split('</mealz-recipe-card>')
 
   - `serves: number`
   **_(Optional)_** Override the default number of guests set for the recipe
+
+## Custom recipe card: recipe.show analytics {#custom-recipe-card-show-tracking}
+
+Use this when you render **your own** recipe card UI (not the SSR `<mealz-recipe-card>` HTML) but want the **same** `recipe.show` behaviour as the native card. See [Analytics](../analytics#recipe-card) for how `recipe.show` is defined.
+
+### Step 1 — Load the Web Components SDK
+
+Load the WebC / SDK script so `window.mealzInternal.analytics` is available before you attach tracking. This is the same pipeline as the built-in Lit recipe card.
+
+### Step 2 — Load the integration bundle
+
+The SSR API serves a small ES module that exposes the method you will need (`attachRecipeCardShowTracking`):
+
+```
+GET https://MEALZ_SSR_API_URL/v1/client-scripts/recipe-card-show-tracking.js
+```
+
+Load the file as an ES module, for example with dynamic `import()`. Make sure the url is not rewritten at build time, for example if you use Webpack, you'll probably need to add `webpackIgnore: true`.
+
+```js
+const scriptUrl = 'https://MEALZ_SSR_API_URL/v1/client-scripts/recipe-card-show-tracking.js';
+const mod = await import(/* webpackIgnore: true */ scriptUrl);
+const { attachRecipeCardShowTracking } = mod;
+```
+
+### Step 3 — Attach one observer per card root
+
+For each custom card container in the DOM, call:
+
+```js
+const handle = attachRecipeCardShowTracking({
+  element, // HTMLElement: root to observe (e.g. card wrapper)
+  recipeId,
+});
+```
+
+When the node is removed (virtual lists, SPA navigation), call:
+
+```js
+handle.disconnect();
+```
