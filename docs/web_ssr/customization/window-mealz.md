@@ -42,6 +42,15 @@ props: {aString: 'foo bar', aNumber: 5}
     **Deprecated**, prefer using `supplier.setupWithToken` as it initializes the analytics
   :::
 
+- `attachRecipeCardShowTracking: (options) => { disconnect: () => void }` Attach viewport-based `recipe.show` tracking on a **custom** recipe card root (same rules as `mealz-recipe-card`: ≥80% visible for 1s, deduped until the user scrolls). See [Custom recipe card → recipe.show analytics](../main-features/recipe-card#custom-recipe-card-show-tracking).
+  :::note
+    `options.element`: HTMLElement root to observe (e.g. card wrapper)
+
+    `options.recipeId`: Mealz recipe id
+
+    Call the returned `disconnect()` when the element is removed (virtual lists, SPA navigation).
+  :::
+
 ## window.mealz.basket
 - `basketIsReady$: Observable<boolean>`: Emits true when Mealz's basket has successfully loaded for the first time. Does not emit anything before or after that.
 - `initialize: () => void`: Fetch the first Basket early (before any action requires it on Mealz's side), so you can start the [basket-sync](../set-up-and-usage/basket-synchronization) earlier
