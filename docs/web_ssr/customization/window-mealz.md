@@ -10,11 +10,11 @@ The window.mealz object still has a lot more methods and attributes that can mak
   Except for the methods mentioned in [Set up and usage](../category/set-up-and-usage), none of the methods listed in this section are necessary if the basic implementation is good enough for you. But if you want or need more customization, you may need to call some of those methods.
 :::
 
-## Need to use window.mealz without a mealz component ?
+## Need to use window.mealz without a mealz component ? {#need-to-use-windowmealz-without-a-mealz-component}
 
 In a typical integration, `window.mealz` becomes available after you inject HTML from a Mealz SSR route (the response includes the Mealz client-side **services** together with the component markup). If you only need the JavaScript API and **do not** want to fetch a Mealz component, you can load **only those services** from a minimal fragment instead.
 
-**V2** adds:
+**V2 only.** Adds:
 
 ```
 GET https://MEALZ_SSR_API_URL/API_VERSION/mealz-window-bootstrap
@@ -40,6 +40,15 @@ props: {aString: 'foo bar', aNumber: 5}
 
   :::warning
     **Deprecated**, prefer using `supplier.setupWithToken` as it initializes the analytics
+  :::
+
+- `attachRecipeCardShowTracking: (options) => { disconnect: () => void }` Attach viewport-based `recipe.show` tracking on a **custom** recipe card root (same rules as `mealz-recipe-card`: ≥80% visible for 1s, deduped until the user scrolls). See [Custom recipe card → recipe.show analytics](../main-features/recipe-card#custom-recipe-card-show-tracking).
+  :::note
+    `options.element`: HTMLElement root to observe (e.g. card wrapper)
+
+    `options.recipeId`: Mealz recipe id
+
+    Call the returned `disconnect()` when the element is removed (virtual lists, SPA navigation).
   :::
 
 ## window.mealz.basket
