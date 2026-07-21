@@ -130,8 +130,11 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "v2",
+            label: "v3",
             path: "/"
+          },
+          "v2": {
+            banner: 'none'
           },
           "v1": {
             banner: 'none'
@@ -338,9 +341,14 @@ export default {
             to: "docs/web_ssr/Introduction",
             items: [
               {
-                label: "v2",
+                label: "v3",
                 to: "docs/web_ssr/Introduction",
                 activeBaseRegex: "docs/web_ssr/[^0-9][^/]",
+              },
+              {
+                label: "v2",
+                to: "docs/web_ssr/v2/Introduction",
+                activeBasePath: "docs/web_ssr/v2",
               },
               {
                 label: "v1",
