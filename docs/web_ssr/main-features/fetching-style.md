@@ -26,15 +26,14 @@ Which will return data in the following format:
 ```json
 {
   "links": [
-    "https://unpkg.com/mealz-ds@2.0.0/mealz--ds.min.css",
-    "https://cdn.jsdelivr.net/npm/webc-miam@9.2.2/miam-style.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/catalog/catalog-home/catalog-home.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/recipe-card/recipe-card.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/recipe-card-cta/recipe-card-cta.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/recipe-pricing/recipe-pricing.css",
-    "https://unpkg.com/mealz-components@1.4.0/dist/like-button/like-button.css"
+    "https://unpkg.com/mealz-ds@2.0.0/mealz-ds.min.css",
+    "https://unpkg.com/mealz-components@3.0.0/dist/catalog/catalog-home/catalog-home.css",
+    "https://unpkg.com/mealz-components@3.0.0/dist/recipe-card/recipe-card.css",
+    "https://unpkg.com/mealz-components@3.0.0/dist/recipe-card-cta/recipe-card-cta.css",
+    "https://unpkg.com/mealz-components@3.0.0/dist/recipe-pricing/recipe-pricing.css",
+    "https://unpkg.com/mealz-components@3.0.0/dist/like-button/like-button.css"
   ],
-  "html": "<link rel=\"stylesheet\" href=\"http://localhost:4201/miam-style.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-ds@2.0.0/mealz-ds.min.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/catalog/catalog-home/catalog-home.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/recipe-card/recipe-card.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/recipe-card-cta/recipe-card-cta.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/recipe-pricing/recipe-pricing.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@1.4.0/dist/like-button/like-button.css\" />"
+  "html": "<link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-ds@2.0.0/mealz-ds.min.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@3.0.0/dist/catalog/catalog-home/catalog-home.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@3.0.0/dist/recipe-card/recipe-card.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@3.0.0/dist/recipe-card-cta/recipe-card-cta.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@3.0.0/dist/recipe-pricing/recipe-pricing.css\" /><link rel=\"stylesheet\" href=\"https://unpkg.com/mealz-components@3.0.0/dist/like-button/like-button.css\" />"
 }
 ```
 
@@ -96,3 +95,19 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/my-space
   
   For example, since the /catalog/catalog-home route displays recipe-cards, the route /styles/catalog/catalog-home **will contain the CSS for the recipe-cards as well**
 :::
+
+### Variant parameters
+
+Some component endpoints accept a **variant** query parameter to select a display layout. See [display variants](./recipe-card#display-variants) for available layouts and parameter names. <!-- TODO (PR2): also link to ../about/versioning-process for how new variants are introduced --> When you pass a variant on a component request, pass the **same parameter and value** on the matching `/styles/` request so you only load the CSS for the variant you render.
+
+This rule applies to any component that supports variants. Today, only **recipe cards** do. The parameter name depends on the route: `variant` on `/recipe-card` and `/styles/recipe-card`, and `recipe_card_variant` on endpoints that embed recipe cards (catalog, planner, …) and their matching `/styles/…` routes.
+
+Example for recipe card variant `2`:
+
+```
+GET https://MEALZ_SSR_API_URL/v3/recipe-card?variant=2
+GET https://MEALZ_SSR_API_URL/v3/styles/recipe-card?variant=2
+
+GET https://MEALZ_SSR_API_URL/v3/catalog?recipe_card_variant=2
+GET https://MEALZ_SSR_API_URL/v3/styles/catalog?recipe_card_variant=2
+```

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Recipe card (SSR)
+# Recipe card
 
 ## Overview
 
@@ -31,8 +31,8 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the price of the recipe, so ideally it should be passed if the user has chosen a store
 
-  - `display_variant: number = 1`:
-  **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see below for examples)
+  - `variant: number = 1`:
+  **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see below for examples).
 
   - `orientation: 'vertical' | 'horizontal' = 'vertical'`:
   **_(Optional)_** Select the orientation for the display of the card (see below for examples)
@@ -42,6 +42,9 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card
 
   - `serves: number`
   **_(Optional)_** Override the default number of guests set for the recipe
+
+  - `allow_default: boolean = true` 🆕:
+  **_(Optional)_** When `true` (default), if no recipe suggestion is found for the given context, a generic "Discover our catalog" redirect card is rendered instead of returning nothing. Set to `false` to suppress this fallback behavior.
 
 > Displaying a fixed recipe can be tempting if you want to have control on the content appearing on your website, but it also means that the users will always see the same recipes at the same places and may not stay interested, while our algorithm has some random elements to it that makes the content vary between sessions, giving the user more inspiration.
 
@@ -54,16 +57,28 @@ Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-reques
 A recipe contextualized with surrounding products **_(Recommended)_**:
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["214086","1254022"]&store_id=2817&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?surrounding_products_ids=["123456","234567"]&store_id=1234&serves=4&profiling=true&variant=3&orientation=horizontal
 ```
 
 A fixed recipe:
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=15123&store_id=2817&serves=4&profiling=true&display_variant=3&orientation=horizontal
+GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=12345&store_id=1234&serves=4&profiling=true&variant=3&orientation=horizontal
 ```
 
 ### Display variants
+
+<!-- TODO: UPDATE SCREENSHOTS — drink badge visual, and new V3 variant images -->
+
+:::note New in V3
+Variants were renumbered in V3: the old variant 2 was removed, old variant 3 is now variant 2, and old variant 4 is now variant 3.
+
+Recipe cards that are drinks now display a **drink badge** automatically.
+
+When no recipe suggestion is available for a shelf position, a generic "Discover our catalog" redirect card is rendered by default. See the `allow_default` parameter to opt out.
+:::
+
+<!-- TODO UPDATE SCREENSHOTS -->
 
 **Variant 1 Vertical (default):**
 ![Recipe card variant 1 Vertical](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/CardsVariant1.png "Recipe card variant 1 Vertical")
@@ -71,22 +86,18 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=15123&store_id=2
 **Variant 1 Horizontal:**
 ![Recipe card variant 1 Horizontal](../../../static/img/RecipeCardVariant1Horizontal.png "Recipe card variant 1 Horizontal")
 
-**Variant 2 Vertical:**
-![Recipe card variant 2 Vertical](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/CardsVariant2.png "Recipe card variant 2 Vertical")
+**Variant 2 Vertical** — like button in the footer instead of the top-right corner:
+![Recipe card variant 2 Vertical](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/CardsVariant3.png "Recipe card variant 2 Vertical")
 
 **Variant 2 Horizontal:**
 ![Recipe card variant 2 Horizontal](../../../static/img/RecipeCardVariant2Horizontal.png "Recipe card variant 2 Horizontal")
 
-**Variant 3 Vertical:**
+**Variant 3 Vertical** — intended for the history drawer:
 ![Recipe card variant 3 Vertical](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/CardsVariant3.png "Recipe card variant 3 Vertical")
 
 **Variant 3 Horizontal:**
-![Recipe card variant 3 Horizontal](../../../static/img/RecipeCardVariant3Horizontal.png "Recipe card variant 4 Horizontal")
+![Recipe card variant 3 Horizontal](../../../static/img/RecipeCardVariant3Horizontal.png "Recipe card variant 3 Horizontal")
 
-
-**The second and third variants are ideal for the cards you display in your shelves**, because of the badge in the upper-left corner (that you can easily replace by an image of your design that corresponds better to your website's design). **The third variant is better if your products have their "add to favorite" CTA next to the price**.
-
-**The first variant is better for our catalog**, because displaying the badge on each card would be redundant, which is why we use this variant by default.
 
 
 ### I18n
@@ -100,6 +111,13 @@ The customizable text contents for this component are the following:
   "RECIPE_CARD_CTA": {
     "IN_BASKET_ICON_ALT": "See the products currently in basket",
     "NOT_IN_BASKET_ICON_ALT": "See the products"
+  },
+  "RECIPE_PROMOTION_BADGE": {
+    "TEXT": "On sale"
+  },
+  "RECIPE_CARD_GENERIC": {
+    "TITLE": "Need inspiration?",
+    "CTA": "Discover our recipes"
   }
 }
 ```
@@ -124,8 +142,8 @@ POST https://MEALZ_SSR_API_URL/API_VERSION/recipe-card/multiple
   - `store_id: string`:
   **_(Recommended)_** We need your store ID to display the price of the recipe, so ideally it should be passed if the user has chosen a store
 
-  - `display_variant: number = 1`:
-  **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see below for examples)
+  - `variant: number = 1`:
+  **_(Optional)_** Select the variant for the display of the card. Default is 1, available values are 1, 2 and 3 (see the single card route above for variant examples).
 
   - `orientation: 'vertical' | 'horizontal' = 'vertical'`:
   **_(Optional)_** Select the orientation for the display of the card (see above for examples)
@@ -244,7 +262,7 @@ In the `data` array, each element will have an attribute `html`, containing the 
 
 Here is an example of request:
 ```
-curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#STORE_ID' \
+curl --location 'https://ssr-api-uat.mealz.ai/v3/recipe-card/multiple?store_id=#STORE_ID' \
 --header 'authorization: user_id #USER_ID' \
 --header 'language-id: fr' \
 --header 'supplier-token: #SUPPLIER_TOKEN' \
@@ -269,7 +287,7 @@ curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#
             "productIds": ["#PRODUCT_ID_7", "#PRODUCT_ID_8"]
         }
     ],
-    "categoryId": "1234",
+    "categoryId": "categoryId1",
     "keyword": "optional search keyword"
 }'
 
