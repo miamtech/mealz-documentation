@@ -64,7 +64,8 @@ export default {
         versions: {
           current: {
             label: "9.2",
-            path: "/"
+            path: "/",
+            banner: 'unmaintained'
           },
           "9.1": {
             banner: 'none'

@@ -2,6 +2,12 @@
 sidebar_position: 1
 ---
 
+:::danger Web SDK — maintenance mode from August 2026
+From August 2026, the web SDK (`webc-miam` / `ng-miam`) is in **maintenance mode**: only critical bug fixes will be made. **New integrations should use the [SSR API](/docs/web_ssr/introduction) instead.**
+
+If you are already integrated with the web SDK and want to upgrade, see the [V2 to V3 migration guide](/docs/web_ssr/migration-v2-v3).
+:::
+
 ## Introduction
 
 NgMiam SDK is an open-source library letting you enhance your customer experience using **[Mealz](https://mealz.ai/)**'s technology.
