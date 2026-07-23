@@ -15,11 +15,7 @@ Mealz provides you a bundle of features that you can add to your website.
 - Reminders of recipes that you can insert in your basket page so the clients can remember from where the products come
   from
 
-:::note
-Currently, SSR (Server-Side Rendering) is only available for the recipe card feature and the catalog feature (WIP).
-:::
-
-### The recipe cards (SSR)
+### The recipe cards
 
 The main Mealz feature is giving you access to a recipe card component that you can insert in between products in any shelf of your website. With those recipes appearing in the shelves among the products that the client came to look for, they may be inspired by the recipe and click on it. They will then see all products needed to make that recipe and discover that they can, in a single click, add to their cart all these products !
 
@@ -102,9 +98,9 @@ The same list view is used to display recipes if the user uses the search bar in
 ![Catalog list search](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalogSearch.png "Catalog list search")
 <br/>
 
-If the user clicks on the top right button "Favorites" ("Favoris"), they will see the list of recipes they have added to their favorites:
+If the user clicks on the top right button "Favorites" ("Favoris"), they open the **My Space** page: their saved recipes on the Favorites tab, and past orders on the History tab. See [Catalog](../main-features/recipe-catalog#my-space-page).
 
-![Catalog favorites](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/favorites.png "Catalog favorites")
+![Favorites tab](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-favorites.png "Favorites tab")
 <br/>
 
 Finally, if any recipes has been added to the user's cart, a button appears at the bottom displaying the number of recipes currently in the cart. When the user clicks on this button, a drawer appears displaying the list of recipes in the cart:
@@ -112,9 +108,41 @@ Finally, if any recipes has been added to the user's cart, a button appears at t
 ![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "Basket preview")
 <br/>
 
-### The recipe reminders (CSR)
+### The meals planner
 
-To complement the other two features which lets the users add product to their cart through recipes, Mealz gives you another component, the [recipe-tags](../main-features/recipe-tags) component, to remind the user why a product is in their basket.
+The [meals planner](../main-features/meals-planner) is a full-page flow that helps users build a weekly menu and push every recipe to the cart in one step. You embed a small **entry block** on a page such as the catalog home; it sends the user to a dedicated **current menu** page on your site when they start planning.
+
+On the entry block, the user sets the number of guests and chooses how to start: from Mealz suggestions or from an empty menu.
+
+![Planner entry](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/plannerEntry.png "Planner entry")
+<br/>
+
+<!-- TODO: add screenshot — mode selection (suggestions vs custom menu) -->
+
+First-time users see a short onboarding modal; the same help content stays available from the entry block and from the menu page header.
+
+<!-- TODO: add screenshot — onboarding / help modal -->
+
+On the current menu page, the user adds or removes recipes (from suggestions or from the catalog with meal-type filters), can fine-tune which products to buy for each recipe, optionally sets a budget when a store is selected, then finalizes the menu to send everything to the retailer cart.
+
+![Planner current menu](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/plannerCurrent.png "Planner current menu")
+<br/>
+
+<!-- TODO: add screenshot — recipe suggestions panel -->
+<!-- TODO: add screenshot — catalog opened from the planner (meal-type filters) -->
+<!-- TODO: add screenshot — budget gauge -->
+<!-- TODO: add screenshot — mobile quick menu footer (suggestions view) -->
+<!-- TODO: add screenshot — finalize menu / whole plan added to cart -->
+
+On mobile, the current menu splits into two views (suggestions with a compact footer, then the full menu list); the URL keeps track of the active view via a `view` query parameter.
+
+See [Meals planner](../main-features/meals-planner) for SSR routes, routing configuration, and integration details.
+
+### The recipe reminders
+
+To complement the other features which let users add products to their cart through recipes, Mealz provides the [recipe-tags](../main-features/recipe-tags) component to remind users why a product is in their basket.
+
+Recipe tags can be fetched server-side in batch via `GET /v3/recipe-tags` and injected next to each product on your cart page.
 
 Imagine your cart page looks like this:
 
@@ -123,26 +151,12 @@ Imagine your cart page looks like this:
 If you insert the recipe-tags component into each product component of your cart, you may have something that looks like this:
 
 <ImageSideBySide
-firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTags.png"
-firstAlt="Fake cart with tags"
-firstCaption="Closed"
-firstImageMaxWidth="600px"
-secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsOpen.png"
-secondAlt="Fake cart with tags open"
-secondCaption="Opened"
-secondImageMaxWidth="600px"
-/>
-<br/><br/>
-
-If you don't like the look, the component can also be a small tag that could for example look like this:
-
-<ImageSideBySide
 firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsReduced.png"
-firstAlt="Fake cart with reduced tags"
+firstAlt="Fake cart with recipe tags"
 firstCaption="Closed"
 firstImageMaxWidth="600px"
 secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/fakeCartWithTagsReducedOpen.png"
-secondAlt="Fake cart with reduced tags open"
+secondAlt="Fake cart with recipe tags open"
 secondCaption="Opened"
 secondImageMaxWidth="600px"
 />

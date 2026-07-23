@@ -10,20 +10,27 @@ The window.mealz object still has a lot more methods and attributes that can mak
   Except for the methods mentioned in [Set up and usage](../category/set-up-and-usage), none of the methods listed in this section are necessary if the basic implementation is good enough for you. But if you want or need more customization, you may need to call some of those methods.
 :::
 
-## Need to use window.mealz without a mealz component ?
+## Need to use window.mealz without a mealz component?
 
-In a typical integration, `window.mealz` becomes available after you inject HTML from a Mealz SSR route (the response includes the Mealz client-side **services** together with the component markup). If you only need the JavaScript API and **do not** want to fetch a Mealz component, you can load **only those services** from a minimal fragment instead.
-
-**V2** adds:
+In a typical integration, `window.mealz` becomes available after you inject HTML from a Mealz SSR route. If you need the Mealz JavaScript API on a page that displays **no visible Mealz component** (for example, a cart page where you only need `basketSync`), you can load the core services from a dedicated route:
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/mealz-window-bootstrap
+GET https://MEALZ_SSR_API_URL/v3/core
 ```
 
-The response is an HTML fragment that contains **only** the script that loads Mealz's client-side **services** (no Lit component or other Mealz SSR markup). After that script runs, `window.mealz` and `window.mealzInternal` are available, and you can use the APIs documented below.
+- Parameters :
+
+  - `store_id: string`:
+  **_(Recommended)_** We need your store ID to initialize Mealz for the user's current point of sale, as on other SSR routes.
+
+The response is an HTML fragment containing only the scripts that set up `window.mealz`, all Mealz global services, and the shared UI components (modals, drawer-view-swapper). No visible recipe component or catalog is included.
 
 :::warning
-Use the same [mandatory HTTP headers](../main-features/pre-rendered-components#http-request-headers) as for any other Mealz SSR API request when you call this route from your server.
+Use the same [mandatory HTTP headers](../main-features/pre-rendered-components#http-request-headers) as for any other Mealz SSR API request when calling this route from your server.
+:::
+
+:::note Changed in V3
+V2's `GET /v2/mealz-window-bootstrap` was **renamed** to `GET /v3/core` in V3. Thus, `window.mealzInternal` is no longer available; do not rely on any of its namespaces.
 :::
 
 ## window.mealz.analytics
@@ -39,7 +46,7 @@ props: {aString: 'foo bar', aNumber: 5}
 - `init: (domain: string) => void` Initializes the analytics
 
   :::warning
-    **Deprecated**, prefer using `supplier.setupWithToken` as it initializes the analytics
+    **Deprecated**, the analytics is initialized on startup
   :::
 
 ## window.mealz.basket
@@ -58,118 +65,82 @@ props: {aString: 'foo bar', aNumber: 5}
 See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 - `definePushProductsToCart: (pushProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket changes to update the user's cart accordingly
-  :::note
-    `pushProductsToCart`: a method that updates the user's cart with the products passed in a parameter: it adds products if their quantity is positive, and removes them if their quantity is negative, method is not needed if `defineAddProductsToCart` and `defineRemoveProductsFromCart` are used
-  :::
 - `defineAddProductsToCart: (addProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket adds new products to update the user's cart accordingly
-  :::note
-  `addProductsToCart`: a method that adds the products passed in parameter to the user's cart, method is not needed if `definePushProductsToCart` is used
-  :::
 - `defineRemoveProductsFromCart: (removeProductsFromCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket removes some products to update the user's cart accordingly
-  :::note
-  `removeProductsFromCart`: a method that removes the products passed in parameter from the user's cart (the quantity attribute of each product is a positive number to indicate that it is the quantity to remove), method is not needed if `definePushProductsToCart` is used
-  :::
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
-  :::note
-    `comparableProducts`: The products in the user's cart
-  :::
 - `handlePayment: (total: number) => void`: Call to notify Mealz that the user's cart was paid. Mealz then refreshes the groceries-list and basket for the next user's cart
-  :::note
-    `total`: The total price of the cart paid
-  :::
-
-## window.mealz.features
-- `enableVideoRecipes: () => void`: Call to enable recipes to display a video instead of their picture, if the recipe has a video
-  ![Recipe tag more recipes](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/guestsInputOnMyMeals.png "Recipe tag more recipes")
-- `enableUserPreferences: () => void`: Enable asking and setting user's preferences for more precision in the algorithm
-- `enableTagsOnRecipes: () => void`: Enable displaying tags on recipe-details
-- `enablePersonalRecipes: () => void`: Call to enable personal recipes on recipe-catalog
-  :::warning
-    Feature is deprecated
-  :::
-- `enableMealsPlanner: (url: string, antiInflation?: boolean) => void`: Call to enable the meals-planner
-  :::note
-    `url`: of the page where you inject the meals planner
-
-    `antiInflation`: if you want to use the anti-inflation variation of the meals-planner
-  :::
-  :::warning
-    Feature is working but will be reworked from the ground up in the future
-  :::
-- `collapseUnavailableProductsByDefault: () => void`: Call to enable collapsing of unavailable products by default in recipe-details
-
 ## window.mealz.hook
 - `setHookCallback(callback: (isLogged, isPosValid) => boolean) => void`: [Set up hook callback](../set-up-and-usage/hooks)
 - `setForcePosCallback: (callback: (posExtId: string) => boolean) => void`: [Receiving baskets from affiliated websites](./affiliated-websites)
 
 ## window.mealz.pos
-- `load: (externalId) => void`: Call to inform Mealz that the point of sale has been updated. Either initialized or updated.
 
-  :::info
-  Do not forget to call `pos.load` again after each time the store changes
-  :::
-
+- `load: (externalId) => void`: Informs Mealz that the active point of sale has changed.
   :::warning
-  Even without a selected store, this method needs to be called with `null` or `undefined` as parameter. All features of the library that need a store won't start until mealz.pos.load is called. (Otherwise it can't tell the difference between "the store has not been initialized yet" and "the user has not chosen a store)"
+    **Deprecated for page-load setup.** In V3, the store is initialized from the `store_id` query parameter on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
   :::
 
-- `getByAddress: (address: string, radius: string) => Observable<DocumentCollection<PointOfSale>>`
-  :::danger
-    This is an internal method that will be moved elsewhere soon. Do not call
-  :::
-- `getByCoordinates: (longitude: number, latitude: number, radius: number) => Observable<DocumentCollection<PointOfSale>>`
-  :::danger
-    This is an internal method that will be moved elsewhere soon. Do not call
-  :::
+  Call `pos.load` only when the user changes store **without a full page reload**. If the change triggers a navigation or reload, pass the new `store_id` on the next SSR request instead.
+
+  `externalId` is the store id in your database, the same id you provided to Mealz when your store catalogue was configured.
+
+  When the store changes, Mealz recalculates its internal basket, because products and prices can differ from one store to another.
+
+  If the user clears their store selection without reloading, call `pos.load(null)` or `pos.load(undefined)`.
+
+  ```js
+  // When the user picks a different store without reloading the page
+  window.mealz.pos.load(storeId);
+  ```
 
 ## window.mealz.recipes
-- `hidden: Observable<boolean>`: An observable that emits true when the recipe-modal is closed. You can subscribe on it if you want to do something just after Mealz's modal closes.
-- `addAllIngredientsCTAWasClicked: EventEmitter<{ ingredientsAdded: number; ingredientsTotal: number }>`: An observable that emits when the "Add all ingredients" CTA on recipe-details is clicked. You can subscribe on it to display a toaster after ingredients were added for example.
+
+- `addAllIngredientsCTAWasClicked: EventEmitter<{ ingredientsAdded: number; ingredientsTotal: number }>`: Emits when the "Add all ingredients" CTA on recipe-details is clicked. You can subscribe on it to display a toaster after ingredients were added.
   :::note
     `ingredientsAdded`: the number of ingredients added to cart
 
     `ingredientsTotal`: the total number of ingredients in the recipe
   :::
-  :::warning
-    It sends the number of **ingredients** and not of products because the SDK has no way of knowing the quantity of the potential products NOT added. 
-  :::
-- `shouldDisplayIngredientPicturesOnRecipeCard: (should: boolean) => void`: If true is passed, recipe-cards will diplay pictures of the ingredients.
-- `setDefaultIngredientPicture: (url: string) => void`: Set a default url to use if there aren't any picture for an ingredient
-- `setDefaultRecipePicture: (url: string) => void`: Set a default url to use if there aren't any picture for a recipe
-- `setDifficultyLevels: (levels: { value: number, label: string }[]) => void`: Override default labels for difficulty levels
-  :::note
-    `levels`: The list of labels to override for each difficulty (difficulties are respectively **1: Easy, 2: Medium, 3: Hard**).
-    
-    For example : `[{value: 1, label: "Beginner"}]` will update the label of easy recipes to "Beginner"
-  :::
-- `showConfirmationToaster: () => void`: If called, adding any product to the cart from any of Mealz's features will display a confirmation toaster
+
+- `openDetails(recipeId: string, initialTabIndex?: number, guests?: number) => void` 🆕: Opens recipe details by id. `initialTabIndex` defaults to `0`. `guests` overrides the default guest count for that session.
 
 ## window.mealz.router
 - `setRecipeCatalogUrl: (url: string) => void`: Inform Mealz of the url where the catalog is for the redirection link of recipe-details
-- `setRecipeInfoLink: (url: string) => void`: Inform Mealz of the url where the onboarding section of the catalog should redirect
 - `setRetailerCartUrl: (url: string) => void`: Inform Mealz of the url of your cart page if Mealz needs to redirect there
-- `setPromotionsUrl: (url: string) => void`: Inform Mealz of the url where the promotions are
 
 ## window.mealz.supplier
-- `setupWithToken: (token: string) => void`: [Inform the library of who you are](../set-up-and-usage/library-context#inform-the-library-of-who-you-are)
-- `setOrigin: (origin: string) => void`: set the origin to put in Mealz's requests headers
+- `setupWithToken: (token: string) => void`: Loads the supplier token. 
   :::warning
-    **Deprecated**, prefer using `supplier.setupWithToken` as it automatically sets the origin
+    **Deprecated.** The SSR API reads the `Supplier-token` header instead. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
   :::
 - `load: (supplierId: number | string) => void`: Identify the client website
   :::warning
-    **Deprecated**, prefer using `supplier.setupWithToken` as it automatically loads the supplier
-  :::
-- `getAffiliateSuppliers: () => Observable<Supplier[]>`
-  :::danger
-    This is an internal method that will be moved elsewhere soon. Do not call
+    **Deprecated.** The SSR API reads the `Supplier-token` header instead. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
   :::
 
 ## window.mealz.user
-- `loadWithExtId: (id, forbidProfiling = false) => void`: [Log in user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout)
-- `loadWithAuthlessId: (id, forbidProfiling = false) => void`: configure our sdk to use the authless id
-- `reset: () => void`: [Log out user](../set-up-and-usage/login-and-logout#handle-user-login-and-logout)
-- `setLanguage: (lang: string) => void`: Used for configuration purposes, you are now required to call this function with the desired language in ISO 639-1 format or your custom language code
+
+- `loadWithExtId: (id, forbidProfiling = false) => void`: Notifies Mealz that the user has logged in.
+  :::warning
+    **Deprecated for page-load setup.** In V3, the logged-in user is initialized from the `Authorization` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+  :::
+
+  Call `loadWithExtId` only when the user logs in **without a full page reload**. If login triggers a navigation or reload, pass the updated `Authorization` header on the next SSR request instead. See [Log in](../set-up-and-usage/login-and-logout#log-in).
+
+- `loadWithAuthlessId: (id, forbidProfiling = false) => void`: Notifies Mealz of a guest (authless) session.
+  :::warning
+    **Deprecated for page-load setup.** In V3, the guest session is initialized from the `Authless-id` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+  :::
+
+  Call `loadWithAuthlessId` only when the guest id changes **without a full page reload** (for example after logout). If the change triggers a navigation or reload, pass the updated `Authless-id` header on the next SSR request instead. See [Log out](../set-up-and-usage/login-and-logout#log-out).
+
+- `reset: () => void`: Notify Mealz of a logout without page reload. See [Log out](../set-up-and-usage/login-and-logout#log-out).
+- `setLanguage: (lang: string) => void`: Sets the active language (ISO 639-1 or your custom language code).
+  :::warning
+    **Deprecated for page-load setup.** In V3, language is initialized from the `Language-id` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+  :::
+
+  Call `setLanguage` only when the user changes language **without a full page reload**. If the change triggers a navigation or reload, pass the new `Language-id` on the next SSR request instead.
 - `setFavoriteItems: (favoriteProductIds: string[]) => Observable<object>`: If your website has a "favorite products" feature, you can pass the ids of all products which the user has marked as favorites, so they can be prioritized when adding a recipe to their cart, if one of them is returned as a matching product for the recipe.
   :::note
     `favoriteProductIds`:  an array of product ids, passed as string
@@ -200,9 +171,4 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 * `setStickyHeaderHeight: (height: number) => void`: **Heavily recommended** Call setStickyHeaderHeight method to update your sticky header height in px. You need to call the method everytime it changes with its new height. Default value is 0 (0px for no header). 
   :::warning
     This setter is **mandatory** for our catalog-header to get fixed at the right position when scrolling. Without it, our header might get fixed above or behind your header
-  :::
-
-* `setDefaultScrollElementGetter: (callback: () => HTMLElement) => void`: **Heavily recommended** Pass a callback that returns the default scroll container of the page so Mealz's modal can block the scroll when opened.
-  :::info
-    Default callback returns document.body. Call setDefaultScrollElementGetter(() => null) if you don't want the modal to block scroll on background.
   :::

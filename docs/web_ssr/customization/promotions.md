@@ -56,6 +56,6 @@ Once you have enabled promotions with our backend team, you can just override th
 
 After completing these steps, your users will be able to see the promotion banner and be redirected to the promotion page by clicking on it.
 
-Promotions are treated as a filter on our end, so the URL for the promotion page is the same as for a normal search, with the addition of `?promotion=true` to indicate to the library that the user is on the promotion page.
+Promotions are treated as a filter on our end, so the URL for the promotion page is the same as for a normal search, with the addition of `?promotions=true` to indicate to the library that the user is on the promotion page.
 
 Don't hesitate to customize the banner CSS to match your website's design.

@@ -2,9 +2,11 @@
 sidebar_position: 5
 ---
 
-# Meals planner (SSR)
+# Meals planner
 
 ## Overview
+
+<!-- TODO: UPDATE SCREENSHOTS — planner UI updated in V3 -->
 
 The **Meals planner** is a full-page experience that helps users build a meal plan (a “menu”) and then push it to the retailer cart.
 
@@ -114,87 +116,45 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/styles/planner/planner-entry
 - `styles/planner`: everything needed for planner pages (planner + drawer + catalog-list + breadcrumb + entry, etc.)
 - `styles/planner/planner-entry`: minimal CSS for the entry block only
 
-## How to integrate (client-side expectations)
+## How to integrate
 
-### 1) Full page SSR (recommended)
+The planner is split across two surfaces:
 
-You embed `planner-entry` where you want the entrypoint to appear, and you expose a dedicated URL on your website for the **current menu page**. On that URL, your server should:
+1. A **`planner-entry` block** that you embed on an existing page (it is embedded by default on the catalog home). It shows the guest stepper and start options, and redirects the user to the current menu page when they begin planning.
+2. A **current menu page** — a dedicated URL on your website where the full planner renders. Your server fetches the HTML for this page from the SSR API (`/planner/current-menu`) and injects it into your template, the same way as any other Mealz component.
 
-- Fetch the planner HTML from the SSR API (`/planner/current-menu`)
-- Inject the returned HTML into your page template
-- Include the planner styles from `GET /styles/planner` in the page `<head>`
+Include the planner styles on the current menu page from `GET /styles/planner`. See [Stylesheets](#stylesheets-css) above.
 
-The returned HTML includes `<script type="module">` tags, allowing custom elements to initialize automatically in the browser.
 
-### 2) Runtime HTML injection (SPA / partial refresh)
 
-If you fetch planner HTML at runtime and inject it with `innerHTML`, **browser will not execute `<script>` tags** contained in the injected HTML.
+### Using the planner URL in marketing campaigns
 
-In that case you must ensure that:
+You can point campaign links directly to your planner page (e.g. `https://your-website.com/meals-planner`). When a user lands on that URL:
 
-- Like for CSS links, you must ensure the required `<script type="module">` tags are present in your page (scripts injected via `innerHTML` won't execute).
-- The SDK script (`SDK_WEBC_URL_V2`) is loaded once
-- The required planner-related `mealz-components` modules are loaded (planner, preferences, catalog list/toolbar, recipe-card/cta…)
-- The CSS links are present in `<head>` (via `styles/planner`)
+- If they already have a menu in progress, the planner opens it.
+- If they do not, the planner starts a new menu from the current suggestions.
 
-## Routing configuration (what you must provide)
+This requires no special configuration — the behavior comes from the `GET /v2/planner` route, which always opens the current-menu experience.
 
-The planner contains internal navigation (from planner entry → planner current menu, and finally redirect to the retailer cart).
+## What works without a store or without a logged-in user
 
-Those URLs are **client-dependent** and are configured on our side (per supplier + per environment). Concretely, we need:
+The planner is usable before the user has picked a store or logged in, but a few things are store- or account-dependent.
 
-- The URL of your **planner current menu** page
-- The URL of your **retailer cart** page (redirect target after finalization)
+### No store selected
 
-This is configured in the SSR API routing (example format):
+Without a store, Mealz cannot fetch product suggestions or prices, and the budget feature is unavailable (budget limits are store-specific). The rest of the planning experience — browsing and adding recipes, viewing the menu — works normally.
 
-```json
-{
-  "baseUrl": "https://www.example.com",
-  "features": { "planner": "/planner" },
-  "planner": {
-    "current": ""
-  },
-  "retailerCart": "/cart"
-}
-```
+When the user opens recipe details inside the planner and tries to act on the shopping list, they will be prompted to pick a store at that point.
 
-### Shareable planner URL
+### Not logged in
 
-Some clients want to use their **planner page URL** in marketing campaigns redirection (example: `https://your-website.com/meals-planner`).
+Users can build an entire menu as guests. The only thing that requires a login is **transferring the menu to the cart** — when the user tries to finalize, Mealz will ask them to log in first.
 
-The behavior is:
+Once they log in, their guest menu is carried over automatically. One edge case to be aware of: if the newly logged-in user already had a saved menu, **the guest menu overwrites it**.
 
-- Opening the shared planner URL should display the planner
-- If the user is already a client with a current menu, it will open his menu
-- If the user is new to the website. It will create a menu with the current suggestions
-
-## Authentication behavior (what clients should know)
-
-- Users can **start building a menu without being authenticated** (using an authless identity), but **authentication is required to push the menu to basket**.
-- The planner flow uses browser storage to resume critical steps (for example after login / POS selection). In particular:
-  - Guests selection is stored under `_mealz/planner/guests`
-  - Finalize flow can be resumed using a cached URL (`_miam/cachedFinalizeMenuUrl`)
-
-## Works without POS selected / without user connected (limitations)
-
-The planner is designed to **remain usable even if no point of sale (POS) is selected and/or no user is logged in**, with the following limitations.
-
-### Without a POS selected
-
-- You **cannot set a budget** (budget is store-dependent).
-- We **cannot fetch products nor product pricings**, because they depend on the store context.
-- In the **recipe-details** view, inside **"I'm shopping"**, the user can be prompted to **select a POS** (open the retailer store selector) to unlock store-dependent features.
-
-### Without a user logged in
-
-- The user can still **build a menu** (authless flow), but when they try to **move recipes from the menu to the basket** (finalize), the planner will ask them to **connect / log in** first.
-
-If a user built a menu while unauthenticated (authless), we will transfer it to the logged-in user at the end of your auth flow.
-
-Note: if a logged-in user already has a menu, it will be **overridden** by the menu created as an unauthenticated user.
-
-If you embed Mealz in constrained contexts (webviews, strict privacy modes), ensure `localStorage` is available and not fully blocked.
+:::info localStorage
+The planner uses `localStorage` to resume certain steps across navigations (store selection, guest count, finalize URL). If your integration runs in a constrained environment such as a webview with storage restrictions, make sure `localStorage` is available.
+:::
 
 ## I18n
 
@@ -205,39 +165,49 @@ Example planner text keys that can be overridden via i18n:
 ```json
 {
   "PLANNER_ENTRY": {
-    "TITLE": "…",
-    "HOW_IT_WORKS": "…",
-    "DECREASE_GUESTS": "…",
-    "INCREASE_GUESTS": "…"
+    "TITLE": "Plan my week for",
+    "HOW_IT_WORKS": "How does it work?",
+    "DECREASE_GUESTS": "Decrease number of people",
+    "INCREASE_GUESTS": "Increase number of people",
+    "HERO_BADGE": "New",
+    "HERO_DESCRIPTION_PREFIX": "Choose your recipes,",
+    "HERO_DESCRIPTION_HIGHLIGHT": "we fill your basket",
+    "HERO_DESCRIPTION_SUFFIX": "with the best products!",
+    "HERO_CTA": "Let's go!"
   },
   "PLANNER_MENU_OPTION": {
-    "SELECTION": "…",
-    "SELECTION_SUBTITLE": "…",
-    "CUSTOM": "…",
-    "CUSTOM_SUBTITLE": "…",
-    "CANCEL": "…"
+    "SELECTION": "We suggest: this week's selection",
+    "SELECTION_SUBTITLE": "Get inspired by our selection of recipes for the week!",
+    "CUSTOM": "You're the chef: personalized selection",
+    "CUSTOM_SUBTITLE": "Build your own selection, to your taste and according to your budget.",
+    "CANCEL": "Empty menu"
   },
   "PLANNER_CURRENT_MENU": {
-    "ADD_MENU": "…"
+    "SUBTITLE": "Here are the recipes you have selected",
+    "ADD_MENU": "Add the menu to the cart",
+    "REGISTER_MENU": "Save my menu"
   },
   "PLANNER_RECIPE_LIST": {
-    "SELECTION_TITLE": "…",
-    "MEAL_SINGULAR": "…",
-    "MEAL_PLURAL": "…",
-    "CHOOSE_FROM_RECIPES": "…",
-    "SUGGESTIONS": "…"
+    "SELECTION_TITLE": "My selection",
+    "MEAL_SINGULAR": "meal",
+    "MEAL_PLURAL": "meals",
+    "CHOOSE_FROM_RECIPES": "Choose from our recipes",
+    "ADD_FROM_CATALOG": "Add a recipe from the catalog",
+    "SUGGESTIONS": "Suggestions"
   },
   "PLANNER_RECIPE_SUGGESTION": {
-    "ADD": "…",
-    "OUR_SUGGESTIONS": "…",,
-    "SEE_RECIPE": "…",
-    "SWAP": "…"
+    "ADD": "Add to menu",
+    "REMOVE": "Remove from menu",
+    "MEAL": "Meal",
+    "OUR_SUGGESTIONS": "Our suggestions",
+    "SEE_RECIPE": "See recipe",
+    "SWAP": "Skip"
   },
   "PLANNER_QUICK_MENU": {
-    "SEE_MENU": "…",
-    "ADD_RECIPE_ARIA": "…",
-    "MENU_PREVIEW_ARIA": "…"
-  },
+    "SEE_MENU": "See menu",
+    "ADD_RECIPE_ARIA": "Add a recipe",
+    "MENU_PREVIEW_ARIA": "Menu preview"
+  }
 }
 ```
 
