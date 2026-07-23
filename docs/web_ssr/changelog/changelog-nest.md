@@ -4,6 +4,173 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 2.15.0 [UNRELEASED]
+
+#### Added
+- *basket* — v1 & v2
+  - New route `POST /basket/payment-started` to be notified by retailer when the payment process start. This route use same contract as `handle-payment` and manage a synchronization with retailer cart before sending analytics event.
+
+## 2.14.0 [17/07/2026]
+
+#### Updated
+- *catalog-toolbar* - v2
+  - Updated toolbar template structure to match the new toolbar layout, including right-side history switch placement in my-space/history view.
+  - Moved promotions entry to a discount button in the home toolbar; removed the catalog-home promotions banner.
+
+## 2.13.1 [17/07/2026]
+
+#### Internal
+- V2 - Update mealz-component to 2.11.1
+
+## 2.13.0 [16/07/2026]
+
+#### Updated
+
+- *recipe-pricing* - v2:
+  - Added a `mealz_store_id` query parameter to set selected store by internal store id
+  - Added optional `display_no_store` query parameter to enable display of "Show price" button when no store is selected. By default, this mode is off.
+
+#### Fixed
+
+- *planner* — v2
+  - Suggestion card display sponsor logo if required.
+- *catalog* & *planner* — v2
+  - When `noPersonalizationOnShelves` is set on the supplier token, the preferences button is now hidden consistently on catalog list/search pages and in the meal planner header (it was already hidden on catalog home/category).
+  - The preferences button is now opt-in on shelves: it is only displayed when the supplier token explicitly sets `noPersonalizationOnShelves: false`. When the flag is absent or set to `true`, the button stays hidden.
+
+## 2.12.1 [09/07/2026]
+
+#### Internal
+- Update SDK to 9.1.30 / 10.6.0
+
+## 2.12.0 [01/07/2026]
+
+### Added
+
+- *recipe-card* — v1 & v2
+  - New route `POST /recipe-card/multiple-raw` for batch recipe resolution. Takes an array of recipe contexts (productIds and position) plus store_id, and returns matching Mealz recipe IDs for all resolved contexts in a single request. Responds with { data: [{ recipeId, position }] }, returning matched positions only (contexts with no matching recipe are omitted).
+
+#### Internal
+- Update SDK to 10.5.11
+
+## 2.11.0 [11/06/2026]
+
+#### Added
+
+- *supplier-selector* — v2
+  - `GET /v2/supplier-selector` serves a minimal SSR page that loads the SDK web component script, `drawer-view-swapper`, and `init-supplier-selector-drawer`.
+- *recipe-details* — v2
+  - `GET /v2/recipe-details` serves a minimal SSR page that loads the SDK web component script, `drawer-view-swapper`, and `init-recipe-details-drawer`, with a hidden config node carrying `recipeId` and `initialTabIndex`. Query params: `recipe_id` or `recipe_ext_id` (resolved via `RecipesService.getRecipeByExtId` when the Mealz id is omitted), and optional `initial_tab_index` (default `0`). Responds with `400` if neither id is set and `404` if `recipe_ext_id` does not resolve.
+- *recipe-card* — v1 & v2
+  - Optional query parameter `recipe_ext_id`: load the recipe card from the retailer’s external recipe id (via `RecipesService.getRecipeByExtId` / `GET /recipes/external/:id`), as a third option alongside `recipe_id` and `surrounding_products_ids`. At least one of the three must still be provided.
+  - When the card is resolved from `recipe_ext_id`, “in basket” is computed from the resolved Mealz recipe id (`recipe_id` wins if both ids are supplied).
+
+#### Updated
+- *i18n* — *PLANNER_MENU_OPTION.CANCEL* (en / fr)
+  - Planner menu-option CTA copy: “Empty menu” (en) and “Vider le menu” (fr), replacing “Cancel menu” / “Abandonner le menu”.
+
+#### Fixed
+- *recipe-card* — v2
+  - `GET` recipe-card: when the request relies on `recipe_ext_id` only (no `recipe_id`), an unknown external id returns **404 Not Found** instead of failing during render.
+  - `sponsorLogoUrl` is read safely when the recipe payload is absent (e.g. empty suggestion result).
+- *catalog/my-space/basket-preview* - v2
+  - Optional query `selected_tab`: `1` opens the products segment first; any other value (including omitted) opens the recipes segment (`0`), matching the SDK basket preview tab index used by `openPreview`.
+
+## 2.10.7 [27/05/2026]
+
+#### Fixed
+- *nextjs-demo*:
+  - Calls `mealz.pos.load` only when a `posId` cookie is set, so no-supplier suppliers (e.g. Marmiton) no longer trigger an invalid POS load on demo startup.
+  - Removed default `posId` from Marmiton in `supplier-defaults.json`.
+
+#### Added
+- *nextjs-demo*:
+  - New suppliers to supplier-defaults.json: Cuisine Az and Cuisine Actuelle
+
+## 2.10.6 [21/05/2026]
+
+#### Internal
+- Update SDK to 10.5.5
+
+## 2.10.5 [21/05/2026]
+
+#### Internal
+- Update mealz-component to 2.9.0
+
+## 2.10.4 [20/05/2026]
+
+#### Added
+- *mealz-window-bootstrap* — v2: `GET /v2/mealz-window-bootstrap` returns an HTML fragment containing only the WebC SDK script (`SDK_WEBC_URL_V2`) so integrators can obtain `window.mealz` / `window.mealzInternal` after load without additional Lit components or Mealz SSR markup in the response.
+- *no-supplier-add-to-cart-cta* - v2
+  - Added an attribute and a class "in-basket"
+- *client-scripts* — v1 & v2
+  - `GET /v1/client-scripts/recipe-card-show-tracking.js` and `GET /v2/client-scripts/recipe-card-show-tracking.js` serve the `recipe-card-show-tracking` integration bundle (`integrations/recipe-card-show-tracking.min.js`) for `recipe.show` viewport analytics on retailer pages.
+  - Resolution order: `sendFile` from `DOCKER_CMPNTS_PATH` when the file exists; otherwise `/integrations/recipe-card-show-tracking.min.js` when `ENV=dev`; otherwise to `${LIT_CMPNTS_URL_V2|V1}/integrations/recipe-card-show-tracking.min.js`.
+
+#### Fixed
+- *recipe-card* - v1 / v2:
+  - Fixed a 500 error that could occur when a cached recipe was used instead of a fresh API fetch
+- *all routes* - v1 / v2:
+  - `included` data was not passed to Recipe instances on creation, which could cause errors due to getters not resolving correctly
+
+## 2.10.3 [04/05/2026]
+- V2 - Updated  mealz-components to 2.8.2
+
+## 2.10.2 [04/05/2026]
+- Added Marmiton to CORS
+
+## 2.10.1 [04/05/2026]
+- Added CuisineAz to CORS
+
+## 2.10.0 [21/04/2026]
+
+#### Updated
+- *planner-entry* - v2
+  - Added planner entry variants via `variant=1|2|3` to support hero current-selection, hero custom-menu, or dual-card layouts.
+  - Refactored planner entry views into reusable stepper and avatars partials, with localized hero copy and assets.
+- *catalog-home* - v2
+  - Optional query `planner_entry_variant` (`1`|`2`|`3`, default `3`): same layout semantics as `GET /v2/planner/entry?variant=`. Embedded planner block SSR passes `variant` in `starting-data` and loads current-selection / custom menu data only when needed for that variant.
+- *planner-dashboard* - v2
+  - Planner menu-option SSR `starting-data` now includes `plannerEntryVariant` (`1`|`2`|`3`, same value as the resolved layout variant) when built from planner-entry or catalog-home, so the web component can attach it to `planner.mode.select` analytics.
+- *catalog-home* — v1 & v2
+  - Recipe card and like-button `starting-data` include `categoryId` per catalog package so home-page sections map recipes to their parent category for client analytics.
+- *catalog-category* — v1 & v2
+  - Pass the current category package id as `categoryId` for recipe cards and likes on dedicated category pages.
+- *recipe-card.service* — v1 & v2
+  - `setRecipeCardsStartingData` accepts an optional `categoryId` serialized into each card’s `starting-data`.
+- *like-button.service* — v1 & v2
+  - Like `starting-data` and `setLikesForRecipes` accept optional `categoryId`.
+- *like-button* (HTTP)
+  - `GET /like-button` accepts optional query parameters `path` and `category-id`, forwarded into like-button initialization.
+
+#### Fixed
+- *planner-entry* - v2
+  - Preserve the existing current menu state for variant 1 so planner-entry reuses the current menu instead of creating a new one before redirecting.
+- *catalog-home* / *planner-entry* - v2
+  - Resolved `variant` (and related flags) being undefined when rendering the planner entry partial from catalog-home.
+
+#### Internal
+- Shared `resolvePlannerEntryVariant()` in `src/shared/utils/planner-entry-variant.util.ts` for planner-entry and catalog-home controllers.
+- Added npm `overrides` for `path-to-regexp` (^8.4.0), `lodash` (^4.18.1), and `picomatch` (^4.0.4) to patch high-severity vulnerabilities in transitive dependencies until upstream packages (NestJS core, cli) ship updated resolutions.
+- *catalog*
+  - Reduced requests time for most catalog and planner routes by using promise.all instead of sequential awaits wherever possible. The differences with before are mostly small as most routes were already quite efficient, but catalog-home was reduced from an average of 5000ms to an average of 1800ms
+
+## 2.9.0 [03/04/2026]
+
+#### Added
+- *planner* - v2
+  - New back button before menu title
+
+#### updated
+- *recipe-card* - v1 / v2:
+  - Changed every icon to a generic one for consistency
+
+## 2.8.1 [26/03/2026]
+
+#### Fixed
+- *catalog-home* - v1
+  - Fixed `CatalogPages is not defined` error: `CatalogPages` enum is now passed to the EJS context, and `catalog-home.ejs` uses `CatalogPages.HOME` (instead of `Pages.CATALOG_HOME`) when including `catalog-toolbar.ejs`.
+
 ## 2.8.0 [26/03/2026]
 
 #### Added
