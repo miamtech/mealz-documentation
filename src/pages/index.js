@@ -19,28 +19,35 @@ function HomepageHeader() {
             <Link
               className="button button--secondary button--lg"
               to="/docs/android/Introduction">
-              Android 🤖
+              Android
             </Link>
           </div>
           <div>
             <Link
               className="button button--secondary button--lg"
               to="/docs/ios/Introduction">
-              iOS 🍏
+              iOS
+            </Link>
+          </div>
+          <div>
+            <Link
+              className="button button--secondary button--lg"
+              to="/docs/kmm/Introduction">
+              KMM
             </Link>
           </div>
           <div>
             <Link
               className="button button--secondary button--lg"
               to="/docs/web_sdk/Introduction">
-              Web SDK 🌐
+              Web SDK
             </Link>
           </div>
           <div>
             <Link
               className="button button--secondary button--lg"
               to="/docs/web_ssr/Introduction">
-              Web SSR ☁️
+              Web SSR
             </Link>
           </div>
         </div>

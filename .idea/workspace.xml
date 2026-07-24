@@ -5,18 +5,565 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;">
-      <change beforePath="$PROJECT_DIR$/docs/web_ssr/changelog/changelog-nest.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web_ssr/changelog/changelog-nest.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web_ssr/customization/window-mealz.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web_ssr/customization/window-mealz.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/Introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/Introduction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_base/EmptyProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_base/LazyListLoaderProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_base/LoadingProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_catalog/CatalogCategoriesPageCategory.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_catalog/CatalogRecipeCardProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_catalog/CatalogSearchProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_catalog/CatalogToolbarProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_catalog/MealsInBasketButtonSuccessProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_catalog/RecipeCardLoading.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_catalog/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_filters/FilterSuccessProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_item-selector/ItemSelectorHeaderProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_item-selector/ItemSelectorOptionProductsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_item-selector/ItemSelectorSearchProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_item-selector/ItemSelectorSelectedProductProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_item-selector/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_my-meals/MyMealRecipeCardProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_my-meals/MyMealTitleProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/PreferencesDietProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/PreferencesEquipmentProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/PreferencesFooterProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/PreferencesGuestProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/PreferencesHeaderProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/PreferencesIngredientsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/_search/PreferencesSearchFieldProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/_search/PreferencesSearchResultRowProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_preferences/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/RecipeDetailsFooterProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/RecipeDetailsHeaderProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/RecipeDetailsIngredientsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/RecipeDetailsSelectedControlProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/RecipeDetailsSponsorProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/RecipeDetailsStepsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/_products/RecipeDetailsIgnoredProductProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/_products/RecipeDetailsProductSuccessProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_recipe-details/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/_code/_utils/UseStringResource.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/advanced/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_basket/_SendBasketToMealz.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_environment/_SetForceStoreUpdateCallBack.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/ProviderId.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/SupplierId.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_analytics-notifiers/Analytics.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_analytics-notifiers/Toaster.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/FinalCodeBlock.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/HandlePayment.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/InitializeBasket.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/NewBasketService.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/OnBasketUpdate.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/PaymentFinished.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/PaymentStarted.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/UpdateBasketFromExternalSource.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_miamManager/_basketService/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_user/_AuthlessConfig.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_user/_GetPriceOrRedirect.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_user/_LoginRedirectionConfig.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/_shared/_user/_SetStoreRedirectionConfig.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/analytics.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/advanced/analytics.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/availability.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/basket.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/deepLink.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/i18n.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/manage-recipes-list.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/UpdatedTemplateList.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/ViewImplementation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_updated-templates/CatalogViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_updated-templates/FavoritesViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_updated-templates/FilterViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_updated-templates/ItemSelectorViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_updated-templates/MyMealsViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_updated-templates/PreferencesViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_updated-templates/RecipeDetailsViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/_updated-templates/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/migrating-3x-to-4x/initialisation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/notification.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/store-configuration.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/user-configuration.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/changelogs/Core.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/changelogs/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/changelogs/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/changelogs/changelogs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/MyBasket/Overview.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/LinkToCustomization.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/Prerequisites.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/_shared_components/Swapper.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/itemSelector/ItemSelectorCustomization.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/itemSelector/ItemSelectorEmpty.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/itemSelector/ItemSelectorHeader.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/itemSelector/ItemSelectorLoading.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/itemSelector/ItemSelectorSearch.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/itemSelector/ItemSelectorSelectedItem.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/itemSelector/ItemSelectorSuccess.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeCard/RecipeCardCustomization.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailCustomization.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailFooter.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailHeader.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailInfo.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailIngredients.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailOftenDeleted.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailProduct.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailProductListHeader.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailSponsorBanner.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailSteps.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailSwapper.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailTags.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/_shared/_custom-views/recipeDetail/RecipeDetailUnavailable.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/base-component/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/base-component/_component/counter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/base-component/_component/empty.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/base-component/_component/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/base-component/_component/like.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/base-component/_component/loading.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/base-component/_component/myMealButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/base-component/customize-views.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/basket-tags/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/basket-tags/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/catalog/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/customize-view/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/customize-view/category.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/customize-view/floating.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/customize-view/search.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/customize-view/toolbar.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/how-to-use.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/favorites/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/favorites/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/my-space/Overview.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/my-space/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/my-space/components/MySpaceFloating.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/my-space/components/MySpaceSwapper.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/my-space/customize-view/MySpace-customization.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/myMeals/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/myMeals/customize-view/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/myMeals/customize-view/recipe-card.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/myMeals/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/order-history/Overview.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/order-history/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/order-history/components/OrderDetailsHeader.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/order-history/components/OrderHistoryPreviousOrderCard.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/order-history/components/OrderHistorySearch.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/order-history/components/OrderHistorySuccessOrder.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/order-history/customize-view/OrderHistory-customization.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/customize-view/ItemSelector-customization.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/customize-view/RecipeCard-customization.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/customize-view/RecipeDetail-customization.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/customize-view/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/walkthrough.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-carousel/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-carousel/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/overview/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/_shared/_MealzBasicImp.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/_shared/_MealzBasicImpProvider.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/_shared/_MealzSingletonSample.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/_shared/_MealzStoreSetupProvider.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/_shared/_MealzStoreSetupSupplier.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/_shared/_MealzUserSetUp.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/_shared/_PackagesExplained.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/initialisation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/overview/initialisation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/installation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/providerInit.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/supplierInit.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/usage/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/usage/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/usage/_ui-customization/LoaderExample.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/usage/_ui-customization/RecipeCardExample.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/usage/component-injection.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/usage/styling.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/usage/ui-customization.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/Introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/Introduction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_base/BackgroundProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_base/BaseButtonProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_base/BaseTitleProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_base/EmptyProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_base/LoadingProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_base/RecipeCardLoadingProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_base/SearchProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_catalog/CatalogPackageCTAProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_catalog/CatalogRecipeCardProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_catalog/CatalogRecipesListNoResultsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_catalog/CatalogToolbarProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_catalog/MealsInBasketButtonSuccessProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_catalog/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_filters/FiltersCTAProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_filters/FiltersHeaderProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_filters/FiltersSectionProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_filters/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_item-selector/ItemSelectorNoResultsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_item-selector/ItemSelectorOptionProductsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_item-selector/ItemSelectorSelectedProductProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_item-selector/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_my-meals/MyMealRecipeCardProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_preferences/PreferencesDietProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_preferences/PreferencesEquipmentProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_preferences/PreferencesFooterProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_preferences/PreferencesGuestProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_preferences/PreferencesIngredientsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_preferences/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/RecipeDetailsFooterProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/RecipeDetailsHeaderProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/RecipeDetailsIngredientsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/RecipeDetailsSelectedControlProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/RecipeDetailsSponsorProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/RecipeDetailsStepsProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/_products/RecipeDetailsAddedProductProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/_products/RecipeDetailsIgnoredProductProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/_products/RecipeDetailsUnaddedProductProtocol.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/_code/_recipe-details/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/advanced/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_basket/_SendBasketToMealz.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_environment/_SetForceStoreUpdateCallBack.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/ProviderId.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/SupplierId.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_analytics-notifiers/Analytics.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_analytics-notifiers/Toaster.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/FinalCodeBlock.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/HandlePayment.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/InitializeBasket.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/NewBasketService.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/OnBasketUpdate.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/PaymentFinished.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/PaymentStarted.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/PretendProductsToRetailerProducts.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/UpdateBasketFromExternalSource.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_miamManager/_basketService/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_user/_AuthlessConfig.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_user/_GetPriceOrRedirect.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_user/_LoginRedirectionConfig.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/_shared/_user/_SetStoreRedirectionConfig.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/analytics.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/advanced/analytics.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/availability.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/basket.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/deepLink.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/i18n.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/manage-recipes-list.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/UpdatedTemplateList.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_updated-templates/CatalogViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_updated-templates/FavoritesViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_updated-templates/FilterViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_updated-templates/ItemSelectorViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_updated-templates/MyMealsViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_updated-templates/PreferencesViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_updated-templates/RecipeDetailsViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/_updated-templates/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/migrating-3x-to-4x/initialisation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/notification.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/store-configuration.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/user-configuration.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/changelogs/Core.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/changelogs/MealziOSSDK.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/changelogs/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/changelogs/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/MyBasket/Overview.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/LinkToCustomization.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/Prerequisites.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/BaseBackgroundComponent.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/BaseButtonComponent.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/BaseEmptyComponent.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/BaseHeaderComponent.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/BaseLoadingComponent.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/BaseSearchComponent.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/BaseTitleComponent.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/MealsInBasketButton.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/MealsInBasketButtonEmpty.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_components/_code/MealzSelectedControlView.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_custom-views/BaseViews.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_custom-views/CatalogRecipesListGridConfig.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_custom-views/FiltersViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_steps/ImplementFilters.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_steps/ImplementItemSelector.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_steps/ImplementMyMeals.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_steps/ImplementRecipeDetails.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_steps/ImplementSponsorDetails.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/_shared/_steps/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/base-page-views/Background.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/base-page-views/Empty.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/base-page-views/Loading.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/base-page-views/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/basket-tags/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/basket-tags/_walkthrough/AddBasketTags.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/basket-tags/custom-navigation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/basket-tags/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_custom-views/CatalogFeatureConstructor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_custom-views/CatalogPackageRowViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_custom-views/CatalogRecipesListViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_custom-views/CatalogSearchViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_custom-views/CatalogViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_custom-views/PreferencesSearchViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_custom-views/PreferencesViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_custom-views/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_walkthrough/_steps/CreateFiles.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_walkthrough/_steps/ImplementCatalogResults.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_walkthrough/_steps/ImplementCatalogSearch.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_walkthrough/_steps/ImplementCatalogView.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_walkthrough/_steps/ImplementPreferences.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_walkthrough/_steps/ImplementPreferencesSearch.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/_walkthrough/_steps/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/CatalogToolbar.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/MealPlannerCTA.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/MealsInBasketButton.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/MealsInBasketButtonEmpty.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/catalog-recipes-list/CatalogRecipesListNoResults.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/catalog-recipes-list/RecipesListTitle.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/catalog-recipes-list/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/filters/CTA.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/filters/Header.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/filters/Section.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/filters/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/package-row/CatalogPackageCTA.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/package-row/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/preferences/Diet.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/preferences/Equipment.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/preferences/Footer.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/preferences/Guest.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/preferences/Ingredients.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/preferences/SearchTag.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/preferences/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/search/SearchBar.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/components/search/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/customize-views.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/_custom-views/FavoritesFeatureConstructor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/_custom-views/FavoritesViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/_walkthrough/_steps/AddLikeButton.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/_walkthrough/_steps/CreateFavoritesPage.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/components/FavoritesTitle.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/components/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/customize-views.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/favorites/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/Overview.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/_custom-views/ItemSelectorViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/components/ItemSelectorNoResults.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/components/ItemSelectorProductOptions.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/components/ItemSelectorSelectedProduct.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/components/ProductTitle.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/components/SearchBar.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/components/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/item-selector/options-available.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_walkthrough/_steps/CreateFiles.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_walkthrough/_steps/ImplementBasket.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_walkthrough/_steps/ImplementCTA.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_walkthrough/_steps/ImplementForm.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_walkthrough/_steps/ImplementRecap.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_walkthrough/_steps/ImplementRecipePicker.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_walkthrough/_steps/ImplementResults.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_walkthrough/_steps/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/custom-navigation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/Overview.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/_custom-views/MySpaceFeatureConstructor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/_custom-views/MySpaceViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/components/MealsInBasketButton.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/components/MealsInBasketButtonEmpty.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/components/MySpaceHeader.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/components/MySpaceSelectedControl.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/my-space/customize-views.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/_custom-views/MyMealsFeatureConstructor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/_custom-views/MyMealsRecipesListGridConfig.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/_custom-views/MyMealsViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/components/MyMealRecipeCard.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/components/MyMealsTitle.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/components/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/customize-views.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/myMeals/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/Overview.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/_custom-views/OrderDetailsViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/_custom-views/OrderHistoryFeatureConstructor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/_custom-views/OrderHistoryViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/components/OrderDetailsHeader.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/components/OrderDetailsRecipeCard.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/components/OrderHistoryPreviousOrderCard.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/components/OrderHistorySearch.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/order-history/customize-views.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/_custom-views/StandaloneRecipeCardConstructor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/_walkthrough/_steps/AddRecipeCards.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/components/CatalogRecipeCard.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/components/Components.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/components/RecipeCardLoading.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/components/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/custom-navigation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/customize-views.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-carousel/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-carousel/_walkthrough/AddRecipeCarousel.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-carousel/custom-navigation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-carousel/walkthrough.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/_custom-views/RecipeDetailsFeatureConstructor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/_custom-views/RecipeDetailsProductViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/_custom-views/RecipeDetailsViewOptions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/_custom-views/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/Components.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailFooter.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailHeader.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailIngredientTitle.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailIngredients.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailIngredientsAtHomeToggleButton.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailSponsorBanner.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailSteps.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailSwapper.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailUnavailableIngredientsToggleButton.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailsFloatingNavigation.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/RecipeDetailsTags.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/_category_.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/products/Products.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/products/RecipeDetailsAddedProduct.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/products/RecipeDetailsIgnoredProduct.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/products/RecipeDetailsLoadingProduct.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/products/RecipeDetailsNotInBasketProduct.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/products/RecipeDetailsUnaddedProduct.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/components/products/_shared/RecipeProductData.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/options-available.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/overview/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/_shared/_MealzBasicImp.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/_shared/_MealzBasicImpProvider.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/_shared/_MealzSingletonSample.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/_shared/_MealzStoreSetupProvider.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/_shared/_MealzStoreSetupSupplier.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/_shared/_MealzUserSetUp.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/_shared/_PackagesExplained.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/demo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/img/addFrameworkStep1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/img/addFrameworkStep2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/img/addFrameworkStep3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/img/addMiamSwiftPackage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/img/addSwiftPackage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/img/manualSigning.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/img/openWithRosetta.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/initialisation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/installation.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/providerInit.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/supplierInit.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/usage/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/usage/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/usage/_ui-customization/BackgroundExample.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/usage/_ui-customization/RecipeCardExample.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/usage/component-injection.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/usage/img/colorOverrideSample.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/usage/img/iconOverrideSample.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/usage/styling.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/usage/ui-customization.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/advanced/AuthLess.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/advanced/GetPriceOrRedirect.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/advanced/SendBasketToMealz.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/advanced/SetForceStoreUpdateCallBack.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/advanced/SetStoreCallback.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/_payment/PaymentStartedAndFinished.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/initialisation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/initialisation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/providerInit.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/supplierInit.mdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/usage/styling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/usage/styling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/usage/styling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/usage/styling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/usage/styling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/usage/styling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/usage/styling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/usage/styling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/Prerequisites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomepageFeatures/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomepageFeatures/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feat/update-changelog" />
+        <entry key="$PROJECT_DIR$" value="docs/new-webview-mobile-library" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,6 +605,14 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+        <option value="develop" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -75,7 +630,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feat/ssr-v2",
+    "git-widget-placeholder": "docs/new-webview-library",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

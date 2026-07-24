@@ -13,7 +13,7 @@ const FeatureList = [
     imgSrc: plugAndPlayImg,
     description: (
       <>
-        Mealz provide native view that can be plugged in any configuration.
+        MealzUIKit screens plug into Android, iOS and KMM apps via a WebView powered by Mealz SSR.
       </>
     ),
   },
@@ -22,7 +22,7 @@ const FeatureList = [
     imgSrc: iaBuildinImg,
     description: (
       <>
-        Mealz SDK embed pre build component design to your application needs
+        Catalog, planner and recipe journeys ship ready to inject — initialize once, then present the screens you need.
       </>
     ),
   },
@@ -31,7 +31,7 @@ const FeatureList = [
     imgSrc: uiImg,
     description: (
       <>
-        Mealz experience and design is fully customisable 
+        Brand the experience with CSS manifests and the same styling model as Web SSR.
       </>
     ),
   },

@@ -1,0 +1,154 @@
+import Link from '@docusaurus/Link';
+
+When your supplier key is in **No Supplier** mode (encoded in the key Mealz provides), Mealz owns the basket. Extra WebView helpers cover retailer/store picking, pricing, and transfer CTAs.
+
+:::info SSR
+Web-side model: [Non-retailer integration](/docs/web_ssr/non-retailer-integration/introduction).
+:::
+
+## Supplier selector
+
+Lets the shopper pick an affiliated grocery retailer (and then a store). Mealz opens this automatically when a store is required, or other No Supplier components request it via `redirectToSupplierSelector`. You should not set the Mealz store id manually in the normal flow.
+
+export function SupplierSelectorInitLink(props) {
+  return (
+    <p>
+      See <Link to={`/docs/${props.platform}/overview/initialisation`}>Initialisation → Store</Link>.
+    </p>
+  );
+}
+
+<SupplierSelectorInitLink platform={props.platform}/>
+
+Background: [Non-retailer introduction](/docs/web_ssr/non-retailer-integration/introduction) (steps 3–4 of the transfer journey).
+
+### Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `context` | `SupplierSelectorContext` | yes | — | Why the selector opened. Today: `OpenedForAddToCartByExternalId(externalRecipeId)`. |
+| `navigationCallback` | `SupplierSelectorNavigationCallback` | yes | — | Only `exit` matters (cancel or store selected). |
+| `modifier` | Compose `Modifier` | no | fills max size | Layout. |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `SupplierSelectorNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `exit` | yes | Dismiss the selector when the user cancels **or** after a store is selected. |
+
+## Recipe pricing
+
+Shows the price for a recipe in the No Supplier context.
+
+### Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `displayRecipe` | `DisplayRecipe.FromId` | yes | — | Mealz or external recipe id. |
+| `serves` | `Int?` | no | `null` | Portion / guest count for pricing. |
+| `navigationCallback` | `RecipePricingNavigationCallback` | yes | — | Opens supplier selector when a store is missing. |
+| `modifier` | Compose `Modifier` | no | — | Layout (fixed height). |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `RecipePricingNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `redirectToSupplierSelector` | yes | `(SupplierSelectorContext) -> Unit` — present `SupplierSelectorScreen` with that context. |
+
+See also [Fetching style](/docs/web_ssr/main-features/fetching-style) and [Non-retailer setup](/docs/web_ssr/non-retailer-integration/setup).
+
+## Add to cart CTA
+
+Primary CTA next to a recipe to add ingredients to the Mealz basket and start transfer toward an affiliated retailer.
+
+Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/non-retailer-integration/no-supplier-add-to-cart-cta).
+
+### Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `displayRecipe` | `DisplayRecipe.FromId.FromExternalRecipeId` | yes | — | **External** recipe id (your content id). |
+| `serves` | `Int?` | no | `null` | Guest count for the add-to-cart flow. |
+| `navigationCallback` | `AddToCartCtaNavigationCallback` | yes | — | Details, supplier selector, catalog. |
+| `modifier` | Compose `Modifier` | no | — | Layout (fixed height). |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `AddToCartCtaNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `goToRecipeDetails` | yes | `(recipeId: String, serves: Int?) -> Unit` — open details for that recipe. |
+| `redirectToSupplierSelector` | yes | Present supplier selector with the given `SupplierSelectorContext`. |
+| `goToCatalog` | yes | `(FeatureRoute.Catalog) -> Unit` — open catalog when requested. |
+
+Base login / store / cart / exit redirects are no-ops on this callback — wire the three callbacks above.
+
+## Inject examples
+
+export function NoSupplierInject(props) {
+  if (props.platform === "android") {
+    return (
+      <pre><code className="language-kotlin">{`// Pricing
+RecipePricingView.View(
+    displayRecipe = DisplayRecipe.FromId.FromExternalRecipeId("ext-recipe-1"),
+    serves = 4,
+    navigationCallback = RecipePricingNavigationCallback(
+        redirectToSupplierSelector = { context -> /* SupplierSelectorScreenView */ }
+    )
+)
+
+// Add to cart CTA
+AddToCartCTAView.View(
+    displayRecipe = DisplayRecipe.FromId.FromExternalRecipeId("ext-recipe-1"),
+    serves = 4,
+    navigationCallback = AddToCartCtaNavigationCallback(
+        goToRecipeDetails = { id, serves -> },
+        redirectToSupplierSelector = { context -> },
+        goToCatalog = { route -> }
+    )
+)
+
+// Supplier selector
+SupplierSelectorScreenView.View(
+    context = SupplierSelectorContext.OpenedForAddToCartByExternalId("ext-recipe-1"),
+    navigationCallback = SupplierSelectorNavigationCallback(
+        exit = { /* dismiss */ }
+    )
+)`}</code></pre>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`// Use RecipePricingViewController / AddToCartCTAViewController /
+// SupplierSelectorViewController.companion.get(…) with the same parameters.`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`RecipePricing(
+    displayRecipe = DisplayRecipe.FromId.FromExternalRecipeId("ext-recipe-1"),
+    serves = 4,
+    navigationCallback = RecipePricingNavigationCallback(
+        redirectToSupplierSelector = { /* SupplierSelectorScreen */ }
+    )
+)
+
+AddToCart(
+    displayRecipe = DisplayRecipe.FromId.FromExternalRecipeId("ext-recipe-1"),
+    serves = 4,
+    navigationCallback = AddToCartCtaNavigationCallback(
+        goToRecipeDetails = { id, serves -> },
+        redirectToSupplierSelector = { },
+        goToCatalog = { }
+    )
+)
+
+SupplierSelectorScreen(
+    context = SupplierSelectorContext.OpenedForAddToCartByExternalId("ext-recipe-1"),
+    navigationCallback = SupplierSelectorNavigationCallback(exit = { })
+)`}</code></pre>
+  );
+}
+
+<NoSupplierInject platform={props.platform}/>

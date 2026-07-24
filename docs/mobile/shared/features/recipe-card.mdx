@@ -1,0 +1,101 @@
+Embed a single recipe card in search grids, shelves, or product pages. The card is an opaque WebView component (`FeatureRoute.Recipe.Card`).
+
+:::info SSR
+In-WebView behaviour: [Recipe card (SSR)](/docs/web_ssr/main-features/recipe-card).  
+Events: [Analytics](/docs/web_ssr/analytics) (`recipe.show`, `recipe.display`, `recipe.like`, …).
+:::
+
+## Visual overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeCard.png"
+  alt="Recipe card (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `displayRecipe` | `DisplayRecipe` | yes | — | Which recipe to show (Mealz id, external id, or surrounding products). |
+| `orientation` | `RecipeCardOrientation` | no | `VERTICAL` | `VERTICAL` or `HORIZONTAL` layout. |
+| `dimensions` | `RecipeCardDimensions?` | no | orientation defaults | Pixel height (and optional width). Defaults: vertical height `360`, horizontal height `188`; width fills parent unless set. |
+| `displayVariant` | `Int?` | no | `null` | Visual variant of the card (SSR `display_variant`). |
+| `navigationCallback` | `RecipeCardNavigationCallback` | yes | — | Login / store / cart / exit + open recipe details. |
+| `modifier` | Compose `Modifier` | no | — | Layout wrapper. |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `DisplayRecipe`
+
+| Variant | Fields | When to use |
+|---------|--------|-------------|
+| `FromId.FromMealzRecipeId(id)` | Mealz recipe id | You know the Mealz id. |
+| `FromId.FromExternalRecipeId(id)` | Your / retailer recipe id | Recipe mapped in Mealz under an external id. |
+| `FromSurroundingProducts(surroundingProductsIdList, currentProductsIdList?)` | Product SKUs around the shelf | Suggest a recipe from nearby products (`currentProductsIdList` optional). |
+
+### `RecipeCardNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `redirectToLogIn` | yes | Open login when required. |
+| `redirectToStoreLocator` | yes | Open store picker when required. |
+| `redirectToCart` | yes | Open retailer cart. |
+| `exit` | yes | Dismiss / leave the card host if requested. |
+| `goToRecipeDetails` | yes | `(FromMealzRecipeId, serves: Int?) -> Unit` — open recipe details with optional guest count. |
+
+## Inject
+
+export function RecipeCardInject(props) {
+  if (props.platform === "android") {
+    return (
+      <pre><code className="language-kotlin">{`RecipeCardView.View(
+    displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
+    orientation = RecipeCardOrientation.VERTICAL,
+    displayVariant = 1,
+    navigationCallback = RecipeCardNavigationCallback(
+        redirectToLogIn = { },
+        redirectToStoreLocator = { },
+        redirectToCart = { },
+        exit = { },
+        goToRecipeDetails = { recipe, serves ->
+            // Open RecipeDetailsScreenView(recipe, serves)
+        }
+    )
+)`}</code></pre>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`RecipeCardViewController.companion.get(
+    displayRecipe: DisplayRecipe.FromId.FromMealzRecipeId(id: "12838"),
+    orientation: .vertical,
+    displayVariant: KotlinInt(value: 1),
+    navigationCallback: RecipeCardNavigationCallback(
+        redirectToLogIn: { },
+        redirectToStoreLocator: { },
+        redirectToCart: { },
+        exit: { },
+        goToRecipeDetails: { recipe, serves in
+            // Present RecipeDetailsViewController
+        }
+    )
+)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`RecipeCard(
+    displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
+    orientation = RecipeCardOrientation.VERTICAL,
+    displayVariant = 1,
+    navigationCallback = RecipeCardNavigationCallback(
+        redirectToLogIn = { },
+        redirectToStoreLocator = { },
+        redirectToCart = { },
+        exit = { },
+        goToRecipeDetails = { recipe, serves -> /* navigate */ }
+    )
+)`}</code></pre>
+  );
+}
+
+<RecipeCardInject platform={props.platform}/>

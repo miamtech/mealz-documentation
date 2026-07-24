@@ -37,3 +37,18 @@
   justify-content: center;
   gap: 16px;
 }
+
+.navbar-version-section {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+  opacity: 1;
+  padding: 0.5rem 0.75rem 0.15rem;
+  pointer-events: none;
+}
+
+.navbar .dropdown__menu .navbar-version-section {
+  color: var(--ifm-color-emphasis-700);
+}

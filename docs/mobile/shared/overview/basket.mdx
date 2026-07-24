@@ -1,0 +1,159 @@
+:::info SSR
+Basket flows call Mealz SSR under the hood (including `payment-started`). See [SSR basket synchronization](/docs/web_ssr/set-up-and-usage/basket-synchronization) for the shared model.
+:::
+
+Retailer apps must keep the host cart and the Mealz basket aligned using `BasketSynchronizationManager`.
+
+## Register a synchronizer
+
+export function RegisterTiming(props) {
+  const startCall =
+    props.platform === "ios" ? (
+      <code>SdkConfiguration.shared.start</code>
+    ) : (
+      <code>SdkConfiguration.start</code>
+    );
+  return (
+    <p>
+      Register <strong>after</strong> {startCall} and <strong>before</strong> any Mealz screen. If you never register,
+      Mealz → cart updates are <strong>silently ignored</strong> (<code>updateBasket</code> is not called).
+    </p>
+  );
+}
+
+<RegisterTiming platform={props.platform}/>
+
+Implement `RetailerBasketSynchronizer` so Mealz can push product quantity changes into your cart:
+
+export function RegisterSynchronizer(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`BasketSynchronizationManager.shared.registerRetailerBasketSynchronizer(
+    synchronizer: /* RetailerBasketSynchronizer */
+)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`import ai.mealz.uikit.config.BasketSynchronizationManager
+import ai.mealz.uikit.config.RetailerBasketSynchronizer
+import ai.mealz.uikit.model.RetailerProduct
+
+BasketSynchronizationManager.registerRetailerBasketSynchronizer(
+    object : RetailerBasketSynchronizer {
+        override fun updateBasket(productLists: List<RetailerProduct>) {
+            // Apply Mealz signed deltas to the retailer cart (id + quantity)
+        }
+    }
+)`}</code></pre>
+  );
+}
+
+<RegisterSynchronizer platform={props.platform}/>
+
+### `RetailerProduct`
+
+| Field | Type | Meaning |
+|-------|------|---------|
+| `id` | `String` | Retailer product / SKU id. |
+| `quantity` | `Int` | See **Two directions** below — meaning differs by API. |
+
+:::tip Two directions
+Basket sync uses **two different contracts**:
+
+| Direction | API | Quantity meaning |
+|-----------|-----|------------------|
+| Mealz → host | `RetailerBasketSynchronizer.updateBasket` | **Signed deltas**: positive = add, negative = remove. Apply the change; do not treat the value as the final cart quantity. |
+| Host → Mealz | `notifyRetailerBasketChanged` | **Absolute** quantities for Mealz-related lines currently in the host cart (non-Mealz SKUs omitted). |
+:::
+
+:::warning Deltas, not full quantities
+`updateBasket` receives **signed deltas** (quantity changes to apply), aligned with Mealz SSR basket sync.
+
+In older MealzCore / MealzAndroid / MealziOSSDK libraries, callbacks often exposed the **final expected quantities**. That model caused desyncs when several actions ran in parallel. MealzUIKit matches the SSR delta model so concurrent add/remove operations stay consistent — treat each `RetailerProduct.quantity` as a change to apply, not as an absolute stock level in the cart.
+:::
+
+After Mealz pushes deltas, apply them to your cart and call `notifyRetailerBasketChanged` promptly. Mealz keeps **pending updates for about 10 seconds** while waiting for the host to echo the new absolute basket; slow confirmation can cause races with the next WebView basket state.
+
+## Notify Mealz when the retailer cart changes
+
+Whenever the user (or your app) changes the retailer cart outside Mealz, push the absolute Mealz-related product list:
+
+export function NotifyBasket(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`BasketSynchronizationManager.shared.notifyRetailerBasketChanged(
+    productLists: [
+        RetailerProduct(id: "sku-1", quantity: 2),
+        RetailerProduct(id: "sku-2", quantity: 1),
+    ]
+)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`BasketSynchronizationManager.notifyRetailerBasketChanged(
+    listOf(
+        RetailerProduct(id = "sku-1", quantity = 2),
+        RetailerProduct(id = "sku-2", quantity = 1),
+    )
+)`}</code></pre>
+  );
+}
+
+<NotifyBasket platform={props.platform}/>
+
+## Checkout / payment
+
+When the user starts checkout on the retailer side:
+
+export function PaymentApis(props) {
+  if (props.platform === "ios") {
+    return (
+      <>
+        <pre><code className="language-swift">{`BasketSynchronizationManager.shared.paymentStarted(
+    totalPrice: 42.50,
+    productList: currentRetailerProducts,
+    orderId: nil // optional
+)`}</code></pre>
+        <p>
+          <code>paymentStarted</code> is <strong>best-effort</strong>: network / API failures are swallowed so the retailer app does not crash.
+          Ensure retailer mode and an external store are set beforehand; do not rely on exceptions for control flow.
+        </p>
+        <p>When payment succeeds:</p>
+        <pre><code className="language-swift">{`BasketSynchronizationManager.shared.handlePayment(
+    totalPrice: 42.50,
+    productList: paidProducts,
+    orderId: "order-123"
+) {
+    // Optional: clear retailer cart, navigate away, etc.
+}`}</code></pre>
+      </>
+    );
+  }
+  return (
+    <>
+      <pre><code className="language-kotlin">{`BasketSynchronizationManager.paymentStarted(
+    totalPrice = 42.50,
+    productList = currentRetailerProducts,
+    orderId = null // optional
+)`}</code></pre>
+      <p>
+        <code>paymentStarted</code> is <strong>best-effort</strong>: network / API failures are swallowed so the retailer app does not crash.
+        Ensure retailer mode and an external store are set beforehand; do not rely on exceptions for control flow.
+      </p>
+      <p>When payment succeeds:</p>
+      <pre><code className="language-kotlin">{`BasketSynchronizationManager.handlePayment(
+    totalPrice = 42.50,
+    productList = paidProducts,
+    orderId = "order-123",
+) {
+    // Optional: clear retailer cart, navigate away, etc.
+}`}</code></pre>
+    </>
+  );
+}
+
+<PaymentApis platform={props.platform}/>
+
+:::warning
+`paymentStarted` and `handlePayment` are **retailer mode only** and require a store set via `setSelectedStoreWithExternalId`.
+:::

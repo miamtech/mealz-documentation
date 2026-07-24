@@ -1,2 +1,2 @@
 If you would like to customize your components, such as the Background, Loader, or RecipeCard, 
-you can read our documentation [here](/docs/ios/usage/ui-customization).
+you can read our documentation [here](/docs/4.1/ios/usage/ui-customization).

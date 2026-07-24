@@ -1,0 +1,99 @@
+MealzUIKit UI is SSR HTML/CSS inside the WebView. Branding is applied through **CSS manifests**, not native theme protocols (those belonged to the Older MealzCore stack). Defaults already look fine — register manifests only when you need brand overrides.
+
+## Where to put your files
+
+The library only serves customization files that you **register** and that live in your app package next to those manifests:
+
+export function StyleFileLocations(props) {
+  if (props.platform === "android") {
+    return (
+      <ul>
+        <li>Put manifests and CSS under <code>app/src/main/assets/</code> (for example <code>assets/styles/</code>).</li>
+        <li>Register with a path relative to the assets root, e.g. <code>styles/base-manifest.json</code>.</li>
+      </ul>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <ul>
+        <li>Put manifests and CSS in the app main bundle (same relative folder layout you will pass to <code>registerManifest</code>).</li>
+        <li>Register with that bundle-relative path, e.g. <code>styles/base-manifest.json</code>.</li>
+      </ul>
+    );
+  }
+  return (
+    <ul>
+      <li>Expose the same folder layout on each platform target (Android <code>assets/</code>, iOS main bundle).</li>
+      <li>From shared code, register platform-resolvable paths (or register once per platform actual).</li>
+    </ul>
+  );
+}
+
+<StyleFileLocations platform={props.platform}/>
+
+CSS (and other assets) listed in a manifest’s `links` array are resolved **relative to the directory that contains that manifest**. Keep overrides under that tree — files outside the registered manifest folders are not loaded.
+
+Example layout:
+
+```text
+styles/
+  base-manifest.json      # links → ./override/base.css
+  catalog-manifest.json
+  override/
+    base.css
+    catalog.css
+```
+
+## Register a manifest
+
+export function RegisterManifest(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`CustomStyle.companion.getInstance().registerManifest(
+    path: "styles/base-manifest.json",
+    type: .base
+)
+
+// Optionally per feature:
+CustomStyle.companion.getInstance().registerManifest(
+    path: "styles/catalog-manifest.json",
+    type: .catalog
+)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`import ai.mealz.uikit.ui.webview.CustomStyle
+import ai.mealz.uikit.ui.webview.ManifestFeatureType
+
+CustomStyle.getInstance().registerManifest(
+    path = "styles/base-manifest.json",
+    type = ManifestFeatureType.BASE
+)
+
+// Optionally per feature:
+CustomStyle.getInstance().registerManifest(
+    path = "styles/catalog-manifest.json",
+    type = ManifestFeatureType.CATALOG
+)`}</code></pre>
+  );
+}
+
+<RegisterManifest platform={props.platform}/>
+
+`ManifestFeatureType` values: `BASE`, `CATALOG`, `PLANNER`, `RECIPE`.
+
+Example manifest:
+
+```json
+{
+  "updated-at": "2026-01-09T11-26-00",
+  "layer": "retailer",
+  "links": [
+    "./override/base.css"
+  ]
+}
+```
+
+:::tip SSR styling
+CSS variables and class overrides follow the same model as web: [Styling (SSR)](/docs/web_ssr/styling) and [Fetching style](/docs/web_ssr/main-features/fetching-style).
+:::

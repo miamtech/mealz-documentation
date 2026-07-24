@@ -1,51 +1,339 @@
-export var platform 
+import Link from '@docusaurus/Link';
 
-
-import AndroidMealzSingletonSample from '../../android/overview/_shared/_MealzSingletonSample.mdx'
-import IOSMealzSingletonSample from '../../ios/overview/_shared/_MealzSingletonSample.mdx'
-
-export function Package(props){
-    if(props.platform == "android") { return "an Android Module" } else return "a Swift Package"
+export function InitIntro(props) {
+  if (props.platform === "android") {
+    return (
+      <p>
+        After installing MealzUIKit, start the library once at app launch (for example in <code>Application.onCreate</code>).
+      </p>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <p>
+        After installing MealzUIKit, start the library once at app launch (for example in <code>AppDelegate</code> / <code>@main</code> app init).
+        On iOS, Kotlin <code>object</code> APIs are accessed via <code>.shared</code> (for example <code>SdkConfiguration.shared</code>).
+      </p>
+    );
+  }
+  return (
+    <p>
+      After installing MealzUIKit, start the library once from your KMM app entry (platform <code>SdkContext</code> supplied from Android / iOS actuals).
+    </p>
+  );
 }
 
-export function MealzSingletonSample(props) {
-  if(props.platform == "android") { return <AndroidMealzSingletonSample></AndroidMealzSingletonSample>  } else return <IOSMealzSingletonSample></IOSMealzSingletonSample>
+<InitIntro platform={props.platform}/>
+
+## Start the library
+
+export function StartLibrary(props) {
+  if (props.platform === "android") {
+    return (
+      <pre><code className="language-kotlin">{`import ai.mealz.uikit.config.SdkConfiguration
+import ai.mealz.uikit.config.SdkContext
+import ai.mealz.uikit.model.Environment
+
+SdkConfiguration.start(
+    supplierKey = WEB_SUPPLIER_KEY, // base64-encoded web key
+    context = SdkContext(applicationContext),
+    environment = Environment.PROD // or Environment.DEV
+)`}</code></pre>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`import MealzUIKit
+
+SdkConfiguration.shared.start(
+    supplierKey: WEB_SUPPLIER_KEY, // base64-encoded web key
+    context: SdkContext(),
+    environment: .prod // or .dev
+)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`import ai.mealz.uikit.config.SdkConfiguration
+import ai.mealz.uikit.config.SdkContext
+import ai.mealz.uikit.model.Environment
+
+// From commonMain — pass a platform-provided SdkContext
+SdkConfiguration.start(
+    supplierKey = WEB_SUPPLIER_KEY, // base64-encoded web key
+    context = sdkContext,
+    environment = Environment.PROD // or Environment.DEV
+)`}</code></pre>
+  );
 }
 
-## Create module
+<StartLibrary platform={props.platform}/>
 
-First & foremost, we recommend creating <Package platform={props.platform}></Package> to house all your Mealz SDK related code.
-We understand the issues associated with sharing your entire codebase with us, so creating a shareable module should quell those fears.
-The reason we'd like to have it shareable is so that we can discover & solve bugs as quickly as possible.
-Instead of "playing telephone" about underlying bugs, having access to your implementation will save you time (& money).
-
-If creating a separate package for the MealzManager creates a circular dependency, it is okay to embed that with your existing code.
-We just ask that you at least make your UI code a separate package so that we can advise you (& make updates if necessary).
-
-## MealzManager
-
-We recommend that all the mapping functions that will define the interactions between the SDK and
-the host app be wrapped in a main **MealzManager** class.
-This class will use methods and attributes defined in our core SDK classes to manage objects such
-as the User profile, the Basket, or the selected Store.
-
-:::tip
-Make sure this main **MealzManager** class is a singleton and instantiated only once in your runtime.
-Here
-is a basic implementation
+:::tip Supplier key
+MealzUIKit expects the **web** supplier key format (base64 JSON including `supplierId`, `origin`, `domain`, `noSupplier`, …) — the same key family used by Mealz SSR. If you do not already have a web/SSR key, Mealz will provide one for your integration.
 :::
 
-<MealzSingletonSample platform={props.platform}></MealzSingletonSample>
+## User
 
-## Initialisation types
+export function UserApis(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`// Logged-in user
+SdkConfiguration.shared.connectUserWithId(userId: "user-123")
+SdkConfiguration.shared.getCurrentUser()
+SdkConfiguration.shared.disconnectCurrentUser()
 
-Regarding your type of app you can be belong to one of the two type of initialisation :
-  - **Provider** -> You provide recipes and use mealz to push it to a retailer. For example, a food delivery service that works with multiple grocery stores. 
-  - **Supplier** -> You are a retailer and you have your own groceries list. For example, a traditional grocery store. 
+// Authless browsing (no account yet)
+SdkConfiguration.shared.enableAuthlessMode()
+SdkConfiguration.shared.disableAuthlessMode()
+SdkConfiguration.shared.isAuthlessModeEnabled()`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`// Logged-in user
+SdkConfiguration.connectUserWithId("user-123")
+SdkConfiguration.getCurrentUser()
+SdkConfiguration.disconnectCurrentUser()
 
-:::tip
-If you don't know which configuration to use you can either ask us or decode the base64 key
-that we have provided you and see which field (provider or supplier) has been filled
-:::
+// Authless browsing (no account yet)
+SdkConfiguration.enableAuthlessMode()
+SdkConfiguration.disableAuthlessMode()
+SdkConfiguration.isAuthlessModeEnabled()`}</code></pre>
+  );
+}
 
+<UserApis platform={props.platform}/>
 
+### Authless mode
+
+**Default:** enabled (`isAuthlessModeEnabled()` is `true` until you call `disableAuthlessMode()`). Call `disableAuthlessMode()` when shoppers must log in before using Mealz.
+
+While no retailer user id is connected, the library treats the shopper as a guest (`User.Authless`) with a stable authless id. That lets them browse and fill a Mealz basket before login.
+
+When you later call `connectUserWithId`:
+
+1. If authless mode is **enabled** and the current user is still `User.Authless`, Mealz may **merge** the guest basket into the logged-in basket.
+2. Merge runs only when a **store is already selected** (external id in retailer mode, or Mealz store id in No Supplier mode). Without a store, login still succeeds; merge is skipped.
+3. Merge is **best-effort** (network failures are swallowed and do not block `connectUserWithId`).
+
+Related SSR concepts: [Login and logout](/docs/web_ssr/set-up-and-usage/login-and-logout).
+
+export function SessionApis(props) {
+  if (props.platform === "ios") {
+    return (
+      <>
+        <p>Optional session control (call <strong>before</strong> any SSR/WebView use if you need a fixed id):</p>
+        <pre><code className="language-swift">{`SdkConfiguration.shared.forceSessionIdTo(uuid: "00000000-0000-0000-0000-000000000000")
+let sessionId = SdkConfiguration.shared.getCurrentSessionId()`}</code></pre>
+      </>
+    );
+  }
+  return (
+    <>
+      <p>Optional session control (call <strong>before</strong> any SSR/WebView use if you need a fixed id):</p>
+      <pre><code className="language-kotlin">{`SdkConfiguration.forceSessionIdTo("00000000-0000-0000-0000-000000000000")
+val sessionId = SdkConfiguration.getCurrentSessionId()`}</code></pre>
+    </>
+  );
+}
+
+<SessionApis platform={props.platform}/>
+
+## Store
+
+export function StoreApis(props) {
+  if (props.platform === "ios") {
+    return (
+      <>
+        <p><strong>Retailer mode</strong> — set the shopper's store with your POS / external id:</p>
+        <pre><code className="language-swift">{`SdkConfiguration.shared.setSelectedStoreWithExternalId(externalId: "store-ext-42")`}</code></pre>
+        <p>
+          <strong>No Supplier mode</strong> — you should <strong>not</strong> set the store yourself in the normal flow.
+          Store (and retailer) selection is handled by the{' '}
+          <a href="/docs/web_ssr/non-retailer-integration/introduction">Supplier selector</a> flow:
+          Mealz opens it automatically, or other No Supplier components request it when a store is required.
+        </p>
+        <pre><code className="language-swift">{`// Only for a specific advanced need — prefer letting SupplierSelector drive this
+SdkConfiguration.shared.setSelectedStoreWithMealzId(mealzId: "mealz-store-id")`}</code></pre>
+      </>
+    );
+  }
+  return (
+    <>
+      <p><strong>Retailer mode</strong> — set the shopper's store with your POS / external id:</p>
+      <pre><code className="language-kotlin">{`SdkConfiguration.setSelectedStoreWithExternalId("store-ext-42")`}</code></pre>
+      <p>
+        <strong>No Supplier mode</strong> — you should <strong>not</strong> set the store yourself in the normal flow.
+        Store (and retailer) selection is handled by the{' '}
+        <a href="/docs/web_ssr/non-retailer-integration/introduction">Supplier selector</a> flow:
+        Mealz opens it automatically, or other No Supplier components request it when a store is required.
+      </p>
+      <pre><code className="language-kotlin">{`// Only for a specific advanced need — prefer letting SupplierSelector drive this
+SdkConfiguration.setSelectedStoreWithMealzId("mealz-store-id")`}</code></pre>
+    </>
+  );
+}
+
+<StoreApis platform={props.platform}/>
+
+Using the wrong store API for the key mode throws (external ids are retailer-only; Mealz ids are No Supplier-only).
+
+## First integration checklist
+
+export function FirstIntegrationChecklist(props) {
+  const basket = `/docs/${props.platform}/overview/basket`;
+  const catalog = `/docs/${props.platform}/features/catalog`;
+  const noSupplier = `/docs/${props.platform}/features/no-supplier`;
+  const styling = `/docs/${props.platform}/advanced/styling`;
+  const startCall =
+    props.platform === "ios"
+      ? "SdkConfiguration.shared.start(...)"
+      : "SdkConfiguration.start(...)";
+
+  return (
+    <>
+      <h3>Retailer vs No Supplier</h3>
+      <p>
+        You do <strong>not</strong> pick the mode in code. It is encoded in the supplier key Mealz gives you (
+        <code>noSupplier</code> flag). Use the same <code>{startCall}</code> flow either way; APIs that only apply to one mode
+        (retailer basket sync vs No Supplier helpers) simply become relevant depending on that key.
+      </p>
+      <p>
+        For No Supplier UI helpers, see <Link to={noSupplier}>No Supplier</Link>.
+      </p>
+
+      <h3>Retailer mode</h3>
+      <ol>
+        <li>Call <code>{startCall}</code> once at app launch.</li>
+        <li>Connect the shopper with <code>connectUserWithId</code> (or keep authless browsing — see above).</li>
+        <li>Set the store with <code>setSelectedStoreWithExternalId</code>.</li>
+        <li>
+          Register the basket synchronizer <strong>after</strong> <code>start</code> and <strong>before</strong> any Mealz screen — see{' '}
+          <Link to={basket}>Basket synchronization</Link>.
+        </li>
+        <li>
+          Present a first screen (usually Catalog) — see <Link to={catalog}>Catalog</Link> under Features.
+        </li>
+        <li>
+          Optional: register CSS manifests — <Link to={styling}>Styling</Link> (defaults already work).
+        </li>
+      </ol>
+
+      <h3>No Supplier mode</h3>
+      <ol>
+        <li>Call <code>{startCall}</code> with your No Supplier web key (mode is in the key).</li>
+        <li>Connect the shopper or keep authless browsing.</li>
+        <li>
+          Do <strong>not</strong> set the store yourself in the normal flow — let{' '}
+          <Link to={noSupplier}>Supplier selector</Link> drive it.
+        </li>
+        <li>
+          Present Catalog and/or No Supplier helpers (pricing, add-to-cart CTA) — see Features.
+        </li>
+        <li>
+          Optional: register CSS manifests — <Link to={styling}>Styling</Link>.
+        </li>
+      </ol>
+    </>
+  );
+}
+
+<FirstIntegrationChecklist platform={props.platform}/>
+
+## Next steps
+
+export function InitNextSteps(props) {
+  return (
+    <ol>
+      <li>
+        <Link to={`/docs/${props.platform}/overview/basket`}>Basket synchronization</Link> (retailer mode)
+      </li>
+      <li>Feature screens under <strong>Features</strong></li>
+      <li>
+        Optional branding: <Link to={`/docs/${props.platform}/advanced/styling`}>Styling</Link>
+      </li>
+    </ol>
+  );
+}
+
+<InitNextSteps platform={props.platform}/>
+
+## Optional configuration
+
+export function OptionalConfig(props) {
+  const isIos = props.platform === "ios";
+  const langCode = isIos ? (
+    <pre><code className="language-swift">{`SdkConfiguration.shared.setSelectedLanguage(language: .fr) // .en, …
+SdkConfiguration.shared.getCurrentLanguage()`}</code></pre>
+  ) : (
+    <pre><code className="language-kotlin">{`SdkConfiguration.setSelectedLanguage(Language.FR) // Language.EN, …
+SdkConfiguration.getCurrentLanguage()`}</code></pre>
+  );
+  const profilingCode = isIos ? (
+    <pre><code className="language-swift">{`SdkConfiguration.shared.enableProfiling()
+SdkConfiguration.shared.disableProfiling()`}</code></pre>
+  ) : (
+    <pre><code className="language-kotlin">{`SdkConfiguration.enableProfiling()
+SdkConfiguration.disableProfiling()`}</code></pre>
+  );
+  const labelsCode = isIos ? (
+    <pre><code className="language-swift">{`SdkConfiguration.shared.enableCustomLabels()
+SdkConfiguration.shared.disableCustomLabels()`}</code></pre>
+  ) : (
+    <pre><code className="language-kotlin">{`SdkConfiguration.enableCustomLabels()
+SdkConfiguration.disableCustomLabels()`}</code></pre>
+  );
+  const debugCode = isIos ? (
+    <pre><code className="language-swift">{`SdkConfiguration.shared.enableDebugMode()
+SdkConfiguration.shared.disableDebugMode()`}</code></pre>
+  ) : (
+    <pre><code className="language-kotlin">{`SdkConfiguration.enableDebugMode()
+SdkConfiguration.disableDebugMode()`}</code></pre>
+  );
+
+  let debugBlurb = "Developer-only. Do not ship with this enabled in production.";
+  if (props.platform === "android") {
+    debugBlurb =
+      "Developer-only. Enables Chrome WebView debugging. Do not ship with this enabled in production.";
+  } else if (props.platform === "ios") {
+    debugBlurb =
+      "Developer-only. Makes WKWebView inspectable. Do not ship with this enabled in production.";
+  }
+
+  return (
+    <>
+      <h3>Language</h3>
+      <p><strong>Default:</strong> <code>Language.FR</code> (<code>fr</code>).</p>
+      {langCode}
+      <p>
+        Sets the locale used for SSR content (<code>Language-id</code>). Values map to ISO language codes (
+        <code>fr</code>, <code>en</code>, …). See{' '}
+        <a href="/docs/web_ssr/customization/internationalization">SSR internationalization</a> for custom label files.
+      </p>
+
+      <h3>Profiling</h3>
+      <p><strong>Default:</strong> enabled.</p>
+      {profilingCode}
+      <p>
+        Controls personalization across Mealz features (recommendations, tailored catalog content, …). Mirror the shopper's
+        consent: if profiling / cookies are refused, call <code>disableProfiling()</code>. This maps to the SSR{' '}
+        <code>profiling</code> header (<code>true</code> / <code>false</code>).
+      </p>
+
+      <h3>Custom labels</h3>
+      <p><strong>Default:</strong> disabled.</p>
+      {labelsCode}
+      <p>
+        When enabled, SSR uses your <strong>custom i18n override</strong> files (if configured with Mealz) instead of the
+        default Mealz copy. Keep this off unless you have custom label packs. Details:{' '}
+        <a href="/docs/web_ssr/customization/internationalization">SSR internationalization</a>.
+      </p>
+
+      <h3>Debug mode</h3>
+      <p><strong>Default:</strong> disabled.</p>
+      {debugCode}
+      <p>{debugBlurb}</p>
+    </>
+  );
+}
+
+<OptionalConfig platform={props.platform}/>

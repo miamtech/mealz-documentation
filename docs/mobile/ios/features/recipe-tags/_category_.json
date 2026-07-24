@@ -1,0 +1,8 @@
+{
+  "label": "Recipe tags",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "ios/features/recipe-tags/index"
+  }
+}

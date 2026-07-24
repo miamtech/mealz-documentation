@@ -1,0 +1,45 @@
+import Link from '@docusaurus/Link';
+
+My Meals is a **Catalog route**. Use the same catalog entry with:
+
+```kotlin
+FeatureRoute.Catalog.MyMeals(
+    showTabSelector = true,
+    // defaultSelectedTab is currently limited: Recipes is always shown first
+    basketTransferUrl = null
+)
+```
+
+:::info SSR
+Basket / meals UX aligns with [SSR basket synchronization](/docs/web_ssr/set-up-and-usage/basket-synchronization) and catalog journeys.
+:::
+
+## Visual overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png"
+  alt="My Meals / basket preview (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+Same as Catalog (`route` + `CatalogNavigationCallback`) — see the Catalog link below. Route-specific:
+
+| Route field | Type | Required | Default | What it does |
+|-------------|------|----------|---------|--------------|
+| `showTabSelector` | `Boolean` | no | `false` | Show Recipes / Products tab chrome. |
+| `defaultSelectedTab` | `MyMealsTab?` (`Recipes` / `Products`) | no | `null` | **Limited today**: Recipes is always the first visible page; prefer `showTabSelector` only. |
+| `basketTransferUrl` | `String?` | no | `null` | Optional transfer URL (No Supplier / affiliate flows). Query params from this URL are forwarded into the WebView. |
+
+Set `goToHomeCatalog` when My Meals is presented as root.
+
+export function MyMealsCatalogLink(props) {
+  return (
+    <p>
+      Full entry docs: <Link to={`/docs/${props.platform}/features/catalog`}>Catalog</Link>.
+    </p>
+  );
+}
+
+<MyMealsCatalogLink platform={props.platform}/>

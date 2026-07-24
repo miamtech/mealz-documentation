@@ -7,7 +7,7 @@ import rehypeKatex from "rehype-katex";
 
 export default {
   title: "Mealz Documentation",
-  tagline: "Mealz for native iOS, Android and Web apps",
+  tagline: "Mealz for native iOS, Android, KMM and Web apps",
   favicon: "img/favicon.ico",
   url: "https://miamtech.github.io/",
   baseUrl: "/mealz-documentation/",
@@ -45,27 +45,27 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "5.7",
+            label: "1.0.0",
             path: "/"
           },
-            "5.6": {
-              banner: 'none',
-            },
-            "5.5": {
-              banner: 'none',
-            },
-            "5.4": {
-              banner: 'none',
-            },
-            "5.3": {
-              banner: 'none',
-            },
-            "5.2": {
-              banner: 'none',
-            },
-            //"5.1": {
-            //  banner: 'none',
-            //},
+          "5.7": {
+            banner: 'none',
+          },
+          "5.6": {
+            banner: 'none',
+          },
+          "5.5": {
+            banner: 'none',
+          },
+          "5.4": {
+            banner: 'none',
+          },
+          "5.3": {
+            banner: 'none',
+          },
+          "5.2": {
+            banner: 'none',
+          },
           "5.0": {
             banner: 'none',
           },
@@ -170,9 +170,22 @@ export default {
             to: "docs/android/Introduction",
             items: [
               {
-                label: "5.7",
+                type: "html",
+                value: '<div class="navbar-version-section">New (WebView)</div>',
+              },
+              {
+                label: "1.0.0",
                 to: "docs/android/Introduction",
                 activeBasePath: "docs/android/",
+              },
+              {
+                type: "html",
+                value: '<div class="navbar-version-section">Older (MealzCore / MealzAndroid)</div>',
+              },
+              {
+                label: "5.7",
+                to: "docs/5.7/android/Introduction",
+                activeBasePath: "docs/5.7/android/",
               },
               {
                 label: "5.6",
@@ -199,7 +212,6 @@ export default {
                 to: "docs/5.2/android/Introduction",
                 activeBasePath: "docs/5.2/android/",
               },
-
               {
                 label: "5.0-5.1",
                 to: "docs/5.0/android/Introduction",
@@ -228,9 +240,22 @@ export default {
             to: "docs/ios/Introduction",
             items: [
               {
-                label: "5.7",
+                type: "html",
+                value: '<div class="navbar-version-section">New (WebView)</div>',
+              },
+              {
+                label: "1.0.0",
                 to: "docs/ios/Introduction",
                 activeBasePath: "docs/ios/",
+              },
+              {
+                type: "html",
+                value: '<div class="navbar-version-section">Older (MealzCore / MealziOSSDK)</div>',
+              },
+              {
+                label: "5.7",
+                to: "docs/5.7/ios/Introduction",
+                activeBasePath: "docs/5.7/ios/",
               },
               {
                 label: "5.6",
@@ -257,7 +282,6 @@ export default {
                 to: "docs/5.2/ios/Introduction",
                 activeBasePath: "docs/5.2/ios/",
               },
-
               {
                 label: "5.0-5.1",
                 to: "docs/5.0/ios/Introduction",
@@ -278,6 +302,22 @@ export default {
                 to: "docs/3/ios/Introduction",
                 activeBasePath: "docs/3/ios/",
               }
+            ]
+          },
+          {
+            position: "left",
+            label: "KMM",
+            to: "docs/kmm/Introduction",
+            items: [
+              {
+                type: "html",
+                value: '<div class="navbar-version-section">New (WebView)</div>',
+              },
+              {
+                label: "1.0.0",
+                to: "docs/kmm/Introduction",
+                activeBasePath: "docs/kmm/",
+              },
             ]
           },
           {
@@ -370,6 +410,10 @@ export default {
               {
                 label: "iOS",
                 to: "docs/ios/Introduction",
+              },
+              {
+                label: "KMM",
+                to: "docs/kmm/Introduction",
               },
               {
                 label: "Web SDK",

@@ -112,4 +112,4 @@ Dimension.xlPadding = 40.dp
 In version 4.0.0 we have moved away from the Template singleton.
 It has been replaced by protocols that you will need to implement.
 
-All views used in the meal planner are implemented using the new [templating system](/docs/android/usage/ui-customization).
+All views used in the meal planner are implemented using the new [templating system](/docs/5.5/android/usage/ui-customization).

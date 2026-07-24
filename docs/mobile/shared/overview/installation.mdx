@@ -1,0 +1,64 @@
+import Link from '@docusaurus/Link';
+
+export function InstallContent(props) {
+  if (props.platform === "android") {
+    return (
+      <>
+        <p>MealzUIKit is published as <code>ai.mealz:ui-kit</code> (Maven Central).</p>
+        <h2>Gradle</h2>
+        <pre><code className="language-gradle">{`// module build.gradle.kts
+implementation("ai.mealz:ui-kit:<version>")`}</code></pre>
+        <p>Replace <code>{'<version>'}</code> with <strong>1.0.0</strong> (or the version you integrate).</p>
+        <h2>ProGuard</h2>
+        <p>If minification is enabled, keep MealzUIKit model / serialization classes as needed for your setup. Start from:</p>
+        <pre><code>{`-keep class ai.mealz.uikit.** { *; }`}</code></pre>
+      </>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <>
+        <p>Distribute MealzUIKit via CocoaPods or Swift Package Manager from the release repository.</p>
+        <h2>CocoaPods</h2>
+        <pre><code className="language-ruby">{`pod 'MealzUIKit', '1.0.0'`}</code></pre>
+        <h2>Swift Package Manager</h2>
+        <p>Add the binary package from <a href="https://github.com/miamtech/MealzUIKitRelease">MealzUIKitRelease</a> (SPM product <code>MealzUIKit</code>).</p>
+        <ul>
+          <li>Release artifacts: <a href="https://github.com/miamtech/MealzUIKitRelease">https://github.com/miamtech/MealzUIKitRelease</a></li>
+        </ul>
+        <p>Requirements: iOS 12.0+, Swift 5.8+.</p>
+      </>
+    );
+  }
+  return (
+    <>
+      <p>From a Kotlin Multiplatform module, depend on the same artifact on all targets that use Mealz:</p>
+      <pre><code className="language-kotlin">{`// shared/build.gradle.kts
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation("ai.mealz:ui-kit:1.0.0")
+        }
+    }
+}`}</code></pre>
+      <p>
+        Use the shared Compose APIs (<code>CatalogScreen</code>, <code>RecipeCard</code>, …) from <code>commonMain</code>,
+        and supply a platform <code>SdkContext</code> when calling <code>SdkConfiguration.start</code>.
+      </p>
+    </>
+  );
+}
+
+<InstallContent platform={props.platform}/>
+
+## Next step
+
+export function InstallNextStep(props) {
+  return (
+    <p>
+      Continue with <Link to={`/docs/${props.platform}/overview/initialisation`}>Initialisation</Link>.
+    </p>
+  );
+}
+
+<InstallNextStep platform={props.platform}/>

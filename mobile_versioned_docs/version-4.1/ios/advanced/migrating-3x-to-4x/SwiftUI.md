@@ -20,7 +20,7 @@ You will need to import the `MealzNavModuleIOS`.
 ### Customizing
 
 You can completely configure all the templates & pages in the Catalog Feature.
-You can read about it [here](/docs/ios/features/catalog/customize-views).
+You can read about it [here](/docs/4.1/ios/features/catalog/customize-views).
 
 ## Standalone Recipe Card Feature
 
@@ -39,7 +39,7 @@ MealzStandaloneRecipeCardSwiftUI(criteria: /* your SuggestionsCriteria object */
 ### Customizing
 
 You can completely configure all the templates & pages associated with the Recipe Card Feature.
-You can read about it [here](/docs/ios/features/recipe-card/customize-views).
+You can read about it [here](/docs/4.1/ios/features/recipe-card/customize-views).
 
 ## Favorites Feature
 
@@ -57,7 +57,7 @@ You will need to import the `MealzNavModuleIOS`.
 ### Customizing
 
 You can completely configure all the templates & pages in the Favorites Feature.
-You can read about it [here](/docs/ios/features/favorites/customize-views).
+You can read about it [here](/docs/4.1/ios/features/favorites/customize-views).
 
 ## MyMeals Feature (Recipes in your basket)
 
@@ -75,4 +75,4 @@ You will need to import the `MealzNavModuleIOS`.
 ### Customizing
 
 You can completely configure all the templates & pages in the MyMeals Feature.
-You can read about it [here](/docs/ios/features/myMeals/customize-views).
+You can read about it [here](/docs/4.1/ios/features/myMeals/customize-views).

@@ -1,7 +1,8 @@
 {
-  "label": "Recipe Details",
-  "position": 6,
+  "label": "Recipe details",
+  "position": 4,
   "link": {
-    "type": "generated-index"
+    "type": "doc",
+    "id": "ios/features/recipe-details/index"
   }
 }

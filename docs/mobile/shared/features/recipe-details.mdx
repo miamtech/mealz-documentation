@@ -1,0 +1,83 @@
+Full recipe details journey (`FeatureRoute.Recipe.Details`).
+
+:::info SSR
+Behaviour and analytics (`pageview`, `entry.add-all`, cooking/shopping tabs, …): [Analytics (SSR)](/docs/web_ssr/analytics) and [Recipe card (SSR)](/docs/web_ssr/main-features/recipe-card) (details flow).
+:::
+
+## Visual overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeDetail1.png"
+  alt="Recipe details (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `displayRecipe` | `DisplayRecipe.FromId.FromMealzRecipeId` | yes | — | Mealz recipe id to open. (Details currently requires a Mealz id, not external / surrounding.) |
+| `serves` | `Int?` | no | `null` | Guest / portion count to open with. Often forwarded from the recipe card. |
+| `navigationCallback` | `RecipeDetailsNavigationCallback` | yes | — | Login / store / cart / exit + catalog redirect. |
+| `modifier` | Compose `Modifier` | no | fills max size | Layout. |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `RecipeDetailsNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `redirectToLogIn` | yes | Open login. |
+| `redirectToStoreLocator` | yes | Open store picker. |
+| `redirectToCart` | yes | Open retailer cart. |
+| `exit` | yes | Close / pop recipe details. |
+| `redirectToCatalog` | yes | Open the Mealz catalog (e.g. “see more recipes”). |
+
+## Inject
+
+export function RecipeDetailsInject(props) {
+  if (props.platform === "android") {
+    return (
+      <pre><code className="language-kotlin">{`RecipeDetailsScreenView.View(
+    displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
+    serves = 4,
+    navigationCallback = RecipeDetailsNavigationCallback(
+        redirectToLogIn = { },
+        redirectToStoreLocator = { },
+        redirectToCart = { },
+        exit = { },
+        redirectToCatalog = { /* open CatalogScreenView */ }
+    )
+)`}</code></pre>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`RecipeDetailsViewController.companion.get(
+    displayRecipe: DisplayRecipe.FromId.FromMealzRecipeId(id: "12838"),
+    serves: KotlinInt(value: 4),
+    navigationCallback: RecipeDetailsNavigationCallback(
+        redirectToLogIn: { },
+        redirectToStoreLocator: { },
+        redirectToCart: { },
+        exit: { },
+        redirectToCatalog: { /* present catalog */ }
+    )
+)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`RecipeDetailsScreen(
+    displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
+    serves = 4,
+    navigationCallback = RecipeDetailsNavigationCallback(
+        redirectToLogIn = { },
+        redirectToStoreLocator = { },
+        redirectToCart = { },
+        exit = { },
+        redirectToCatalog = { }
+    )
+)`}</code></pre>
+  );
+}
+
+<RecipeDetailsInject platform={props.platform}/>

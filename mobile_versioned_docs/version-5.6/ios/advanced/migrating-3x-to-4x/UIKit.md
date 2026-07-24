@@ -32,7 +32,7 @@ self.present(mealzCatalogFeature, animated: true)
 ### Customizing
 
 You can completely configure all the templates & pages in the Catalog Feature.
-You can read about it [here](/docs/ios/features/catalog/customize-views).
+You can read about it [here](/docs/5.6/ios/features/catalog/customize-views).
 
 ## Standalone Recipe Card Feature
 
@@ -61,7 +61,7 @@ mealzStandaloneRecipeCard.view.addTo(cell, Pin(.all))
 ### Customizing
 
 You can completely configure all the templates & pages associated with the Recipe Card Feature.
-You can read about it [here](/docs/ios/features/recipe-card/customize-views).
+You can read about it [here](/docs/5.6/ios/features/recipe-card/customize-views).
 
 ## Standalone Recipe Card Feature
 
@@ -119,7 +119,7 @@ self.present(mealzFavoritesFeature, animated: true)
 ### Customizing
 
 You can completely configure all the templates & pages in the Favorites Feature.
-You can read about it [here](/docs/ios/features/favorites/customize-views).
+You can read about it [here](/docs/5.6/ios/features/favorites/customize-views).
 
 ## MyMeals Feature (Recipes in your basket)
 
@@ -147,4 +147,4 @@ self.present(mealzMyMealsFeature, animated: true)
 ### Customizing
 
 You can completely configure all the templates & pages in the MyMeals Feature.
-You can read about it [here](/docs/ios/features/myMeals/customize-views).
+You can read about it [here](/docs/5.6/ios/features/myMeals/customize-views).
