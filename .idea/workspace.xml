@@ -4,26 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Do not explain mobile version here">
+    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Rename into Mealz Planner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/_category_.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/index.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_category_.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/index.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/meal-planner/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/meal-planner/_category_.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/meal-planner/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/meal-planner/index.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/changelogs/changelog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/changelogs/changelog.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/component-overviews/LikeButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/component-overviews/LikeButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/Catalog/CatalogView.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/Catalog/CatalogView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerBasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerBasket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerCTA.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerCTA.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerRecap.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerRecap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerRecipePicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerRecipePicker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerResults.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerResults.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784884385656</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Rename into Mealz Planner">
+      <option name="closed" value="true" />
+      <created>1784885223292</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1784885223292</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,6 +255,7 @@
     <MESSAGE value="Add new WebView library documentation" />
     <MESSAGE value="Use relative path" />
     <MESSAGE value="Do not explain mobile version here" />
-    <option name="LAST_COMMIT_MESSAGE" value="Do not explain mobile version here" />
+    <MESSAGE value="Rename into Mealz Planner" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename into Mealz Planner" />
   </component>
 </project>
