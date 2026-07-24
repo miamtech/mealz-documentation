@@ -165,21 +165,21 @@ export default {
           {
             position: "left",
             label: "Web SSR",
-            to: "docs/web_ssr/Introduction",
+            to: "docs/web_ssr/introduction",
             items: [
               {
                 label: "v3",
-                to: "docs/web_ssr/Introduction",
+                to: "docs/web_ssr/introduction",
                 activeBaseRegex: "docs/web_ssr/[^0-9][^/]",
               },
               {
                 label: "v2",
-                to: "docs/web_ssr/v2/Introduction",
+                to: "docs/web_ssr/v2/introduction",
                 activeBasePath: "docs/web_ssr/v2",
               },
               {
                 label: "v1",
-                to: "docs/web_ssr/v1/Introduction",
+                to: "docs/web_ssr/v1/introduction",
                 activeBasePath: "docs/web_ssr/v1",
               },
             ]
@@ -207,7 +207,7 @@ export default {
               },
               {
                 label: "Web SSR",
-                to: "docs/web_ssr/Introduction",
+                to: "docs/web_ssr/introduction",
               },
             ],
           },

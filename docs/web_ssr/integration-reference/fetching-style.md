@@ -98,7 +98,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/styles/catalog/my-space
 
 ### Variant parameters
 
-Some component endpoints accept a **variant** query parameter to select a display layout. See [display variants](./recipe-card#display-variants) for available layouts and parameter names. <!-- TODO (PR2): also link to ../about/versioning-process for how new variants are introduced --> When you pass a variant on a component request, pass the **same parameter and value** on the matching `/styles/` request so you only load the CSS for the variant you render.
+Some component endpoints accept a **variant** query parameter to select a display layout. See [display variants](./recipe-card#display-variants) for available layouts and parameter names. How new variants are introduced is covered in [Versioning process](../about-mealz/versioning-process). When you pass a variant on a component request, pass the **same parameter and value** on the matching `/styles/` request so you only load the CSS for the variant you render.
 
 This rule applies to any component that supports variants. Today, only **recipe cards** do. The parameter name depends on the route: `variant` on `/recipe-card` and `/styles/recipe-card`, and `recipe_card_variant` on endpoints that embed recipe cards (catalog, planner, …) and their matching `/styles/…` routes.
 

@@ -35,9 +35,9 @@ Most sites reload or navigate when the user picks another store or logs in/out. 
 
 You only need client-side updates when the page **stays open**:
 
-- **Store change:** `window.mealz.pos.load(storeId)`. See [window.mealz.pos](../customization/window-mealz#windowmealzpos).
+- **Store change:** `window.mealz.pos.load(storeId)`. See [window.mealz.pos](./customization/window-mealz#windowmealzpos).
 - **Login:** `window.mealz.user.loadWithExternalId(userId, forbidProfiling).subscribe()`
-- **Logout:** `window.mealz.user.reset()`, then `window.mealz.user.loadWithAuthlessId(authlessId)` if the user continues as a guest. See [Handle user login and logout](../set-up-and-usage/login-and-logout).
+- **Logout:** `window.mealz.user.reset()`, then `window.mealz.user.loadWithAuthlessId(authlessId)` if the user continues as a guest. See [Handle user login and logout](./set-up-and-usage/login-and-logout).
 :::
 
 ## 2. Remove leftover SDK (`webc-miam`) scripts
@@ -59,7 +59,7 @@ GET https://MEALZ_SSR_API_URL/v3/core
 - Parameters :
 
   - `store_id: string`:
-  **_(Recommended)_** Pass the user's current store ID so Mealz is initialized for that point of sale. See [Loading `window.mealz` without a component](../customization/window-mealz#need-to-use-windowmealz-without-a-mealz-component).
+  **_(Recommended)_** Pass the user's current store ID so Mealz is initialized for that point of sale. See [Loading `window.mealz` without a component](./customization/window-mealz#need-to-use-windowmealz-without-a-mealz-component).
 
 ## 3. Recipe card variant parameter rename
 
@@ -104,7 +104,7 @@ Variant 2 was unused and has been removed. The remaining variants were renumbere
 
 In V2, recipe tags were rendered client-side via the web SDK (`ng-miam-recipe-tags`). In V3, they are fetched server-side only. There is no client-side alternative.
 
-Call `GET /v3/recipe-tags` with your product IDs, then inject the returned `html` next to each cart line. See [Recipe tags](./main-features/recipe-tags) for parameters and response format.
+Call `GET /v3/recipe-tags` with your product IDs, then inject the returned `html` next to each cart line. See [Recipe tags](./integration-reference/recipe-tags) for parameters and response format.
 
 The component tag was also renamed. Update any CSS or JavaScript selectors that target the old name:
 
@@ -122,9 +122,9 @@ The tables below list removed methods and what to do instead. Where there is no 
 
 ### `window.mealz.features.*`
 
-The whole namespace was removed. In V2, these methods turned features on or off from JavaScript (`enableVideoRecipes`, `enableUserPreferences`, `enableTagsOnRecipes`, `collapseUnavailableProductsByDefault`, and so on). In V3, those behaviors are always available in the library. Per-client activation is handled through **feature flags** in our internal configuration instead. See [Versioning](../set-up-and-usage/versioning).
+The whole namespace was removed. In V2, these methods turned features on or off from JavaScript (`enableVideoRecipes`, `enableUserPreferences`, `enableTagsOnRecipes`, `collapseUnavailableProductsByDefault`, and so on). In V3, those behaviors are always available in the library. Per-client activation is handled through **feature flags** in our internal configuration instead. See [Versioning process](./about-mealz/versioning-process).
 
-If you called `enableMealsPlanner(url)`, use the SSR planner routes instead. See [Meals planner](./main-features/meals-planner).
+If you called `enableMealsPlanner(url)`, use the SSR planner routes instead. See [Meals planner](./integration-reference/meals-planner).
 
 ### `window.mealz.recipes.*`
 
