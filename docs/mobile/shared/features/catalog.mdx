@@ -22,7 +22,7 @@ There is a **single** catalog entry point. You choose the starting page with `ro
 | Parameter | Type | Required | Default | What it does |
 |-----------|------|----------|---------|--------------|
 | `route` | `FeatureRoute.Catalog` | no | `FeatureRoute.Catalog.Home()` | Which catalog surface to open first (home, category, favorites, …). |
-| `navigationCallback` | `CatalogNavigationCallback` | yes | — | How Mealz hands control back to your app (login, store, cart, exit, optional planner / home). |
+| `navigationCallback` | `CatalogNavigationCallback` | yes | — | How Mealz hands control back to your app (login, store, cart, exit, optional Mealz Planner / home). |
 | `modifier` | Compose `Modifier` | no | fills max size | Layout (Compose / KMM). |
 | `stateContent` | screen state overlays | no | library default | Optional loading / error UI while the WebView boots. |
 
@@ -48,7 +48,7 @@ There is a **single** catalog entry point. You choose the starting page with `ro
 | `redirectToStoreLocator` | yes | Open your store picker when no store is selected (retailer). |
 | `redirectToCart` | yes | Open your retailer cart / checkout. |
 | `exit` | yes | Dismiss / pop the Mealz catalog screen. |
-| `goToPlanner` | no | Open the Mealz planner journey if the catalog CTA is used. |
+| `goToPlanner` | no | Open the Mealz Planner journey if the catalog CTA is used. |
 | `goToHomeCatalog` | no | Navigate to catalog home when a **sub-route** (My Meals, My Space, …) is shown as root and asks to go home. |
 
 ## Inject
@@ -63,7 +63,7 @@ export function CatalogInject(props) {
         redirectToStoreLocator = { /* open store picker */ },
         redirectToCart = { /* open retailer cart */ },
         exit = { /* pop screen */ },
-        goToPlanner = { /* optional: open planner */ },
+        goToPlanner = { /* optional: open Mealz Planner */ },
         goToHomeCatalog = { /* optional: when sub-feature is root */ },
     )
 )`}</code></pre>

@@ -14,7 +14,7 @@ There are two Call To Actions, one labeled for navigating to a Recap page, the o
 Of course, where the buttons navigate to (& if both are shown) is completely up to the implementation team.
 </p>"
                     alt="MealPlannerBasket"
-                    caption="Miam Neutral Meal Planner Basket page"
+                    caption="Miam Neutral Mealz Planner Basket page"
                     imageMaxWidth="250px"
             />
     );

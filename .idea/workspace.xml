@@ -4,81 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Add new WebView library documentation">
+    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Do not explain mobile version here">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/android/usage/styling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-4.1/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/android/usage/styling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.0/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/android/usage/styling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.2/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/android/usage/styling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.3/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/android/usage/styling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.4/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/android/usage/styling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.5/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/android/usage/styling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.6/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/features/_shared/_custom-views/Explanation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/usage/styling.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/android/usage/styling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/advanced/migrating-3x-to-4x/SwiftUI.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/advanced/migrating-3x-to-4x/SwiftUI.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/advanced/migrating-3x-to-4x/UIKit.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/advanced/migrating-3x-to-4x/UIKit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/LinkToCustomization.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/LinkToCustomization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/Prerequisites.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/Prerequisites.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/_custom-views/Explanation.md" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_versioned_docs/version-5.7/ios/features/_shared/_custom-views/Explanation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/meal-planner/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/meal-planner/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/meal-planner/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/meal-planner/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/meal-planner/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/meal-planner/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/changelogs/changelog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/changelogs/changelog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/component-overviews/LikeButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/component-overviews/LikeButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/Catalog/CatalogView.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/Catalog/CatalogView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerBasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerBasket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerCTA.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerCTA.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerRecap.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerRecap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerRecipePicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerRecipePicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerResults.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/page-overviews/MealPlanner/MealPlannerResults.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +229,23 @@
       <option name="project" value="LOCAL" />
       <updated>1784882158396</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Use relative path">
+      <option name="closed" value="true" />
+      <created>1784884355443</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1784884355443</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Do not explain mobile version here">
+      <option name="closed" value="true" />
+      <created>1784884385655</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1784884385656</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,6 +263,8 @@
     <MESSAGE value="Added current state of Nest + Lit changelog" />
     <MESSAGE value="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;" />
     <MESSAGE value="Add new WebView library documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new WebView library documentation" />
+    <MESSAGE value="Use relative path" />
+    <MESSAGE value="Do not explain mobile version here" />
+    <option name="LAST_COMMIT_MESSAGE" value="Do not explain mobile version here" />
   </component>
 </project>

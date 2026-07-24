@@ -1,30 +1,30 @@
-Planner journeys use `FeatureRoute.Planner`: a compact **entry** block (CTA) and a full-screen **menu** (current menu / help).
+Mealz Planner journeys use `FeatureRoute.Planner`: a compact **entry** block (CTA) and a full-screen **menu** (current menu / help).
 
 :::info SSR
-In-WebView UX: [Meals planner (SSR)](/docs/web_ssr/main-features/meals-planner).
+In-WebView UX: [Mealz Planner (SSR)](/docs/web_ssr/main-features/meals-planner).
 :::
 
 ## Visual overview
 
 <img
   src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/plannerEntry.png"
-  alt="Meal planner entry (SSR)"
+  alt="Mealz Planner entry (SSR)"
   style={{maxWidth: '280px'}}
 />
 
 <img
   src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/plannerCurrent.png"
-  alt="Meal planner current menu (SSR)"
+  alt="Mealz Planner current menu (SSR)"
   style={{maxWidth: '280px'}}
 />
 
-## Planner entry — parameters
+## Mealz Planner entry — parameters
 
-Compact CTA to start / resume the planner (fixed height, full width).
+Compact CTA to start / resume Mealz Planner (fixed height, full width).
 
 | Parameter | Type | Required | Default | What it does |
 |-----------|------|----------|---------|--------------|
-| `navigationCallback` | `PlannerEntryNavigationCallback` | yes | — | Base redirects + open the planner menu. |
+| `navigationCallback` | `PlannerEntryNavigationCallback` | yes | — | Base redirects + open the Mealz Planner menu. |
 | `modifier` | Compose `Modifier` | no | — | Layout. |
 | `stateContent` | state overlays | no | library default | Optional loading UI. |
 
@@ -36,11 +36,11 @@ Compact CTA to start / resume the planner (fixed height, full width).
 | `redirectToStoreLocator` | yes | Open store picker. |
 | `redirectToCart` | yes | Open retailer cart. |
 | `exit` | yes | Leave the host if requested. |
-| `goToPlanner` | yes | `(FeatureRoute.Planner) -> Unit` — present the full planner menu for the given route (usually `CurrentMenu`). |
+| `goToPlanner` | yes | `(FeatureRoute.Planner) -> Unit` — present the full Mealz Planner menu for the given route (usually `CurrentMenu`). |
 
-## Planner menu — parameters
+## Mealz Planner menu — parameters
 
-Full-screen planner journey.
+Full-screen Mealz Planner journey.
 
 | Parameter | Type | Required | Default | What it does |
 |-----------|------|----------|---------|--------------|
@@ -56,8 +56,8 @@ Full-screen planner journey.
 | `redirectToLogIn` | yes | Open login. |
 | `redirectToStoreLocator` | yes | Open store picker. |
 | `redirectToCart` | yes | Open retailer cart. |
-| `exit` | yes | Close the planner screen. |
-| `goToCatalog` | no | `(FeatureRoute.Catalog) -> Unit` — open catalog when the planner links out. |
+| `exit` | yes | Close the Mealz Planner screen. |
+| `goToCatalog` | no | `(FeatureRoute.Catalog) -> Unit` — open catalog when Mealz Planner links out. |
 
 ## Inject
 
