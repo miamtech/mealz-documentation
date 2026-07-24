@@ -36,7 +36,7 @@ The API returns an HTML fragment. For example:
 
 Place this fragment in your server-rendered template at the slot where the card should show. Then fetch the stylesheets for the same component (and the same variant, if you use one) as described in [Fetching styles](./fetching-style).
 
-Full parameter lists and routes for each feature are listed on their own page under **Main features** (catalog, recipe card, meals planner, and so on).
+Full parameter lists and routes for each feature are listed on their own page under **Integration reference** (catalog, recipe card, meals planner, and so on).
 
 ## Component parameters
 
@@ -66,7 +66,7 @@ Some informations are needed to display all of our components. In order to not h
 
 - **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in you must use the `Authless-id` header instead.
 
-- **Authless-id**: This header is necessary for saving user data even when the user is not logged in. It is also used to transfer the basket created while unauthenticated to their account once they log in. To generate an authless token, you can use the [Generate Authless Token](/docs/web_ssr/main-features/pre-rendered-components#authless-user) route.
+- **Authless-id**: This header is necessary for saving user data even when the user is not logged in. It is also used to transfer the basket created while unauthenticated to their account once they log in. To generate an authless token, you can use the [Generate Authless Token](/docs/web_ssr/integration-reference/pre-rendered-components#authless-user) route.
 
 - **Supplier-token**: We will provide you with a supplier token (in Base64 format). It identifies your website and carries configuration for your environment. See [Note about terminology](#note-about-terminology) for why the header says "supplier" rather than "retailer".
 :::info
@@ -108,6 +108,24 @@ which will return an object:
   "authless_id": "<generated-authless-token>"
 }
 ```
+
+## Client-side injection
+
+Most integrations call the SSR API from your **backend**, then inject the HTML into the page template. For technical reasons, you may want or need to fetch Mealz HTML in the browser and insert it into the DOM with JavaScript instead.
+
+### Scripts and `innerHTML`
+
+Browsers **never** execute `<script>` tags inserted via `element.innerHTML`. Mealz HTML fragments include `<script type="module" src="…">` tags that register custom elements. If you only assign the HTML string to `innerHTML`, those modules never run and the components will not hydrate.
+
+### Recommendations
+
+To inject Mealz HTML from the client without losing script execution:
+
+1. Build the same headers you would send server-side (`Supplier-token`, `Authorization` or `Authless-id`, `Language-id`, `Session-id`, and optionally `cookies-consent`). Managing a guest authless id (generate, store, reuse) is your responsibility on the client.
+2. `fetch` the SSR endpoint and read the response as text.
+3. Parse the HTML (`DOMParser`), collect every `<script type="module" src="…">`, and append matching `<script type="module">` tags to `document.head` if that `src` is not already loaded. Wait for those scripts to load before relying on the custom elements.
+4. Assign the HTML to your container (`innerHTML` is fine for markup once scripts are handled separately).
+5. Fetch styles from the `/styles/…` JSON endpoint and append any missing `<link rel="stylesheet">` tags to `<head>` (deduplicate by URL).
 
 ## Note about terminology
 

@@ -64,7 +64,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
 
   - `recipe_card_variant: number = 1`:
-  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/integration-reference/recipe-card#display-variants) for examples)
 
 ### Example :
 
@@ -94,7 +94,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/category
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
 
   - `recipe_card_variant: number = 1`:
-  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/integration-reference/recipe-card#display-variants) for examples)
 
   - `search: string`:
   **_(Mandatory to forward)_** Search term from the toolbar. When `search` is in the page URL, pass the same value on the SSR request.
@@ -151,7 +151,7 @@ Fetch the matching styles with `GET /styles/catalog/my-space`. See [Fetching sty
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty of the recipe but if you want to display them you can set display_infos to true
 
   - `recipe_card_variant: number = 1`:
-  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/integration-reference/recipe-card#display-variants) for examples)
 
 ## List Page
 
@@ -177,7 +177,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/list
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
 
   - `recipe_card_variant: number = 1`:
-  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/integration-reference/recipe-card#display-variants) for examples)
 
 ## I18n
 
@@ -257,4 +257,4 @@ The keys below cover strings rendered by the catalog itself (toolbar, home, list
 ```
 
 See [Internationalisation](/docs/web_ssr/customization/internationalization) for more information on how to configure a custom I18n file to override our base texts with your own.
-See [the recipe card](/docs/web_ssr/main-features/recipe-card#i18n) to see its customizable text contents.
+See [the recipe card](/docs/web_ssr/integration-reference/recipe-card#i18n) to see its customizable text contents.

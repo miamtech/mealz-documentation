@@ -17,7 +17,7 @@ You can find information concerning promotions in three different sections of ou
 ![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/recipe-on-sale.png "Recipe with the sale badge")
 
 Recipes containing at least one product on sale will display a **promotion badge** on
-the [recipe card](../features/recipe-card). This badge is managed on
+the [recipe card](../integration-reference/recipe-card). This badge is managed on
 our end, meaning if a user changes the products in a recipe, the display of the badge will not update to reflect these
 changes.
 
