@@ -21,7 +21,7 @@ Events: [Analytics](/docs/web_ssr/analytics) (`recipe.show`, `recipe.display`, `
 | `orientation` | `RecipeCardOrientation` | no | `VERTICAL` | `VERTICAL` or `HORIZONTAL` layout. |
 | `dimensions` | `RecipeCardDimensions?` | no | orientation defaults | Pixel height (and optional width). Defaults: vertical height `360`, horizontal height `188`; width fills parent unless set. |
 | `displayVariant` | `Int?` | no | `null` | Visual variant of the card (SSR `display_variant`). |
-| `navigationCallback` | `RecipeCardNavigationCallback` | yes | — | Login / store / cart / exit + open recipe details. |
+| `navigationCallback` | `RecipeCardNavigationCallback` | yes | — | Open recipe details when the shopper taps the card. |
 | `modifier` | Compose `Modifier` | no | — | Layout wrapper. |
 | `stateContent` | state overlays | no | library default | Optional loading UI. |
 
@@ -37,11 +37,9 @@ Events: [Analytics](/docs/web_ssr/analytics) (`recipe.show`, `recipe.display`, `
 
 | Callback | Required | What you must do |
 |----------|----------|------------------|
-| `redirectToLogIn` | yes | Open login when required. |
-| `redirectToStoreLocator` | yes | Open store picker when required. |
-| `redirectToCart` | yes | Open retailer cart. |
-| `exit` | yes | Dismiss / leave the card host if requested. |
-| `goToRecipeDetails` | yes | `(FromMealzRecipeId, serves: Int?) -> Unit` — open recipe details with optional guest count. |
+| `goToRecipeDetails` | yes | `(DisplayRecipe, serves: Int?) -> Unit` — open recipe details with optional guest count. |
+
+Base `NavigationCallback` redirects (`redirectToLogIn`, `redirectToStoreLocator`, `redirectToCart`, `exit`) default to no-ops on this component — only `goToRecipeDetails` matters.
 
 ## Inject
 
@@ -53,10 +51,6 @@ export function RecipeCardInject(props) {
     orientation = RecipeCardOrientation.VERTICAL,
     displayVariant = 1,
     navigationCallback = RecipeCardNavigationCallback(
-        redirectToLogIn = { },
-        redirectToStoreLocator = { },
-        redirectToCart = { },
-        exit = { },
         goToRecipeDetails = { recipe, serves ->
             // Open RecipeDetailsScreenView(recipe, serves)
         }
@@ -71,10 +65,6 @@ export function RecipeCardInject(props) {
     orientation: .vertical,
     displayVariant: KotlinInt(value: 1),
     navigationCallback: RecipeCardNavigationCallback(
-        redirectToLogIn: { },
-        redirectToStoreLocator: { },
-        redirectToCart: { },
-        exit: { },
         goToRecipeDetails: { recipe, serves in
             // Present RecipeDetailsViewController
         }
@@ -88,10 +78,6 @@ export function RecipeCardInject(props) {
     orientation = RecipeCardOrientation.VERTICAL,
     displayVariant = 1,
     navigationCallback = RecipeCardNavigationCallback(
-        redirectToLogIn = { },
-        redirectToStoreLocator = { },
-        redirectToCart = { },
-        exit = { },
         goToRecipeDetails = { recipe, serves -> /* navigate */ }
     )
 )`}</code></pre>

@@ -26,7 +26,7 @@ Same as Catalog (`route` + `CatalogNavigationCallback`) — see the Catalog link
 |-------------|------|----------|---------|--------------|
 | `displayVariant` | `Int?` | no | `null` | Recipe-card variant inside the favorites list. |
 
-Wire `goToHomeCatalog` if Favorites is presented as a **root** screen and the user can navigate back to catalog home.
+Set `goToHomeCatalog` when Favorites is presented as a **root** screen: the WebView may ask to open the main catalog (e.g. empty favorites → browse recipes). See Catalog docs for `goToHomeCatalog`.
 
 export function FavoritesCatalogLink(props) {
   return (

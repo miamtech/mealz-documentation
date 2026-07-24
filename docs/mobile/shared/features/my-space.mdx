@@ -29,7 +29,7 @@ Same as Catalog (`route` + `CatalogNavigationCallback`) — see the Catalog link
 | `defaultSelectedTab` | `MySpaceTab?` (`Favorites` / `History`) | no | `null` (library default tab) | Which My Space tab opens first. |
 | `displayVariant` | `Int?` | no | `null` | Recipe-card variant in lists. |
 
-Set `goToHomeCatalog` when My Space is the root screen.
+Set `goToHomeCatalog` when My Space is the **root** screen: the WebView may ask to open the main catalog (e.g. no liked recipes → browse the catalog). See Catalog docs for `goToHomeCatalog`.
 
 export function MySpaceCatalogLink(props) {
   return (

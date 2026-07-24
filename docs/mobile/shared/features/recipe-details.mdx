@@ -18,7 +18,7 @@ Behaviour and analytics (`pageview`, `entry.add-all`, cooking/shopping tabs, …
 |-----------|------|----------|---------|--------------|
 | `displayRecipe` | `DisplayRecipe.FromId.FromMealzRecipeId` | yes | — | Mealz recipe id to open. (Details currently requires a Mealz id, not external / surrounding.) |
 | `serves` | `Int?` | no | `null` | Guest / portion count to open with. Often forwarded from the recipe card. |
-| `navigationCallback` | `RecipeDetailsNavigationCallback` | yes | — | Login / store / cart / exit + catalog redirect. |
+| `navigationCallback` | `RecipeDetailsNavigationCallback` | yes | — | Optional login / store / exit + catalog redirect. |
 | `modifier` | Compose `Modifier` | no | fills max size | Layout. |
 | `stateContent` | state overlays | no | library default | Optional loading UI. |
 
@@ -26,10 +26,9 @@ Behaviour and analytics (`pageview`, `entry.add-all`, cooking/shopping tabs, …
 
 | Callback | Required | What you must do |
 |----------|----------|------------------|
-| `redirectToLogIn` | yes | Open login. |
-| `redirectToStoreLocator` | yes | Open store picker. |
-| `redirectToCart` | yes | Open retailer cart. |
-| `exit` | yes | Close / pop recipe details. |
+| `redirectToLogIn` | no | Open login. Defaults to a no-op. |
+| `redirectToStoreLocator` | no | Open store picker. Defaults to a no-op. |
+| `exit` | no | Close / pop recipe details. Defaults to a no-op. |
 | `redirectToCatalog` | yes | Open the Mealz catalog (e.g. “see more recipes”). |
 
 ## Inject
@@ -43,7 +42,6 @@ export function RecipeDetailsInject(props) {
     navigationCallback = RecipeDetailsNavigationCallback(
         redirectToLogIn = { },
         redirectToStoreLocator = { },
-        redirectToCart = { },
         exit = { },
         redirectToCatalog = { /* open CatalogScreenView */ }
     )
@@ -58,7 +56,6 @@ export function RecipeDetailsInject(props) {
     navigationCallback: RecipeDetailsNavigationCallback(
         redirectToLogIn: { },
         redirectToStoreLocator: { },
-        redirectToCart: { },
         exit: { },
         redirectToCatalog: { /* present catalog */ }
     )
@@ -70,10 +67,6 @@ export function RecipeDetailsInject(props) {
     displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
     serves = 4,
     navigationCallback = RecipeDetailsNavigationCallback(
-        redirectToLogIn = { },
-        redirectToStoreLocator = { },
-        redirectToCart = { },
-        exit = { },
         redirectToCatalog = { }
     )
 )`}</code></pre>

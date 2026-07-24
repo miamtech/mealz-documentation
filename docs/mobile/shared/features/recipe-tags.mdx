@@ -29,7 +29,7 @@ MealzUIKit still exposes a native embed so you can place the tag on **each line 
 |----------|-----------|------------------|
 | `goToRecipeDetails` | `(DisplayRecipe.FromId.FromMealzRecipeId) -> Unit` | Open your recipe-details screen (or Mealz `RecipeDetailsScreen`) for that Mealz recipe id. |
 
-Base `NavigationCallback` redirects (`redirectToLogIn`, `redirectToStoreLocator`, `redirectToCart`, `exit`) are no-ops on this component — only `goToRecipeDetails` matters.
+Base `NavigationCallback` redirects (`redirectToLogIn`, `redirectToStoreLocator`, `redirectToCart`, `exit`) default to no-ops on this component — only `goToRecipeDetails` matters.
 
 ## Inject
 

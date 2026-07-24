@@ -32,7 +32,7 @@ Same as Catalog (`route` + `CatalogNavigationCallback`) — see the Catalog link
 | `defaultSelectedTab` | `MyMealsTab?` (`Recipes` / `Products`) | no | `null` | **Limited today**: Recipes is always the first visible page; prefer `showTabSelector` only. |
 | `basketTransferUrl` | `String?` | no | `null` | Optional transfer URL (No Supplier / affiliate flows). Query params from this URL are forwarded into the WebView. |
 
-Set `goToHomeCatalog` when My Meals is presented as root.
+Set `goToHomeCatalog` when My Meals is presented as **root**: the WebView may ask to open the main catalog home. See Catalog docs for `goToHomeCatalog`.
 
 export function MyMealsCatalogLink(props) {
   return (
