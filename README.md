@@ -1,11 +1,6 @@
 # Mealz Documentation
 
-Ce projet utilise [Docusaurus](https://docusaurus.io/) pour gérer la documentation des projets iOS, Android, KMM (MealzUIKit / WebView) et Web. Ce README fournit des instructions pour installer, build, collaborer, et générer de nouvelles versions.
-
-## Versions mobiles
-
-- **Current (1.0.0) — New (WebView)**: MealzUIKit pour Android, iOS et KMM (`docs/mobile`).
-- **Older (5.7 et moins) — MealzCore / MealzAndroid / MealziOSSDK**: documentation figée sous `mobile_versioned_docs/` ; accessible via la section **Older** des menus Android / iOS.
+Ce projet utilise [Docusaurus](https://docusaurus.io/) pour gérer la documentation des projets Mobile et Web. Ce README fournit des instructions pour installer, build, collaborer, et générer de nouvelles versions.
 
 ## Prérequis
 
