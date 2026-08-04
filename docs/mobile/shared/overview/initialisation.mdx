@@ -115,7 +115,7 @@ When you later call `connectUserWithId`:
 2. Merge runs only when a **store is already selected** (external id in retailer mode, or Mealz store id in No Supplier mode). Without a store, login still succeeds; merge is skipped.
 3. Merge is **best-effort** (network failures are swallowed and do not block `connectUserWithId`).
 
-Related SSR concepts: [Login and logout](/docs/web_ssr/set-up-and-usage/login-and-logout).
+Related SSR concepts: [Login and logout](/docs/web_ssr/v2/set-up-and-usage/login-and-logout).
 
 export function SessionApis(props) {
   if (props.platform === "ios") {
@@ -149,7 +149,7 @@ export function StoreApis(props) {
         <p>
           <strong>No Supplier mode</strong> — you should <strong>not</strong> set the store yourself in the normal flow.
           Store (and retailer) selection is handled by the{' '}
-          <a href="/docs/web_ssr/non-retailer-integration/introduction">Supplier selector</a> flow:
+          <a href="/docs/web_ssr/v2/non-retailer-integration/introduction">Supplier selector</a> flow:
           Mealz opens it automatically, or other No Supplier components request it when a store is required.
         </p>
         <pre><code className="language-swift">{`// Only for a specific advanced need — prefer letting SupplierSelector drive this
@@ -164,7 +164,7 @@ SdkConfiguration.shared.setSelectedStoreWithMealzId(mealzId: "mealz-store-id")`}
       <p>
         <strong>No Supplier mode</strong> — you should <strong>not</strong> set the store yourself in the normal flow.
         Store (and retailer) selection is handled by the{' '}
-        <a href="/docs/web_ssr/non-retailer-integration/introduction">Supplier selector</a> flow:
+        <a href="/docs/web_ssr/v2/non-retailer-integration/introduction">Supplier selector</a> flow:
         Mealz opens it automatically, or other No Supplier components request it when a store is required.
       </p>
       <pre><code className="language-kotlin">{`// Only for a specific advanced need — prefer letting SupplierSelector drive this
@@ -228,6 +228,10 @@ export function FirstIntegrationChecklist(props) {
         </li>
         <li>
           Present Catalog and/or No Supplier helpers (pricing, add-to-cart CTA) — see Features.
+        </li>
+        <li>
+          Optional: register <code>BasketCountNotifier</code> listeners for recipe / product badges — see{' '}
+          <Link to={noSupplier}>No Supplier</Link>.
         </li>
         <li>
           Optional: register CSS manifests — <Link to={styling}>Styling</Link>.
@@ -307,7 +311,7 @@ SdkConfiguration.disableDebugMode()`}</code></pre>
       <p>
         Sets the locale used for SSR content (<code>Language-id</code>). Values map to ISO language codes (
         <code>fr</code>, <code>en</code>, …). See{' '}
-        <a href="/docs/web_ssr/customization/internationalization">SSR internationalization</a> for custom label files.
+        <a href="/docs/web_ssr/v2/customization/internationalization">SSR internationalization</a> for custom label files.
       </p>
 
       <h3>Profiling</h3>
@@ -325,7 +329,7 @@ SdkConfiguration.disableDebugMode()`}</code></pre>
       <p>
         When enabled, SSR uses your <strong>custom i18n override</strong> files (if configured with Mealz) instead of the
         default Mealz copy. Keep this off unless you have custom label packs. Details:{' '}
-        <a href="/docs/web_ssr/customization/internationalization">SSR internationalization</a>.
+        <a href="/docs/web_ssr/v2/customization/internationalization">SSR internationalization</a>.
       </p>
 
       <h3>Debug mode</h3>

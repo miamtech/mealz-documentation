@@ -198,7 +198,7 @@ If you embed Mealz in constrained contexts (webviews, strict privacy modes), ens
 
 ## I18n
 
-Planner uses the same i18n override mechanism as other SSR features (see [Internationalisation](/docs/web_ssr/customization/internationalization)).
+Planner uses the same i18n override mechanism as other SSR features (see [Internationalisation](/docs/web_ssr/v2/customization/internationalization)).
 
 Example planner text keys that can be overridden via i18n:
 

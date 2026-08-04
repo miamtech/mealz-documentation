@@ -131,7 +131,7 @@ export default {
         versions: {
           current: {
             label: "v2",
-            path: "/"
+            path: "v2"
           },
           "v1": {
             banner: 'none'
@@ -375,12 +375,12 @@ export default {
           {
             position: "left",
             label: "Web SSR",
-            to: "docs/web_ssr/Introduction",
+            to: "docs/web_ssr/v2/Introduction",
             items: [
               {
                 label: "v2",
-                to: "docs/web_ssr/Introduction",
-                activeBaseRegex: "docs/web_ssr/[^0-9][^/]",
+                to: "docs/web_ssr/v2/Introduction",
+                activeBasePath: "docs/web_ssr/v2",
               },
               {
                 label: "v1",
@@ -421,7 +421,7 @@ export default {
               },
               {
                 label: "Web SSR",
-                to: "docs/web_ssr/Introduction",
+                to: "docs/web_ssr/v2/Introduction",
               },
             ],
           },

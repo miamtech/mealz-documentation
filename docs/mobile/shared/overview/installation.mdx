@@ -9,9 +9,6 @@ export function InstallContent(props) {
         <pre><code className="language-gradle">{`// module build.gradle.kts
 implementation("ai.mealz:ui-kit:<version>")`}</code></pre>
         <p>Replace <code>{'<version>'}</code> with <strong>1.0.0</strong> (or the version you integrate).</p>
-        <h2>ProGuard</h2>
-        <p>If minification is enabled, keep MealzUIKit model / serialization classes as needed for your setup. Start from:</p>
-        <pre><code>{`-keep class ai.mealz.uikit.** { *; }`}</code></pre>
       </>
     );
   }

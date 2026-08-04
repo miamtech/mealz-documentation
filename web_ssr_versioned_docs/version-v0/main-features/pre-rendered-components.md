@@ -44,7 +44,7 @@ Some informations are needed to display all of our components. In order to not h
   "Language-id": "fr" | "fr-<your-retail-name>"
 }
 ```
-See [Internationalisation](/docs/web_ssr/customization/internationalization) for how to configure a custom I18n file to override our base texts with your own.
+See [Internationalisation](/docs/web_ssr/v0/customization/internationalization) for how to configure a custom I18n file to override our base texts with your own.
 - **Session-id**: A unique identifier to differentiate sessions from one another (for example a uuid). This helps us keep things consistent during a session.
 > For example if a user sees a recipe on a shelf, clicks on a product and goes to the product page, then goes back, they would expect to see the same recipe on the shelf. With the session-id, we are able to return the same recipe if the products passed in parameters are the same as a previous request with the same session-id
 

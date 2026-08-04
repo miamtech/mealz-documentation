@@ -104,7 +104,7 @@ The customizable text contents for this component are the following:
 }
 ```
 
-See [Internationalisation](/docs/web_ssr/customization/internationalization) for more information on how to configure a custom I18n file to override our base texts with your own.
+See [Internationalisation](/docs/web_ssr/v2/customization/internationalization) for more information on how to configure a custom I18n file to override our base texts with your own.
 
 ## Fetching multiple recipe cards at once
 

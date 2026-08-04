@@ -181,7 +181,7 @@ Each time you display Mealz features and go through the setup process, **send us
 
 #### Notify us when the user logs in
 
-If the user logs in while Mealz is not active, you will need to call the /merge-authless-basket route to inform us of the login (see [here](/docs/web_ssr/set-up-and-usage/login-and-logout#when-mealz-scripts-are-not-active)). 
+If the user logs in while Mealz is not active, you will need to call the /merge-authless-basket route to inform us of the login (see [here](/docs/web_ssr/v1/set-up-and-usage/login-and-logout#when-mealz-scripts-are-not-active)). 
 
 This ensures that if the authless user had a cart, Mealz will merge this cart with their "logged in" cart. The next time Mealz features are displayed and the basket-sync runs, it will use the merged cart as a basis.
 

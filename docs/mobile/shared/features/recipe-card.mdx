@@ -1,8 +1,8 @@
 Embed a single recipe card in search grids, shelves, or product pages. The card is an opaque WebView component (`FeatureRoute.Recipe.Card`).
 
 :::info SSR
-In-WebView behaviour: [Recipe card (SSR)](/docs/web_ssr/main-features/recipe-card).  
-Events: [Analytics](/docs/web_ssr/analytics) (`recipe.show`, `recipe.display`, `recipe.like`, …).
+In-WebView behaviour: [Recipe card (SSR)](/docs/web_ssr/v2/main-features/recipe-card).  
+Events: [Analytics](/docs/web_ssr/v2/analytics) (`recipe.show`, `recipe.display`, `recipe.like`, …).
 :::
 
 ## Visual overview
@@ -17,7 +17,7 @@ Events: [Analytics](/docs/web_ssr/analytics) (`recipe.show`, `recipe.display`, `
 
 | Parameter | Type | Required | Default | What it does |
 |-----------|------|----------|---------|--------------|
-| `displayRecipe` | `DisplayRecipe` | yes | — | Which recipe to show (Mealz id, external id, or surrounding products). |
+| `displayRecipe` | `DisplayRecipe` | yes | — | Which recipe to show (Mealz id or external id). |
 | `orientation` | `RecipeCardOrientation` | no | `VERTICAL` | `VERTICAL` or `HORIZONTAL` layout. |
 | `dimensions` | `RecipeCardDimensions?` | no | orientation defaults | Pixel height (and optional width). Defaults: vertical height `360`, horizontal height `188`; width fills parent unless set. |
 | `displayVariant` | `Int?` | no | `null` | Visual variant of the card (SSR `display_variant`). |
@@ -29,9 +29,12 @@ Events: [Analytics](/docs/web_ssr/analytics) (`recipe.show`, `recipe.display`, `
 
 | Variant | Fields | When to use |
 |---------|--------|-------------|
-| `FromId.FromMealzRecipeId(id)` | Mealz recipe id | You know the Mealz id. |
-| `FromId.FromExternalRecipeId(id)` | Your / retailer recipe id | Recipe mapped in Mealz under an external id. |
-| `FromSurroundingProducts(surroundingProductsIdList, currentProductsIdList?)` | Product SKUs around the shelf | Suggest a recipe from nearby products (`currentProductsIdList` optional). |
+| `FromMealzRecipeId(id)` | Mealz recipe id | You know the Mealz id. |
+| `FromExternalRecipeId(id)` | Your / retailer recipe id | Recipe mapped in Mealz under an external id. |
+
+:::tip Shelves / search
+Do **not** pass surrounding product SKUs into `DisplayRecipe` anymore. Resolve shelf slots in batch with `RecipeResolver.resolveRecipes(contexts)`, then render each non-null result with `RecipeCard`. Requires a store set via `setSelectedStoreWithExternalId`.
+:::
 
 ### `RecipeCardNavigationCallback`
 
@@ -47,7 +50,7 @@ export function RecipeCardInject(props) {
   if (props.platform === "android") {
     return (
       <pre><code className="language-kotlin">{`RecipeCardView.View(
-    displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
+    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
     orientation = RecipeCardOrientation.VERTICAL,
     displayVariant = 1,
     navigationCallback = RecipeCardNavigationCallback(
@@ -61,7 +64,7 @@ export function RecipeCardInject(props) {
   if (props.platform === "ios") {
     return (
       <pre><code className="language-swift">{`RecipeCardViewController.companion.get(
-    displayRecipe: DisplayRecipe.FromId.FromMealzRecipeId(id: "12838"),
+    displayRecipe: DisplayRecipe.FromMealzRecipeId(id: "12838"),
     orientation: .vertical,
     displayVariant: KotlinInt(value: 1),
     navigationCallback: RecipeCardNavigationCallback(
@@ -74,7 +77,7 @@ export function RecipeCardInject(props) {
   }
   return (
     <pre><code className="language-kotlin">{`RecipeCard(
-    displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
+    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
     orientation = RecipeCardOrientation.VERTICAL,
     displayVariant = 1,
     navigationCallback = RecipeCardNavigationCallback(
@@ -85,3 +88,18 @@ export function RecipeCardInject(props) {
 }
 
 <RecipeCardInject platform={props.platform}/>
+
+## Shelves / search — `RecipeResolver`
+
+When you show Mealz recipes **between products** on shelf or search pages:
+
+1. Build one `RecipeContext(productIds, position)` per slot.
+2. Call `suspend RecipeResolver.resolveRecipes(contexts)` once (or when contexts change).
+3. For each non-null `DisplayRecipe` in the result map, render a `RecipeCard`.
+
+```kotlin
+val resolved = RecipeResolver.resolveRecipes(
+    listOf(RecipeContext(productIds = nearbySkus, position = 0))
+)
+// resolved[0]?.let { RecipeCard(displayRecipe = it, …) }
+```

@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Internationalization
 
-The internationalization of our components is based on the mandatory [HTTP request header](/docs/web_ssr/main-features/pre-rendered-components#http-request-headers) `Language-id` that you provide on each API call.
+The internationalization of our components is based on the mandatory [HTTP request header](/docs/web_ssr/v1/main-features/pre-rendered-components#http-request-headers) `Language-id` that you provide on each API call.
 
 By default the values it takes are the [language ISO codes](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) ('fr' / 'en' / 'de' / 'es' etc)
 

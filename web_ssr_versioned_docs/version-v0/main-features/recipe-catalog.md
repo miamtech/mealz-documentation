@@ -56,7 +56,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
 
   - `display_recipe_variant: number = 1`:
-  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+  **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/v0/main-features/recipe-card#display-variants) for examples)
 
 
 ### Example :
@@ -122,5 +122,5 @@ The customizable text contents for this component are the following:
 }
 ```
 
-See [Internationalisation](/docs/web_ssr/customization/internationalization) for more information on how to configure a custom I18n file to override our base texts with your own.
-See [the recipe card](/docs/web_ssr/main-features/recipe-card#i18n) to see its customizable text contents 
+See [Internationalisation](/docs/web_ssr/v0/customization/internationalization) for more information on how to configure a custom I18n file to override our base texts with your own.
+See [the recipe card](/docs/web_ssr/v0/main-features/recipe-card#i18n) to see its customizable text contents 

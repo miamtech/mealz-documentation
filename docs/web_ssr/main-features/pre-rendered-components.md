@@ -34,7 +34,7 @@ Some informations are needed to display all of our components. In order to not h
 
 - **Authorization**: This header is required to access user information (likes, basket, suggestions). It should be formatted as `"user_id <user-token>"`. If the user is not logged in you must use the `Authless-id` header instead.
 
-- **Authless-id**: This header is necessary for saving user data even when the user is not logged in. It is also used to transfer the basket created while unauthenticated to their account once they log in. To generate an authless token, you can use the [Generate Authless Token](/docs/web_ssr/main-features/pre-rendered-components#authless-user) route.
+- **Authless-id**: This header is necessary for saving user data even when the user is not logged in. It is also used to transfer the basket created while unauthenticated to their account once they log in. To generate an authless token, you can use the [Generate Authless Token](/docs/web_ssr/v2/main-features/pre-rendered-components#authless-user) route.
 
 - **Supplier-token**: We will provide you with your supplier token (in Base64 format). This token allows us to identify you and serve data pertinent for your website.
 :::info
@@ -48,7 +48,7 @@ Some informations are needed to display all of our components. In order to not h
   "Language-id": "fr" | "fr-<your-retail-name>"
 }
 ```
-See [Internationalisation](/docs/web_ssr/customization/internationalization) for how to configure a custom I18n file to override our base texts with your own.
+See [Internationalisation](/docs/web_ssr/v2/customization/internationalization) for how to configure a custom I18n file to override our base texts with your own.
 - **Session-id**: A unique identifier to differentiate sessions from one another (for example a uuid). This helps us keep things consistent during a session.
 > For example if a user sees a recipe on a shelf, clicks on a product and goes to the product page, then goes back, they would expect to see the same recipe on the shelf. With the session-id, we are able to return the same recipe if the products passed in parameters are the same as a previous request with the same session-id
 

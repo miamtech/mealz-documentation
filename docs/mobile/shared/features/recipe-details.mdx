@@ -1,7 +1,7 @@
 Full recipe details journey (`FeatureRoute.Recipe.Details`).
 
 :::info SSR
-Behaviour and analytics (`pageview`, `entry.add-all`, cooking/shopping tabs, …): [Analytics (SSR)](/docs/web_ssr/analytics) and [Recipe card (SSR)](/docs/web_ssr/main-features/recipe-card) (details flow).
+Behaviour and analytics (`pageview`, `entry.add-all`, cooking/shopping tabs, …): [Analytics (SSR)](/docs/web_ssr/v2/analytics) and [Recipe card (SSR)](/docs/web_ssr/v2/main-features/recipe-card) (details flow).
 :::
 
 ## Visual overview
@@ -16,7 +16,7 @@ Behaviour and analytics (`pageview`, `entry.add-all`, cooking/shopping tabs, …
 
 | Parameter | Type | Required | Default | What it does |
 |-----------|------|----------|---------|--------------|
-| `displayRecipe` | `DisplayRecipe.FromId.FromMealzRecipeId` | yes | — | Mealz recipe id to open. (Details currently requires a Mealz id, not external / surrounding.) |
+| `displayRecipe` | `DisplayRecipe` | yes | — | Mealz or external recipe id (`FromMealzRecipeId` / `FromExternalRecipeId`). |
 | `serves` | `Int?` | no | `null` | Guest / portion count to open with. Often forwarded from the recipe card. |
 | `navigationCallback` | `RecipeDetailsNavigationCallback` | yes | — | Optional login / store / exit + catalog redirect. |
 | `modifier` | Compose `Modifier` | no | fills max size | Layout. |
@@ -37,7 +37,7 @@ export function RecipeDetailsInject(props) {
   if (props.platform === "android") {
     return (
       <pre><code className="language-kotlin">{`RecipeDetailsScreenView.View(
-    displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
+    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
     serves = 4,
     navigationCallback = RecipeDetailsNavigationCallback(
         redirectToLogIn = { },
@@ -51,7 +51,7 @@ export function RecipeDetailsInject(props) {
   if (props.platform === "ios") {
     return (
       <pre><code className="language-swift">{`RecipeDetailsViewController.companion.get(
-    displayRecipe: DisplayRecipe.FromId.FromMealzRecipeId(id: "12838"),
+    displayRecipe: DisplayRecipe.FromMealzRecipeId(id: "12838"),
     serves: KotlinInt(value: 4),
     navigationCallback: RecipeDetailsNavigationCallback(
         redirectToLogIn: { },
@@ -64,7 +64,7 @@ export function RecipeDetailsInject(props) {
   }
   return (
     <pre><code className="language-kotlin">{`RecipeDetailsScreen(
-    displayRecipe = DisplayRecipe.FromId.FromMealzRecipeId("12838"),
+    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
     serves = 4,
     navigationCallback = RecipeDetailsNavigationCallback(
         redirectToCatalog = { }

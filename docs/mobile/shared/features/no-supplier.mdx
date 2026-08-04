@@ -3,7 +3,7 @@ import Link from '@docusaurus/Link';
 When your supplier key is in **No Supplier** mode (encoded in the key Mealz provides), Mealz owns the basket. Extra WebView helpers cover retailer/store picking, pricing, and transfer CTAs.
 
 :::info SSR
-Web-side model: [Non-retailer integration](/docs/web_ssr/non-retailer-integration/introduction).
+Web-side model: [Non-retailer integration](/docs/web_ssr/v2/non-retailer-integration/introduction).
 :::
 
 ## Supplier selector
@@ -20,7 +20,7 @@ export function SupplierSelectorInitLink(props) {
 
 <SupplierSelectorInitLink platform={props.platform}/>
 
-Background: [Non-retailer introduction](/docs/web_ssr/non-retailer-integration/introduction) (steps 3–4 of the transfer journey).
+Background: [Non-retailer introduction](/docs/web_ssr/v2/non-retailer-integration/introduction) (steps 3–4 of the transfer journey).
 
 ### Parameters
 
@@ -45,7 +45,7 @@ Shows the price for a recipe in the No Supplier context.
 
 | Parameter | Type | Required | Default | What it does |
 |-----------|------|----------|---------|--------------|
-| `displayRecipe` | `DisplayRecipe.FromId` | yes | — | Mealz or external recipe id. |
+| `displayRecipe` | `DisplayRecipe` | yes | — | Mealz or external recipe id (`FromMealzRecipeId` / `FromExternalRecipeId`). |
 | `serves` | `Int?` | no | `null` | Portion / guest count for pricing. |
 | `navigationCallback` | `RecipePricingNavigationCallback` | yes | — | Opens supplier selector when a store is missing. |
 | `modifier` | Compose `Modifier` | no | — | Layout (fixed height). |
@@ -57,19 +57,19 @@ Shows the price for a recipe in the No Supplier context.
 |----------|----------|------------------|
 | `redirectToSupplierSelector` | yes | `(SupplierSelectorContext) -> Unit` — present `SupplierSelectorScreen` with that context. |
 
-See also [Fetching style](/docs/web_ssr/main-features/fetching-style) and [Non-retailer setup](/docs/web_ssr/non-retailer-integration/setup).
+See also [Fetching style](/docs/web_ssr/v2/main-features/fetching-style) and [Non-retailer setup](/docs/web_ssr/v2/non-retailer-integration/setup).
 
 ## Add to cart CTA
 
 Primary CTA next to a recipe to add ingredients to the Mealz basket and start transfer toward an affiliated retailer.
 
-Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/non-retailer-integration/no-supplier-add-to-cart-cta).
+Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/v2/non-retailer-integration/no-supplier-add-to-cart-cta).
 
 ### Parameters
 
 | Parameter | Type | Required | Default | What it does |
 |-----------|------|----------|---------|--------------|
-| `displayRecipe` | `DisplayRecipe.FromId.FromExternalRecipeId` | yes | — | **External** recipe id (your content id). |
+| `displayRecipe` | `DisplayRecipe.FromExternalRecipeId` | yes | — | **External** recipe id (your content id). |
 | `serves` | `Int?` | no | `null` | Guest count for the add-to-cart flow. |
 | `navigationCallback` | `AddToCartCtaNavigationCallback` | yes | — | Details, supplier selector, catalog. |
 | `modifier` | Compose `Modifier` | no | — | Layout (fixed height). |
@@ -79,11 +79,39 @@ Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/non-retail
 
 | Callback | Required | What you must do |
 |----------|----------|------------------|
-| `goToRecipeDetails` | yes | `(recipeId: String, serves: Int?) -> Unit` — open details for that recipe. |
+| `goToRecipeDetails` | yes | `(DisplayRecipe, serves: Int?) -> Unit` — open details for that recipe. |
 | `redirectToSupplierSelector` | yes | Present supplier selector with the given `SupplierSelectorContext`. |
 | `goToCatalog` | yes | `(FeatureRoute.Catalog) -> Unit` — open catalog when requested. |
 
 Base login / store / cart / exit redirects are no-ops on this callback — wire the three callbacks above.
+
+## Basket count badges
+
+In No Supplier mode, Mealz owns the basket. Use `BasketCountNotifier` to drive recipe / product count badges in your app chrome.
+
+Register **after** `start`. Multiple listeners are supported — keep a reference to each listener if you need to unregister it later:
+
+export function BasketCountInject(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`BasketCountNotifier.shared.registerRecipeCountListener { count in /* badge */ }
+BasketCountNotifier.shared.registerProductCountListener { count in /* badge */ }
+// Unregister with the same listener instance:
+// BasketCountNotifier.shared.unregisterRecipeCountListener(listener:)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`val recipeListener = BasketCountListener { count -> /* badge */ }
+BasketCountNotifier.registerRecipeCountListener(recipeListener)
+BasketCountNotifier.registerProductCountListener { count -> /* badge */ }
+// Later:
+BasketCountNotifier.unregisterRecipeCountListener(recipeListener)`}</code></pre>
+  );
+}
+
+<BasketCountInject platform={props.platform}/>
+
+Counts are persisted locally and refreshed from WebView observers. They can be stale until a Mealz WebView opens again after process death, auth changes, or store changes without reopening Mealz UI.
 
 ## Inject examples
 
@@ -92,7 +120,7 @@ export function NoSupplierInject(props) {
     return (
       <pre><code className="language-kotlin">{`// Pricing
 RecipePricingView.View(
-    displayRecipe = DisplayRecipe.FromId.FromExternalRecipeId("ext-recipe-1"),
+    displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
     serves = 4,
     navigationCallback = RecipePricingNavigationCallback(
         redirectToSupplierSelector = { context -> /* SupplierSelectorScreenView */ }
@@ -101,10 +129,10 @@ RecipePricingView.View(
 
 // Add to cart CTA
 AddToCartCTAView.View(
-    displayRecipe = DisplayRecipe.FromId.FromExternalRecipeId("ext-recipe-1"),
+    displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
     serves = 4,
     navigationCallback = AddToCartCtaNavigationCallback(
-        goToRecipeDetails = { id, serves -> },
+        goToRecipeDetails = { displayRecipe, serves -> },
         redirectToSupplierSelector = { context -> },
         goToCatalog = { route -> }
     )
@@ -127,7 +155,7 @@ SupplierSelectorScreenView.View(
   }
   return (
     <pre><code className="language-kotlin">{`RecipePricing(
-    displayRecipe = DisplayRecipe.FromId.FromExternalRecipeId("ext-recipe-1"),
+    displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
     serves = 4,
     navigationCallback = RecipePricingNavigationCallback(
         redirectToSupplierSelector = { /* SupplierSelectorScreen */ }
@@ -135,10 +163,10 @@ SupplierSelectorScreenView.View(
 )
 
 AddToCart(
-    displayRecipe = DisplayRecipe.FromId.FromExternalRecipeId("ext-recipe-1"),
+    displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
     serves = 4,
     navigationCallback = AddToCartCtaNavigationCallback(
-        goToRecipeDetails = { id, serves -> },
+        goToRecipeDetails = { displayRecipe, serves -> },
         redirectToSupplierSelector = { },
         goToCatalog = { }
     )

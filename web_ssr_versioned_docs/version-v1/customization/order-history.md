@@ -40,11 +40,11 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/my-space
 
   - `tab: 'favorites' | 'history' = 'favorites'`:
     
-    **_(Optional)_** Specify the tab to display: favorites (default) or history **(See [Routing](/docs/web_ssr/customization/order-history#routing))**
+    **_(Optional)_** Specify the tab to display: favorites (default) or history **(See [Routing](/docs/web_ssr/v1/customization/order-history#routing))**
 
   - `history_style: 'grid' | 'list' = 'grid'`:
     
-    **_(Optional)_** Specify the style to display for the history tab: grid (default) or list. Does not have any effect if used alongside `tab=favorites`. **(See [Routing](/docs/web_ssr/customization/order-history#routing))**
+    **_(Optional)_** Specify the style to display for the history tab: grid (default) or list. Does not have any effect if used alongside `tab=favorites`. **(See [Routing](/docs/web_ssr/v1/customization/order-history#routing))**
 
   - `pricebook_key: string = 'DEFAULT'`:
     
@@ -56,7 +56,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/my-space
 
   - `display_recipe_variant: number = 1`:
     
-    **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/main-features/recipe-card#display-variants) for examples)
+    **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/v1/main-features/recipe-card#display-variants) for examples)
 
   - `search: string`:
     
