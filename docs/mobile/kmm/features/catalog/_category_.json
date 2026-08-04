@@ -1,0 +1,8 @@
+{
+  "label": "Catalog",
+  "position": 1,
+  "link": {
+    "type": "doc",
+    "id": "kmm/features/catalog/index"
+  }
+}

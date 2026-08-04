@@ -1,0 +1,140 @@
+Embed a single recipe card in search grids, shelves, or product pages. The card is an opaque WebView component (`FeatureRoute.Recipe.Card`).
+
+## Visual Overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeCard.png"
+  alt="Recipe card (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `displayRecipe` | `DisplayRecipe` | yes | — | Which recipe to show (Mealz id or external id). |
+| `orientation` | `RecipeCardOrientation` | no | `VERTICAL` | `VERTICAL` or `HORIZONTAL` layout. |
+| `dimensions` | `RecipeCardDimensions?` | no | orientation defaults | Pixel height (and optional width). Defaults: vertical height `360`, horizontal height `188`; width fills parent unless set. |
+| `displayVariant` | `Int?` | no | `null` | Visual variant of the card (SSR `display_variant`). |
+| `navigationCallback` | `RecipeCardNavigationCallback` | yes | — | Open recipe details when the shopper taps the card. |
+| `modifier` | Compose `Modifier` | no | — | Layout wrapper. |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `DisplayRecipe`
+
+| Variant | Fields | When to use |
+|---------|--------|-------------|
+| `FromMealzRecipeId(id)` | Mealz recipe id | You know the Mealz id. |
+| `FromExternalRecipeId(id)` | Your / retailer recipe id | Recipe mapped in Mealz under an external id. |
+
+:::tip Shelves / search
+Do **not** pass surrounding product SKUs into `DisplayRecipe` anymore. Resolve shelf slots in batch with `RecipeResolver.resolveRecipes(contexts)`, then render each non-null result with `RecipeCard`. Requires a store set via `setSelectedStoreWithExternalId`.
+:::
+
+### `RecipeCardNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `goToRecipeDetails` | yes | `(DisplayRecipe, serves: Int?) -> Unit` — open recipe details with optional guest count. |
+
+Base `NavigationCallback` redirects (`redirectToLogIn`, `redirectToStoreLocator`, `redirectToCart`, `exit`) default to no-ops on this component — only `goToRecipeDetails` matters.
+
+## Inject
+
+export function RecipeCardInject(props) {
+  if (props.platform === "android") {
+    return (
+      <pre><code className="language-kotlin">{`RecipeCardView.View(
+    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
+    orientation = RecipeCardOrientation.VERTICAL,
+    displayVariant = 1,
+    navigationCallback = RecipeCardNavigationCallback(
+        goToRecipeDetails = { recipe, serves ->
+            // Open RecipeDetailsScreenView(recipe, serves)
+        }
+    )
+)`}</code></pre>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`RecipeCardViewController.companion.get(
+    displayRecipe: DisplayRecipe.FromMealzRecipeId(id: "12838"),
+    orientation: .vertical,
+    displayVariant: KotlinInt(value: 1),
+    navigationCallback: RecipeCardNavigationCallback(
+        goToRecipeDetails: { recipe, serves in
+            // Present RecipeDetailsViewController
+        }
+    )
+)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`RecipeCard(
+    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
+    orientation = RecipeCardOrientation.VERTICAL,
+    displayVariant = 1,
+    navigationCallback = RecipeCardNavigationCallback(
+        goToRecipeDetails = { recipe, serves -> /* navigate */ }
+    )
+)`}</code></pre>
+  );
+}
+
+<RecipeCardInject platform={props.platform}/>
+
+export function RecipeCardIosNotes(props) {
+  if (props.platform !== "ios") return null;
+  return (
+    <>
+      <h2>iOS ViewControllers — Navigation &amp; Sheet Refresh</h2>
+      <h3>In-WebView Back</h3>
+      <p>
+        Full-screen Mealz screens (<code>CatalogViewController</code>, <code>RecipeDetailsViewController</code>, …) keep their
+        own WebView history. When you own the <code>UINavigationController</code> back button / interactive pop, prefer the
+        WebView stack first:
+      </p>
+      <pre><code className="language-swift">{`if ScreenViewControllerCoordinator.shared.canGoBackInternally(viewController: mealzVC) {
+    ScreenViewControllerCoordinator.shared.handleBackNavigation(viewController: mealzVC)
+} else {
+    // pop / dismiss your host screen
+}`}</code></pre>
+      <h3>Recipe Card Under a Details Sheet</h3>
+      <p>
+        When you <strong>push</strong> recipe details, the card refreshes on return via the usual appear lifecycle.
+        When you present details as a <strong>sheet</strong> (card stays visible underneath), post this notification on
+        dismiss so <code>RecipeCardViewController</code> can refresh likes / basket state for that recipe:
+      </p>
+      <pre><code className="language-swift">{`NotificationCenter.default.post(
+    name: Notification.Name("recipeDetailsDismissed"),
+    object: nil,
+    userInfo: [
+        "recipeId": recipeId,           // Mealz or external id you opened
+        "isMealzRecipe": true           // false for DisplayRecipe.FromExternalRecipeId
+    ]
+)`}</code></pre>
+      <p>
+        The card listens for that notification automatically — you only need to post it when closing a sheet. No extra
+        cleanup is required on the host side; the library tears down WebView / observers with the ViewController.
+      </p>
+    </>
+  );
+}
+
+<RecipeCardIosNotes platform={props.platform}/>
+
+## Shelves / Search — `RecipeResolver`
+
+When you show Mealz recipes **between products** on shelf or search pages:
+
+1. Build one `RecipeContext(productIds, position)` per slot.
+2. Call `suspend RecipeResolver.resolveRecipes(contexts)` once (or when contexts change).
+3. For each non-null `DisplayRecipe` in the result map, render a `RecipeCard`.
+
+```kotlin
+val resolved = RecipeResolver.resolveRecipes(
+    listOf(RecipeContext(productIds = nearbySkus, position = 0))
+)
+// resolved[0]?.let { RecipeCard(displayRecipe = it, …) }
+```

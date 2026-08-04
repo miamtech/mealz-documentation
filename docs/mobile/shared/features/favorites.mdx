@@ -1,0 +1,35 @@
+import Link from '@docusaurus/Link';
+
+Favorites is a **Catalog route**, not a separate native module. Use the same catalog entry with:
+
+```kotlin
+FeatureRoute.Catalog.Favorites(displayVariant = null)
+```
+
+## Visual Overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/favorites.png"
+  alt="Catalog favorites (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+Same as Catalog (`route` + `CatalogNavigationCallback`) — see the Catalog link below. Route-specific:
+
+| Route field | Type | Required | Default | What it does |
+|-------------|------|----------|---------|--------------|
+| `displayVariant` | `Int?` | no | `null` | Recipe-card variant inside the favorites list. |
+
+Set `goToHomeCatalog` when Favorites is presented as a **root** screen: the WebView may ask to open the main catalog (e.g. empty favorites → browse recipes). See Catalog docs for `goToHomeCatalog`.
+
+export function FavoritesCatalogLink(props) {
+  return (
+    <p>
+      Full entry docs: <Link to={`/docs/${props.platform}/features/catalog`}>Catalog</Link>.
+    </p>
+  );
+}
+
+<FavoritesCatalogLink platform={props.platform}/>
