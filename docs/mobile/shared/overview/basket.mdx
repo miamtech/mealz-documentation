@@ -1,4 +1,19 @@
+import Link from '@docusaurus/Link';
+
 Retailer apps must keep the host cart and the Mealz basket aligned using `BasketSynchronizationManager`.
+
+export function BasketTransferVsSync(props) {
+  return (
+    <p>
+      <strong>Basket transfer</strong> (affiliated No Supplier → your app) also lands products through this
+      synchronizer, but the handoff itself is a deep link into My Meals — see{' '}
+      <Link to={`/docs/${props.platform}/features/basket-transfer`}>Basket Transfer</Link>. Do not confuse it with{' '}
+      <code>redirectToCart</code> (open your in-app cart while the shopper is already in Mealz UI).
+    </p>
+  );
+}
+
+<BasketTransferVsSync platform={props.platform}/>
 
 ## Register a Synchronizer
 

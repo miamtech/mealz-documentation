@@ -42,34 +42,23 @@ Base `NavigationCallback` redirects (`redirectToLogIn`, `redirectToStoreLocator`
 ## Inject
 
 export function RecipeCardInject(props) {
-  if (props.platform === "android") {
-    return (
-      <pre><code className="language-kotlin">{`RecipeCardView.View(
-    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
-    orientation = RecipeCardOrientation.VERTICAL,
-    displayVariant = 1,
-    navigationCallback = RecipeCardNavigationCallback(
-        goToRecipeDetails = { recipe, serves ->
-            // Open RecipeDetailsScreenView(recipe, serves)
-        }
-    )
-)`}</code></pre>
-    );
-  }
   if (props.platform === "ios") {
     return (
       <pre><code className="language-swift">{`RecipeCardViewController.companion.get(
-    displayRecipe: DisplayRecipe.FromMealzRecipeId(id: "12838"),
+    displayRecipe: DisplayRecipeFromMealzRecipeId(id: "12838"),
+    dimensions: RecipeCardDimensions(height: 360, width: nil),
     orientation: .vertical,
-    displayVariant: KotlinInt(value: 1),
+    displayVariant: KotlinInt(int: Int32(1)),
+    stateContent: nil,
     navigationCallback: RecipeCardNavigationCallback(
         goToRecipeDetails: { recipe, serves in
-            // Present RecipeDetailsViewController
+            // serves is KotlinInt? — e.g. serves.map { Int(truncating: $0) }
         }
     )
 )`}</code></pre>
     );
   }
+  // Android + KMM
   return (
     <pre><code className="language-kotlin">{`RecipeCard(
     displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
@@ -89,6 +78,11 @@ export function RecipeCardIosNotes(props) {
   return (
     <>
       <h2>iOS ViewControllers — Navigation &amp; Sheet Refresh</h2>
+      <p>
+        Nested Kotlin types flatten in Swift (e.g. <code>DisplayRecipe.FromMealzRecipeId</code> →{' '}
+        <code>DisplayRecipeFromMealzRecipeId</code>). Optional <code>Int?</code> parameters are often{' '}
+        <code>KotlinInt?</code> — build with <code>KotlinInt(int: Int32(…))</code>.
+      </p>
       <h3>In-WebView Back</h3>
       <p>
         Full-screen Mealz screens (<code>CatalogViewController</code>, <code>RecipeDetailsViewController</code>, …) keep their
@@ -111,7 +105,7 @@ export function RecipeCardIosNotes(props) {
     object: nil,
     userInfo: [
         "recipeId": recipeId,           // Mealz or external id you opened
-        "isMealzRecipe": true           // false for DisplayRecipe.FromExternalRecipeId
+        "isMealzRecipe": true           // false for DisplayRecipeFromExternalRecipeId
     ]
 )`}</code></pre>
       <p>

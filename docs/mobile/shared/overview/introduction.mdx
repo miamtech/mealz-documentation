@@ -4,7 +4,7 @@ export var platform
 
 This library helps you embed Mealz eCommerce experiences inside grocery shopping apps and third-party apps that connect to multiple retailers.
 
-**MealzUIKit** (version **1.0**) is a Kotlin Multiplatform library. Feature journeys (Catalog, Mealz Planner, Recipe Card, Recipe Details, …) run inside a native **WebView** that loads Mealz **SSR** content. You initialize the library once, present feature screens where needed, and optionally style them with CSS manifests.
+**MealzUIKit** (latest **1.0.0**) is a Kotlin Multiplatform library. Feature journeys (Catalog, Mealz Planner, Recipe Card, Recipe Details, …) run inside a native **WebView** that loads Mealz **SSR** content. You initialize the library once, present feature screens where needed, and optionally style them with CSS manifests.
 
 :::info Legacy stack
 Looking for the previous native libraries (**MealzCore** + **MealzAndroid** / **MealziOSSDK**)? Open the Android or iOS navbar dropdown and pick **5.7 (obsolete)**.
@@ -62,6 +62,18 @@ export function BasketBackground(props) {
 ### Recipe Provider (No Supplier) Mode
 
 When your app is not a retailer, Mealz can own the basket and you use No Supplier helpers (supplier selector, pricing, add-to-cart CTA). Store selection is driven by the supplier selector flow — you do not wire an external retailer store id.
+
+export function BasketTransferIntro(props) {
+  return (
+    <p>
+      No Supplier apps can <strong>transfer</strong> that Mealz basket to an affiliated retailer app/site
+      (<code>transferred_basket_token</code> handoff). Retailers must receive it via My Meals + basket sync.
+      See <Link to={`/docs/${props.platform}/features/basket-transfer`}>Basket Transfer</Link>.
+    </p>
+  );
+}
+
+<BasketTransferIntro platform={props.platform}/>
 
 ## Project Architecture
 

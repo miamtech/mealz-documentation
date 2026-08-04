@@ -34,31 +34,20 @@ Base `NavigationCallback` redirects (`redirectToLogIn`, `redirectToStoreLocator`
 ## Inject
 
 export function RecipeTagInject(props) {
-  if (props.platform === "android") {
-    return (
-      <pre><code className="language-kotlin">{`RecipeTagView.View(
-    externalProductId = "sku-123",
-    navigationCallback = RecipeTagNavigationCallback(
-        goToRecipeDetails = { mealzRecipe ->
-            // Open RecipeDetailsScreenView / your details flow
-            // mealzRecipe.id is the Mealz recipe id
-        }
-    )
-)`}</code></pre>
-    );
-  }
   if (props.platform === "ios") {
     return (
       <pre><code className="language-swift">{`RecipeTagViewController.companion.get(
     externalProductId: "sku-123",
+    stateContent: nil,
     navigationCallback: RecipeTagNavigationCallback(
         goToRecipeDetails: { mealzRecipe in
-            // Present RecipeDetailsViewController for mealzRecipe.id
+            // Present RecipeDetailsViewController for mealzRecipe
         }
     )
 )`}</code></pre>
     );
   }
+  // Android + KMM
   return (
     <pre><code className="language-kotlin">{`RecipeTag(
     externalProductId = "sku-123",

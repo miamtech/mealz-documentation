@@ -3,8 +3,21 @@ import Link from '@docusaurus/Link';
 When your supplier key is in **No Supplier** mode (encoded in the key Mealz provides), Mealz owns the basket. Extra WebView helpers cover retailer/store picking, pricing, and transfer CTAs.
 
 :::important Host Setup
-In No Supplier mode, do **not** call `connectUserWithId` and do **not** select a store yourself (`setSelectedStoreWithExternalId` / `setSelectedStoreWithMealzId`). Leave authless defaults; retailer and store picking go through [Supplier Selector](#supplier-selector).
+In No Supplier mode, do **not** call `setUser("…")` and do **not** select a store yourself (`setSelectedStoreWithExternalId` / `setSelectedStoreWithMealzId`). Leave authless defaults; retailer and store picking go through [Supplier Selector](#supplier-selector).
 :::
+
+export function BasketTransferNoSupplierCallout(props) {
+  return (
+    <p>
+      <strong>Basket transfer (send):</strong> after the shopper confirms transfer, MealzUIKit opens the affiliated
+      retailer URL <strong>outside</strong> your app (<code>transferred_basket_token</code>). There is no separate
+      transfer API — host Add to Cart / Supplier Selector and allow that handoff. Full flow (No Supplier + Retailer):{' '}
+      <Link to={`/docs/${props.platform}/features/basket-transfer`}>Basket Transfer</Link>.
+    </p>
+  );
+}
+
+<BasketTransferNoSupplierCallout platform={props.platform}/>
 
 ## Supplier Selector
 
@@ -116,49 +129,53 @@ Counts are persisted locally and refreshed from WebView observers. They can be s
 ## Inject Examples
 
 export function NoSupplierInject(props) {
-  if (props.platform === "android") {
+  if (props.platform === "ios") {
     return (
-      <pre><code className="language-kotlin">{`// Pricing
-RecipePricingView.View(
-    displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
-    serves = 4,
-    navigationCallback = RecipePricingNavigationCallback(
-        redirectToSupplierSelector = { context -> /* SupplierSelectorScreenView */ }
+      <pre><code className="language-swift">{`// Pricing — nested Kotlin types flatten in Swift (DisplayRecipeFromExternalRecipeId, …)
+let serves = KotlinInt(int: Int32(4))
+
+RecipePricingViewController.companion.get(
+    displayRecipe: DisplayRecipeFromExternalRecipeId(id: "ext-recipe-1"),
+    serves: serves,
+    stateContent: nil,
+    navigationCallback: RecipePricingNavigationCallback(
+        redirectToSupplierSelector: { context in /* present SupplierSelectorViewController */ }
     )
 )
 
 // Add to Cart CTA
-AddToCartCTAView.View(
-    displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
-    serves = 4,
-    navigationCallback = AddToCartCtaNavigationCallback(
-        goToRecipeDetails = { displayRecipe, serves -> },
-        redirectToSupplierSelector = { context -> },
-        goToCatalog = { route -> }
+AddToCartCTAViewController.companion.get(
+    displayRecipe: DisplayRecipeFromExternalRecipeId(id: "ext-recipe-1"),
+    serves: serves,
+    stateContent: nil,
+    navigationCallback: AddToCartCtaNavigationCallback(
+        goToRecipeDetails: { displayRecipe, serves in
+            // serves is KotlinInt? — e.g. serves.map { Int(truncating: $0) }
+        },
+        redirectToSupplierSelector: { context in },
+        goToCatalog: { route in }
     )
 )
 
 // Supplier Selector
-SupplierSelectorScreenView.View(
-    context = SupplierSelectorContext.OpenedForAddToCartByExternalId("ext-recipe-1"),
-    navigationCallback = SupplierSelectorNavigationCallback(
-        exit = { /* dismiss */ }
+SupplierSelectorViewController.companion.get(
+    context: SupplierSelectorContextOpenedForAddToCartByExternalId(
+        externalRecipeId: "ext-recipe-1"
+    ),
+    stateContent: nil,
+    navigationCallback: SupplierSelectorNavigationCallback(
+        exit: { /* dismiss */ }
     )
 )`}</code></pre>
     );
   }
-  if (props.platform === "ios") {
-    return (
-      <pre><code className="language-swift">{`// Use RecipePricingViewController / AddToCartCTAViewController /
-// SupplierSelectorViewController.companion.get(…) with the same parameters.`}</code></pre>
-    );
-  }
+  // Android + KMM — same Compose APIs as sdk-demo-android / SampleKMMSDKIntegration
   return (
     <pre><code className="language-kotlin">{`RecipePricing(
     displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
     serves = 4,
     navigationCallback = RecipePricingNavigationCallback(
-        redirectToSupplierSelector = { /* SupplierSelectorScreen */ }
+        redirectToSupplierSelector = { /* open SupplierSelectorScreen */ }
     )
 )
 

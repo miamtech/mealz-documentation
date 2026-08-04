@@ -30,25 +30,13 @@ Full recipe details journey (`FeatureRoute.Recipe.Details`).
 ## Inject
 
 export function RecipeDetailsInject(props) {
-  if (props.platform === "android") {
-    return (
-      <pre><code className="language-kotlin">{`RecipeDetailsScreenView.View(
-    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
-    serves = 4,
-    navigationCallback = RecipeDetailsNavigationCallback(
-        redirectToLogIn = { },
-        redirectToStoreLocator = { },
-        exit = { },
-        redirectToCatalog = { /* open CatalogScreenView */ }
-    )
-)`}</code></pre>
-    );
-  }
   if (props.platform === "ios") {
     return (
       <pre><code className="language-swift">{`RecipeDetailsViewController.companion.get(
-    displayRecipe: DisplayRecipe.FromMealzRecipeId(id: "12838"),
-    serves: KotlinInt(value: 4),
+    displayRecipe: DisplayRecipeFromMealzRecipeId(id: "12838"),
+    serves: KotlinInt(int: Int32(4)),
+    defaultSelectedTab: nil,
+    stateContent: nil,
     navigationCallback: RecipeDetailsNavigationCallback(
         redirectToLogIn: { },
         redirectToStoreLocator: { },
@@ -58,12 +46,16 @@ export function RecipeDetailsInject(props) {
 )`}</code></pre>
     );
   }
+  // Android + KMM
   return (
     <pre><code className="language-kotlin">{`RecipeDetailsScreen(
     displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
     serves = 4,
     navigationCallback = RecipeDetailsNavigationCallback(
-        redirectToCatalog = { }
+        redirectToLogIn = { },
+        redirectToStoreLocator = { },
+        exit = { },
+        redirectToCatalog = { /* open CatalogScreen */ }
     )
 )`}</code></pre>
   );
