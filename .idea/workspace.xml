@@ -1,11 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="(after mr)">
+    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="(after mr): use fixed link to SSR V2 to avoid potential issue on V3 merge (and align with last changes)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/Introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/Introduction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/analytics.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/advanced/analytics.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/advanced/styling.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/advanced/styling.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/changelogs/changelog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/changelogs/changelog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/favorites.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/catalog/favorites.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/catalog/order-history.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/catalog/order-history.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/recipe-card/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-details/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/recipe-details/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-details/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/recipe-details/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-tags/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/recipe-tags/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/features/recipe-tags/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/features/recipe-tags/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/basket.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/overview/basket.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/initialisation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/overview/initialisation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/android/overview/installation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/android/overview/installation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/Introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/Introduction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/analytics.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/advanced/analytics.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/advanced/styling.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/advanced/styling.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/changelogs/changelog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/changelogs/changelog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/favorites.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/favorites.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/order-history.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/catalog/order-history.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-card/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-details/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-tags/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-tags/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-tags/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/features/recipe-tags/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/basket.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/overview/basket.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/initialisation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/overview/initialisation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/ios/overview/installation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/ios/overview/installation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/Introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/Introduction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/advanced/analytics.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/advanced/analytics.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/advanced/styling.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/advanced/styling.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/changelogs/changelog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/changelogs/changelog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/catalog/favorites.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/catalog/favorites.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/catalog/order-history.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/catalog/order-history.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-card/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-card/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-card/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-card/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-details/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-details/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-details/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-details/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-tags/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-tags/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-tags/index.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/recipe-tags/index.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/overview/basket.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/overview/basket.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/overview/initialisation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/overview/initialisation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/kmm/overview/installation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/kmm/overview/installation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/advanced/mealz-styling.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/advanced/mealz-styling.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/changelogs/changelog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/changelogs/changelog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/favorites.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/favorites.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/my-meals.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/my-meals.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/my-space.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/my-space.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/no-supplier.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/no-supplier.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/order-history.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/order-history.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-card.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-card.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-details.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-details.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-tags.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-tags.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/basket.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/basket.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/initialisation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/initialisation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/installation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/installation.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +84,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MaximePezeril&quot;
+  }
+}</component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
       <RecentBranches>
@@ -68,6 +135,12 @@
       </list>
     </option>
   </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/miamtech/mealz-documentation.git&quot;,
+    &quot;accountId&quot;: &quot;e5f636d1-54c5-4113-8fa9-7e1edce9473d&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -79,22 +152,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;docs/new-webview-library&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "#218 on docs/new-webview-library",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_SUPPORTED="false" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" DEVELOPMENT_TEAM="${TEAM_ID}" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <embedded_app_extension_list />
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -235,7 +322,23 @@
       <option name="project" value="LOCAL" />
       <updated>1784885223292</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update documentation to reflect new light navigation callbacks">
+      <option name="closed" value="true" />
+      <created>1784908317687</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1784908317687</updated>
+    </task>
+    <task id="LOCAL-00016" summary="(after mr): use fixed link to SSR V2 to avoid potential issue on V3 merge (and align with last changes)">
+      <option name="closed" value="true" />
+      <created>1785857136869</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1785857136869</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,6 +359,8 @@
     <MESSAGE value="Use relative path" />
     <MESSAGE value="Do not explain mobile version here" />
     <MESSAGE value="Rename into Mealz Planner" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rename into Mealz Planner" />
+    <MESSAGE value="update documentation to reflect new light navigation callbacks" />
+    <MESSAGE value="(after mr): use fixed link to SSR V2 to avoid potential issue on V3 merge (and align with last changes)" />
+    <option name="LAST_COMMIT_MESSAGE" value="(after mr): use fixed link to SSR V2 to avoid potential issue on V3 merge (and align with last changes)" />
   </component>
 </project>

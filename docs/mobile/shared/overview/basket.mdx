@@ -1,10 +1,6 @@
-:::info SSR
-Basket flows call Mealz SSR under the hood (including `payment-started`). See [SSR basket synchronization](/docs/web_ssr/v2/set-up-and-usage/basket-synchronization) for the shared model.
-:::
-
 Retailer apps must keep the host cart and the Mealz basket aligned using `BasketSynchronizationManager`.
 
-## Register a synchronizer
+## Register a Synchronizer
 
 export function RegisterTiming(props) {
   const startCall =
@@ -74,7 +70,7 @@ In older MealzCore / MealzAndroid / MealziOSSDK libraries, callbacks often expos
 
 After Mealz pushes deltas, apply them to your cart and call `notifyRetailerBasketChanged` promptly. Mealz keeps **pending updates for about 10 seconds** while waiting for the host to echo the new absolute basket; slow confirmation can cause races with the next WebView basket state.
 
-## Notify Mealz when the retailer cart changes
+## Notify Mealz When the Retailer Cart Changes
 
 Whenever the user (or your app) changes the retailer cart outside Mealz, push the absolute Mealz-related product list:
 
@@ -101,7 +97,7 @@ export function NotifyBasket(props) {
 
 <NotifyBasket platform={props.platform}/>
 
-## Checkout / payment
+## Checkout / Payment
 
 When the user starts checkout on the retailer side:
 

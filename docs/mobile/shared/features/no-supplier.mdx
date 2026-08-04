@@ -2,11 +2,11 @@ import Link from '@docusaurus/Link';
 
 When your supplier key is in **No Supplier** mode (encoded in the key Mealz provides), Mealz owns the basket. Extra WebView helpers cover retailer/store picking, pricing, and transfer CTAs.
 
-:::info SSR
-Web-side model: [Non-retailer integration](/docs/web_ssr/v2/non-retailer-integration/introduction).
+:::important Host Setup
+In No Supplier mode, do **not** call `connectUserWithId` and do **not** select a store yourself (`setSelectedStoreWithExternalId` / `setSelectedStoreWithMealzId`). Leave authless defaults; retailer and store picking go through [Supplier Selector](#supplier-selector).
 :::
 
-## Supplier selector
+## Supplier Selector
 
 Lets the shopper pick an affiliated grocery retailer (and then a store). Mealz opens this automatically when a store is required, or other No Supplier components request it via `redirectToSupplierSelector`. You should not set the Mealz store id manually in the normal flow.
 
@@ -37,7 +37,7 @@ Background: [Non-retailer introduction](/docs/web_ssr/v2/non-retailer-integratio
 |----------|----------|------------------|
 | `exit` | yes | Dismiss the selector when the user cancels **or** after a store is selected. |
 
-## Recipe pricing
+## Recipe Pricing
 
 Shows the price for a recipe in the No Supplier context.
 
@@ -59,7 +59,7 @@ Shows the price for a recipe in the No Supplier context.
 
 See also [Fetching style](/docs/web_ssr/v2/main-features/fetching-style) and [Non-retailer setup](/docs/web_ssr/v2/non-retailer-integration/setup).
 
-## Add to cart CTA
+## Add to Cart CTA
 
 Primary CTA next to a recipe to add ingredients to the Mealz basket and start transfer toward an affiliated retailer.
 
@@ -85,7 +85,7 @@ Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/v2/non-ret
 
 Base login / store / cart / exit redirects are no-ops on this callback — wire the three callbacks above.
 
-## Basket count badges
+## Basket Count Badges
 
 In No Supplier mode, Mealz owns the basket. Use `BasketCountNotifier` to drive recipe / product count badges in your app chrome.
 
@@ -113,7 +113,7 @@ BasketCountNotifier.unregisterRecipeCountListener(recipeListener)`}</code></pre>
 
 Counts are persisted locally and refreshed from WebView observers. They can be stale until a Mealz WebView opens again after process death, auth changes, or store changes without reopening Mealz UI.
 
-## Inject examples
+## Inject Examples
 
 export function NoSupplierInject(props) {
   if (props.platform === "android") {
@@ -127,7 +127,7 @@ RecipePricingView.View(
     )
 )
 
-// Add to cart CTA
+// Add to Cart CTA
 AddToCartCTAView.View(
     displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
     serves = 4,
@@ -138,7 +138,7 @@ AddToCartCTAView.View(
     )
 )
 
-// Supplier selector
+// Supplier Selector
 SupplierSelectorScreenView.View(
     context = SupplierSelectorContext.OpenedForAddToCartByExternalId("ext-recipe-1"),
     navigationCallback = SupplierSelectorNavigationCallback(

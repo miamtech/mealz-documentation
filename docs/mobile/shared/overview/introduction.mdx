@@ -4,13 +4,13 @@ export var platform
 
 This library helps you embed Mealz eCommerce experiences inside grocery shopping apps and third-party apps that connect to multiple retailers.
 
-**MealzUIKit** (version **1.0.0**) is a Kotlin Multiplatform library. Feature journeys (catalog, Mealz Planner, recipe card, recipe details, …) run inside a native **WebView** that loads Mealz **SSR** content. You initialize the library once, present feature screens where needed, and optionally style them with CSS manifests.
+**MealzUIKit** (version **1.0**) is a Kotlin Multiplatform library. Feature journeys (Catalog, Mealz Planner, Recipe Card, Recipe Details, …) run inside a native **WebView** that loads Mealz **SSR** content. You initialize the library once, present feature screens where needed, and optionally style them with CSS manifests.
 
 :::info Legacy stack
 Looking for the previous native libraries (**MealzCore** + **MealzAndroid** / **MealziOSSDK**)? Use the **Older** section in the Android or iOS navbar dropdown (versions **5.7** and below).
 :::
 
-## Get up & running
+## Get Up & Running
 
 Integration takes three steps:
 
@@ -37,19 +37,19 @@ export function GettingStartedSteps(props) {
 
 <GettingStartedSteps platform={props.platform}/>
 
-## Background knowledge
+## Background Knowledge
 
-### How do we get the data?
+### How Do We Get the Data?
 
 Your backend works with our backend to share the product referential (products, prices, stores). We refresh it on a commercially agreed cadence (often hourly to daily). Mealz keeps a basket synchronized with the retailer basket when you are in retailer mode.
 
-### Retailer basket communication
+### Retailer Basket Communication
 
 export function BasketBackground(props) {
   return (
     <p>
       In retailer mode, Mealz keeps a copy of the retailer basket and exchanges <strong>deltas</strong> when Mealz recipes add or remove products. Non-Mealz products in the retailer cart are left alone. See{' '}
-      <Link to={`/docs/${props.platform}/overview/basket`}>Basket synchronization</Link>
+      <Link to={`/docs/${props.platform}/overview/basket`}>Basket Synchronization</Link>
       {' '}and the{' '}
       <Link to="/docs/web_ssr/v2/set-up-and-usage/basket-synchronization">SSR basket synchronization</Link>
       {' '}docs for the web-side model (the same SSR APIs power the WebView).
@@ -59,11 +59,11 @@ export function BasketBackground(props) {
 
 <BasketBackground platform={props.platform}/>
 
-### Recipe provider (No Supplier) mode
+### Recipe Provider (No Supplier) Mode
 
 When your app is not a retailer, Mealz can own the basket and you use No Supplier helpers (supplier selector, pricing, add-to-cart CTA). Store selection is driven by the supplier selector flow — you do not wire an external retailer store id.
 
-## Project architecture
+## Project Architecture
 
 export function ArchitectureBlurb(props) {
   if (props.platform === "android") {

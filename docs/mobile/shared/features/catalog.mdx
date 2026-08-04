@@ -2,12 +2,7 @@ import Link from '@docusaurus/Link';
 
 The catalog is a WebView journey driven by `FeatureRoute.Catalog`. Host UX (categories, preferences, favorites entry points, basket CTA, …) matches Mealz SSR.
 
-:::info SSR
-In-WebView behaviour: [Recipe catalog (SSR)](/docs/web_ssr/v2/main-features/recipe-catalog).  
-Events: [Analytics](/docs/web_ssr/v2/analytics) (`category.display`, `preferences.display`, `liked.display`, `basket.display`, …).
-:::
-
-## Visual overview
+## Visual Overview
 
 <img
   src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png"
@@ -35,7 +30,7 @@ There is a **single** catalog entry point. You choose the starting page with `ro
 | `List(displayVariant?)` | — | Recipe list (e.g. search results shell). |
 | `MySpace(defaultSelectedTab?, displayVariant?)` | `MySpaceTab.Favorites` or `History` | My Space with optional default tab. |
 | `Favorites(displayVariant?)` | — | Favorites as root (wraps My Space favorites). |
-| `History(displayVariant?)` | — | Order history as root. |
+| `History(displayVariant?)` | — | Order History as root. |
 | `MyMeals(showTabSelector, defaultSelectedTab?, basketTransferUrl?)` | see My Meals (Catalog journeys below) | Meals / products in basket. |
 
 `displayVariant` (optional `Int`) selects the recipe-card visual variant inside catalog lists where supported.
@@ -98,11 +93,11 @@ export function CatalogInject(props) {
     <pre><code className="language-kotlin">{`CatalogScreen(
     route = FeatureRoute.Catalog.Home(),
     navigationCallback = CatalogNavigationCallback(
-        redirectToLogIn = { },
-        redirectToStoreLocator = { },
-        exit = { },
-        redirectToCart = { },
-        goToHomeCatalog = { },
+        redirectToLogIn = { /* open login */ },
+        redirectToStoreLocator = { /* open store picker */ },
+        exit = { /* pop / dismiss */ },
+        redirectToCart = { /* open retailer cart */ },
+        goToHomeCatalog = { /* optional: open Catalog.Home when Favorites/My Space/… is root */ },
     )
 )`}</code></pre>
   );
@@ -110,7 +105,7 @@ export function CatalogInject(props) {
 
 <CatalogInject platform={props.platform}/>
 
-## Catalog journeys
+## Catalog Journeys
 
 Same entry point — only `route` changes:
 
@@ -121,7 +116,7 @@ export function RelatedCatalogSurfaces(props) {
       <li><Link to={`${base}/favorites`}>Favorites</Link></li>
       <li><Link to={`${base}/my-space`}>My Space</Link></li>
       <li><Link to={`${base}/myMeals`}>My Meals</Link></li>
-      <li><Link to={`${base}/order-history`}>Order history</Link></li>
+      <li><Link to={`${base}/order-history`}>Order History</Link></li>
     </ul>
   );
 }

@@ -1,8 +1,8 @@
 MealzUIKit UI is SSR HTML/CSS inside the WebView. Branding is applied through **CSS manifests**, not native theme protocols (those belonged to the Older MealzCore stack). Defaults already look fine — register manifests only when you need brand overrides.
 
-## Where to put your files
+## Where to Put Your Files
 
-The library only serves customization files that you **register** and that live in your app package next to those manifests:
+Mealz already ships SSR + retailer default styles inside the WebView. You only add files for **extra brand overrides**, then register them. `CustomStyle` resolves those paths for you (Android assets / iOS main bundle).
 
 export function StyleFileLocations(props) {
   if (props.platform === "android") {
@@ -23,8 +23,8 @@ export function StyleFileLocations(props) {
   }
   return (
     <ul>
-      <li>Expose the same folder layout on each platform target (Android <code>assets/</code>, iOS main bundle).</li>
-      <li>From shared code, register platform-resolvable paths (or register once per platform actual).</li>
+      <li>Ship the same relative tree on both targets (Android <code>assets/</code> and iOS main bundle), e.g. <code>styles/base-manifest.json</code> + CSS next to it.</li>
+      <li>Register once from shared code with that same relative path — <code>CustomStyle</code> already loads from the platform package.</li>
     </ul>
   );
 }
@@ -44,7 +44,7 @@ styles/
     catalog.css
 ```
 
-## Register a manifest
+## Register a Manifest
 
 export function RegisterManifest(props) {
   if (props.platform === "ios") {
@@ -94,6 +94,3 @@ Example manifest:
 }
 ```
 
-:::tip SSR styling
-CSS variables and class overrides follow the same model as web: [Styling (SSR)](/docs/web_ssr/v2/styling) and [Fetching style](/docs/web_ssr/v2/main-features/fetching-style).
-:::

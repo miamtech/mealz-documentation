@@ -8,7 +8,7 @@ export function InstallContent(props) {
         <h2>Gradle</h2>
         <pre><code className="language-gradle">{`// module build.gradle.kts
 implementation("ai.mealz:ui-kit:<version>")`}</code></pre>
-        <p>Replace <code>{'<version>'}</code> with <strong>1.0.0</strong> (or the version you integrate).</p>
+        <p>Replace <code>{'<version>'}</code> with <strong>1.0</strong> (or the version you integrate).</p>
       </>
     );
   }
@@ -17,13 +17,20 @@ implementation("ai.mealz:ui-kit:<version>")`}</code></pre>
       <>
         <p>Distribute MealzUIKit via CocoaPods or Swift Package Manager from the release repository.</p>
         <h2>CocoaPods</h2>
-        <pre><code className="language-ruby">{`pod 'MealzUIKit', '1.0.0'`}</code></pre>
+        <pre><code className="language-ruby">{`pod 'MealzUIKit', '1.0'`}</code></pre>
         <h2>Swift Package Manager</h2>
         <p>Add the binary package from <a href="https://github.com/miamtech/MealzUIKitRelease">MealzUIKitRelease</a> (SPM product <code>MealzUIKit</code>).</p>
         <ul>
           <li>Release artifacts: <a href="https://github.com/miamtech/MealzUIKitRelease">https://github.com/miamtech/MealzUIKitRelease</a></li>
         </ul>
         <p>Requirements: iOS 12.0+, Swift 5.8+.</p>
+        <h2>Info.plist (Required)</h2>
+        <p>
+          MealzUIKit embeds Compose Multiplatform UI. Add this key to your app <code>Info.plist</code>
+          (without it the app can crash on iPhone):
+        </p>
+        <pre><code className="language-xml">{`&lt;key&gt;CADisableMinimumFrameDurationOnPhone&lt;/key&gt;
+&lt;true/&gt;`}</code></pre>
       </>
     );
   }
@@ -34,7 +41,7 @@ implementation("ai.mealz:ui-kit:<version>")`}</code></pre>
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation("ai.mealz:ui-kit:1.0.0")
+            implementation("ai.mealz:ui-kit:1.0")
         }
     }
 }`}</code></pre>
@@ -42,13 +49,19 @@ kotlin {
         Use the shared Compose APIs (<code>CatalogScreen</code>, <code>RecipeCard</code>, …) from <code>commonMain</code>,
         and supply a platform <code>SdkContext</code> when calling <code>SdkConfiguration.start</code>.
       </p>
+      <h2>iOS Info.plist (Required)</h2>
+      <p>
+        On the iOS app target, add this key to <code>Info.plist</code> (Compose Multiplatform requirement — without it the app can crash on iPhone):
+      </p>
+      <pre><code className="language-xml">{`&lt;key&gt;CADisableMinimumFrameDurationOnPhone&lt;/key&gt;
+&lt;true/&gt;`}</code></pre>
     </>
   );
 }
 
 <InstallContent platform={props.platform}/>
 
-## Next step
+## Next Step
 
 export function InstallNextStep(props) {
   return (

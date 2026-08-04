@@ -25,7 +25,7 @@ export function InitIntro(props) {
 
 <InitIntro platform={props.platform}/>
 
-## Start the library
+## Start the Library
 
 export function StartLibrary(props) {
   if (props.platform === "android") {
@@ -103,7 +103,7 @@ SdkConfiguration.isAuthlessModeEnabled()`}</code></pre>
 
 <UserApis platform={props.platform}/>
 
-### Authless mode
+### Authless Mode
 
 **Default:** enabled (`isAuthlessModeEnabled()` is `true` until you call `disableAuthlessMode()`). Call `disableAuthlessMode()` when shoppers must log in before using Mealz.
 
@@ -147,12 +147,12 @@ export function StoreApis(props) {
         <p><strong>Retailer mode</strong> — set the shopper's store with your POS / external id:</p>
         <pre><code className="language-swift">{`SdkConfiguration.shared.setSelectedStoreWithExternalId(externalId: "store-ext-42")`}</code></pre>
         <p>
-          <strong>No Supplier mode</strong> — you should <strong>not</strong> set the store yourself in the normal flow.
-          Store (and retailer) selection is handled by the{' '}
-          <a href="/docs/web_ssr/v2/non-retailer-integration/introduction">Supplier selector</a> flow:
-          Mealz opens it automatically, or other No Supplier components request it when a store is required.
-        </p>
-        <pre><code className="language-swift">{`// Only for a specific advanced need — prefer letting SupplierSelector drive this
+        <strong>No Supplier mode</strong> — do <strong>not</strong> identify the shopper and do <strong>not</strong> set a
+        store in the normal flow. Leave authless defaults; store (and retailer) selection is handled by the{' '}
+        <a href="/docs/web_ssr/v2/non-retailer-integration/introduction">Supplier Selector</a> flow:
+        Mealz opens it automatically, or other No Supplier components request it when a store is required.
+      </p>
+      <pre><code className="language-swift">{`// Only for a specific advanced need — prefer letting SupplierSelector drive this
 SdkConfiguration.shared.setSelectedStoreWithMealzId(mealzId: "mealz-store-id")`}</code></pre>
       </>
     );
@@ -162,9 +162,9 @@ SdkConfiguration.shared.setSelectedStoreWithMealzId(mealzId: "mealz-store-id")`}
       <p><strong>Retailer mode</strong> — set the shopper's store with your POS / external id:</p>
       <pre><code className="language-kotlin">{`SdkConfiguration.setSelectedStoreWithExternalId("store-ext-42")`}</code></pre>
       <p>
-        <strong>No Supplier mode</strong> — you should <strong>not</strong> set the store yourself in the normal flow.
-        Store (and retailer) selection is handled by the{' '}
-        <a href="/docs/web_ssr/v2/non-retailer-integration/introduction">Supplier selector</a> flow:
+        <strong>No Supplier mode</strong> — do <strong>not</strong> identify the shopper and do <strong>not</strong> set a
+        store in the normal flow. Leave authless defaults; store (and retailer) selection is handled by the{' '}
+        <a href="/docs/web_ssr/v2/non-retailer-integration/introduction">Supplier Selector</a> flow:
         Mealz opens it automatically, or other No Supplier components request it when a store is required.
       </p>
       <pre><code className="language-kotlin">{`// Only for a specific advanced need — prefer letting SupplierSelector drive this
@@ -177,7 +177,7 @@ SdkConfiguration.setSelectedStoreWithMealzId("mealz-store-id")`}</code></pre>
 
 Using the wrong store API for the key mode throws (external ids are retailer-only; Mealz ids are No Supplier-only).
 
-## First integration checklist
+## First Integration Checklist
 
 export function FirstIntegrationChecklist(props) {
   const basket = `/docs/${props.platform}/overview/basket`;
@@ -201,14 +201,14 @@ export function FirstIntegrationChecklist(props) {
         For No Supplier UI helpers, see <Link to={noSupplier}>No Supplier</Link>.
       </p>
 
-      <h3>Retailer mode</h3>
+      <h3>Retailer Mode</h3>
       <ol>
         <li>Call <code>{startCall}</code> once at app launch.</li>
         <li>Connect the shopper with <code>connectUserWithId</code> (or keep authless browsing — see above).</li>
         <li>Set the store with <code>setSelectedStoreWithExternalId</code>.</li>
         <li>
           Register the basket synchronizer <strong>after</strong> <code>start</code> and <strong>before</strong> any Mealz screen — see{' '}
-          <Link to={basket}>Basket synchronization</Link>.
+          <Link to={basket}>Basket Synchronization</Link>.
         </li>
         <li>
           Present a first screen (usually Catalog) — see <Link to={catalog}>Catalog</Link> under Features.
@@ -218,13 +218,13 @@ export function FirstIntegrationChecklist(props) {
         </li>
       </ol>
 
-      <h3>No Supplier mode</h3>
+      <h3>No Supplier Mode</h3>
       <ol>
         <li>Call <code>{startCall}</code> with your No Supplier web key (mode is in the key).</li>
-        <li>Connect the shopper or keep authless browsing.</li>
         <li>
-          Do <strong>not</strong> set the store yourself in the normal flow — let{' '}
-          <Link to={noSupplier}>Supplier selector</Link> drive it.
+          Do <strong>not</strong> identify the shopper (<code>connectUserWithId</code>) and do <strong>not</strong> select
+          a store — leave authless defaults and let{' '}
+          <Link to={noSupplier}>Supplier Selector</Link> drive retailer/store picking.
         </li>
         <li>
           Present Catalog and/or No Supplier helpers (pricing, add-to-cart CTA) — see Features.
@@ -243,13 +243,13 @@ export function FirstIntegrationChecklist(props) {
 
 <FirstIntegrationChecklist platform={props.platform}/>
 
-## Next steps
+## Next Steps
 
 export function InitNextSteps(props) {
   return (
     <ol>
       <li>
-        <Link to={`/docs/${props.platform}/overview/basket`}>Basket synchronization</Link> (retailer mode)
+        <Link to={`/docs/${props.platform}/overview/basket`}>Basket Synchronization</Link> (retailer mode)
       </li>
       <li>Feature screens under <strong>Features</strong></li>
       <li>
@@ -261,7 +261,7 @@ export function InitNextSteps(props) {
 
 <InitNextSteps platform={props.platform}/>
 
-## Optional configuration
+## Optional Configuration
 
 export function OptionalConfig(props) {
   const isIos = props.platform === "ios";
@@ -297,11 +297,27 @@ SdkConfiguration.disableDebugMode()`}</code></pre>
   let debugBlurb = "Developer-only. Do not ship with this enabled in production.";
   if (props.platform === "android") {
     debugBlurb =
-      "Developer-only. Enables Chrome WebView debugging. Do not ship with this enabled in production.";
+      "Developer-only. Enables Chrome WebView debugging (`chrome://inspect`). Do not ship with this enabled in production.";
   } else if (props.platform === "ios") {
     debugBlurb =
-      "Developer-only. Makes WKWebView inspectable. Do not ship with this enabled in production.";
+      "Developer-only. Makes the Mealz WKWebView inspectable in Safari. Do not ship with this enabled in production.";
   }
+
+  const iosWebInspectorSteps =
+    props.platform === "ios" ? (
+      <ol>
+        <li>
+          On the iPhone: <strong>Settings → Safari → Advanced → Web Inspector</strong> → On.
+        </li>
+        <li>
+          Call <code>SdkConfiguration.shared.enableDebugMode()</code> after <code>start</code>.
+        </li>
+        <li>
+          On a Mac with the device connected (or simulator): Safari → <strong>Develop</strong> → your device / simulator →
+          pick the Mealz WKWebView page.
+        </li>
+      </ol>
+    ) : null;
 
   return (
     <>
@@ -323,7 +339,7 @@ SdkConfiguration.disableDebugMode()`}</code></pre>
         <code>profiling</code> header (<code>true</code> / <code>false</code>).
       </p>
 
-      <h3>Custom labels</h3>
+      <h3>Custom Labels</h3>
       <p><strong>Default:</strong> disabled.</p>
       {labelsCode}
       <p>
@@ -332,10 +348,11 @@ SdkConfiguration.disableDebugMode()`}</code></pre>
         <a href="/docs/web_ssr/v2/customization/internationalization">SSR internationalization</a>.
       </p>
 
-      <h3>Debug mode</h3>
+      <h3>Debug Mode</h3>
       <p><strong>Default:</strong> disabled.</p>
       {debugCode}
       <p>{debugBlurb}</p>
+      {iosWebInspectorSteps}
     </>
   );
 }
