@@ -1,5 +1,9 @@
 Mealz Planner journeys use `FeatureRoute.Planner`: a compact **entry** block (CTA) and a full-screen **menu** (current menu / help).
 
+:::tip iOS naming
+`FeatureRoute.Planner.CurrentMenu` flattens to `FeatureRoute.Planner.PlannerCurrentMenu` in Swift.
+:::
+
 ## Visual Overview
 
 <img
@@ -56,36 +60,12 @@ Full-screen Mealz Planner journey.
 ## Inject
 
 export function PlannerInject(props) {
-  if (props.platform === "android") {
-    return (
-      <>
-        <h3>Entry</h3>
-        <pre><code className="language-kotlin">{`PlannerEntryView.View(
-    navigationCallback = PlannerEntryNavigationCallback(
-        goToPlanner = { plannerRoute ->
-            // Open PlannerMenuScreenView(route = plannerRoute, …)
-        }
-    )
-)`}</code></pre>
-        <h3>Menu</h3>
-        <pre><code className="language-kotlin">{`PlannerMenuScreenView.View(
-    route = FeatureRoute.Planner.CurrentMenu(),
-    navigationCallback = PlannerNavigationCallback(
-        redirectToLogIn = { },
-        redirectToStoreLocator = { },
-        exit = { },
-        redirectToCart = { },
-        goToCatalog = { catalogRoute -> /* optional */ }
-    )
-)`}</code></pre>
-      </>
-    );
-  }
   if (props.platform === "ios") {
     return (
       <>
         <h3>Entry</h3>
         <pre><code className="language-swift">{`PlannerEntryViewController.companion.get(
+    stateContent: nil,
     navigationCallback: PlannerEntryNavigationCallback(
         goToPlanner: { plannerRoute in
             // Present PlannerMenuViewController
@@ -94,7 +74,8 @@ export function PlannerInject(props) {
 )`}</code></pre>
         <h3>Menu</h3>
         <pre><code className="language-swift">{`PlannerMenuViewController.companion.get(
-    route: FeatureRoute.Planner.CurrentMenu(),
+    route: FeatureRoute.Planner.PlannerCurrentMenu(extraParameters: [:]),
+    stateContent: nil,
     navigationCallback: PlannerNavigationCallback(
         redirectToLogIn: { },
         redirectToStoreLocator: { },
@@ -106,6 +87,7 @@ export function PlannerInject(props) {
       </>
     );
   }
+  // Android + KMM
   return (
     <>
       <h3>Entry</h3>
@@ -121,6 +103,7 @@ export function PlannerInject(props) {
         redirectToLogIn = { },
         redirectToStoreLocator = { },
         exit = { },
+        redirectToCart = { },
         goToCatalog = { }
     )
 )`}</code></pre>

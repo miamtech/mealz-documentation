@@ -74,6 +74,8 @@ MealzUIKit expects the **web** supplier key format (base64 JSON including `suppl
 
 ## User
 
+`setUser` and `getCurrentUser` are **suspending** — call them from a coroutine (Kotlin) or an async context that can await Kotlin suspend functions (Swift). Call after `start`, and again whenever auth changes.
+
 export function UserApis(props) {
   if (props.platform === "ios") {
     return (
@@ -107,13 +109,13 @@ SdkConfiguration.isAuthlessModeEnabled()`}</code></pre>
 
 **Default:** enabled (`isAuthlessModeEnabled()` is `true` until you call `disableAuthlessMode()`). Call `disableAuthlessMode()` when shoppers must log in before using Mealz.
 
-While no retailer user id is connected, the library treats the shopper as a guest (`User.Authless`) with a stable authless id. That lets them browse and fill a Mealz basket before login.
+While no retailer user id is set, the library treats the shopper as a guest (`User.Authless`) with a stable authless id. That lets them browse and fill a Mealz basket before login.
 
-When you later call `connectUserWithId`:
+When you later call `setUser("logged-in-id")`:
 
 1. If authless mode is **enabled** and the current user is still `User.Authless`, Mealz may **merge** the guest basket into the logged-in basket.
 2. Merge runs only when a **store is already selected** (external id in retailer mode, or Mealz store id in No Supplier mode). Without a store, login still succeeds; merge is skipped.
-3. Merge is **best-effort** (network failures are swallowed and do not block `connectUserWithId`).
+3. Merge is **best-effort** (network failures are swallowed and do not block `setUser`).
 
 Related SSR concepts: [Login and logout](/docs/web_ssr/v2/set-up-and-usage/login-and-logout).
 
@@ -145,15 +147,15 @@ export function StoreApis(props) {
     return (
       <>
         <p><strong>Retailer mode</strong> — set the shopper's store with your POS / external id:</p>
-        <pre><code className="language-swift">{`SdkConfiguration.shared.setSelectedStoreWithExternalId(externalId: "store-ext-42")`}</code></pre>
+        <pre><code className="language-swift">{`SdkConfiguration.shared.setSelectedStoreWithExternalId(externalStoreId: "store-ext-42")`}</code></pre>
         <p>
-        <strong>No Supplier mode</strong> — do <strong>not</strong> identify the shopper and do <strong>not</strong> set a
+        <strong>No Supplier mode</strong> — do <strong>not</strong> call <code>setUser("…")</code> and do <strong>not</strong> set a
         store in the normal flow. Leave authless defaults; store (and retailer) selection is handled by the{' '}
         <a href="/docs/web_ssr/v2/non-retailer-integration/introduction">Supplier Selector</a> flow:
         Mealz opens it automatically, or other No Supplier components request it when a store is required.
       </p>
       <pre><code className="language-swift">{`// Only for a specific advanced need — prefer letting SupplierSelector drive this
-SdkConfiguration.shared.setSelectedStoreWithMealzId(mealzId: "mealz-store-id")`}</code></pre>
+SdkConfiguration.shared.setSelectedStoreWithMealzId(mealzStoreId: "mealz-store-id")`}</code></pre>
       </>
     );
   }
@@ -162,7 +164,7 @@ SdkConfiguration.shared.setSelectedStoreWithMealzId(mealzId: "mealz-store-id")`}
       <p><strong>Retailer mode</strong> — set the shopper's store with your POS / external id:</p>
       <pre><code className="language-kotlin">{`SdkConfiguration.setSelectedStoreWithExternalId("store-ext-42")`}</code></pre>
       <p>
-        <strong>No Supplier mode</strong> — do <strong>not</strong> identify the shopper and do <strong>not</strong> set a
+        <strong>No Supplier mode</strong> — do <strong>not</strong> call <code>setUser("…")</code> and do <strong>not</strong> set a
         store in the normal flow. Leave authless defaults; store (and retailer) selection is handled by the{' '}
         <a href="/docs/web_ssr/v2/non-retailer-integration/introduction">Supplier Selector</a> flow:
         Mealz opens it automatically, or other No Supplier components request it when a store is required.
@@ -204,7 +206,10 @@ export function FirstIntegrationChecklist(props) {
       <h3>Retailer Mode</h3>
       <ol>
         <li>Call <code>{startCall}</code> once at app launch.</li>
-        <li>Connect the shopper with <code>connectUserWithId</code> (or keep authless browsing — see above).</li>
+        <li>
+          Set the shopper with <code>setUser("…")</code> (or <code>setUser(null)</code> for authless browsing — see above).
+          Both calls are <strong>suspend</strong>.
+        </li>
         <li>Set the store with <code>setSelectedStoreWithExternalId</code>.</li>
         <li>
           Register the basket synchronizer <strong>after</strong> <code>start</code> and <strong>before</strong> any Mealz screen — see{' '}
@@ -222,7 +227,7 @@ export function FirstIntegrationChecklist(props) {
       <ol>
         <li>Call <code>{startCall}</code> with your No Supplier web key (mode is in the key).</li>
         <li>
-          Do <strong>not</strong> identify the shopper (<code>connectUserWithId</code>) and do <strong>not</strong> select
+          Do <strong>not</strong> identify the shopper (<code>setUser("…")</code>) and do <strong>not</strong> select
           a store — leave authless defaults and let{' '}
           <Link to={noSupplier}>Supplier Selector</Link> drive retailer/store picking.
         </li>

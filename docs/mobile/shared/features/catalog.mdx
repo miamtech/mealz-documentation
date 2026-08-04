@@ -2,6 +2,10 @@ import Link from '@docusaurus/Link';
 
 The catalog is a WebView journey driven by `FeatureRoute.Catalog`. Host UX (categories, preferences, favorites entry points, basket CTA, …) matches Mealz SSR.
 
+:::tip iOS naming
+Nested Kotlin route types flatten in Swift: `FeatureRoute.Catalog.Home` → `FeatureRoute.Catalog.CatalogHome`, `MyMeals` → `CatalogMyMeals`, etc. See the iOS inject sample below.
+:::
+
 ## Visual Overview
 
 <img
@@ -61,34 +65,22 @@ Wire `goToHomeCatalog` only when that sub-feature is presented **as root** (not 
 ## Inject
 
 export function CatalogInject(props) {
-  if (props.platform === "android") {
-    return (
-      <pre><code className="language-kotlin">{`CatalogScreenView.View(
-    route = FeatureRoute.Catalog.Home(),
-    navigationCallback = CatalogNavigationCallback(
-        redirectToLogIn = { /* open login */ },
-        redirectToStoreLocator = { /* open store picker */ },
-        exit = { /* pop screen */ },
-        redirectToCart = { /* open retailer cart */ },
-        goToHomeCatalog = { /* optional: open Catalog.Home when Favorites/My Space/… is root */ },
-    )
-)`}</code></pre>
-    );
-  }
   if (props.platform === "ios") {
     return (
       <pre><code className="language-swift">{`CatalogViewController.companion.get(
-    route: FeatureRoute.Catalog.Home(),
+    route: FeatureRoute.Catalog.CatalogHome(displayVariant: nil, extraParameters: [:]),
+    stateContent: nil,
     navigationCallback: CatalogNavigationCallback(
         redirectToLogIn: { /* open login */ },
         redirectToStoreLocator: { /* open store picker */ },
         exit: { /* dismiss */ },
         redirectToCart: { /* open retailer cart */ },
-        goToHomeCatalog: { /* optional: open Catalog.Home when Favorites/My Space/… is root */ }
+        goToHomeCatalog: { /* optional: open CatalogHome when Favorites/My Space/… is root */ }
     )
 )`}</code></pre>
     );
   }
+  // Android + KMM — Compose API (sdk-demo-android / SampleKMMSDKIntegration)
   return (
     <pre><code className="language-kotlin">{`CatalogScreen(
     route = FeatureRoute.Catalog.Home(),
