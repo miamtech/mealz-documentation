@@ -4,24 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Add new WebView library documentation">
-      <change afterPath="$PROJECT_DIR$/docs/mobile/android/features/basket-transfer/index.mdx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/mobile/ios/features/basket-transfer/index.mdx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/mobile/kmm/features/basket-transfer/index.mdx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/mobile/shared/features/basket-transfer.mdx" afterDir="false" />
+    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="(after mr) Re-align sample codes with demo applications and ensure that everything is up-to-date">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/changelogs/changelog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/changelogs/changelog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/basket-transfer.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/basket-transfer.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/favorites.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/favorites.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/my-meals.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/my-meals.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/my-space.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/my-space.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/no-supplier.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/no-supplier.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/order-history.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/order-history.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-card.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-card.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-details.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-details.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-tags.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-tags.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/basket.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/basket.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/initialisation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/initialisation.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/installation.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/installation.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/overview/introduction.mdx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785860194987</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="(after mr) Re-align sample codes with demo applications and ensure that everything is up-to-date">
+      <option name="closed" value="true" />
+      <created>1785863836616</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1785863836616</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +263,7 @@
     <MESSAGE value="Added current state of Nest + Lit changelog" />
     <MESSAGE value="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;" />
     <MESSAGE value="Add new WebView library documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new WebView library documentation" />
+    <MESSAGE value="(after mr) Re-align sample codes with demo applications and ensure that everything is up-to-date" />
+    <option name="LAST_COMMIT_MESSAGE" value="(after mr) Re-align sample codes with demo applications and ensure that everything is up-to-date" />
   </component>
 </project>

@@ -6,12 +6,20 @@ When your supplier key is in **No Supplier** mode (encoded in the key Mealz prov
 In No Supplier mode, do **not** call `setUser("…")` and do **not** select a store yourself (`setSelectedStoreWithExternalId` / `setSelectedStoreWithMealzId`). Leave authless defaults; retailer and store picking go through [Supplier Selector](#supplier-selector).
 :::
 
+## Basket Transfer
+
+From the Mealz basket preview (No Supplier), the shopper confirms transfer toward an affiliated retailer. That CTA triggers the handoff: MealzUIKit opens the retailer URL **outside** your app with `transferred_basket_token`. There is no separate transfer API — host Add to Cart / Supplier Selector and allow that handoff.
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/basketPreview.png"
+  alt="No Supplier basket preview — transfer starts from the action under this screen"
+  style={{maxWidth: '280px'}}
+/>
+
 export function BasketTransferNoSupplierCallout(props) {
   return (
     <p>
-      <strong>Basket transfer (send):</strong> after the shopper confirms transfer, MealzUIKit opens the affiliated
-      retailer URL <strong>outside</strong> your app (<code>transferred_basket_token</code>). There is no separate
-      transfer API — host Add to Cart / Supplier Selector and allow that handoff. Full flow (No Supplier + Retailer):{' '}
+      Full flow (No Supplier emit + Retailer receive):{' '}
       <Link to={`/docs/${props.platform}/features/basket-transfer`}>Basket Transfer</Link>.
     </p>
   );
@@ -22,6 +30,18 @@ export function BasketTransferNoSupplierCallout(props) {
 ## Supplier Selector
 
 Lets the shopper pick an affiliated grocery retailer (and then a store). Mealz opens this automatically when a store is required, or other No Supplier components request it via `redirectToSupplierSelector`. You should not set the Mealz store id manually in the normal flow.
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/supplierSelectorStep1.png"
+  alt="Supplier selector — pick retailer"
+  style={{maxWidth: '280px'}}
+/>
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/supplierSelectorStep2.png"
+  alt="Supplier selector — pick store"
+  style={{maxWidth: '280px'}}
+/>
 
 export function SupplierSelectorInitLink(props) {
   return (
@@ -54,6 +74,18 @@ Background: [Non-retailer introduction](/docs/web_ssr/v2/non-retailer-integratio
 
 Shows the price for a recipe in the No Supplier context.
 
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/recipePricingNoStore.png"
+  alt="Recipe pricing — no store selected"
+  style={{maxWidth: '280px'}}
+/>
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/recipePricing.png"
+  alt="Recipe pricing — store selected"
+  style={{maxWidth: '280px'}}
+/>
+
 ### Parameters
 
 | Parameter | Type | Required | Default | What it does |
@@ -77,6 +109,18 @@ See also [Fetching style](/docs/web_ssr/v2/main-features/fetching-style) and [No
 Primary CTA next to a recipe to add ingredients to the Mealz basket and start transfer toward an affiliated retailer.
 
 Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/v2/non-retailer-integration/no-supplier-add-to-cart-cta).
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/addToCartCta.png"
+  alt="Add to Cart CTA — recipe not yet added"
+  style={{maxWidth: '280px'}}
+/>
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/addToCartCtaAdded.png"
+  alt="Add to Cart CTA — recipe added"
+  style={{maxWidth: '280px'}}
+/>
 
 ### Parameters
 

@@ -2,15 +2,11 @@ import Link from '@docusaurus/Link';
 
 The catalog is a WebView journey driven by `FeatureRoute.Catalog`. Host UX (categories, preferences, favorites entry points, basket CTA, …) matches Mealz SSR.
 
-:::tip iOS naming
-Nested Kotlin route types flatten in Swift: `FeatureRoute.Catalog.Home` → `FeatureRoute.Catalog.CatalogHome`, `MyMeals` → `CatalogMyMeals`, etc. See the iOS inject sample below.
-:::
-
 ## Visual Overview
 
 <img
-  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png"
-  alt="Recipe catalog (SSR)"
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/recipeCatalog.png"
+  alt="Recipe catalog"
   style={{maxWidth: '280px'}}
 />
 
@@ -38,6 +34,10 @@ There is a **single** catalog entry point. You choose the starting page with `ro
 | `MyMeals(showTabSelector, defaultSelectedTab?, basketTransferUrl?)` | see My Meals (Catalog journeys below) | Meals / products in basket. |
 
 `displayVariant` (optional `Int`) selects the recipe-card visual variant inside catalog lists where supported.
+
+:::tip iOS naming
+Nested Kotlin route types flatten in Swift: `FeatureRoute.Catalog.Home` → `FeatureRoute.Catalog.CatalogHome`, `MyMeals` → `CatalogMyMeals`, etc. See the iOS inject sample below.
+:::
 
 ### `CatalogNavigationCallback`
 

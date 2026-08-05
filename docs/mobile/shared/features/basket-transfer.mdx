@@ -28,7 +28,7 @@ SSR background:
 
 ---
 
-## No Supplier — initiate (send)
+## No Supplier — emit
 
 There is **no** separate `startTransfer` API. After the shopper adds recipes and confirms transfer in Mealz UI:
 
@@ -36,39 +36,13 @@ There is **no** separate `startTransfer` API. After the shopper adds recipes and
 2. The WebView navigates toward that URL.
 3. MealzUIKit detects `transferred_basket_token` and opens it **externally** (Android `ACTION_VIEW` / iOS universal link or browser) so the retailer app or site takes over.
 
-export function NoSupplierTransferDuties(props) {
-  return (
-    <>
-      <h3>Your responsibilities</h3>
-      <ul>
-        <li>
-          Integrate{' '}
-          <Link to={`/docs/${props.platform}/features/no-supplier#add-to-cart-cta`}>Add to Cart</Link>
-          {' '}and{' '}
-          <Link to={`/docs/${props.platform}/features/no-supplier#supplier-selector`}>Supplier Selector</Link>
-          {' '}(present the selector when callbacks fire).
-        </li>
-        <li>
-          Allow the process to <strong>leave your app</strong> — do not swallow external intents / universal links meant for the retailer.
-        </li>
-        <li>
-          Do <strong>not</strong> try to apply the transfer inside the No Supplier app; the retailer owns receive.
-        </li>
-      </ul>
-      <p>
-        Feature APIs: <Link to={`/docs/${props.platform}/features/no-supplier`}>No Supplier</Link>.
-      </p>
-    </>
-  );
-}
-
-<NoSupplierTransferDuties platform={props.platform}/>
+The process is fully handled by the library, so **no action is required on your side**.
 
 ---
 
 ## Retailer — receive
 
-**Goal:** accept a basket built on an affiliated No Supplier app/site and merge products into **your** retailer cart via the usual basket synchronizer.
+Accept a basket built on an affiliated No Supplier app/site and merge products into your retailer cart via the usual basket synchronizer.
 
 Typical incoming link (exact shape is configured with Mealz):
 
@@ -76,12 +50,12 @@ Typical incoming link (exact shape is configured with Mealz):
 https://your-app-or-web-host/…?affiliate=AFFILIATE&transferred_basket_token=TOKEN&point_of_sale_ext_id=STORE_EXT_ID
 ```
 
-### Steps
+To achieve this, **follow these steps**:
 
 1. Declare / handle the deep link (App Links, universal links, custom scheme, …) and keep the **full incoming URL** (query params matter).
 2. Ensure MealzUIKit is **started**, store / user are set as for a normal retailer session, and `BasketSynchronizationManager.registerRetailerBasketSynchronizer` is already registered.
 3. Open catalog **My Meals** with `basketTransferUrl` set to that incoming URL — Mealz forwards its query params into the WebView load.
-4. Transferred lines arrive through `updateBasket` like normal Mealz adds; call `notifyRetailerBasketChanged` as usual after you apply them. Wire `redirectToCart` if My Meals should open **your** cart afterward.
+4. Transferred lines arrive through `updateBasket` like normal Mealz adds; call `notifyRetailerBasketChanged` as usual after you apply them.
 
 export function BasketTransferReceiveInject(props) {
   if (props.platform === "ios") {
@@ -121,18 +95,3 @@ export function BasketTransferReceiveInject(props) {
 }
 
 <BasketTransferReceiveInject platform={props.platform}/>
-
-export function BasketTransferRetailerLinks(props) {
-  return (
-    <ul>
-      <li>
-        <Link to={`/docs/${props.platform}/features/catalog/myMeals`}>My Meals</Link> — <code>basketTransferUrl</code> on the catalog route
-      </li>
-      <li>
-        <Link to={`/docs/${props.platform}/overview/basket`}>Basket Synchronization</Link> — register before transfer (and before any Mealz UI)
-      </li>
-    </ul>
-  );
-}
-
-<BasketTransferRetailerLinks platform={props.platform}/>
