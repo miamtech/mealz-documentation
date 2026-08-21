@@ -48,6 +48,10 @@ props: {aString: 'foo bar', aNumber: 5}
 
     `options.recipeId`: Mealz recipe id
 
+    `options.analyticsPath` *(optional)*: defaults to `''` so the event URL is the current page (`location.href`). Pass e.g. `'/recipes'` for a Mealz virtual path (`…/miam/recipes`). Do not pass a retailer pathname like `/rayons/...` unless you want it prefixed with `/miam`.
+
+    `options.categoryId` *(optional)*: Mealz category id for `category_id` on `recipe.show`
+
     Call the returned `disconnect()` when the element is removed (virtual lists, SPA navigation).
   :::
 

@@ -340,6 +340,9 @@ For each custom card container in the DOM, call:
 const handle = window.mealz.analytics.attachRecipeCardShowTracking({
   element, // HTMLElement: root to observe (e.g. card wrapper)
   recipeId,
+  // analyticsPath defaults to '' → event URL is the current page (location.href)
+  // analyticsPath: '/recipes', // optional Mealz virtual path → …/miam/recipes
+  // categoryId: '…', // optional
 });
 ```
 
