@@ -4,6 +4,51 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 3.0.0 [03/07/2026]
+
+#### Breaking changes
+- *core* — **v3**
+  - V3 does not maintain `GET /v2/mealz-window-bootstrap`. Integrators on v3 should use `GET /v3/core` instead.
+- *recipe-card* & *catalog* — **v3**
+  - Recipe card variants were reshaped:
+    - Unused recipe-card variant **2 was removed**. Former variants **3** and **4** are now variants **2** and **3**, respectively.
+    - On `/recipe-card` endpoints, the `display_variant` query parameter has been renamed `variant`.
+    - On other endpoints that render recipe cards (e.g. `/catalog`), `display_recipe_variant` parameters have been renamed `recipe_card_variant`.
+    - Variant **2** (formerly variant **3**) now only differs from variant **1** in that **the like button is in the footer** instead of the top-right corner.
+    - Variant **3** (formerly variant **4**, history drawer only) **stayed unchanged**.
+
+#### Added
+- *core* — v3: `GET /v3/core` returns the scripts needed for core Mealz logic (services, `window.mealz`, global components such as modals and the drawer-view-swapper).
+- *recipe-tag* — v3
+  - New route `GET /v3/recipe-tags` to fetch multiple recipe-tag components in batch.
+    - Params: `store_id` (as usual) and `product_ids` (array of product IDs).
+    - Response: JSON array of `{ html: string, productId: string }`, one entry per product ID.
+- *catalog* — v3
+  - Added *all-recipes-banner* on catalog-home after the first category block, linking to the all-recipes catalog list.
+  - `all_recipes=true` on catalog list and load-more routes keeps only user preference filters; search, promotions, and recipe-type filters are stripped.
+- *recipe-card* — v3
+  - Added drink badge for recipes that are drinks.
+  - When a shelf context has no recipe suggestion, renders a generic "Discover our catalog" redirect card. Optional query param `allow_default` (default `true`); set `allow_default=false` to skip this card.
+- *recipe-card-cta*
+  - Added new param `recipe_name`.
+- *basket-preview* — v3
+  - `GET /v3/catalog/my-space/basket-preview` accepts `in_drawer` (default `true`) and `store_id` query params. Setting `in_drawer=false` renders the component without the drawer wrapper.
+
+#### Fixed
+- *my-space* — v2 & v3
+  - Back button in Mon carnet now links to catalog home instead of `history.back()`.
+- *catalog* — v3
+  - Catalog-list and my-space pages now correctly disable personalization when the corresponding attribute is present in the supplier token.
+- *catalog* — v2 & v3
+  - `display-recipe-variant` was not processed for catalog endpoints; the returned variant was always variant 1.
+- *catalog* & *planner* — v3
+  - The Preferences button is now opt-in on shelves: it is only displayed when the supplier token explicitly sets `noPersonalizationOnShelves: false`.
+
+#### Updated
+- Removed all links to webc-miam for V2.
+- *catalog-toolbar* — v2
+  - Updated toolbar template structure; reworked with pill buttons and an expandable searchbar.
+
 ## 2.8.0 [26/03/2026]
 
 #### Added

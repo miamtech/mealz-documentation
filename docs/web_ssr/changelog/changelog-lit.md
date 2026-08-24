@@ -4,6 +4,44 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 3.0.0 [03/07/2026]
+
+#### Breaking
+- **All remaining components from ng-miam-sdk have been migrated to mealz-components.** Components whose names started with `ng-miam-` now start with `mealz-`.
+- `ng-miam-recipe-tags` has been renamed to `mealz-recipe-tag`.
+- *recipe-card*
+  - Recipe card variants were reshaped:
+    - Unused recipe-card variant **2 was removed**. Former variants **3** and **4** are now variants **2** and **3**, respectively.
+    - Variant **2** (formerly variant **3**) now only differs from variant **1** in that **the like button is in the footer** instead of the top-right corner.
+    - Variant **3** (formerly variant **4**, history drawer only) **stayed unchanged**.
+- *window.mealz*
+  - `setDefaultIngredientPicture` and `setDefaultRecipePicture` were removed. To override the default pictures, use CSS overrides on `img.mealz-default-ingredient-picture` and `img.mealz-default-recipe-picture` respectively.
+  - The whole `features` namespace was removed (`enableVideoRecipes`, `enableUserPreferences`, `enableTagsOnRecipes`, `enableMealsPlanner`, `enableSeo`, `collapseUnavailableProductsByDefault`) — these were deprecated no-ops.
+  - `recipes.hidden`, `recipes.setDifficultyLevels`, `recipes.showConfirmationToaster`, and `recipes.shouldDisplayIngredientPicturesOnRecipeCards` were removed.
+  - `router.setRecipeInfoLink` and `router.setPromotionsUrl` were removed.
+  - `supplier.setOrigin` was removed.
+  - `overrideIcon` and `setDefaultScrollElementGetter` were removed.
+  - `pos.getByAddress`, `pos.getByCoordinates`, and `supplier.getAffiliateSuppliers` were removed from the public interface.
+  - `window.mealzV10` is no longer assigned — use `window.mealz` directly.
+  - `window.mealzInternal` was removed entirely.
+
+#### Added
+- *window.mealz*
+  - `window.mealz.recipes.openDetails(recipeId, initialTabIndex?, guests?)` opens recipe details by id programmatically.
+- *recipe-card* (variants 1, 2, and 3)
+  - `.redirect-card` styles for the generic catalog redirect card.
+
+#### Updated
+- **All services from ng-miam-sdk have been migrated into mealz-components**, removing the need for the webc-miam JS script. This reduces overall JS weight and loading times.
+- *catalog-toolbar*
+  - Reworked toolbar layout with pill buttons and an expandable searchbar that auto-collapses on scroll when empty.
+  - Added a "Promo'" button on the home page to access discounted recipes.
+- *recipe-card*
+  - Each variant now has its own JS and CSS build file for easier maintenance.
+
+#### Removed
+- *mealzInternal* — the entire interface was removed (it was only used for communication between ng-miam-sdk and mealz-components).
+
 ## 2.7.1 [26/03/2026]
 
 #### Fixed
