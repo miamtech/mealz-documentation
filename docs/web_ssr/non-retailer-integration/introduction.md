@@ -12,7 +12,7 @@ Most of this documentation describes how to integrate Mealz into a **retailer** 
 
 We call those **non-retailer** clients, and offer them a lighter integration path to let their users build a Mealz basket out of a recipe's ingredients, and then transfer that basket to one of our affiliated retailers to add the products to their cart.
 
-Non-retailer mode is called **`no-supplier`** in code and routes (`no-supplier-add-to-cart-cta`, `noSupplier` in your token). See [Note about terminology](../main-features/pre-rendered-components#note-about-terminology) for how **supplier** relates to **retailer** in Mealz naming.
+Non-retailer mode is called **`no-supplier`** in code and routes (`no-supplier-add-to-cart-cta`, `noSupplier` in your token). See [Note about terminology](../integration-reference/pre-rendered-components#note-about-terminology) for how **supplier** relates to **retailer** in Mealz naming.
 
 ## How the integration works
 
@@ -37,7 +37,7 @@ A non-retailer integration is significantly lighter than the standard one. You c
 - **No basket synchronization**: since you do not have a cart of your own, you do not have to implement any of the `window.mealz.basketSync.*` methods described in [Basket synchronization](../set-up-and-usage/basket-synchronization).
 - **No `setForcePosCallback`**: that callback is required by the retailer that *receives* a transferred basket, not by the non-retailer that *sends* it.
 
-The `noSupplier` flag that enables this lighter behavior is encoded in your **`Supplier-token`** (see [HTTP request headers](../main-features/pre-rendered-components#http-request-headers)), so you do not have to configure anything specific on your side to switch into this mode.
+The `noSupplier` flag that enables this lighter behavior is encoded in your **`Supplier-token`** (see [HTTP request headers](../integration-reference/pre-rendered-components#http-request-headers)), so you do not have to configure anything specific on your side to switch into this mode.
 
 ## Next steps
 

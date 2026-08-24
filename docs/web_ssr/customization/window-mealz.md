@@ -26,7 +26,7 @@ GET https://MEALZ_SSR_API_URL/v3/core
 The response is an HTML fragment containing only the scripts that set up `window.mealz`, all Mealz global services, and the shared UI components (modals, drawer-view-swapper). No visible recipe component or catalog is included.
 
 :::warning
-Use the same [mandatory HTTP headers](../main-features/pre-rendered-components#http-request-headers) as for any other Mealz SSR API request when calling this route from your server.
+Use the same [mandatory HTTP headers](../integration-reference/pre-rendered-components#http-request-headers) as for any other Mealz SSR API request when calling this route from your server.
 :::
 
 :::note Changed in V3
@@ -70,7 +70,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
 - `handlePayment: (total: number) => void`: Call to notify Mealz that the user's cart was paid. Mealz then refreshes the groceries-list and basket for the next user's cart
 ## window.mealz.hook
-- `setHookCallback(callback: (isLogged, isPosValid) => boolean) => void`: [Set up hook callback](../set-up-and-usage/hooks)
+- `setHookCallback(callback: (isLogged, isStoreValid) => boolean) => void`: [Set up hook callback](../set-up-and-usage/hooks)
 - `setForcePosCallback: (callback: (posExtId: string) => boolean) => void`: [Receiving baskets from affiliated websites](./affiliated-websites)
 
 ## window.mealz.pos

@@ -1,12 +1,12 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 # Handle user login and logout
 
 ## User identity on SSR requests
 
-Mealz reads the current user from your [SSR request headers](../main-features/pre-rendered-components#http-request-headers):
+Mealz reads the current user from your [SSR request headers](../integration-reference/pre-rendered-components#http-request-headers):
 
 - Logged-in user: `Authorization`
 - Guest: `Authless-id`
@@ -38,7 +38,7 @@ window.mealz.user.loadWithExternalId(userID: string, forbidProfiling: boolean).s
 - `userId`: a unique identifier Mealz can recognize the user by
 - `forbidProfiling`: `true` if the user refused all cookies, `false` if they accepted them (`true` disables personalized content)
 
-SSR requests after login should send `Authorization` instead of `Authless-id`. See [HTTP request headers](../main-features/pre-rendered-components#http-request-headers).
+SSR requests after login should send `Authorization` instead of `Authless-id`. See [HTTP request headers](../integration-reference/pre-rendered-components#http-request-headers).
 
 ```ts
 // Example Setup
@@ -57,7 +57,7 @@ export class Mealz {
 
 `reset()` clears the logged-in session on the Mealz side.
 
-If the user keeps browsing as a guest, generate a new authless id (see [Authless user](../main-features/pre-rendered-components#authless-user)) and pass it to `loadWithAuthlessId`:
+If the user keeps browsing as a guest, generate a new authless id (see [Authless user](../integration-reference/pre-rendered-components#authless-user)) and pass it to `loadWithAuthlessId`:
 
 ```ts
 window.mealz.user.loadWithAuthlessId(authlessId: string, forbidProfiling?: boolean);

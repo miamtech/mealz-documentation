@@ -6,7 +6,7 @@ sidebar_position: 2
 
 As a non-retailer, your setup is a subset of the regular one described in [Set up and usage](../category/set-up-and-usage). This page only covers the steps you need, and links to the corresponding retailer pages for the details of each method.
 
-In V3, Mealz initializes from the [HTTP headers](../main-features/pre-rendered-components#http-request-headers) and query parameters you pass on each SSR request. You do not call `setupWithToken`, `setLanguage`, or user-load methods on page load. Wire the client-side callbacks below once when your app starts (after the Mealz scripts from an SSR response are on the page).
+In V3, Mealz initializes from the [HTTP headers](../integration-reference/pre-rendered-components#http-request-headers) and query parameters you pass on each SSR request. You do not call `setupWithToken`, `setLanguage`, or user-load methods on page load. Wire the client-side callbacks below once when your app starts (after the Mealz scripts from an SSR response are on the page).
 
 We show those callbacks in a small `Mealz` helper class and give the full example at the end of the page.
 
@@ -19,7 +19,7 @@ export class Mealz {
 
 ## Pass HTTP headers on SSR requests
 
-Every call to the Mealz SSR API (including [no-supplier-add-to-cart-cta](./no-supplier-add-to-cart-cta)) must send the [mandatory HTTP headers](../main-features/pre-rendered-components#http-request-headers), like for retailers.
+Every call to the Mealz SSR API (including [no-supplier-add-to-cart-cta](./no-supplier-add-to-cart-cta)) must send the [mandatory HTTP headers](../integration-reference/pre-rendered-components#http-request-headers), like for retailers.
 
 The supplier-token we provide you has the internal `noSupplier` flag set to `true`. That is what disables store-related features on your side; you do not configure anything extra to enter non-retailer mode. See [Introduction](./introduction#what-is-different-compared-to-a-retailer-integration).
 
@@ -48,7 +48,7 @@ window.mealz.user.loadWithAuthlessId(authlessId: string, forbidProfiling?: boole
 
 The [hook callback](../set-up-and-usage/hooks) is called by Mealz before any action that requires the user to be logged in or to have picked a store. In non-retailer mode:
 
-- `isPosValid` is always **`true`**: no store needs to be picked on your side.
+- `isStoreValid` is always **`true`**: no store needs to be picked on your side.
 - `isLogged` behaves exactly as on a retailer integration: it reflects whether the user is logged in on Mealz's side (from SSR headers in V3, or after `loadWithExternalId` when login happens without a page reload).
 
 So the callback boils down to deciding what to do when the user is not logged in:
@@ -62,7 +62,7 @@ export class Mealz {
     window.mealz.hook.setHookCallback(this.hookCallback);
   }
 
-  hookCallback = (isLogged, _isPosValid) => {
+  hookCallback = (isLogged, _isStoreValid) => {
     if (!isLogged) {
       // Redirect the user to your login page
     }
@@ -80,7 +80,7 @@ export class Mealz {
     window.mealz.hook.setHookCallback(this.hookCallback);
   }
 
-  hookCallback = (_isLogged, _isPosValid) => true;
+  hookCallback = (_isLogged, _isStoreValid) => true;
 }
 ```
 
@@ -121,7 +121,7 @@ export class Mealz {
 
   /////////////// HOOKS CALLBACK ///////////////
 
-  hookCallback = (isLogged, _isPosValid) => {
+  hookCallback = (isLogged, _isStoreValid) => {
     if (!isLogged) {
       // Navigate to your login page
     }
