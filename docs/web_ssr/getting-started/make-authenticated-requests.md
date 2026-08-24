@@ -62,7 +62,12 @@ async function getOrCreateAuthlessId(): Promise<string> {
   const apiVersion = process.env.MEALZ_API_VERSION; // e.g. "v3"
 
   const url = `${baseUrl}/${apiVersion}/generate-authless-token`;
-  const response = await fetch(url, { method: "GET" });
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Supplier-token": process.env.MEALZ_SUPPLIER_TOKEN!,
+    },
+  });
   if (!response.ok) {
     throw new Error(`Mealz authless token request failed`);
   }

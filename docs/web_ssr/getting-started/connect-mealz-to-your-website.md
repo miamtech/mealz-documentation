@@ -70,15 +70,18 @@ function setupMealzOnPage() {
   });
   window.mealz.basket.initialize();
 
-  window.mealz.hook.setHookCallback((isLogged, isPosValid) => {
-    if (!isPosValid) {
+  window.mealz.hook.setHookCallback((isLogged, isStoreValid) => {
+    if (!isStoreValid) {
       // Navigate to store selection
+      return false;
     }
+    // For guests (Authless-id), isLogged will be false,
+    // but Mealz is able to manage a basket for guests if needed.
+    // Force login only if your site requires it for add-to-cart.
     if (!isLogged) {
-      // Navigate to login
+      // Navigate to login — or omit this and allow guests
     }
-    // Return true only if Mealz should continue adding to the basket
-    return isLogged && isPosValid;
+    return isStoreValid;
   });
 }
 ```

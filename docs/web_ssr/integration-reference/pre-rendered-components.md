@@ -84,7 +84,7 @@ See [Internationalisation](/docs/web_ssr/customization/internationalization) for
 - **Session-id**: A unique identifier to differentiate sessions from one another (for example a uuid). This helps us keep things consistent during a session.
 > For example if a user sees a recipe on a shelf, clicks on a product and goes to the product page, then goes back, they would expect to see the same recipe on the shelf. With the session-id, we are able to return the same recipe if the products passed in parameters are the same as a previous request with the same session-id
 
-- **cookies-consent**: **_(Recommended)_** Send `true` when the user has accepted cookies that allow Mealz profiling and personalization. When the header is absent or not `true`, Mealz treats profiling as refused. This value is passed into the client bootstrap with your other headers.$
+- **cookies-consent**: **_(Recommended)_** Send `true` when the user has accepted cookies that allow Mealz profiling and personalization. When the header is absent or not `true`, Mealz treats profiling as refused. This value is passed into the client bootstrap with your other headers.
 
 ## Authless user
 Even if the user is not logged into your website, you might want to allow them to add products to their basket.
