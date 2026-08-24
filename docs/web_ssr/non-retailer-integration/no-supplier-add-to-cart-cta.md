@@ -44,13 +44,13 @@ Do not forget the [mandatory HTTP headers](../main-features/pre-rendered-compone
 Minimal call (the usual case for a non-retailer):
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=22509
+GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=12345
 ```
 
 With an explicit guest count:
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=22509&guests=6
+GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=12345&guests=6
 ```
 
 ## Guest count after load
