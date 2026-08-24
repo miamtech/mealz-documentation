@@ -2,9 +2,9 @@
 sidebar_position: 3
 ---
 
-# Meals planner
+# Planner
 
-The [meals planner](../integration-reference/meals-planner) is a full-page flow that helps users build a weekly menu and push every recipe to the cart in one step. You embed a small **entry block** on a page such as the catalog home; it sends the user to a dedicated **current menu** page on your site when they start planning.
+The [planner](../integration-reference/planner) is a full-page flow that helps users build a weekly menu and push every recipe to the cart in one step. You embed a small **entry block** on a page such as the catalog home; it sends the user to a dedicated **current menu** page on your site when they start planning.
 
 On the entry block, the user sets the number of guests and chooses how to start: from Mealz suggestions or from an empty menu.
 
@@ -30,4 +30,4 @@ On the current menu page, the user adds or removes recipes (from suggestions or 
 
 On mobile, the current menu splits into two views (suggestions with a compact footer, then the full menu list); the URL keeps track of the active view via a `view` query parameter.
 
-See [Meals planner](../integration-reference/meals-planner) for SSR routes, routing configuration, and integration details.
+See [Planner](../integration-reference/planner) for SSR routes, routing configuration, and integration details.

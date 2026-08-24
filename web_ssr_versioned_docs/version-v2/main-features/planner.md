@@ -2,11 +2,11 @@
 sidebar_position: 5
 ---
 
-# Meals planner (SSR)
+# Planner (SSR)
 
 ## Overview
 
-The **Meals planner** is a full-page experience that helps users build a meal plan (a “menu”) and then push it to the retailer cart.
+The **Planner** is a full-page experience that helps users build a meal plan (a “menu”) and then push it to the retailer cart.
 
 **The only supported entry point is `planner-entry`**: you embed it on one of your pages (typically the catalog home), and it redirects the user to the planner experience.
 
@@ -29,7 +29,7 @@ The **Meals planner** is a full-page experience that helps users build a meal pl
 
 First-time users are greeted with a quick onboarding modal.
 
-Users can open the onboarding **help modal** at any time to understand (or re-check) how to use the meals planner.
+Users can open the onboarding **help modal** at any time to understand (or re-check) how to use the planner.
 
 - From **`planner-entry`**: the “How it works” / help link opens the modal.
 - From the **current menu page**: the **help button** (question mark / help icon) in the header opens the modal again.
@@ -161,7 +161,7 @@ This is configured in the SSR API routing (example format):
 
 ### Shareable planner URL
 
-Some clients want to use their **planner page URL** in marketing campaigns redirection (example: `https://your-website.com/meals-planner`).
+Some clients want to use their **planner page URL** in marketing campaigns redirection (example: `https://your-website.com/planner`).
 
 The behavior is:
 
@@ -240,4 +240,3 @@ Example planner text keys that can be overridden via i18n:
   },
 }
 ```
-

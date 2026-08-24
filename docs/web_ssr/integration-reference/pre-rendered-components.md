@@ -36,7 +36,7 @@ The API returns an HTML fragment. For example:
 
 Place this fragment in your server-rendered template at the slot where the card should show. Then fetch the stylesheets for the same component (and the same variant, if you use one) as described in [Fetching styles](./fetching-style).
 
-Full parameter lists and routes for each feature are listed on their own page under **Integration reference** (catalog, recipe card, meals planner, and so on).
+Full parameter lists and routes for each feature are listed on their own page under **Integration reference** (catalog, recipe card, planner, and so on).
 
 ## Component parameters
 

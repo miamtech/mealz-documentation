@@ -9,7 +9,7 @@ You should now have a recipe card loading through the SSR API with styles and ba
 ## Add more features
 
 - [Recipe catalog](../integration-reference/recipe-catalog): browsable recipes on your site ([product overview](../about-mealz/recipe-catalog))
-- [Meals planner](../integration-reference/meals-planner): weekly menu flow ([product overview](../about-mealz/meals-planner))
+- [Planner](../integration-reference/planner): weekly menu flow ([product overview](../about-mealz/planner))
 - [Recipe tags](../integration-reference/recipe-tags): reminders on the cart page ([product overview](../about-mealz/recipe-reminders))
 - [Styling](../styling) and [Customization](../category/customization-and-optional-features)
 

@@ -124,7 +124,7 @@ The tables below list removed methods and what to do instead. Where there is no 
 
 The whole namespace was removed. In V2, these methods turned features on or off from JavaScript (`enableVideoRecipes`, `enableUserPreferences`, `enableTagsOnRecipes`, `collapseUnavailableProductsByDefault`, and so on). In V3, those behaviors are always available in the library. Per-client activation is handled through **feature flags** in our internal configuration instead. See [Versioning process](./about-mealz/versioning-process).
 
-If you called `enableMealsPlanner(url)`, use the SSR planner routes instead. See [Meals planner](./integration-reference/meals-planner).
+If you called `enableMealsPlanner(url)`, use the SSR planner routes instead. See [Planner](./integration-reference/planner).
 
 ### `window.mealz.recipes.*`
 

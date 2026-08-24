@@ -2,13 +2,13 @@
 sidebar_position: 5
 ---
 
-# Meals planner
+# Planner
 
 ## Overview
 
 <!-- TODO: UPDATE SCREENSHOTS — planner UI updated in V3 -->
 
-The **Meals planner** is a full-page experience that helps users build a meal plan (a “menu”) and then push it to the retailer cart.
+The **Planner** is a full-page experience that helps users build a meal plan (a “menu”) and then push it to the retailer cart.
 
 **The only supported entry point is `planner-entry`**: you embed it on one of your pages (typically the catalog home), and it redirects the user to the planner experience.
 
@@ -31,7 +31,7 @@ The **Meals planner** is a full-page experience that helps users build a meal pl
 
 First-time users are greeted with a quick onboarding modal.
 
-Users can open the onboarding **help modal** at any time to understand (or re-check) how to use the meals planner.
+Users can open the onboarding **help modal** at any time to understand (or re-check) how to use the planner.
 
 - From **`planner-entry`**: the “How it works” / help link opens the modal.
 - From the **current menu page**: the **help button** (question mark / help icon) in the header opens the modal again.
@@ -129,7 +129,7 @@ Include the planner styles on the current menu page from `GET /styles/planner`. 
 
 ### Using the planner URL in marketing campaigns
 
-You can point campaign links directly to your planner page (e.g. `https://your-website.com/meals-planner`). When a user lands on that URL:
+You can point campaign links directly to your planner page (e.g. `https://your-website.com/planner`). When a user lands on that URL:
 
 - If they already have a menu in progress, the planner opens it.
 - If they do not, the planner starts a new menu from the current suggestions.
@@ -210,4 +210,3 @@ Example planner text keys that can be overridden via i18n:
   }
 }
 ```
-
