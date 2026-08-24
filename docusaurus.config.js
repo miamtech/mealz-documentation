@@ -48,37 +48,6 @@ export default {
             label: "5.7",
             path: "/"
           },
-            "5.6": {
-              banner: 'none',
-            },
-            "5.5": {
-              banner: 'none',
-            },
-            "5.4": {
-              banner: 'none',
-            },
-            "5.3": {
-              banner: 'none',
-            },
-            "5.2": {
-              banner: 'none',
-            },
-            //"5.1": {
-            //  banner: 'none',
-            //},
-          "5.0": {
-            banner: 'none',
-          },
-          "4.1": {
-            banner: 'none',
-          },
-          "4.0": {
-            banner: 'none'
-          },
-          "3": {
-            label: "3.x",
-            banner: 'unmaintained'
-          }
         },
       },
     ],
@@ -106,15 +75,6 @@ export default {
           "8.8": {
             banner: 'none'
           },
-          "8.7": {
-            banner: 'none'
-          },
-          "8.6": {
-            banner: 'none'
-          },
-          "8.5": {
-            banner: 'none'
-          }
         }
       },
     ],
@@ -137,9 +97,6 @@ export default {
             banner: 'none'
           },
           "v1": {
-            banner: 'none'
-          },
-          "v0": {
             banner: 'none'
           },
         }
@@ -171,117 +128,11 @@ export default {
             position: "left",
             label: "Android",
             to: "docs/android/Introduction",
-            items: [
-              {
-                label: "5.7",
-                to: "docs/android/Introduction",
-                activeBasePath: "docs/android/",
-              },
-              {
-                label: "5.6",
-                to: "docs/5.6/android/Introduction",
-                activeBasePath: "docs/5.6/android/",
-              },
-              {
-                label: "5.5",
-                to: "docs/5.5/android/Introduction",
-                activeBasePath: "docs/5.5/android/",
-              },
-              {
-                label: "5.4",
-                to: "docs/5.4/android/Introduction",
-                activeBasePath: "docs/5.4/android/",
-              },
-              {
-                label: "5.3",
-                to: "docs/5.3/android/Introduction",
-                activeBasePath: "docs/5.3/android/",
-              },
-              {
-                label: "5.2",
-                to: "docs/5.2/android/Introduction",
-                activeBasePath: "docs/5.2/android/",
-              },
-
-              {
-                label: "5.0-5.1",
-                to: "docs/5.0/android/Introduction",
-                activeBasePath: "docs/5.0/android/",
-              },
-              {
-                label: "4.1",
-                to: "docs/4.1/android/Introduction",
-                activeBasePath: "docs/4.1/android/",
-              },
-              {
-                label: "4.0",
-                to: "docs/4.0/android/Introduction",
-                activeBasePath: "docs/4.0/android/",
-              },
-              {
-                label: "3.x",
-                to: "docs/3/android/Introduction",
-                activeBasePath: "docs/3/android/",
-              }
-            ]
           },
           {
             position: "left",
             label: "iOS",
             to: "docs/ios/Introduction",
-            items: [
-              {
-                label: "5.7",
-                to: "docs/ios/Introduction",
-                activeBasePath: "docs/ios/",
-              },
-              {
-                label: "5.6",
-                to: "docs/5.6/ios/Introduction",
-                activeBasePath: "docs/5.6/ios/",
-              },
-              {
-                label: "5.5",
-                to: "docs/5.5/ios/Introduction",
-                activeBasePath: "docs/5.5/ios/",
-              },
-              {
-                label: "5.4",
-                to: "docs/5.4/ios/Introduction",
-                activeBasePath: "docs/5.4/ios/",
-              },
-              {
-                label: "5.3",
-                to: "docs/5.3/ios/Introduction",
-                activeBasePath: "docs/5.3/ios/",
-              },
-              {
-                label: "5.2",
-                to: "docs/5.2/ios/Introduction",
-                activeBasePath: "docs/5.2/ios/",
-              },
-
-              {
-                label: "5.0-5.1",
-                to: "docs/5.0/ios/Introduction",
-                activeBasePath: "docs/5.0/ios/",
-              },
-              {
-                label: "4.1",
-                to: "docs/4.1/ios/Introduction",
-                activeBasePath: "docs/4.1/ios/",
-              },
-              {
-                label: "4.0",
-                to: "docs/4.0/ios/Introduction",
-                activeBasePath: "docs/4.0/ios/",
-              },
-              {
-                label: "3.x",
-                to: "docs/3/ios/Introduction",
-                activeBasePath: "docs/3/ios/",
-              }
-            ]
           },
           {
             position: "left",
@@ -308,31 +159,6 @@ export default {
                 to: "docs/web_sdk/8.8/Introduction",
                 activeBaseRegex: "docs/web_sdk/8.8",
               },
-              {
-                label: "8.7",
-                to: "docs/web_sdk/8.7/Introduction",
-                activeBaseRegex: "docs/web_sdk/8.7",
-              },
-              {
-                label: "8.6",
-                to: "docs/web_sdk/8.6/Introduction",
-                activeBaseRegex: "docs/web_sdk/8.6",
-              },
-              {
-                label: "8.5",
-                to: "docs/web_sdk/8.5/Introduction",
-                activeBaseRegex: "docs/web_sdk/8.5",
-              },
-              {
-                label: "8.4",
-                to: "docs/web_sdk/8.4/Introduction",
-                activeBasePath: "docs/web_sdk/8.4",
-              },
-              {
-                label: "8.3",
-                to: "docs/web_sdk/8.3/Introduction",
-                activeBasePath: "docs/web_sdk/8.3",
-              },
             ]
           },
           {
@@ -354,11 +180,6 @@ export default {
                 label: "v1",
                 to: "docs/web_ssr/v1/Introduction",
                 activeBasePath: "docs/web_ssr/v1",
-              },
-              {
-                label: "v0",
-                to: "docs/web_ssr/v0/Introduction",
-                activeBasePath: "docs/web_ssr/v0",
               },
             ]
           },
