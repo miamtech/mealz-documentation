@@ -120,12 +120,12 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 ## window.mealz.user
 
-- `loadWithExtId: (id, forbidProfiling = false) => void`: Notifies Mealz that the user has logged in.
+- `loadWithExternalId: (id, forbidProfiling = false) => void`: Notifies Mealz that the user has logged in.
   :::warning
     **Deprecated for page-load setup.** In V3, the logged-in user is initialized from the `Authorization` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
   :::
 
-  Call `loadWithExtId` only when the user logs in **without a full page reload**. If login triggers a navigation or reload, pass the updated `Authorization` header on the next SSR request instead. See [Log in](../set-up-and-usage/login-and-logout#log-in).
+  Call `loadWithExternalId` only when the user logs in **without a full page reload**. If login triggers a navigation or reload, pass the updated `Authorization` header on the next SSR request instead. See [Log in](../set-up-and-usage/login-and-logout#log-in).
 
 - `loadWithAuthlessId: (id, forbidProfiling = false) => void`: Notifies Mealz of a guest (authless) session.
   :::warning
