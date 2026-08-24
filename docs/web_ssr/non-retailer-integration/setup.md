@@ -48,7 +48,7 @@ window.mealz.user.loadWithAuthlessId(authlessId: string, forbidProfiling?: boole
 
 The [hook callback](../set-up-and-usage/hooks) is called by Mealz before any action that requires the user to be logged in or to have picked a store. In non-retailer mode:
 
-- `isPosValid` is always **`true`**: no store needs to be picked on your side.
+- `isStoreValid` is always **`true`**: no store needs to be picked on your side.
 - `isLogged` behaves exactly as on a retailer integration: it reflects whether the user is logged in on Mealz's side (from SSR headers in V3, or after `loadWithExternalId` when login happens without a page reload).
 
 So the callback boils down to deciding what to do when the user is not logged in:
@@ -62,7 +62,7 @@ export class Mealz {
     window.mealz.hook.setHookCallback(this.hookCallback);
   }
 
-  hookCallback = (isLogged, _isPosValid) => {
+  hookCallback = (isLogged, _isStoreValid) => {
     if (!isLogged) {
       // Redirect the user to your login page
     }
@@ -80,7 +80,7 @@ export class Mealz {
     window.mealz.hook.setHookCallback(this.hookCallback);
   }
 
-  hookCallback = (_isLogged, _isPosValid) => true;
+  hookCallback = (_isLogged, _isStoreValid) => true;
 }
 ```
 
@@ -121,7 +121,7 @@ export class Mealz {
 
   /////////////// HOOKS CALLBACK ///////////////
 
-  hookCallback = (isLogged, _isPosValid) => {
+  hookCallback = (isLogged, _isStoreValid) => {
     if (!isLogged) {
       // Navigate to your login page
     }

@@ -10,34 +10,66 @@ export default function DocVersionBanner(props: Props): ReactNode {
   const versionMetadata = useDocsVersion();
   const activePlugin = useActivePlugin({failfast: false});
 
-  if (
-    activePlugin?.pluginId === 'web_sdk' &&
-    versionMetadata.banner === 'unmaintained'
-  ) {
-    return (
-      <div
-        className={clsx(
-          ThemeClassNames.docs.docVersionBanner,
-          'alert alert--warning margin-bottom--md',
-        )}
-        role="alert">
-        <div>
-          This is documentation for <strong>Web SDK {versionMetadata.label}</strong>,
-          which is in maintenance mode from August 2026 (critical fixes only).
+  if (versionMetadata.banner === 'unmaintained') {
+    if (activePlugin?.pluginId === 'web_sdk') {
+      return (
+        <div
+          className={clsx(
+            ThemeClassNames.docs.docVersionBanner,
+            'alert alert--warning margin-bottom--md',
+          )}
+          role="alert">
+          <div>
+            This is documentation for <strong>Web SDK {versionMetadata.label}</strong>,
+            which is in maintenance mode from August 2026 (critical fixes only).
+          </div>
+          <div className="margin-top--md">
+            For new integrations, use the{' '}
+            <strong>
+              <Link to="docs/web_ssr/introduction">Web SSR documentation (v3)</Link>
+            </strong>
+            . If you are upgrading from the Web SDK, see the{' '}
+            <Link to="docs/web_ssr/migration-v2-v3">
+              V2 to V3 migration guide
+            </Link>
+            .
+          </div>
         </div>
-        <div className="margin-top--md">
-          For new integrations, use the{' '}
-          <strong>
-            <Link to="docs/web_ssr/introduction">Web SSR documentation (v3)</Link>
-          </strong>
-          . If you are upgrading from the Web SDK, see the{' '}
-          <Link to="docs/web_ssr/migration-v2-v3">
-            V2 to V3 migration guide
-          </Link>
-          .
+      );
+    }
+
+    if (activePlugin?.pluginId === 'web_ssr') {
+      return (
+        <div
+          className={clsx(
+            ThemeClassNames.docs.docVersionBanner,
+            'alert alert--warning margin-bottom--md',
+          )}
+          role="alert">
+          <div>
+            This is documentation for <strong>Web SSR {versionMetadata.label}</strong>,
+            which is no longer maintained.
+          </div>
+          <div className="margin-top--md">
+            For new integrations, use the{' '}
+            <strong>
+              <Link to="docs/web_ssr/introduction">Web SSR documentation (v3)</Link>
+            </strong>
+            {versionMetadata.label === 'v2' ? (
+              <>
+                . If you are upgrading from v2, see the{' '}
+                <Link to="docs/web_ssr/migration-v2-v3">
+                  V2 to V3 migration guide
+                </Link>
+                .
+              </>
+            ) : (
+              '.'
+            )}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   return <DocVersionBannerOriginal {...props} />;

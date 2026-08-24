@@ -95,10 +95,10 @@ export default {
             path: "/"
           },
           "v2": {
-            banner: 'none'
+            banner: 'unmaintained'
           },
           "v1": {
-            banner: 'none'
+            banner: 'unmaintained'
           },
         }
       },
