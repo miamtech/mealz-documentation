@@ -1,4 +1,5 @@
 import Link from '@docusaurus/Link';
+import { NoSupplierGuestCountTip, NoSupplierServesParamWarning } from './guestCountAdmonitions';
 
 When your supplier key is in **No Supplier** mode (encoded in the key Mealz provides), Mealz owns the basket. Extra WebView helpers cover retailer/store picking, pricing, and transfer CTAs.
 
@@ -96,6 +97,8 @@ Shows the price for a recipe in the No Supplier context.
 | `modifier` | Compose `Modifier` | no | — | Layout (fixed height). |
 | `stateContent` | state overlays | no | library default | Optional loading UI. |
 
+<NoSupplierServesParamWarning />
+
 ### `RecipePricingNavigationCallback`
 
 | Callback | Required | What you must do |
@@ -132,6 +135,8 @@ Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/v2/non-ret
 | `modifier` | Compose `Modifier` | no | — | Layout (fixed height). |
 | `stateContent` | state overlays | no | library default | Optional loading UI. |
 
+<NoSupplierServesParamWarning />
+
 ### `AddToCartCtaNavigationCallback`
 
 | Callback | Required | What you must do |
@@ -141,6 +146,8 @@ Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/v2/non-ret
 | `goToCatalog` | yes | `(FeatureRoute.Catalog) -> Unit` — open catalog when requested. |
 
 Base login / store / cart / exit redirects are no-ops on this callback — wire the three callbacks above.
+
+<NoSupplierGuestCountTip />
 
 ## Basket Count Badges
 
@@ -194,6 +201,7 @@ AddToCartCTAViewController.companion.get(
     stateContent: nil,
     navigationCallback: AddToCartCtaNavigationCallback(
         goToRecipeDetails: { displayRecipe, serves in
+            // Forward serves as-is (should match your No Supplier counter) into RecipeDetailsViewController
             // serves is KotlinInt? — e.g. serves.map { Int(truncating: $0) }
         },
         redirectToSupplierSelector: { context in },
@@ -227,7 +235,9 @@ AddToCart(
     displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
     serves = 4,
     navigationCallback = AddToCartCtaNavigationCallback(
-        goToRecipeDetails = { displayRecipe, serves -> },
+        goToRecipeDetails = { displayRecipe, serves ->
+            // Forward serves as-is (should match your No Supplier counter) into RecipeDetailsScreen
+        },
         redirectToSupplierSelector = { },
         goToCatalog = { }
     )
