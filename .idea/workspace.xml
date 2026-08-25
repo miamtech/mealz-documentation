@@ -4,32 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="(after mr) Re-align sample codes with demo applications and ensure that everything is up-to-date">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/basket-transfer.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/basket-transfer.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/catalog.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/favorites.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/favorites.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/meal-planner.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/my-meals.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/my-meals.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/my-space.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/my-space.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/no-supplier.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/no-supplier.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/order-history.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/order-history.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-card.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-card.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-details.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-details.mdx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-tags.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mobile/shared/features/recipe-tags.mdx" afterDir="false" />
+    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;">
+      <change beforePath="$PROJECT_DIR$/docs/web_ssr/changelog/changelog-nest.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web_ssr/changelog/changelog-nest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web_ssr/customization/window-mealz.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web_ssr/customization/window-mealz.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ClangdSettings">
-    <option name="formatViaClangd" value="false" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="docs/new-webview-library" />
+        <entry key="$PROJECT_DIR$" value="feat/update-changelog" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,9 +59,9 @@
     </option>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
-}</component>
+    &quot;customColor&quot;: &quot;&quot;,
+    &quot;associatedIndex&quot;: 5
+    }</component>
   <component name="ProjectId" id="2o9EevYpvWzKz6VC2IMmjSMqjn7" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -82,22 +69,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feat/new-kmm-library",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/ssr-v2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_SUPPORTED="false" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" DEVELOPMENT_TEAM="${TEAM_ID}" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <embedded_app_extension_list />
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -206,50 +201,11 @@
       <option name="project" value="LOCAL" />
       <updated>1749228183064</updated>
     </task>
-    <task id="LOCAL-00011" summary="Add new WebView library documentation">
-      <option name="closed" value="true" />
-      <created>1785860194987</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1785860194987</updated>
-    </task>
-    <task id="LOCAL-00012" summary="(after mr) Re-align sample codes with demo applications and ensure that everything is up-to-date">
-      <option name="closed" value="true" />
-      <created>1785863836616</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1785863836616</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated changelog for SDK and SSR" />
@@ -262,8 +218,6 @@
     <MESSAGE value="Fixed imports" />
     <MESSAGE value="Added current state of Nest + Lit changelog" />
     <MESSAGE value="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;" />
-    <MESSAGE value="Add new WebView library documentation" />
-    <MESSAGE value="(after mr) Re-align sample codes with demo applications and ensure that everything is up-to-date" />
-    <option name="LAST_COMMIT_MESSAGE" value="(after mr) Re-align sample codes with demo applications and ensure that everything is up-to-date" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;" />
   </component>
 </project>
