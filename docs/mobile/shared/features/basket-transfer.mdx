@@ -1,0 +1,97 @@
+import Link from '@docusaurus/Link';
+
+Shoppers can build a Mealz basket in a **No Supplier** app (recipe site / partner), then **transfer** it to an affiliated **retailer** app or website to finish shopping. Both sides must wire their part — there is no automatic sync without that handoff.
+
+```text
+No-supplier app                         Retailer app / site
+─────────────────                       ──────────────────
+AddToCart / Supplier Selector
+  → user confirms transfer
+  → Mealz opens URL with
+    transferred_basket_token     ──►    Deep link / universal link
+                                        → open Catalog MyMeals with
+                                          basketTransferUrl
+                                        → products sync into retailer cart
+```
+
+| Side | What you do |
+|------|-------------|
+| **No Supplier** | Host Add to Cart (+ Supplier Selector). When the user confirms transfer, MealzUIKit opens the retailer URL **outside** your app. Do not block that handoff. |
+| **Retailer** | Handle the incoming link, open `FeatureRoute.Catalog.MyMeals(basketTransferUrl = …)`, keep basket sync registered so products land in your cart. |
+
+This is **not** the same as `redirectToCart` (open your in-app cart while browsing Mealz) or day-to-day basket sync. Transfer is a **cross-app** handoff from an affiliated No Supplier experience into your retailer app.
+
+SSR background:
+
+- [Non-retailer introduction](/docs/web_ssr/v2/non-retailer-integration/introduction)
+- [Receiving baskets from affiliated websites](/docs/web_ssr/v2/customization/affiliated-websites)
+
+---
+
+## No Supplier — emit
+
+There is **no** separate `startTransfer` API. After the shopper adds recipes and confirms transfer in Mealz UI:
+
+1. SSR builds a retailer URL that includes `transferred_basket_token` (plus affiliate / POS params Mealz configures with you).
+2. The WebView navigates toward that URL.
+3. MealzUIKit detects `transferred_basket_token` and opens it **externally** (Android `ACTION_VIEW` / iOS universal link or browser) so the retailer app or site takes over.
+
+The process is fully handled by the library, so **no action is required on your side**.
+
+---
+
+## Retailer — receive
+
+Accept a basket built on an affiliated No Supplier app/site and merge products into your retailer cart via the usual basket synchronizer.
+
+Typical incoming link (exact shape is configured with Mealz):
+
+```text
+https://your-app-or-web-host/…?affiliate=AFFILIATE&transferred_basket_token=TOKEN&point_of_sale_ext_id=STORE_EXT_ID
+```
+
+To achieve this, **follow these steps**:
+
+1. Declare / handle the deep link (App Links, universal links, custom scheme, …) and keep the **full incoming URL** (query params matter).
+2. Ensure MealzUIKit is **started**, store / user are set as for a normal retailer session, and `BasketSynchronizationManager.registerRetailerBasketSynchronizer` is already registered.
+3. Open catalog **My Meals** with `basketTransferUrl` set to that incoming URL — Mealz forwards its query params into the WebView load.
+4. Transferred lines arrive through `updateBasket` like normal Mealz adds; call `notifyRetailerBasketChanged` as usual after you apply them.
+
+export function BasketTransferReceiveInject(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`CatalogViewController.companion.get(
+    route: FeatureRoute.Catalog.CatalogMyMeals(
+        showTabSelector: false,
+        defaultSelectedTab: nil,
+        basketTransferUrl: incomingTransferUrl, // full deep-link URL
+        extraParameters: [:]
+    ),
+    stateContent: nil,
+    navigationCallback: CatalogNavigationCallback(
+        redirectToLogIn: { /* */ },
+        redirectToStoreLocator: { /* */ },
+        redirectToCart: { /* your cart — products land via basket sync */ },
+        exit: { /* */ },
+        goToHomeCatalog: nil
+    )
+)`}</code></pre>
+    );
+  }
+  // Android + KMM
+  return (
+    <pre><code className="language-kotlin">{`CatalogScreen(
+    route = FeatureRoute.Catalog.MyMeals(
+        basketTransferUrl = incomingTransferUrl // full deep-link URL
+    ),
+    navigationCallback = CatalogNavigationCallback(
+        redirectToLogIn = { /* */ },
+        redirectToStoreLocator = { /* */ },
+        redirectToCart = { /* your cart — products land via basket sync */ },
+        exit = { /* */ },
+    )
+)`}</code></pre>
+  );
+}
+
+<BasketTransferReceiveInject platform={props.platform}/>

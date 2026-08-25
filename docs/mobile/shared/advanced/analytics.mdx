@@ -1,0 +1,34 @@
+MealzUIKit bridges analytics events from the WebView (`window.mealz.analytics.eventSent$`) to native via an analytics event listener.
+
+export function AnalyticsListener(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`SdkConfiguration.shared.setAnalyticsEventListener { event in
+    // event.name  e.g. "recipe.display"
+    // event.path  WebView path
+    // event.props map of JSON values
+}`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`import ai.mealz.uikit.config.SdkConfiguration
+import ai.mealz.uikit.model.AnalyticsEvent
+
+SdkConfiguration.setAnalyticsEventListener { event: AnalyticsEvent ->
+    // event.name  e.g. "recipe.display"
+    // event.path  WebView path
+    // event.props map of JSON values
+}`}</code></pre>
+  );
+}
+
+<AnalyticsListener platform={props.platform}/>
+
+:::info Event catalog
+The full list of event names and when they fire is documented in **Web SSR**:
+
+- [Analytics (SSR)](/docs/web_ssr/v2/analytics)
+- Shared property reference: see the event properties section on that page
+
+Mobile and SSR share the same event vocabulary because UIKit journeys are SSR-driven.
+:::

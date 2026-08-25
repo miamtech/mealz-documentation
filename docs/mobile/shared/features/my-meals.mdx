@@ -1,0 +1,62 @@
+import Link from '@docusaurus/Link';
+
+My Meals is a **Catalog route**. Use the same catalog entry with:
+
+```kotlin
+FeatureRoute.Catalog.MyMeals(
+    showTabSelector = true,
+    // defaultSelectedTab is currently limited: Recipes is always shown first
+    basketTransferUrl = null
+)
+```
+
+## Visual Overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/myMeals.png"
+  alt="My Meals — recipes tab"
+  style={{maxWidth: '280px'}}
+/>
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/myProducts.png"
+  alt="My Meals — products tab"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+Same as Catalog (`route` + `CatalogNavigationCallback`) — see the Catalog link below. Route-specific:
+
+| Route field | Type | Required | Default | What it does |
+|-------------|------|----------|---------|--------------|
+| `showTabSelector` | `Boolean` | no | `false` | Show Recipes / Products tab chrome. |
+| `defaultSelectedTab` | `MyMealsTab?` (`Recipes` / `Products`) | no | `null` | **Limited today**: Recipes is always the first visible page; prefer `showTabSelector` only. |
+| `basketTransferUrl` | `String?` | no | `null` | Full incoming deep-link URL when receiving a basket from an affiliated No Supplier app. Query params are forwarded into the WebView. |
+
+Set `goToHomeCatalog` when My Meals is presented as **root**: the WebView may ask to open the main catalog home. See Catalog docs for `goToHomeCatalog`.
+
+## Basket Transfer (receive)
+
+When a shopper arrives from a No Supplier app with `transferred_basket_token`, open My Meals with `basketTransferUrl` set to the **full** incoming URL. Keep basket sync registered — transferred products arrive via `updateBasket`.
+
+export function MyMealsTransferLink(props) {
+  return (
+    <p>
+      End-to-end handoff (No Supplier send + Retailer receive):{' '}
+      <Link to={`/docs/${props.platform}/features/basket-transfer`}>Basket Transfer</Link>.
+    </p>
+  );
+}
+
+<MyMealsTransferLink platform={props.platform}/>
+
+export function MyMealsCatalogLink(props) {
+  return (
+    <p>
+      Full entry docs: <Link to={`/docs/${props.platform}/features/catalog`}>Catalog</Link>.
+    </p>
+  );
+}
+
+<MyMealsCatalogLink platform={props.platform}/>

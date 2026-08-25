@@ -1,0 +1,68 @@
+import { ServesParamWarning } from './guestCountAdmonitions';
+
+Full recipe details journey (`FeatureRoute.Recipe.Details`).
+
+## Visual Overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/recipeDetail.png"
+  alt="Recipe details"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `displayRecipe` | `DisplayRecipe` | yes | — | Mealz or external recipe id (`FromMealzRecipeId` / `FromExternalRecipeId`). |
+| `serves` | `Int?` | no | `null` | Guest / portion count to open with. Often forwarded from the recipe card. |
+| `navigationCallback` | `RecipeDetailsNavigationCallback` | yes | — | Optional login / store / exit + catalog redirect. |
+| `modifier` | Compose `Modifier` | no | fills max size | Layout. |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+<ServesParamWarning platform={props.platform} />
+
+### `RecipeDetailsNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `redirectToLogIn` | no | Open login. Defaults to a no-op. |
+| `redirectToStoreLocator` | no | Open store picker. Defaults to a no-op. |
+| `exit` | no | Close / pop recipe details. Defaults to a no-op. |
+| `redirectToCatalog` | yes | Open the Mealz catalog (e.g. “see more recipes”). |
+
+## Inject
+
+export function RecipeDetailsInject(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`RecipeDetailsViewController.companion.get(
+    displayRecipe: DisplayRecipeFromMealzRecipeId(id: "12838"),
+    serves: servesFromCallback, // forward goToRecipeDetails serves as-is
+    defaultSelectedTab: nil,
+    stateContent: nil,
+    navigationCallback: RecipeDetailsNavigationCallback(
+        redirectToLogIn: { },
+        redirectToStoreLocator: { },
+        exit: { },
+        redirectToCatalog: { /* present catalog */ }
+    )
+)`}</code></pre>
+    );
+  }
+  // Android + KMM
+  return (
+    <pre><code className="language-kotlin">{`RecipeDetailsScreen(
+    displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
+    serves = servesFromCallback, // forward goToRecipeDetails serves as-is
+    navigationCallback = RecipeDetailsNavigationCallback(
+        redirectToLogIn = { },
+        redirectToStoreLocator = { },
+        exit = { },
+        redirectToCatalog = { /* open CatalogScreen */ }
+    )
+)`}</code></pre>
+  );
+}
+
+<RecipeDetailsInject platform={props.platform}/>
