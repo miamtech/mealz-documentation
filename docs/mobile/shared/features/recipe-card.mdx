@@ -1,3 +1,5 @@
+import { GuestCountTip } from './guestCountAdmonitions';
+
 Embed a single recipe card in search grids, shelves, or product pages. The card is an opaque WebView component (`FeatureRoute.Recipe.Card`).
 
 ## Visual Overview
@@ -41,6 +43,8 @@ Do **not** pass surrounding product SKUs into `DisplayRecipe` anymore. Resolve s
 
 Base `NavigationCallback` redirects (`redirectToLogIn`, `redirectToStoreLocator`, `redirectToCart`, `exit`) default to no-ops on this component — only `goToRecipeDetails` matters.
 
+<GuestCountTip anchor />
+
 ## Inject
 
 export function RecipeCardInject(props) {
@@ -54,6 +58,7 @@ export function RecipeCardInject(props) {
     stateContent: nil,
     navigationCallback: RecipeCardNavigationCallback(
         goToRecipeDetails: { recipe, serves in
+            // Forward serves as-is into RecipeDetailsViewController — do not substitute a default
             // serves is KotlinInt? — e.g. serves.map { Int(truncating: $0) }
         }
     )
@@ -67,7 +72,9 @@ export function RecipeCardInject(props) {
     orientation = RecipeCardOrientation.VERTICAL,
     displayVariant = 1,
     navigationCallback = RecipeCardNavigationCallback(
-        goToRecipeDetails = { recipe, serves -> /* navigate */ }
+        goToRecipeDetails = { recipe, serves ->
+            // Forward serves as-is into RecipeDetailsScreen — do not substitute a default
+        }
     )
 )`}</code></pre>
   );

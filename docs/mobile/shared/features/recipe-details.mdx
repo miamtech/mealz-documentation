@@ -1,3 +1,5 @@
+import { ServesParamWarning } from './guestCountAdmonitions';
+
 Full recipe details journey (`FeatureRoute.Recipe.Details`).
 
 ## Visual Overview
@@ -18,6 +20,8 @@ Full recipe details journey (`FeatureRoute.Recipe.Details`).
 | `modifier` | Compose `Modifier` | no | fills max size | Layout. |
 | `stateContent` | state overlays | no | library default | Optional loading UI. |
 
+<ServesParamWarning platform={props.platform} />
+
 ### `RecipeDetailsNavigationCallback`
 
 | Callback | Required | What you must do |
@@ -34,7 +38,7 @@ export function RecipeDetailsInject(props) {
     return (
       <pre><code className="language-swift">{`RecipeDetailsViewController.companion.get(
     displayRecipe: DisplayRecipeFromMealzRecipeId(id: "12838"),
-    serves: KotlinInt(int: Int32(4)),
+    serves: servesFromCallback, // forward goToRecipeDetails serves as-is
     defaultSelectedTab: nil,
     stateContent: nil,
     navigationCallback: RecipeDetailsNavigationCallback(
@@ -50,7 +54,7 @@ export function RecipeDetailsInject(props) {
   return (
     <pre><code className="language-kotlin">{`RecipeDetailsScreen(
     displayRecipe = DisplayRecipe.FromMealzRecipeId("12838"),
-    serves = 4,
+    serves = servesFromCallback, // forward goToRecipeDetails serves as-is
     navigationCallback = RecipeDetailsNavigationCallback(
         redirectToLogIn = { },
         redirectToStoreLocator = { },
