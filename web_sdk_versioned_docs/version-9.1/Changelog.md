@@ -4,6 +4,50 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.31 - [21/08/2026]
+
+#### Fixed:
+- *window.mealz.analytics* — `attachRecipeCardShowTracking` always uses the current page URL (`location.href`); `analyticsPath` is not part of the public API (#86cb88rwy).
+
+## v9.1.30 - [09/07/2026]
+
+#### Added:
+- *window.mealz.analytics*:
+  - `attachRecipeCardShowTracking({ element, recipeId, categoryId?, analyticsPath? })` attaches viewport-based `recipe.show` tracking on a custom recipe card root (same rules as `mealz-recipe-card`: ≥80% visible for 1s, deduped until the user scrolls). Returns `{ disconnect() }` for teardown on virtual lists or SPA navigation.
+
+#### Internal:
+- *recipe-card-show-tracker* / *attach-recipe-card-show-tracking* / *viewport-listener*:
+  - SDK-side implementation of the recipe show pipeline; tracker singleton is stored on `window.__mealzRecipeCardShowTracker__` so dedup stays shared with Lit recipe cards.
+
+## v9.1.29 - [24/04/2026]
+
+#### Fix:
+- *mealz.openDetails*
+  - Now force path to '' to avoid analytics errors
+
+## v9.1.28 - [24/04/2026]
+
+#### Internal
+- Update mealzSharedAnalytic version to 4.13.0
+
+## v9.1.27 - [20/04/2026]
+
+#### Updated:
+- *mealz* - *mealzInternal*:
+  - `recipes.openDetails` accepts the planner flag as fifth argument and optional `categoryId` as sixth argument; when a string is passed as fifth argument it is still treated as the legacy `categoryId`.
+- *mealzInternal*:
+  - `recipes.updateRecipeLike` accepts an optional `categoryId` and forwards it in the like/unlike event trace.
+
+#### Fixed:
+- *analytics-service*:
+  - `recipe.add` now forwards `category_id` when it is present in the basket action event trace.
+
+## v9.1.26 - [26/02/2026]
+
+#### Added
+- *mealz*: 
+  - Expose `recipes.openDetails` to open recipe details (previously only on mealzInternal)
+
 ## v9.1.25 - [12/06/2026]
 
 #### Updated:
