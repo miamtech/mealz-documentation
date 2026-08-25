@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Rollback workspace.xml changes" />
+    <list default="true" id="9a330485-c582-4836-8ba0-2ff8af7633c4" name="Changes" comment="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;">
+      <change beforePath="$PROJECT_DIR$/docs/web_ssr/changelog/changelog-nest.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web_ssr/changelog/changelog-nest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web_ssr/customization/window-mealz.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web_ssr/customization/window-mealz.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ClangdSettings">
-    <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -75,7 +75,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "#221 on feat/new-kmm-library",
+    "git-widget-placeholder": "feat/ssr-v2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -193,50 +193,11 @@
       <option name="project" value="LOCAL" />
       <updated>1749228183064</updated>
     </task>
-    <task id="LOCAL-00011" summary="Rollback workspace.xml changes">
-      <option name="closed" value="true" />
-      <created>1787659792845</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1787659792845</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Rollback workspace.xml changes">
-      <option name="closed" value="true" />
-      <created>1787660044085</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1787660044085</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="feat/new-kmm-library" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated changelog for SDK and SSR" />
@@ -249,7 +210,6 @@
     <MESSAGE value="Fixed imports" />
     <MESSAGE value="Added current state of Nest + Lit changelog" />
     <MESSAGE value="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;" />
-    <MESSAGE value="Rollback workspace.xml changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rollback workspace.xml changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update some old versions and &quot;miam&quot; labels into &quot;mealz&quot;" />
   </component>
 </project>
