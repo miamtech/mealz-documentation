@@ -1,4 +1,5 @@
 import Link from '@docusaurus/Link';
+import Admonition from '@theme/Admonition';
 
 export function InitIntro(props) {
   if (props.platform === "android") {
@@ -76,65 +77,101 @@ MealzUIKit expects the **web** supplier key format (base64 JSON including `suppl
 
 `setUser` and `getCurrentUser` are **suspending** — call them from a coroutine (Kotlin) or an async context that can await Kotlin suspend functions (Swift). Call after `start`, and again whenever auth changes.
 
-export function UserApis(props) {
+### Defaults
+
+Out of the box (after `start`, no user calls):
+
+- **Authless mode is on** — `isAuthlessModeEnabled()` is `true` until you call `disableAuthlessMode()`.
+- **Identity is a guest** — `getCurrentUser()` is `User.Authless` with an id from `/v2/generate-authless-token` (fetched on first need). Guests can browse and fill a Mealz basket.
+
+Call `disableAuthlessMode()` only if shoppers **must** log in before basket actions. While authless mode is off and the shopper is not logged in, adding to the Mealz basket (and similar actions) triggers your screen’s `redirectToLogIn` callback so you can open your login flow.
+
+export function AuthlessModeApis(props) {
   if (props.platform === "ios") {
     return (
-      <pre><code className="language-swift">{`// Logged-in user
-SdkConfiguration.shared.connectUserWithId(userId: "user-123")
-SdkConfiguration.shared.getCurrentUser()
-SdkConfiguration.shared.disconnectCurrentUser()
-
-// Authless browsing (no account yet)
+      <pre><code className="language-swift">{`SdkConfiguration.shared.isAuthlessModeEnabled() // true by default
 SdkConfiguration.shared.enableAuthlessMode()
-SdkConfiguration.shared.disableAuthlessMode()
-SdkConfiguration.shared.isAuthlessModeEnabled()`}</code></pre>
+SdkConfiguration.shared.disableAuthlessMode()`}</code></pre>
     );
   }
   return (
-    <pre><code className="language-kotlin">{`// Logged-in user
-SdkConfiguration.connectUserWithId("user-123")
-SdkConfiguration.getCurrentUser()
-SdkConfiguration.disconnectCurrentUser()
-
-// Authless browsing (no account yet)
+    <pre><code className="language-kotlin">{`SdkConfiguration.isAuthlessModeEnabled() // true by default
 SdkConfiguration.enableAuthlessMode()
-SdkConfiguration.disableAuthlessMode()
-SdkConfiguration.isAuthlessModeEnabled()`}</code></pre>
+SdkConfiguration.disableAuthlessMode()`}</code></pre>
   );
 }
 
-<UserApis platform={props.platform}/>
+<AuthlessModeApis platform={props.platform}/>
 
-### Authless Mode
+export function NoSupplierAuthWarning(props) {
+  return (
+    <Admonition type="warning" title="No Supplier">
+      <p>
+        Nothing to change for user auth — keep the default guest behaviour. Do not call{' '}
+        <code>setUser(&quot;…&quot;)</code>. See{' '}
+        <Link to={`/docs/${props.platform}/features/no-supplier`}>No Supplier</Link>.
+      </p>
+    </Admonition>
+  );
+}
 
-**Default:** enabled (`isAuthlessModeEnabled()` is `true` until you call `disableAuthlessMode()`). Call `disableAuthlessMode()` when shoppers must log in before using Mealz.
+<NoSupplierAuthWarning platform={props.platform}/>
 
-While no retailer user id is set, the library treats the shopper as a guest (`User.Authless`) with a stable authless id. That lets them browse and fill a Mealz basket before login.
+### Log in
 
-When you later call `setUser("logged-in-id")`:
+When the shopper logs into **your** app:
 
-1. If authless mode is **enabled** and the current user is still `User.Authless`, Mealz may **merge** the guest basket into the logged-in basket.
-2. Merge runs only when a **store is already selected** (external id in retailer mode, or Mealz store id in No Supplier mode). Without a store, login still succeeds; merge is skipped.
-3. Merge is **best-effort** (network failures are swallowed and do not block `setUser`).
+export function LoginApis(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`// suspend — call via your async / coroutine bridge
+SdkConfiguration.shared.setUser(userId: "user-123")`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`SdkConfiguration.setUser("user-123")`}</code></pre>
+  );
+}
 
-Related SSR concepts: [Login and logout](/docs/web_ssr/v2/set-up-and-usage/login-and-logout).
+<LoginApis platform={props.platform}/>
+
+If the previous identity was `User.Authless` and authless mode is **on**, Mealz may **merge** the guest basket into the logged-in basket (only when a store is already selected; best-effort — failures do not block `setUser`). See [Login and logout](/docs/web_ssr/v2/set-up-and-usage/login-and-logout).
+
+### Log out
+
+On logout, fall back to a guest identity:
+
+export function LogoutApis(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`SdkConfiguration.shared.setUser(userId: nil)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`SdkConfiguration.setUser(null)`}</code></pre>
+  );
+}
+
+<LogoutApis platform={props.platform}/>
+
+- Leaving `User.Authenticated` switches to `User.Authless` with a **new** authless id from `/v2/generate-authless-token`.
+- Already `User.Authless` reuses the stored id (no SSR call).
+- Does **not** change the authless-mode flag. With mode still on (default), the shopper can fill a guest basket again; if you had disabled authless mode, basket actions keep calling `redirectToLogIn` until you re-enable it or `setUser("…")`.
+
+### Session (optional)
+
+Call **before** any SSR/WebView use if you need a fixed session id:
 
 export function SessionApis(props) {
   if (props.platform === "ios") {
     return (
-      <>
-        <p>Optional session control (call <strong>before</strong> any SSR/WebView use if you need a fixed id):</p>
-        <pre><code className="language-swift">{`SdkConfiguration.shared.forceSessionIdTo(uuid: "00000000-0000-0000-0000-000000000000")
+      <pre><code className="language-swift">{`SdkConfiguration.shared.forceSessionIdTo(uuid: "00000000-0000-0000-0000-000000000000")
 let sessionId = SdkConfiguration.shared.getCurrentSessionId()`}</code></pre>
-      </>
     );
   }
   return (
-    <>
-      <p>Optional session control (call <strong>before</strong> any SSR/WebView use if you need a fixed id):</p>
-      <pre><code className="language-kotlin">{`SdkConfiguration.forceSessionIdTo("00000000-0000-0000-0000-000000000000")
+    <pre><code className="language-kotlin">{`SdkConfiguration.forceSessionIdTo("00000000-0000-0000-0000-000000000000")
 val sessionId = SdkConfiguration.getCurrentSessionId()`}</code></pre>
-    </>
   );
 }
 
