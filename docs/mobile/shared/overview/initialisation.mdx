@@ -244,8 +244,8 @@ export function FirstIntegrationChecklist(props) {
       <ol>
         <li>Call <code>{startCall}</code> once at app launch.</li>
         <li>
-          Set the shopper with <code>setUser("…")</code> (or <code>setUser(null)</code> for authless browsing — see above).
-          Both calls are <strong>suspend</strong>.
+          When the shopper logs in, call <code>setUser("…")</code>; on logout, call <code>setUser(null)</code> — both
+          are <strong>suspend</strong>. See <Link to={`#user`}>User</Link> above.
         </li>
         <li>Set the store with <code>setSelectedStoreWithExternalId</code>.</li>
         <li>
