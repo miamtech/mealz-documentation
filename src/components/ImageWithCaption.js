@@ -10,9 +10,20 @@ function ImageWithCaption({
 }) {
     return (
         <figure style={{ margin: 0, textAlign: 'left' }}>
-            <img src={url} alt={alt} style={{ height: imageMaxHeight || 'auto', maxWidth: imageMaxWidth || 'auto', ...imageStyle }} />
+            <img
+                src={url}
+                alt={alt}
+                style={{
+                    display: 'block',
+                    maxHeight: imageMaxHeight || undefined,
+                    maxWidth: imageMaxWidth || '100%',
+                    width: 'auto',
+                    height: 'auto',
+                    ...imageStyle,
+                }}
+            />
             {caption ? (
-                <figcaption style={{ fontSize: '12px', color: '#555' }}>{caption}</figcaption>
+                <figcaption style={{ fontSize: '12px', color: 'var(--ifm-font-color-secondary)' }}>{caption}</figcaption>
             ) : null}
         </figure>
     );
