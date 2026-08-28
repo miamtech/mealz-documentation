@@ -2,6 +2,8 @@
 sidebar_position: 3
 ---
 
+import ImageWithCaption from '@site/src/components/ImageWithCaption';
+
 # Setting up promotions based on products on sale
 
 Our library provides the capability to manage promotional recipes based on the products you have on sale.
@@ -14,7 +16,13 @@ You can find information concerning promotions in three different sections of ou
 
 ## Recipe sale badge:
 
-![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/recipe-on-sale.png "Recipe with the sale badge")
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/recipe-on-sale.png"
+alt="Recipe with the sale badge"
+caption="Recipe with the sale badge"
+imageMaxHeight="500px"
+/>
+<br/>
 
 Recipes containing at least one product on sale will display a **promotion badge** on
 the [recipe card](../integration-reference/recipe-card). This badge is managed on

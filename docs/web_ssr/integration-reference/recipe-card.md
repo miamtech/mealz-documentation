@@ -2,6 +2,9 @@
 sidebar_position: 3
 ---
 
+import ImageWithCaption from '@site/src/components/ImageWithCaption';
+import ImageSideBySide from '@site/src/components/ImageSideBySide';
+
 # Recipe card
 
 ## Overview
@@ -12,7 +15,13 @@ The primary CTA on the card is the "Basket icon" button. When clicked, Mealz's d
 
 Finally, by clicking on the heart icon the user can add the recipe to Mealz's favorite recipes list. This icon only appears if the user is connected.
 
-![Recipe card](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/recipeCard.png "Recipe card")
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/recipeCard.png"
+alt="Recipe card"
+caption="Recipe card"
+imageMaxHeight="500px"
+/>
+<br/>
 
 The base url for the recipe-card is the following:
 ```
@@ -68,8 +77,6 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/recipe-card?recipe_id=12345&store_id=1
 
 ### Display variants
 
-<!-- TODO: UPDATE SCREENSHOTS — drink badge visual, and new V3 variant images -->
-
 :::note New in V3
 Variants were renumbered in V3: the old variant 2 was removed, old variant 3 is now variant 2, and old variant 4 is now variant 3.
 
@@ -78,25 +85,45 @@ Recipe cards that are drinks now display a **drink badge** automatically.
 When no recipe suggestion is available for a shelf position, a generic "Discover our catalog" redirect card is rendered by default. See the `allow_default` parameter to opt out.
 :::
 
-<!-- TODO UPDATE SCREENSHOTS -->
+**Variant 1 (default):**
 
-**Variant 1 Vertical (default):**
-![Recipe card variant 1 Vertical](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/CardsVariant1.png "Recipe card variant 1 Vertical")
-
-**Variant 1 Horizontal:**
-![Recipe card variant 1 Horizontal](../../../static/img/RecipeCardVariant1Horizontal.png "Recipe card variant 1 Horizontal")
+<ImageSideBySide
+firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/CardVariant1.png"
+firstAlt="Recipe card variant 1 Vertical"
+firstCaption="Vertical"
+secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/CardVariant1Horizontal.png"
+secondAlt="Recipe card variant 1 Horizontal"
+secondCaption="Horizontal"
+maxHeight="600px"
+/>
+<br/>
 
 **Variant 2 Vertical** — like button in the footer instead of the top-right corner:
-![Recipe card variant 2 Vertical](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/CardsVariant3.png "Recipe card variant 2 Vertical")
 
-**Variant 2 Horizontal:**
-![Recipe card variant 2 Horizontal](../../../static/img/RecipeCardVariant2Horizontal.png "Recipe card variant 2 Horizontal")
+<ImageSideBySide
+firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/CardVariant2.png"
+firstAlt="Recipe card variant 2 Vertical"
+firstCaption="Vertical"
+secondUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/CardVariant2Horizontal.png"
+secondAlt="Recipe card variant 2 Horizontal"
+secondCaption="Horizontal"
+maxHeight="600px"
+/>
+<br/>
 
 **Variant 3 Vertical** — intended for the history drawer:
-![Recipe card variant 3 Vertical](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/CardsVariant3.png "Recipe card variant 3 Vertical")
 
-**Variant 3 Horizontal:**
-![Recipe card variant 3 Horizontal](../../../static/img/RecipeCardVariant3Horizontal.png "Recipe card variant 3 Horizontal")
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/CardVariant3.png"
+alt="Recipe card variant 3"
+caption="Recipe card variant 3"
+imageMaxHeight="500px"
+/>
+<br/>
+
+:::warning
+In horizontal layouts, the bottom section of the vertical card moves to the right; variant 3 has no bottom section, thus variant 3 does not have a horizontal layout.
+:::
 
 
 
