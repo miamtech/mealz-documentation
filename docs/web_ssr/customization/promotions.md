@@ -35,7 +35,13 @@ not be displayed.
 
 ## Products in sale:
 
-![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/product-in-sale.png "Product with sale indicators")
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/product-in-sale.png"
+alt="Product with sale indicators"
+caption="Product with sale indicators"
+imageMaxHeight="400px"
+/>
+<br/>
 
 On a product card and in the replace item modal, if the product is on sale, you'll see two indicators:
 

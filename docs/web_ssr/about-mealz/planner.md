@@ -37,16 +37,6 @@ imageMaxHeight="600px"
 />
 <br/>
 
-First-time users see a short onboarding modal; the same help content stays available from the entry block and from the menu page header.
-
-<ImageWithCaption
-url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/plannerOnboardingModal.png"
-alt="Onboarding / help modal"
-caption="Onboarding / help modal"
-imageMaxHeight="250px"
-/>
-<br/>
-
 On the left are recipe suggestions, which can be added to the menu or skipped to see the next suggestion.
 
 <ImageWithCaption
@@ -125,6 +115,16 @@ secondCaption="Planner mobile view - Current menu"
 maxHeight="600px"
 />
 <br/>
+<br/>
+
+First-time users see a short onboarding modal; the same help content stays available from the entry block and from the menu page header.
+
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/plannerOnboardingModal.png"
+alt="Onboarding / help modal"
+caption="Onboarding / help modal"
+imageMaxHeight="250px"
+/>
 <br/>
 
 See [Planner](../integration-reference/planner) for SSR routes, routing configuration, and integration details.
