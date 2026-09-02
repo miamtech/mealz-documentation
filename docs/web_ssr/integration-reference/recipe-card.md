@@ -98,7 +98,7 @@ maxHeight="600px"
 />
 <br/>
 
-**Variant 2 Vertical** — like button in the footer instead of the top-right corner:
+**Variant 2** — like button in the footer instead of the top-right corner:
 
 <ImageSideBySide
 firstUrl="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/CardVariant2.png"
@@ -111,7 +111,7 @@ maxHeight="600px"
 />
 <br/>
 
-**Variant 3 Vertical** — intended for the history drawer:
+**Variant 3** — intended for the history drawer:
 
 <ImageWithCaption
 url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/CardVariant3.png"
