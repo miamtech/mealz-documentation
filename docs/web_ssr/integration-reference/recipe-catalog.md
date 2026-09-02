@@ -2,23 +2,54 @@
 sidebar_position: 4
 ---
 
+import ImageWithCaption from '@site/src/components/ImageWithCaption';
+
 # Catalog
 
 ## Overview
-
-<!-- TODO: UPDATE SCREENSHOTS — all-recipes banner on catalog home, new pill toolbar layout, Promo chip -->
 
 The catalog is a suite of full pages that you can display inside of blank pages in your website.
 It consists of several pages that route to one another:
 
 - The [**home page**](#home-page), the intended starting point of the experience, which displays the categories of your catalog, each categories displaying the first recipes they contain
-![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalog.png "Recipe catalog")
+
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/recipeCatalog.png"
+alt="Recipe catalog"
+caption="Recipe catalog"
+imageMaxHeight="600px"
+/>
+<br/>
+
 - The **My Space page**, which shows a connected user's saved recipes and order history in two tabs (**Favorites** and **History**)
-![Catalog favorites](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-favorites.png "Favorites tab")
+
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/mySpaceFavorites.png"
+alt="Favorites tab"
+caption="Favorites tab"
+imageMaxHeight="600px"
+/>
+<br/>
+
 - The **list page**, which shows a filtered list of your catalog of recipes (currently the only application of the list page is for the search results)
-![Catalog list search](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/recipeCatalogSearch.png "Catalog list search")
+
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/recipeCatalogSearch.png"
+alt="Catalog list search"
+caption="Catalog list search"
+imageMaxHeight="600px"
+/>
+<br/>
+
 - The **categories page**, which shows the list of recipes in a category
-![Catalog list](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/catalogList.png "Catalog list")
+
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/catalogList.png"
+alt="Catalog category"
+caption="Catalog category"
+imageMaxHeight="600px"
+/>
+<br/>
 
 All pages display a **toolbar** that has :
 - A search bar to search recipes by name which redirects to the **list page** if clicked from the home page, or the current page with additional filters if on the list, My Space or categories page
@@ -29,7 +60,14 @@ All pages display a **toolbar** that has :
 Each pages also displays a floating button showing the number of recipes currently added to the user's cart.
 
 On a click on this button, the **"My meals" drawers** appears:
-![Basket preview](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/basketPreview.png "My meals")
+
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/basketPreview.png"
+alt="Basket preview"
+caption="Basket preview"
+imageMaxHeight="600px"
+/>
+<br/>
 
 Clicking the trash icon next to a recipe in the drawer will remove that recipe from the cart, along with all its associated products. This action is equivalent to removing each product individually from the recipe details drawer. Clicking "See products" on a recipe will open the recipe details drawer, just as if the corresponding recipe card was clicked.
 
@@ -66,6 +104,9 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog
   - `recipe_card_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/integration-reference/recipe-card#display-variants) for examples)
 
+  - `planner_entry_variant: number = 3`:
+  **_(Optional)_** Select the layout for the embedded planner entry block on the catalog home. The default is 3; available values are 1, 2, and 3 (see below for examples). On the standalone [`/planner/entry`](/docs/web_ssr/integration-reference/planner#entry-component-embed) route, use the `variant` query parameter instead.
+
 ### Example :
 
 :::warning
@@ -75,6 +116,19 @@ Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-reques
 ```
 GET https://MEALZ_SSR_API_URL/API_VERSION/catalog?store_id=max_recipes_per_category=6&recipe_card_variant=2
 ```
+
+### Planner entry variants
+
+The catalog home embeds a **planner entry** block (see [Planner](./planner)). Use `planner_entry_variant` to choose its layout.
+
+**Variant 1** — hero layout starting from Mealz's weekly selection:
+![Planner entry variant 1](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/plannerEntryVariant1.png "Planner entry variant 1")
+
+**Variant 2** — hero layout starting from a personalized (custom) menu:
+![Planner entry variant 2](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/plannerEntryVariant2.png "Planner entry variant 2")
+
+**Variant 3 (default)** — dual-card layout with separate options for the weekly selection and a custom menu:
+![Planner entry variant 3](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/plannerEntryVariant3.png "Planner entry variant 3")
 
 ## Category Page
 

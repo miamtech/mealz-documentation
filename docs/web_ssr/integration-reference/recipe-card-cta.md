@@ -2,13 +2,21 @@
 sidebar_position: 4
 ---
 
+import ImageWithCaption from '@site/src/components/ImageWithCaption';
+
 # Recipe card CTA
 
 ## Overview
 
 The recipe card CTA is a minimal add-to-basket component for use in contexts where you want to display **only the call-to-action button** without the full recipe card. It is typically used when you have already rendered a recipe card and need to inject a standalone CTA alongside it (for example, in a shelf where the recipe image is handled separately by your own layout).
 
-<!-- TODO: add screenshot -->
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/v3/examples/recipeCardCta.png"
+alt="Recipe card CTA"
+caption="Recipe card CTA"
+imageMaxHeight="200px"
+/>
+<br/>
 
 The base URL:
 
