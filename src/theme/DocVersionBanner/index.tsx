@@ -26,7 +26,7 @@ export default function DocVersionBanner(props: Props): ReactNode {
           <div className="margin-top--md">
             For new integrations, use the{' '}
             <strong>
-              <Link to="docs/web_ssr/introduction">Web SSR documentation (v3)</Link>
+              <Link to="/docs/web_ssr/introduction">Web SSR documentation (v3)</Link>
             </strong>
             . If you are upgrading from the Web SDK, see the{' '}
             <Link to="docs/web_ssr/migration-v2-v3">
@@ -53,7 +53,7 @@ export default function DocVersionBanner(props: Props): ReactNode {
           <div className="margin-top--md">
             For new integrations, use the{' '}
             <strong>
-              <Link to="docs/web_ssr/introduction">Web SSR documentation (v3)</Link>
+              <Link to="/docs/web_ssr/introduction">Web SSR documentation (v3)</Link>
             </strong>
             {versionMetadata.label === 'v2' ? (
               <>

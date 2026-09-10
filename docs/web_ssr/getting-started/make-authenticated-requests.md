@@ -26,7 +26,7 @@ In V3, these headers also initialize Mealz on the client when the SSR HTML (or `
 
 ## 1. Build the headers
 
-Start with a function that creates the headers to pass to every request made to Mealz. This example assume the presence of helpers from you website to fill the headers informations.
+Start with a function that creates the headers to pass to every request made to Mealz. This example assumes the presence of helpers from you website to fill the headers information.
 
 ```ts
 async function buildSsrHeaders() {
@@ -105,7 +105,7 @@ async function fetchMealzHtml(path: string, query = {}) {
     headers: await buildSsrHeaders(),
   });
   if (!response.ok) {
-    throw new Error(`Mealz SSR request failed)`);
+    throw new Error(`Mealz SSR request failed`);
   }
 
   return response.text();
