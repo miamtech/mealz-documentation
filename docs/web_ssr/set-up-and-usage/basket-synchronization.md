@@ -185,6 +185,24 @@ If the user logs in while Mealz is not active, you will need to call the /merge-
 
 This ensures that if the authless user had a cart, Mealz will merge this cart with their "logged in" cart. The next time Mealz features are displayed and the basket-sync runs, it will use the merged cart as a basis.
 
+#### Notify us when payment starts
+
+When the user **begins** the checkout / payment journey on your native cart (typically when they click on a "Confirm my cart" button), call this route so Mealz can emit the analytics event `payment.started`. This is the SSR equivalent of `paymentStarted` (see [Other](/docs/web_ssr/customization/window-mealz#other)).
+
+```
+POST https://MEALZ_SSR_API_URL/API_VERSION/basket/payment-started
+```
+
+- Parameters:
+  - `store_id: string`: **_(Mandatory)_** The store chosen for the cart.
+  - `order_id: string`: **_(Optional)_** The order id if already known at checkout start (same contract as `handle-payment`).
+
+- Body: **Same contract as `/basket/handle-payment`** (see below)
+
+:::tip
+Recommended duo for native checkout: call **`payment-started`** when checkout begins, then **`handle-payment`** when payment succeeds.
+:::
+
 #### Notify us when the cart is paid
 
 If the cart is paid while Mealz is not active (which will likely be the case), **keep us informed**. There is a route that you can call to do the same thing as `window.mealz.basketSync.handlePayment` does :
@@ -202,7 +220,7 @@ POST https://MEALZ_SSR_API_URL/API_VERSION/basket/handle-payment
   - The body has one attribute `totalPrice` for the total price of the user's cart **(Mealz products & retailer products included)**
   - The body has an other attribute `products` being an array using the same structure as the **ComparableProducts** described above.
 
-See below for an example of body for the /handle-payment route: 
+See below for an example of body for the `/basket/payment-started` and `/basket/handle-payment` routes:
 ```json
 {
   "totalPrice": 12.34,
@@ -210,10 +228,10 @@ See below for an example of body for the /handle-payment route:
     { "id": "id1", "quantity": 2 },
     { "id": "id2", "quantity": 1 },
     { "id": "id3", "quantity": 4 }
-  ],
+  ]
 }
 ```
 
 :::tip
-Think of this route as performing the same actions as `retailerBasketChanged` followed by `handlePayment`
+Think of `/basket/handle-payment` as performing the same actions as `retailerBasketChanged` followed by `handlePayment`.
 :::
