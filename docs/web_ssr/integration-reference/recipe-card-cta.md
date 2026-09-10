@@ -30,14 +30,14 @@ Do not forget the [mandatory HTTP headers](./pre-rendered-components#http-reques
 
 ## Parameters
 
-- `recipe_id: string`:
-  **_(Mandatory)_** The internal Mealz ID of the recipe for which to render the CTA.
+- `recipe_id: string` **or** `recipe_name: string` 🆕:
+  **_(Mandatory — one of the two)_** Identify the recipe by internal Mealz ID (`recipe_id`), or by display name (`recipe_name`) when you only have the title (e.g. retailer catalog). If both are sent, `recipe_id` wins. If resolved by name with no exact match, the route returns an empty body.
 
 - `store_id: string`:
-  **_(Recommended)_** The store ID. Required to show basket state (whether the recipe is already in the cart).
+  **_(Mandatory)_** The store ID. Required by the V3 route (also used to show whether the recipe is already in the cart).
 
-- `recipe_name: string` 🆕:
-  **_(Optional)_** The display name of the recipe. Used for accessibility labels and confirmation messages on the CTA button.
+- `serves: number = 4`:
+  **_(Optional)_** Initial guest/serving count for the CTA.
 
 - `to_basket_on_click: boolean`:
   **_(Optional)_** When `true`, clicking the CTA adds the recipe directly to the basket without opening the details drawer first.
