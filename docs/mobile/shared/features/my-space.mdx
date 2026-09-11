@@ -1,0 +1,38 @@
+import Link from '@docusaurus/Link';
+
+My Space is a **Catalog route**. Use the same catalog entry with:
+
+```kotlin
+FeatureRoute.Catalog.MySpace(
+    defaultSelectedTab = FeatureRoute.Catalog.MySpace.MySpaceTab.Favorites // or History
+)
+```
+
+## Visual Overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-tabs.png"
+  alt="My Space tabs (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+Same as Catalog (`route` + `CatalogNavigationCallback`) — see the Catalog link below. Route-specific:
+
+| Route field | Type | Required | Default | What it does |
+|-------------|------|----------|---------|--------------|
+| `defaultSelectedTab` | `MySpaceTab?` (`Favorites` / `History`) | no | `null` (library default tab) | Which My Space tab opens first. |
+| `displayVariant` | `Int?` | no | `null` | Recipe-card variant in lists. |
+
+Set `goToHomeCatalog` when My Space is the **root** screen: the WebView may ask to open the main catalog (e.g. no liked recipes → browse the catalog). See Catalog docs for `goToHomeCatalog`.
+
+export function MySpaceCatalogLink(props) {
+  return (
+    <p>
+      Full entry docs: <Link to={`/docs/${props.platform}/features/catalog`}>Catalog</Link>.
+    </p>
+  );
+}
+
+<MySpaceCatalogLink platform={props.platform}/>

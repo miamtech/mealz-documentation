@@ -14,7 +14,7 @@ Additionally, they can filter or search on this page.
 When the user selects a new recipe, they will be navigated back to the <code>MealPlannerResults</code> page.
 </p>"
                     alt="MealPlannerRecipePicker"
-                    caption="Miam Neutral Meal Planner Picker page"
+                    caption="Miam Neutral Mealz Planner Picker page"
                     imageMaxWidth="250px"
             />
     );

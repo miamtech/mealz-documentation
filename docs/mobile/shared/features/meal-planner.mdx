@@ -1,0 +1,131 @@
+Mealz Planner journeys use `FeatureRoute.Planner`: a compact **entry** block (CTA) and a full-screen **menu** (current menu / help).
+
+## Visual Overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/plannerEntry.png"
+  alt="Mealz Planner entry (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/page-overviews/plannerCurrent.png"
+  alt="Mealz Planner current menu (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+## Mealz Planner Entry — Parameters
+
+Compact CTA to start / resume Mealz Planner (fixed height, full width).
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `navigationCallback` | `PlannerEntryNavigationCallback` | yes | — | Open the Mealz Planner menu. |
+| `modifier` | Compose `Modifier` | no | — | Layout. |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `PlannerEntryNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `goToPlanner` | yes | `(FeatureRoute.Planner) -> Unit` — present the full Mealz Planner menu for the given route (usually `CurrentMenu`). |
+
+Base `NavigationCallback` redirects default to no-ops on this component — only `goToPlanner` matters.
+
+## Mealz Planner Menu — Parameters
+
+Full-screen Mealz Planner journey.
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `route` | `FeatureRoute.Planner` | no | `CurrentMenu()` | `CurrentMenu()`, `Help()`, … |
+| `navigationCallback` | `PlannerNavigationCallback` | yes | — | Login / store / exit + optional cart and catalog. |
+| `modifier` | Compose `Modifier` | no | fills max size | Layout. |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `PlannerNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `redirectToLogIn` | yes | Open login. |
+| `redirectToStoreLocator` | yes | Open store picker. |
+| `exit` | yes | Close the Mealz Planner screen. |
+| `redirectToCart` | no | Open retailer cart. Defaults to `null`. |
+| `goToCatalog` | no | `(FeatureRoute.Catalog) -> Unit` — open catalog when Mealz Planner links out. |
+
+## Inject
+
+export function PlannerInject(props) {
+  if (props.platform === "android") {
+    return (
+      <>
+        <h3>Entry</h3>
+        <pre><code className="language-kotlin">{`PlannerEntryView.View(
+    navigationCallback = PlannerEntryNavigationCallback(
+        goToPlanner = { plannerRoute ->
+            // Open PlannerMenuScreenView(route = plannerRoute, …)
+        }
+    )
+)`}</code></pre>
+        <h3>Menu</h3>
+        <pre><code className="language-kotlin">{`PlannerMenuScreenView.View(
+    route = FeatureRoute.Planner.CurrentMenu(),
+    navigationCallback = PlannerNavigationCallback(
+        redirectToLogIn = { },
+        redirectToStoreLocator = { },
+        exit = { },
+        redirectToCart = { },
+        goToCatalog = { catalogRoute -> /* optional */ }
+    )
+)`}</code></pre>
+      </>
+    );
+  }
+  if (props.platform === "ios") {
+    return (
+      <>
+        <h3>Entry</h3>
+        <pre><code className="language-swift">{`PlannerEntryViewController.companion.get(
+    navigationCallback: PlannerEntryNavigationCallback(
+        goToPlanner: { plannerRoute in
+            // Present PlannerMenuViewController
+        }
+    )
+)`}</code></pre>
+        <h3>Menu</h3>
+        <pre><code className="language-swift">{`PlannerMenuViewController.companion.get(
+    route: FeatureRoute.Planner.CurrentMenu(),
+    navigationCallback: PlannerNavigationCallback(
+        redirectToLogIn: { },
+        redirectToStoreLocator: { },
+        exit: { },
+        redirectToCart: { },
+        goToCatalog: { /* optional */ }
+    )
+)`}</code></pre>
+      </>
+    );
+  }
+  return (
+    <>
+      <h3>Entry</h3>
+      <pre><code className="language-kotlin">{`PlannerEntry(
+    navigationCallback = PlannerEntryNavigationCallback(
+        goToPlanner = { /* open PlannerMenuScreen */ }
+    )
+)`}</code></pre>
+      <h3>Menu</h3>
+      <pre><code className="language-kotlin">{`PlannerMenuScreen(
+    route = FeatureRoute.Planner.CurrentMenu(),
+    navigationCallback = PlannerNavigationCallback(
+        redirectToLogIn = { },
+        redirectToStoreLocator = { },
+        exit = { },
+        goToCatalog = { }
+    )
+)`}</code></pre>
+    </>
+  );
+}
+
+<PlannerInject platform={props.platform}/>

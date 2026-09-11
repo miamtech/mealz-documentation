@@ -1,0 +1,37 @@
+import Link from '@docusaurus/Link';
+
+Order History is a **Catalog route**. Use either:
+
+```kotlin
+FeatureRoute.Catalog.History()
+// or My Space with History tab
+FeatureRoute.Catalog.MySpace(
+    defaultSelectedTab = FeatureRoute.Catalog.MySpace.MySpaceTab.History
+)
+```
+
+## Visual Overview
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/my-space-history-grid.png"
+  alt="Order History (SSR)"
+  style={{maxWidth: '280px'}}
+/>
+
+## Parameters
+
+Same as Catalog (`route` + `CatalogNavigationCallback`) — see the Catalog link below. For `FeatureRoute.Catalog.History`:
+
+| Route field | Type | Required | Default | What it does |
+|-------------|------|----------|---------|--------------|
+| `displayVariant` | `Int?` | no | `null` | Recipe-card variant where applicable. |
+
+export function OrderHistoryCatalogLink(props) {
+  return (
+    <p>
+      Full entry docs: <Link to={`/docs/${props.platform}/features/catalog`}>Catalog</Link>.
+    </p>
+  );
+}
+
+<OrderHistoryCatalogLink platform={props.platform}/>
