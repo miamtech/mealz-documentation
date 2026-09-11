@@ -300,3 +300,53 @@ curl --location 'https://ssr-api-uat.mealz.ai/v1/recipe-card/multiple?store_id=#
 And an example of result:
 ![Multiple cards in shelf](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/explanations/multiple-cards-in-shelf.png "Multiple cards in shelf")
 
+## Custom recipe card: recipe.show analytics {#custom-recipe-card-show-tracking}
+
+Use this when you render **your own** recipe card UI (not the SSR `<mealz-recipe-card>` HTML) but want the **same** `recipe.show` behaviour as the native card. See [Analytics](../analytics#recipe-card) for how `recipe.show` is defined.
+
+### Step 1 — Load and initialize the Web Components SDK
+
+When a Mealz SSR component is already on the page, its HTML fragment includes the WebC SDK script tag — `window.mealz` becomes available once that script runs. You can skip this step if another Mealz feature on the same page already loaded the SDK.
+
+If your page uses **only custom recipe cards** and no Mealz SSR component, you must load the SDK yourself before calling `attachRecipeCardShowTracking`. The approach depends on your SSR API version:
+
+#### Option A — Mealz window bootstrap (SSR v2)
+
+**SSR API v2 only.** Fetch a minimal SSR fragment that loads only the SDK (no Lit component markup):
+
+```
+GET https://MEALZ_SSR_API_URL/v2/mealz-window-bootstrap
+```
+
+Inject the returned HTML on the page. Use the same [mandatory HTTP headers](./pre-rendered-components#http-request-headers) as for any other Mealz SSR API request. Details: [window.mealz → without a Mealz component](../customization/window-mealz#need-to-use-windowmealz-without-a-mealz-component).
+
+#### Option B — CDN script tag (SSR v1)
+
+For **SSR API v1** integrations, load the WebC script directly — the same bundle the SSR API injects in its HTML fragments:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/webc-miam@9.1.27/webc-miam-fr.js"></script>
+```
+
+Pick the version and locale file Mealz provides for your integration (`webc-miam-fr.js`, `webc-miam-en.js`, …). See [Web SDK installation](https://docs.mealz.ai/web_sdk/integration/installation) for the full locale list.
+
+Whichever option you use, initialize Mealz (`supplier.setupWithToken`, user, POS, language, etc.) so analytics is ready before you attach tracking — see [Set up and usage](../category/set-up-and-usage).
+
+### Step 2 — Attach one observer per card root
+
+For each custom card container in the DOM, call:
+
+```js
+const handle = window.mealz.analytics.attachRecipeCardShowTracking({
+  element, // HTMLElement: root to observe (e.g. card wrapper)
+  recipeId,
+});
+```
+
+When the node is removed (virtual lists, SPA navigation), call:
+
+```js
+handle.disconnect();
+```
+
+You can listen for emitted events on `window.mealz.analytics.eventSent$` (same stream as other Mealz analytics).
