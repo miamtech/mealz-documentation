@@ -23,7 +23,7 @@ function ImageWithText({
                 <div style={{ ...imagePadding, flex: '0 0 auto', maxWidth: '50%', textAlign: 'center', margin: '0' }}>
                     <figure style={{ margin: 0 }}>
                         <img src={url} alt={alt} style={{ width: '100%', maxWidth: imageMaxWidth, height: 'auto', maxHeight: maxHeight }} />
-                        <figcaption style={{ fontSize: '12px', color: '#555' }}>{caption}</figcaption>
+                        <figcaption style={{ fontSize: '12px', color: 'var(--ifm-font-color-secondary)' }}>{caption}</figcaption>
                     </figure>
                 </div>
             </div>

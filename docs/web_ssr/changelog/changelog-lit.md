@@ -4,6 +4,392 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 3.2.3 [21/08/2026]
+
+#### Fixed
+- *analytics* — `attachRecipeCardShowTracking` always uses the current page URL (`location.href`); `analyticsPath` is not part of the public API (#86cb88rwy).
+
+## 3.2.2 [19/08/2026]
+
+#### Updated
+- *analytics*:
+  - Bumped `mealz-shared-analytics` from 4.4.1 to ^4.13.1 so client events are POSTed to Mealz analytics / BigQuery as well as Plausible (dual-send exists since 4.5.0; UAT vs PROD URL since 4.7.0). Aligns with ng-miam-sdk.
+
+## 3.2.1 [19/08/2026]
+
+#### Fixed
+- *analytics*:
+  - Client `sendEvent` no longer uses the build-time `ANALYTICS_ENABLED` flag as a global kill switch. The flag applies only when SSR bootstrap `env` is `dev`. UAT/prod always send.
+- *history-drawer* / *history-order*:
+  - Opening a past order no longer crashes when V3 page `starting-data` omits `sessionId`. The session is read from bootstrap (`getSessionId()`), matching other catalog components.
+
+#### Updated
+- *mealz-bootstrap*:
+  - Reads `env` from bootstrap config and passes it to `AnalyticService.setRuntimeEnv` before analytics init.
+
+## 3.2.0 [14/08/2026]
+
+#### Added
+- *recipe-pricing*:
+  - "Show price" CTA opens the supplier selector via `contextRegistryService.displaySupplierSelector$`
+  - Subscribes to POS selection to fetch pricing once a store is chosen
+  - On pricing fetch failure in no-supplier mode, returns to the "Show price" CTA for retry
+
+#### Updated:
+- *planner-onboarding-modal*:
+  - Refresh help modal to onboarding v3.1: drop the obsolete « Choisissez votre type de menu » step (planner entry no longer offers two entry types), update step copy, and switch to neutral desktop/mobile illustrations.
+- *planner-entry*
+  - Variants have been separated into separate folders (`variant-1` / `variant-2` / `variant-3`), so modifying or deprecating one of them is easier and cannot impact other variants. Each variant ships its own JS and CSS, scoped under `.mealz-planner-entry.variant-N`.
+- *recipe-pricing*:
+  - Moved `max-width` from `.mealz-recipe-pricing` to `.mealz-recipe-pricing__wrapper` so the without-store button is not clipped
+
+#### Fixed:
+- *catalog-toolbar*:
+  - When the user is not logged in, clicking Mon carnet / favorites triggers the retailer `hookCallback` login flow instead of opening the empty favorites page; after login, navigation to Mon carnet resumes.
+  - Planner catalog search no longer re-fetches when the query is unchanged (e.g. blur after Enter); the search bar stays expanded and shows the active term after results reload.
+- *planner-catalog*:
+  - After a search reload, the toolbar search bar stays expanded and displays the active search term.
+- *planner-onboarding-modal*:
+  - Onboarding height styles (`680px` / mobile `740px`) are scoped to `.mealz-planner-onboarding__modal-root`, so other planner modals (e.g. budget edit) stay sized to their content once the onboarding stylesheet is loaded.
+- *baskets*:
+  - Defer clearing `authlessId` from localStorage until authless basket and menu transfer complete (avoids concurrent refresh skipping transfer while PATCH is in flight).
+
+## 3.1.1 [31/07/2026]
+
+#### Updated:
+- *deps* — Bumped tooling to ESLint 10 (`eslint` / `@eslint/js` ^10, `typescript-eslint` ≥8.56, `eslint-plugin-jsdoc` ^63, direct `globals`) so `minimatch@10` pulls patched `brace-expansion@5.0.8` without an `overrides` pin. Also clears other `npm audit --audit-level=high` findings for CI `lit-install` (e.g. `postcss`).
+
+#### Fixed:
+- *recipe-details* — Dropped a useless assignment flagged by ESLint 10 `no-useless-assignment` in `recipe-details.service.ts`.
+- *replace-item* / *baskets*:
+  - Adding a product not yet in basket from recipe-details (add-ingredient) no longer sends `guests=0` when the recipe is absent from basket `recipes-infos`; recipe UI guests are passed through the action chain (`addIngredientsToBasket` / `addItemsForIngredients`).
+  - After a successful product selection from recipe-details, replace-item closes and returns to recipe-details instead of staying open (analytics no longer builds `/recipes/undefined/...` for initial entries without `recipe-ids`, and close runs on action `onSuccess`).
+- *details-ingredients*:
+  - Ingredient quantities in « Je cuisine » now recalculate when the guests counter changes (same scaling as « Je fais mes courses »).
+- *basket-action*:
+  - Re-adding a product after removing it via "−" no longer pushes double quantity to the retailer cart (`updateBasketEntryQuantity` only counts existing quantity when the entry is `active`).
+
+## 3.1.0 [23/07/2026]
+
+#### Added:
+- *mealz-bootstrap*:
+  - Bootstrap reads optional `cookiesConsent` from `#mealz-bootstrap` and sets `forbidProfiling` accordingly during auto-bootstrap (`cookiesConsent: true` allows profiling; omitted or false forbids it).
+- *window.mealz*:
+  - `window.mealz.analytics.attachRecipeCardShowTracking({ element, recipeId, categoryId?, analyticsPath? })` attaches viewport-based `recipe.show` tracking on a custom recipe card root (same rules as `mealz-recipe-card`: ≥80% visible for 1s, deduped for 5 minutes per recipe). Returns `{ disconnect() }` for teardown on virtual lists or SPA navigation.
+
+#### Updated:
+- *http* (`buildHeaders`):
+  - Forwards optional `cookies-consent: true` on client-side SSR fetches when profiling is allowed, so paginated or follow-up SSR requests stay aligned with bootstrap consent.
+- *window.mealz*
+  - `user.updateForbidProfiling` was removed — V3 integrators pass cookie consent via optional `cookies-consent: true` on SSR requests instead of updating profiling at runtime.
+- *mealz-bootstrap* — `ensureBootstrapped(config)` now takes the bootstrap config as a **required** argument and initializes directly from it. The  `#mealz-bootstrap` DOM read and its ~1s retry loop were removed; the config is delivered by the SSR core entry (`GET /v3/core/bootstrap.js`), which fixes the CSR bootstrap race in `miam-injector`.
+
+#### Fixed:
+- *analytics*:
+  - Client `AnalyticService.sendEvent` swallows errors from `mealz-shared-analytics` (log via `mealzError`) so invalid payloads or lib throws never interrupt basket/UI flows
+- *planner-catalog*:
+  - Searching from the planner catalog no longer renders the catalog template (search bar + recipe cards) twice; new results replace the previous content instead of appending.
+- *recipe-details*
+  - Sponsor banner in the recipe-details drawer displays for sponsored recipes (or when `informational-sentence` is set); the « En savoir plus » link appears only when an informational page or sponsor storytelling is configured.
+
+#### Removed:
+- *core* — The static `core/core.min.js` entry introduced in 3.0.0. Its role (assign `window.mealz` + run bootstrap) is now served per-request by the SSR API. The shared runtime (previously the incidental `mealz-core-runtime` code-split chunk) is now exposed as the public `mealz-core.min.js` entry (re-exports `ensureBootstrapped`), imported by that endpoint and every feature bundle so singletons stay shared.
+
+#### Internal:
+- *recipe-card-show-tracker* / *recipe-show-tracking* / *attach-recipe-card-show-tracking*:
+  - Shared `recipe.show` pipeline for native and custom cards; tracker singleton is stored on `window.__mealzRecipeCardShowTracker__` for dedup across bundles.
+
+## 3.0.0 [03/07/2026]
+
+#### Breaking:
+- **All remaining components from ng-miam-sdk have been migrated to mealz-components**, which means all remaining components whose names were starting with "ng-miam-" now start with "mealz-"
+- ng-miam-**recipe-tags** has been renamed to mealz-**recipe-tag** after being migrated
+- *recipe-card*
+  - Recipe card variants were reshaped to align with Mealz's new versioning rules:
+    - Unused recipe-card variant **2 was removed**. Former variants **3** and **4** are now variants **2** and **3**, respectively.
+    - Variant **2** (formerly variant **3**) now only differs from variant **1** in that **the like button is in the footer** instead of the top-right corner.
+    - Variant **3** (formerly variant **4**, history drawer only) **stayed unchanged**.
+- *window.mealz*
+  - `setDefaultIngredientPicture` and `setDefaultRecipePicture` were removed. Now to override the default pictures urls for ingredients & recipes, clients need to add a CSS override of `img.mealz-default-ingredient-picture` and `img.mealz-default-recipe-picture` respectively
+  - The whole `features` namespace was removed (`enableVideoRecipes`, `enableUserPreferences`, `enableTagsOnRecipes`, `enableMealsPlanner`, `enableSeo`, `collapseUnavailableProductsByDefault`) — these were deprecated no-ops; behavior is now always on or configured elsewhere
+  - `recipes.hidden`, `recipes.setDifficultyLevels`, `recipes.showConfirmationToaster`, and `recipes.shouldDisplayIngredientPicturesOnRecipeCards` were removed
+  - `router.setRecipeInfoLink` and `router.setPromotionsUrl` were removed
+  - `supplier.setOrigin` was removed — origin is set via `supplier.setupWithToken`
+  - `overrideIcon` and `setDefaultScrollElementGetter` were removed
+  - Internal-only methods were removed from the public interface: `pos.getByAddress`, `pos.getByCoordinates`, and `supplier.getAffiliateSuppliers`
+  - `window.mealzV10` is no longer assigned — use `window.mealz` directly
+  - `window.mealzInternal` was removed entirely — integrators must not rely on any of its namespaces (`basket`, `recipes`, `planner`, `noSupplier`, etc.)
+
+#### Added:
+- *core* — New Vite entry `core/core.min.js` eagerly assigns `window.mealz` and runs bootstrap from `#mealz-bootstrap`. Runtime code (services, bootstrap, mealz-hub init) ships in the shared `mealz-core-runtime` chunk imported by core and feature bundles.
+- *mealz*:
+  - `window.mealz.recipes.openDetails(recipeId, initialTabIndex?, guests?)` opens recipe details by id (tab index defaults to `0`)
+- *mealz-bootstrap*:
+  - `ensureBootstrapped()` runs from `core.min.js` at module load so SSR pages auto-initialize from the bootstrap script tag; retries briefly (~1s) when `#mealz-bootstrap` is not in the document yet (module scripts loading before HTML injection).
+  - `waitForBootstrapReady()` and `getBootstrapSessionId()` gate client fetches (e.g. catalog load-more) until bootstrap completes and expose the session id without duplicating it in every `starting-data` payload.
+  - Bootstrap `ssrApiUrl` and `miamApiUrl` are applied at runtime (registry + mealz-hub init); like-button and preferences cache calls use them instead of build-time `MEALZ_SSR_API` / `API_URL`.
+- *Context registry (internal)*:
+  - `contextRegistryService.noSupplier$` emits when no-supplier mode is resolved after `setupWithToken` or `supplier.load` (replays the last value); components subscribe instead of exposing this on the public `mealz` interface.
+  - `supplier.load` clears no-supplier mode and emits `false` on `noSupplier$` before loading the supplier.
+- *recipe-card* (variants 1, 2, and 3)
+  .redirect-card styles for the generic catalog redirect card (background image, footer title/CTA, mobile breakpoints per variant).
+- *window.mealz*:
+  - `window.mealz.recipes.openDetails(recipeId, initialTabIndex?, guests?)` opens recipe details by id (tab index defaults to `0`)
+
+#### Internal:
+- *mealz-modal*:
+  - `createPlannerMealzModal()` factory and `PLANNER_MODAL_ROOT_CLASS` (`mealz-planner__modal-root`) for planner-specific modal styling hooks.
+
+#### Updated:
+- *initializer* — Hub init runs before supplier setup; bootstrap logs which required fields are missing when config is incomplete.
+- *mealz-hub-init* — Logs `[mealz-hub] Initialized successfully` at info level when init completes.
+- *Vite build* — `mealz-hub` and core runtime (`initializer.service`, `mealz-bootstrap`, `context-registry`, `mealz-hub-init`) are forced into shared chunks (`mealz-core-runtime` + `mealz-hub`). Code-split path regex works in Docker (`/app/src/...`) and on the host (`mealz-components/src/...`).
+- **All services from `ng-miam-sdk` have been migrated in mealz-components**, which entirely removes the need to keep the webc-miam JS script. This reduces the overall JS weight of the solution and reduces loading times a little when scripts aren't cached.
+- *product-card*
+  - Added remaining logic that was SDK-only:
+    - Added the loader on the counter until the update action is resolved
+    - Added the stored actions execution for when a page reload interrupts a basket action
+    - Added the default image in case the product image is broken
+- *recipe-service*
+  - `displayedRecipe$` payloads may include `eventTrace` (e.g. `category_id` from `openRecipeDetails`) so recipe details and footer analytics stay aligned with how details were opened.
+- *recipe-card*
+  - Parse `categoryId` from `starting-data`; bind top and CTA clicks with stable handler references and `removeEventListener` before `addEventListener` on render so repeated renders do not stack duplicate `openDetails` calls (and duplicate `recipe.display` events).
+- *like-button*
+  - Forward `categoryId` with the analytics path when updating likes (`recipeLikeService`) so like/unlike events include `category_id` when set.
+- *recipe-details*
+  - Read `category_id` from `recipeService.displayedRecipe$` (`eventTrace.props`) for the current details session so analytics match how details were opened.
+- *details-footer*
+  - Add-all-to-basket and `recipe.add` analytics receive `category_id` from the parent details view (same session-scoped trace).
+- *recipe-card*
+  - Variants have been separated into separate folders, so modifying or deprecating one of them is easier and cannot impact other variants
+  - Thus there is now one js and one css built file per variant
+- *catalog*
+  - All pages override the recipe-card to hide the "Idée repas" tag, no matter the variant
+- *catalog-list* / *catalog-load-more*
+  - Parse `allRecipes` from list `starting-data` and forward `all_recipes=true` on load-more requests so pagination stays on the all-recipes catalog view.
+- *catalog-home*
+  - Added spacing for the all-recipes banner slot rendered by SSR.
+- *catalog-toolbar*:
+  - Reworked toolbar layout with pill buttons and an expandable searchbar that can be focused, cleared and auto-collapses on scroll when empty
+  - Added a "Promo'" button in the toolbar on the home page to access discounted recipes
+  - Clearing a pre-existing search (my-space pages, catalog drawer) now reloads the page without the search term instead of only clearing the input locally
+- *catalog*:
+  - Catalog home, category, list, favorites, history, and planner current-menu resolve `sessionId` from bootstrap (`getBootstrapSessionId()`) when it is omitted from `starting-data`.
+- *planner modals* (onboarding, welcome, abandon, budget edit, current menu, open catalog):
+  - Open `mealz-modal` via `createPlannerMealzModal()` so retailer modal overrides (e.g. custom close icon) do not apply to planner flows.
+
+#### Removed:
+- *mealzInternal*
+  - **The whole interface was removed** as it was used only for communication between ng-miam-sdk and mealz-components
+- *promotions-banner*:
+  - Removed the component style
+
+#### Fixed:
+- *recipe-pricing*:
+  - Fixed price got updated twice when guests were changed in recipe-details
+- *preferences*
+  - Component didn't import it's own style, which was returned by SSR styles endpoints
+- *catalog-load-more*:
+  - Awaits `waitForBootstrapReady()` before paginated SSR fetches, so scrolling to load more recipes no longer sends requests without `session-id` / auth headers and triggers a 400 from the SSR API when bootstrap has not finished.
+  - Triggers load-more when the bottom of `.mealz-catalog__list` enters the viewport instead of when the window reaches `document.body` height, so embedded catalogs on pages with a large retailer footer no longer require scrolling past unrelated page content.
+  - Runs an initial visibility check on mount so the next page loads when the first SSR page does not fill the viewport.
+- *no-supplier basket sync*:
+  - Subscribes to basket-sync success callbacks before pushing actions to the no-supplier fake cart, so synchronous retailer-cart updates no longer skip follow-up basket API requests or UI completion handlers when removing recipes, resetting baskets, updating basket-preview product quantities, adding all ingredients, or replacing products.
+- *basket-utils.service*:
+  - `removeRecipe` errors on the first basket-sync `onTimeout` or `onError` instead of waiting indefinitely; Mealz basket removal is skipped so callers can clear loading state when cart sync fails or times out.
+- *basket-preview*:
+  - Resets recipe removal loading state when basket sync fails or times out during `removeRecipe`.
+- *recipe-details*:
+  - `updateGuests` and `addToBasket` subscribe to basket-sync callbacks before pushing actions to the no-supplier fake cart, matching the no-supplier basket-sync ordering fix applied elsewhere.
+  - When adding the first ingredient to a recipe not yet in the basket fails (retailer sync timeout or error), rolls back the light-mode recipe from the basket instead of leaving a 0 € ghost meal in basket preview.
+  - Marks the failed ingredient as `out_of_stock` on the product card instead of silently resetting to `initial` after the rollback refetches ingredients from the API.
+  - `addAllIngredientsToBasket` applies the same `out_of_stock` marking and light-mode recipe rollback when add-all actions fail.
+- *catalog-list*
+  - The load-more listener has been changed from a listener on scroll to an IntersectionObserver, which helps with performances.
+- *planner-catalog*
+  - Now correctly includes catalog-list stylesheets
+- *planner-current-menu*:
+  - Removing a recipe from the menu (listing cross or recipe-details “Retirer du menu”) now removes the matching card from the menu list as soon as the API succeeds, instead of leaving stale cards or removing the wrong recipe on the next action.
+- *catalog*
+  - Apply empty-state flex layout only when blocks are not `.hidden`, fixing the favorites not-logged message appearing for logged-in users on my-space when opening recipe details
+
+#### Internal:
+- *mealz-lit-element*:
+  - Renamed base class `NoShadowLitElement` to `MealzLitElement` and module `no-shadow-element` to `mealz-lit-element`; all Lit components now extend/import the new name.
+  - Bootstrap init removed from `connectedCallback`; owned by `core.min.js`.
+- *planner*
+  - `services/meals-planner/meals-planner.service` renamed to `services/planner/planner.service`
+  - `MealsPlannerService` renamed to `PlannerService`; singleton export `mealsPlannerService` renamed to `plannerService`
+- Now uses mealz-hub for all API calls to miam-api (when tested locally, uses ../mealz-hub)
+- Added vitest for unit testing
+- Services now have full unit test coverage
+- *initializer.service*:
+  - `bootstrap()` / `bootstrapFromDom()` / `isBootstrapDone()` implement SSR bootstrap initialization; unit tests updated.
+  - Skips concurrent `bootstrap()` calls while initialization is in progress so multiple components mounting at once do not re-run setup.
+- *persistent-storage*:
+  - New `src/utils/persistent-storage/` module for SSR v3: all browser storage keys are versioned under `_mealz/v{N}/…` from v3 onward. Old storage keys (both legacy `_miam/` and `_mealz/v{N}/…` with N < current major version are cleaned upon first major version execution.
+  - Added session key `outOfStockEntries` (migrates legacy `_miam/outOfStockEntry`) for failed ingredient adds in recipe details.
+- *out-of-stock-product*:
+  - New session-backed service stores selected-item ids after a failed add and re-applies `out_of_stock` when ingredients are refetched from the API; clears storage when the entry becomes `active`.
+  - Clears stored out-of-stock item ids on basket reset and authless user info refresh, matching ignored-ingredient reset behavior.
+- Models folder has been removed as all models are now in mealz-hub - basket-actions were more types than models and have thus been moved to the types folder
+
+## 2.10.2 [01/07/2026]
+
+#### Fixed
+- *init-basket-preview-drawer*:
+  - SSR basket-preview route: when `#__mealz-basket-preview-config__` is present, opens via `displayBasketDrawer$` with `title`, `showTabSelector` and `selectedTab` from the config dataset and URL (`selected_tab`, `myMeals`); falls back to `mealz.basket.openPreview` otherwise.
+- *recipe-details*:
+  - Subscribes to `mealzInternal.recipes.recipeDetailsTabIndex$` for the initial tab; when no POS is selected, preparation is shown but the requested tab is restored once POS is available.
+- *url-params-handler*:
+  - Skips `openDrawerFromUrlParams()` when `#__mealz-basket-preview-config__` is on the page so SSR basket-preview init does not open the drawer twice.
+
+## 2.10.1 [16/06/2026]
+
+#### Added
+- *no-supplier-add-to-cart-cta*:
+  - Shows a `mealz-ds-loader` on the add-to-basket CTA while the no-supplier add flow runs (supplier selection, store locator, add-all ingredients) until the basket preview opens.
+
+#### Fixed
+- *no-supplier-add-to-cart-cta*:
+  - Loader stays visible through the supplier-selector → store-locator transition and clears only when the basket preview opens (or when the user cancels before store selection).
+  - Ignores transient `allIngredientsToBasketLoading$` false emissions before the basket preview is shown.
+- *drawer-view-swapper*:
+  - Resets local `displaySupplierSelector$` when the drawer closes and calls `cancelPricingPosSelection()` only when the SDK exposes it, so closing the supplier selector mid-flow no longer blocks reopening it on the next CTA click.
+
+## 2.10.0 [11/06/2026]
+
+#### Added
+- *supplier-selector* / *init-supplier-selector-drawer*
+  - New init bundle `supplier-selector/init/init-supplier-selector-drawer` for direct SSR or bookmarkable pages: on load, waits for `mealzInternal`, then calls `noSupplier.displaySupplierSelector$.next(true)` to open the drawer.
+- *basket-preview*
+  - `selected-tab` attribute (maps to `initialSelectedTab`): sets the initial recipes vs products segment;
+
+#### Updated
+- *basket-preview*
+  - `basketPreviewState$` tab sync and slider changes coerce `activeTabIndex` to `0` or `1`; `analyticsPath` follows the visible tab (recipes vs products), including after `productAdded$`.
+- *init-basket-preview-drawer*
+  - Passes the initial tab from `selected_tab` (URL or SSR config dataset) or `myMeals=products` into `mealz.basket.openPreview`.
+
+#### Fixed
+- *drawer-view-swapper*
+  - No-supplier: closing the drawer while the supplier selector is open no longer resets recipe details and basket preview; only the selector is dismissed so the underlying view (recipe details or basket preview) is shown again.
+  - `displaySupplierSelector$` is included in the drawer merge subscription so toggling the supplier selector triggers `findView()` like other overlay views.
+- *drawer*
+  - The drawer no longer removes itself from the DOM on close; lifecycle is handled by `drawer-view-swapper`, avoiding desync between URL params (e.g. `displayRecipe`) and a missing drawer.
+
+## 2.9.2 [02/06/2026]
+
+#### Fixed
+- *no-supplier-add-to-cart-cta*:
+  - “Voir les ingrédients” calls `mealzInternal.recipes.openDetails` with the CTA `guests` attribute or `mealzInternal.basket.guestsForRecipe(recipeId)` instead of `null`, so recipe details opens with the basket guest count and no longer PATCHes `recipes_guests` to the recipe API default `number-of-guests`.
+
+## 2.9.1 [27/05/2026]
+
+#### Added
+- *recipe-details* / *init-recipe-details-drawer*
+  - New helper bundle `recipe-details/_helpers/init-recipe-details-drawer` for direct SSR or bookmarkable pages: on load, reads `recipe_id` and `initial_tab_index` from `#__mealz-recipe-details-config__` or the URL, waits for `mealzInternal`, then calls `recipes.openDetails(recipeId, null, initialTabIndex)` so the drawer uses the same `displayedRecipe$` as `MealzDrawerViewSwapper` (avoids a separate Vite entry importing a second `recipeService` singleton).
+
+#### Fixed
+- *replace-item*
+  - Back navigation clears all replace-item SDK streams (`basketEntryToReplace$`, `replaceProductFromPreviewOpen$`, `additionModalOpen$`, `itemsWithPricesList$`, `fetchingItemLoading$`, `replaceItemLoading$`) and local component state so reopening the drawer does not keep stale products, loading flags, or recipe context.
+  - Recreates the debounced search pipeline on close so `distinctUntilChanged` no longer blocks repeating the same query after leaving and reopening the view.
+  - After visiting recipe details, opening basket-preview product addition no longer keeps recipe context from stale `displayedRecipe$` replay (`fromRecipeDetails` ingredient banner and analytics path).
+- *supplier-selector* - v1 / v2
+  - Fixed broken mobile drawer layout for the onboarding steps (minimum card width and step image sizing in the horizontal scroll area)
+  - Fixed supplier list on very small screens (≤375px): supplier background images now fill the card width in single-column layout
+- *sponsor-block* - v1 / v2
+  - Fixed custom element registration: component is now defined as `mealz-sponsor-block` instead of `mealz-sponsor-storytelling`
+- *drawer-view-swapper*
+  - No-supplier basket preview: when `_miam/noSupplier/posId` is already in localStorage, wait for POS to load from storage instead of opening the supplier selector on page refresh; once POS is available, close the selector so the basket preview is shown.
+- *basket-preview*:
+  - Recipe removal clears the loader on `removeRecipe` error (basket-sync timeout/failure) without removing the recipe card from the preview list.
+- *counter*:
+  - In Lit mode, value changes only call `requestUpdate()`; manual `updateDOM()` (`textContent`) runs in SSR `hydrateOnly` mode only, so Lit text bindings are not wiped and decrementing a basket-preview product to 0 no longer throws `Cannot set properties of null (setting 'data')`.
+  - Minus-button remove styling uses `value === min` instead of a hardcoded `1` (correct when `min` is 0 in basket preview).
+
+## 2.9.0 [21/05/2026]
+
+#### Updated
+- *drawer-view-swapper*
+  - No-supplier flow: the supplier-selector drawer title ("Mes courses avec …") is derived from the `origin` in the decoded `supplier-token` (`mealzInternal.supplier.getToken`) instead of a hardcoded Marmiton label; supports **Marmiton**, **CuisineAZ**, and **Cuisine Actuelle** for origins `marmiton`, `cuisineaz`, and `cuisineactuelle`; otherwise uses **SITE DE REÇETTES NON RECONNU**.
+  - Opening the basket preview while `noSupplier` is set and POS is absent triggers `mealzInternal.noSupplier.displaySupplierSelector$.next(true)`
+- *supplier-selector*
+  - Each supplier button card adds a retailer-specific CSS class (`{attributes.name}-card`, lowercased) for per-enseigne styling hooks
+
+#### Fixed
+- *store-indicator*
+  - When POS is unset, the label reads `Aucun magasin sélectionné` instead of ` - `.
+- *supplier-selector*
+  - Supplier card image `alt` texts use `supplier.attributes.name` instead of `supplier.name` (matches the `Supplier` model from `getAffiliateSuppliers`)
+
+## 2.8.3 [20/05/2026]
+
+#### Added
+- *product-card-planner*
+  - Adding `out_of_stock` to `ENABLE_CARD_STATUS` and rendering the out-of-stock overlay, matching the behavior of `product-card`
+- *recipe-partner-display-name*
+  - `getRecipePartnerDisplayName` and `GENERIC_RECIPE_PARTNER_LABEL_ERROR` centralize mapping from token `origin` to display names
+- *no-supplier-add-to-cart*
+  - Added an attribute and a class `in-basket`
+  - Added a customEvent `inBasketStatus` that fires when the recipe is added to/removed from the basket
+
+#### Updated
+- *NoShadowLitElement* (`no-shadow-element`)
+  - Stylesheets injected in `document.head` are no longer removed when the last instance disconnects (links injected into a `ShadowRoot` are still removed when unused). Avoids FOUC and repeated CSS requests when light-DOM subtrees are recreated—for example switching between recipes and products in *basket-preview*
+- *basket-preview*
+  - Recipes vs products tab content is wrapped with Lit `cache()` so both subtrees stay in memory when switching tabs, keeping existing DOM (including recipe and product images) instead of tearing it down on every tab change
+- *catalog-history*
+  - Component now loads drawer-view-swapper if called
+- *drawer-view-swapper*
+  - No-supplier flow: the supplier-selector drawer title ("Mes courses avec …") is derived from the `origin` in the decoded `supplier-token` (`mealzInternal.supplier.getToken`) instead of a hardcoded Marmiton label; supports **Marmiton**, **CuisineAZ**, and **Cuisine Actuelle** for origins `marmiton`, `cuisineaz`, and `cuisineactuelle`; otherwise uses **SITE DE REÇETTES NON RECONNU**
+- *mealz-no-supplier-add-to-cart-cta*
+  - Keeps the guest count used for `addRecipeToBasketFromIdAndOpenPreview` in sync with `GuestObserverService` (Mealz steppers and other components that call `updateGuests`)
+  - Observes the `guests` HTML attribute so host pages can update it at runtime (e.g. `setAttribute('guests', String(n))`)
+
+#### Fixed
+- *store-locator-drawer*
+  - When the user selects a POS id that already matches the SDK’s current POS but `_miam/noSupplier/posId` was not stored yet (typical first no-supplier confirmation), still writes `_miam/noSupplier/posId`, calls `mealzInternal.storeLocator.newStoreSelected()`, then closes — so deferred basket actions (e.g. add-recipe-after-locator) run on the first confirmation instead of only after repeating the flow
+
+## 2.8.2 [05/05/2026]
+
+#### Fixed
+- *store-locator*, *supplier-selector*
+  - Resolve the injected stylesheet URL with `getBaseURL()`
+
+## 2.8.1 [20/04/2026]
+
+#### Updated
+- *recipe-card*
+  - Parse `categoryId` from `starting-data`; bind top and CTA clicks with stable handler references and `removeEventListener` before `addEventListener` on render so repeated renders do not stack duplicate `openDetails` calls (and duplicate `recipe.display` events).
+- *like-button*
+  - Forward `categoryId` with the analytics path to `mealzInternal.recipes.updateRecipeLike`.
+- *recipe-details*
+  - Read `category_id` from the SDK `displayedRecipe$` payload (`eventTrace.props`) for the current details session so analytics reflect how details were opened, not a global map keyed by recipe id.
+- *details-footer*
+  - Add-all-to-basket and `recipe.add` analytics receive `category_id` from the parent details view (same session-scoped trace).
+- *mealz-planner-menu-option*
+  - When SSR `starting-data` includes `plannerEntryVariant` (`1`|`2`|`3`), the `planner.mode.select` analytics payload includes `variant` with that value (planner-entry AB layouts).
+
+#### Fixed
+- *planner-entry*
+  - Narrow mobile layout (`max-width: 607px`): set `position: absolute` on `.mealz-planner-entry__hero-badge` so the negative `top` offset positions the badge as intended.
+
+## 2.8.0 [02/04/2026]
+
+#### Updated
+- *planner-entry*
+  - Added new responsive hero variants for planner entry with dedicated CTA, recipe avatars, and updated background/decorative assets.
+- *guest-icon*:
+  - Changed every icon to a generic one for consistency
+
+#### Fixed
+- *planner-menu-option*
+  - When planner-entry starts without a `menuId`, the component now prepares the planner menu before redirecting and preserves the selected guests count.
+- *basket-preview*
+  - Recipe rows: pluralize the per-recipe product count label correctly ("1 produit" vs "N produits").
+  - Resolve `noSupplier` from the SDK resolved state instead of polling the supplier token, so both supplier and no-supplier flows initialize correctly.
+
 ## 2.7.1 [26/03/2026]
 
 #### Fixed
