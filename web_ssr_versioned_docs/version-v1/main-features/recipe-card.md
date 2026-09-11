@@ -168,3 +168,46 @@ const recipeCardsHTML = multipleRecipesHTML.split('</mealz-recipe-card>')
 
   - `serves: number`
   **_(Optional)_** Override the default number of guests set for the recipe
+
+## Custom recipe card: recipe.show analytics {#custom-recipe-card-show-tracking}
+
+Use this when you render **your own** recipe card UI (not the SSR `<mealz-recipe-card>` HTML) but want the **same** `recipe.show` behaviour as the native card. See [Analytics](../analytics#recipe-card) for how `recipe.show` is defined.
+
+### Step 1 — Load and initialize the Web Components SDK
+
+When a Mealz SSR component is already on the page, its HTML fragment includes the WebC SDK script tag — `window.mealz` becomes available once that script runs. You can skip this step if another Mealz feature on the same page already loaded the SDK.
+
+If your page uses **only custom recipe cards** and no Mealz SSR component, you must load the SDK yourself before calling `attachRecipeCardShowTracking`.
+
+Add the WebC script directly — the same bundle the SSR API injects in its HTML fragments:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/webc-miam@9.1.30/webc-miam-fr.js"></script>
+```
+
+Pick the version and locale file Mealz provides for your integration (`webc-miam-fr.js`, `webc-miam-en.js`, …). See [Web SDK installation](https://docs.mealz.ai/web_sdk/integration/installation) for the full locale list.
+
+:::info
+SSR API **v2** adds `GET /v2/mealz-window-bootstrap`, a minimal HTML fragment that loads only the SDK without a Lit component. That route is not available on v1 — use the CDN script tag above instead.
+:::
+
+Whichever option you use, initialize Mealz (`supplier.setupWithToken`, user, POS, language, etc.) so analytics is ready before you attach tracking — see [Set up and usage](../category/set-up-and-usage).
+
+### Step 2 — Attach one observer per card root
+
+For each custom card container in the DOM, call:
+
+```js
+const handle = window.mealz.analytics.attachRecipeCardShowTracking({
+  element, // HTMLElement: root to observe (e.g. card wrapper)
+  recipeId,
+});
+```
+
+When the node is removed (virtual lists, SPA navigation), call:
+
+```js
+handle.disconnect();
+```
+
+You can listen for emitted events on `window.mealz.analytics.eventSent$` (same stream as other Mealz analytics).

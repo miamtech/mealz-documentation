@@ -49,6 +49,15 @@ props: {aString: 'foo bar', aNumber: 5}
     **Deprecated**, the analytics is initialized on startup
   :::
 
+- `attachRecipeCardShowTracking: (options) => { disconnect: () => void }` Attach viewport-based `recipe.show` tracking on a **custom** recipe card root (same rules as `mealz-recipe-card`: ≥80% visible for 1s, deduped until the user scrolls). See [Custom recipe card → recipe.show analytics](../main-features/recipe-card#custom-recipe-card-show-tracking).
+  :::note
+    `options.element`: HTMLElement root to observe (e.g. card wrapper)
+
+    `options.recipeId`: Mealz recipe id
+
+    Call the returned `disconnect()` when the element is removed (virtual lists, SPA navigation).
+  :::
+
 ## window.mealz.basket
 - `basketIsReady$: Observable<boolean>`: Emits true when Mealz's basket has successfully loaded for the first time. Does not emit anything before or after that.
 - `initialize: () => void`: Fetch the first Basket early (before any action requires it on Mealz's side), so you can start the [basket-sync](../set-up-and-usage/basket-synchronization) earlier
@@ -58,7 +67,8 @@ props: {aString: 'foo bar', aNumber: 5}
     
     Outside of this usage we don't recommand using `basket.reset()` except to quickly empty Mealz's basket for testing purposes
   :::
-- `recipeCount: () => Observable<number>`: A BehaviorSubject that emits the current number of recipes in Mealz's Basket once (it waits for the Basket to be initialized to emit).
+- `recipeCount: () => Observable<number>`: An Observable that emits the current number of recipes in Mealz's Basket. It waits for the Basket to be initialized before the first emission, then emits again whenever the recipe count changes.
+- `productCount: () => Observable<number>`: An Observable that emits the current number of active products in Mealz's Basket (including standalone products not linked to a recipe). It waits for the Basket to be initialized before the first emission, then emits again whenever the product count changes.
 - `openPreview: () => void`: Opens the recipe-modal in basket preview mode to display the recipes currently in the basket (Same action as when clicking on the FAB in the recipe-catalog)
 
 ## window.mealz.basketSync
