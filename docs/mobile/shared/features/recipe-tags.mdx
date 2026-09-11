@@ -1,0 +1,55 @@
+:::info
+Recipe Tags are currently a CSR feature and are being rethought for improvement.
+:::
+
+Product behaviour and UX: see the SSR docs — [Recipe Tags](/docs/web_ssr/v2/main-features/recipe-tags) (also [Web SDK / CSR](/docs/web_sdk/features/recipe-tags)).
+
+MealzUIKit still exposes a native embed so you can place the tag on **each line of your retailer basket / cart UI**, next to the product that was added from a Mealz recipe. Pass your **external product id** (the SKU / id in your catalog). If that product was not added via Mealz, the tag stays empty / hidden.
+
+## Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `externalProductId` | `String` | yes | — | Your product id (same id family as basket sync / POS). Used to look up Mealz recipes that contributed this product. |
+| `navigationCallback` | `RecipeTagNavigationCallback` | yes | — | Host navigation when the shopper opens a recipe from the tag modal. |
+| `modifier` | Compose `Modifier` | no | `Modifier` | Layout sizing (KMM / Compose). Height is fixed by the library. |
+| `stateContent` | `WebScreenStateContent` / platform `StateContent` | no | library default | Optional loading / empty overlays for the embedded WebView. |
+
+### `RecipeTagNavigationCallback`
+
+| Callback | Signature | What you must do |
+|----------|-----------|------------------|
+| `goToRecipeDetails` | `(DisplayRecipe) -> Unit` | Open your recipe-details screen (or Mealz `RecipeDetailsScreen`) for that recipe (typically a `FromMealzRecipeId`). |
+
+Base `NavigationCallback` redirects (`redirectToLogIn`, `redirectToStoreLocator`, `redirectToCart`, `exit`) default to no-ops on this component — only `goToRecipeDetails` matters.
+
+## Inject
+
+export function RecipeTagInject(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`RecipeTagViewController.companion.get(
+    externalProductId: "sku-123",
+    stateContent: nil,
+    navigationCallback: RecipeTagNavigationCallback(
+        goToRecipeDetails: { mealzRecipe in
+            // Present RecipeDetailsViewController for mealzRecipe
+        }
+    )
+)`}</code></pre>
+    );
+  }
+  // Android + KMM
+  return (
+    <pre><code className="language-kotlin">{`RecipeTag(
+    externalProductId = "sku-123",
+    navigationCallback = RecipeTagNavigationCallback(
+        goToRecipeDetails = { mealzRecipe ->
+            // Navigate to RecipeDetailsScreen(displayRecipe = mealzRecipe, …)
+        }
+    )
+)`}</code></pre>
+  );
+}
+
+<RecipeTagInject platform={props.platform}/>

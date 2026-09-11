@@ -13,7 +13,7 @@ The <code>MealPlannerRecap</code> Page shows the total financial amount for the 
 The Call To Action should navigate to their Basket or back to the Catalog Feature.
 </p>"
                     alt="MealPlannerRecap"
-                    caption="Miam Neutral Meal Planner Recap page"
+                    caption="Miam Neutral Mealz Planner Recap page"
                     imageMaxWidth="250px"
             />
     );

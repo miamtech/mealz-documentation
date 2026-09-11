@@ -7,7 +7,7 @@ import rehypeKatex from "rehype-katex";
 
 export default {
   title: "Mealz Documentation",
-  tagline: "Mealz for native iOS, Android and Web apps",
+  tagline: "Mealz for native iOS, Android, KMM and Web apps",
   favicon: "img/favicon.ico",
   url: "https://miamtech.github.io/",
   baseUrl: "/mealz-documentation/",
@@ -45,8 +45,11 @@ export default {
         lastVersion: 'current',
         versions: {
           current: {
-            label: "5.7",
+            label: "1.0",
             path: "/"
+          },
+          "5.7": {
+            banner: 'none',
           },
         },
       },
@@ -129,11 +132,40 @@ export default {
             position: "left",
             label: "Android",
             to: "docs/android/Introduction",
+            items: [
+              {
+                label: "1.0",
+                to: "docs/android/Introduction",
+                activeBasePath: "docs/android/",
+              },
+              {
+                label: "5.7 (obsolete)",
+                to: "docs/5.7/android/Introduction",
+                activeBasePath: "docs/5.7/android/",
+              },
+            ]
           },
           {
             position: "left",
             label: "iOS",
             to: "docs/ios/Introduction",
+            items: [
+              {
+                label: "1.0",
+                to: "docs/ios/Introduction",
+                activeBasePath: "docs/ios/",
+              },
+              {
+                label: "5.7 (obsolete)",
+                to: "docs/5.7/ios/Introduction",
+                activeBasePath: "docs/5.7/ios/",
+              },
+            ]
+          },
+          {
+            position: "left",
+            label: "KMM",
+            to: "docs/kmm/Introduction",
           },
           {
             position: "left",
@@ -200,6 +232,10 @@ export default {
               {
                 label: "iOS",
                 to: "docs/ios/Introduction",
+              },
+              {
+                label: "KMM",
+                to: "docs/kmm/Introduction",
               },
               {
                 label: "Web SDK",

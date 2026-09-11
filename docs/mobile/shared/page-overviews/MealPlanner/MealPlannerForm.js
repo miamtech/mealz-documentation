@@ -14,7 +14,7 @@ When selected, the Mealz API will be queried & the available recipes will be ret
 After the user selects the CTA, they will be navigated to the <code>MealPlannerResults</code> page where they can see the results.
 </p>"
                     alt="MealPlannerForm"
-                    caption="Miam Neutral Meal Planner Form page"
+                    caption="Miam Neutral Mealz Planner Form page"
                     imageMaxWidth="250px"
             />
     );

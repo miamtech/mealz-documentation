@@ -1,0 +1,8 @@
+{
+  "label": "Recipe Tags",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "android/features/recipe-tags/index"
+  }
+}
