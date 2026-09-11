@@ -18,7 +18,7 @@ There are buttons to the <code>Filters</code> & <code>CatalogSearch</code> Page,
 There is also a button to search for all the Recipes the user has favorited that are available at this specific location.
 Because the recipes shown in the Catalog are only available at this store, these results will be different from the independent Favorites page.
 <br/> <br/>
-A Call to Action for Mealz's <code>Meal Planner</code> feature can also be added to this page. 
+A Call to Action for the Mealz Planner feature can also be added to this page. 
 </p>"
                     alt="A screenshot of the CatalogView"
                     caption="CatalogView showing various recipe categories"
