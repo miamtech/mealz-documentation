@@ -124,7 +124,7 @@ sidebar_position: 1
   - Optional query param `allow_default` (default `true`) on `GET /recipe-card` and `POST /recipe-card/multiple`; set `allow_default=false` to skip the generic redirect card when no suggestion is found.
   - Localized copy via `texts.v3.RECIPE_CARD_GENERIC` (`TITLE`, `CTA`) in `en`, `fr`, and `fr-supermrkt`.
 - *recipe-card-cta*
-  - Added new param recipe_name (acts like the recipe_name attribute on legacy <webc-miam-recipe-card-cta>)
+  - Added new param recipe_name (acts like the recipe_name attribute on legacy `<webc-miam-recipe-card-cta>`)
 - *mealz-bootstrap* - v3
   - V3 standalone HTML entry points (page routes and directly-fetchable components) load a per-request core entry module (`GET /v3/core/bootstrap.js`) that inlines the bootstrap config (built from request headers) and calls `ensureBootstrapped(config)` directly, so `mealz-components` initializes supplier, user, session, POS, and basket before client-side fetches run. The config travels base64url-encoded in the `bootstrapConfig` query param — there is no `<script type="application/json" id="mealz-bootstrap">` JSON tag. Because the config lives inside the core module the client must load anyway, it can no longer be detached/reordered from its consumer, which removes the CSR bootstrap race in `miam-injector`.
   - `bootstrap.util.ts` (`buildBootstrapScriptHtml`) renders the core entry `<script type="module">` into page HTML; `GET /v3/core/bootstrap.js` decodes the `bootstrapConfig` param and re-serializes it (JSON round-trip) into the served module body.
@@ -254,7 +254,7 @@ sidebar_position: 1
 ### Added
 
 - *recipe-card* — v1 & v2
-  - New route `POST /recipe-card/multiple-raw` for batch recipe resolution. Takes an array of recipe contexts (productIds and position) plus store_id, and returns matching Mealz recipe IDs for all resolved contexts in a single request. Responds with { data: [{ recipeId, position }] }, returning matched positions only (contexts with no matching recipe are omitted).
+  - New route `POST /recipe-card/multiple-raw` for batch recipe resolution. Takes an array of recipe contexts (productIds and position) plus store_id, and returns matching Mealz recipe IDs for all resolved contexts in a single request. Responds with `{ data: [{ recipeId, position }] }`, returning matched positions only (contexts with no matching recipe are omitted).
 
 #### Internal
 - Update SDK to 10.5.11
@@ -476,7 +476,7 @@ sidebar_position: 1
   - Added drawer stylesheets to recipe-card
   - Added recipe-details and like button stylesheets to recipe-card-cta
 - *planner-entry*
-  - Replaced minus and plus icon in the stepper with <img> to replace easily for suppliers overrides
+  - Replaced minus and plus icon in the stepper with `<img>` to replace easily for suppliers overrides
 - *recipe-card-cta*
   - Added the parameter `to_basket_on_click` that is provided in the starting data
 - *planner-budget-gauge* - v2
@@ -1084,7 +1084,7 @@ Updated to miam-ds@1.2.6
 - *supplier-values*:
     - Added Marmiton default values for the env-configurator
 - *recipe-card*:
-  - Added an id on the format "mealz-recipe-card-{RECIPE-ID}"
+  - Added an id on the format `mealz-recipe-card-{RECIPE-ID}`
 
 ## 1.2.15 [14/04/2025]
 
