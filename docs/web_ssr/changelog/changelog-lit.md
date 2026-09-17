@@ -4,6 +4,35 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 3.2.6 [09/09/2026]
+
+#### Fixed:
+- *no-supplier / recipe-partner*:
+  - Map Cuisine Actuelle only for `origin` `cuisine-actuelle` (not `cuisineactuelle`) ([CU-86cbdtw2g](https://app.clickup.com/t/86cbdtw2g)).
+
+## 3.2.5 [08/09/2026]
+
+#### Fixed:
+- *no-supplier / recipe-partner*:
+  - Unknown recipe-site `origin` no longer shows « SITE DE REÇETTES NON RECONNU »; fallback label is an empty string ([CU-86cbdtw2g](https://app.clickup.com/t/86cbdtw2g)).
+  - When the partner label is missing, drawer/onboarding titles fall back to « Mes courses » / « ✨ Nouveau ! Faites vos courses en un clic. » (no trailing « avec »).
+- *supplier-selector*:
+  - Removed the CuisineAZ-only client filter on affiliate suppliers so SSR V3 matches V2: the list comes from `getAffiliateSuppliers` / API affiliates, and partners hide retailers via CSS on card classes.
+
+## 3.2.4 [27/08/2026]
+
+#### Fixed
+- *recipe-card-cta* / *planner*:
+  - Catalog cards (`planner: false`) no longer subscribe to `isRecipeInMenu`, which was fetching the current menu (`GET /menus/current`) for a status this CTA never uses outside the planner.
+  - `fetchMenuRecipes()` now shares its underlying `getCurrentMenu()` call (`shareReplay`) instead of firing one HTTP request per subscriber, fixing duplicate parallel `menus/current` calls when several recipe cards mount at once (e.g. catalog-home).
+- *basket-transfer*
+  - Now waits for both bootstrap to be finished and for both callbacks to be defined before initializing the service - hookCallback only in no-supplier mode
+  - Redirect to the retailer cart waits until all transfer sync actions have left the `SENT_TO_RETAILER` state, so partial or out-of-order retailer cart updates do not redirect too early
+- *basket-transfer-modal*
+  - Now automatically mounts itself when in no-supplier mode to avoid use-cases where it doesn't appear on page reloads
+- *mealz-core*
+  - The shared runtime chunk now includes all of `src/services/` and `src/utils/` (previously only `singleton.ts` and three `core/` services), so feature bundles share a single singleton instance.
+
 ## 3.2.3 [21/08/2026]
 
 #### Fixed

@@ -4,6 +4,36 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 3.3.9 [09/09/2026]
+
+#### Updated
+- *env* — bump mealz-components CDN in `.env.uat` / `.env.production`: V2 `@2.11.7`, V3 `@3.2.6` (recognize `cuisine-actuelle` origin) ([CU-86cbdtw2g](https://app.clickup.com/t/86cbdtw2g)).
+
+#### Internal
+- Demo supplier-defaults: Cuisine Actuelle token `origin` set to `cuisine-actuelle` (CORS stays `cuisineactuelle` for [cuisineactuelle.fr](https://www.cuisineactuelle.fr/)).
+
+## 3.3.8 [08/09/2026]
+
+#### Updated
+- *env* — bump mealz-components CDN in `.env.uat` / `.env.production`: V2 `@2.11.6`, V3 `@3.2.5` (Cuisine Actuelle / no-supplier partner label fix) ([CU-86cbdtw2g](https://app.clickup.com/t/86cbdtw2g)).
+
+## 3.3.7 [02/09/2026]
+
+#### Internal
+- Add cuisineactuelle to CORS
+
+## 3.3.6 [31/08/2026]
+
+#### Fixed
+- *recipe-card* — v3 MULTIPLE (`POST /v3/recipe-card/multiple`): shelf and search cards now resolve sponsor `logo-url` from JSON:API `included` (and request `include=sponsors` on `suggestions-batch`), so the sponsored brand logo renders like on catalog.
+
+## 3.3.5 [27/08/2026]
+
+#### Internal
+- V2 - Update mealz-component to 2.11.5
+- V2 - Update SDK to 10.7.1
+- V3 - Update mealz-component to 3.2.4
+
 ## 3.3.4 [25/06/2026]
 
 #### Internal
