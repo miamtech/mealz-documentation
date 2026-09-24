@@ -4,6 +4,59 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 3.2.8 [23/09/2026]
+
+#### Added:
+- *analytics*: `index` property on `entry.added`, `entry.deleted`, and `product.show` (0-based position in the recipe shopping list).
+
+#### Updated
+- *analytics*:
+  - Bumped `mealz-shared-analytics` to `^4.16.0`.
+
+#### Fixed
+- *basket-transfer*: ITM (`pdvref`) waits for `pos.extId` to match before `/baskets/transfer` (after ITM `pos.load()` on view refresh). Cookie polling and `location.reload()` were removed so to avoid cancelling mid basket-synchro. (#12451cu3t6d)
+
+## 3.2.7 [17/09/2026]
+
+#### Added:
+- *analytic-service*:
+  - Add `product_base_price` (`basketEntry.attributes.price`, `"0"` when missing) to `entry.added` and `entry.deleted`
+- *product-card* / *product-card-planner*:
+  - Viewport-based `product.show` on recipe details product cards (≥80% visible for 1s, deduped per `recipe_id:item_id` per visit, no re-fire on scroll or replace/back).
+
+#### Updated
+- *analytics*:
+  - Bumped `mealz-shared-analytics` to `^4.15.0` so `product.show` is a known event (`sendEvent` no longer drops it). Includes `product_base_price` on `entry.added` / `entry.deleted` from 4.14.0.
+
+## 3.2.6 [09/09/2026]
+
+#### Fixed:
+- *no-supplier / recipe-partner*:
+  - Map Cuisine Actuelle only for `origin` `cuisine-actuelle` (not `cuisineactuelle`) ([CU-86cbdtw2g](https://app.clickup.com/t/86cbdtw2g)).
+
+## 3.2.5 [08/09/2026]
+
+#### Fixed:
+- *no-supplier / recipe-partner*:
+  - Unknown recipe-site `origin` no longer shows « SITE DE REÇETTES NON RECONNU »; fallback label is an empty string ([CU-86cbdtw2g](https://app.clickup.com/t/86cbdtw2g)).
+  - When the partner label is missing, drawer/onboarding titles fall back to « Mes courses » / « ✨ Nouveau ! Faites vos courses en un clic. » (no trailing « avec »).
+- *supplier-selector*:
+  - Removed the CuisineAZ-only client filter on affiliate suppliers so SSR V3 matches V2: the list comes from `getAffiliateSuppliers` / API affiliates, and partners hide retailers via CSS on card classes.
+
+## 3.2.4 [27/08/2026]
+
+#### Fixed
+- *recipe-card-cta* / *planner*:
+  - Catalog cards (`planner: false`) no longer subscribe to `isRecipeInMenu`, which was fetching the current menu (`GET /menus/current`) for a status this CTA never uses outside the planner.
+  - `fetchMenuRecipes()` now shares its underlying `getCurrentMenu()` call (`shareReplay`) instead of firing one HTTP request per subscriber, fixing duplicate parallel `menus/current` calls when several recipe cards mount at once (e.g. catalog-home).
+- *basket-transfer*
+  - Now waits for both bootstrap to be finished and for both callbacks to be defined before initializing the service - hookCallback only in no-supplier mode
+  - Redirect to the retailer cart waits until all transfer sync actions have left the `SENT_TO_RETAILER` state, so partial or out-of-order retailer cart updates do not redirect too early
+- *basket-transfer-modal*
+  - Now automatically mounts itself when in no-supplier mode to avoid use-cases where it doesn't appear on page reloads
+- *mealz-core*
+  - The shared runtime chunk now includes all of `src/services/` and `src/utils/` (previously only `singleton.ts` and three `core/` services), so feature bundles share a single singleton instance.
+
 ## 3.2.3 [21/08/2026]
 
 #### Fixed
