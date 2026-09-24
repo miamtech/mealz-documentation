@@ -4,6 +4,58 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 3.3.11 [24/09/2026]
+
+#### Updated
+- *env* - bump CDN in `.env.uat` / `.env.production`: components V2 `@2.12.0`, V3 `@3.2.8`; SDK V2 `@10.9.0`; SDK V1 `@9.1.33` (ligne 9.1.x).
+
+## 3.3.10 [17/09/2026]
+
+### Fixed
+- *recipe-details* - v2
+  - Resolves guests server-side like recipe-card (basket guests when the recipe is in basket, otherwise optional `serves`, otherwise recipe `number-of-guests` with fallback `4`) and always injects the value in `data-serves` on the SSR config node.
+  - Accepts optional `store_id` / `mealz_store_id` so basket guests can be resolved on standalone opens.
+- *catalog-header* - v2, v3
+  - The spotlight header CTA now appends `from=header` via `appendQueryToUrl` in both the v2 and v3 spotlight services, so retailers whose category URL already carries a query string (e.g. CoursesU `?section=categorie&categorie=`) no longer get a second `?`. The spotlight category page loads and the `meals-space-header` `pageview` / `recipe.add` events fire again; path-based retailers are unchanged.
+- *recipe-card* / *catalog-list* — **v2**
+  - `planner` in recipe-card and catalog-list `starting-data` are serialized as booleans (`true`/`false`), not query-string values (`"true"`/`"false"`), so client analytics no longer receive `category_id: true` when opening recipe details from the planner catalog.
+
+#### Internal
+- Add CoursesU Salesforce Commerce Cloud sandboxes (`bbqx-001`–`bbqx-009.my.commercecloud.salesforce.com`) to CORS ([CU-86cbea7bp](https://app.clickup.com/t/86cbea7bp)).
+
+#### Updated
+- *env* - bump CDN in `.env.uat` / `.env.production`: components V2 `@2.11.8`, V3 `@3.2.7`; SDK V2 `@10.8.0`; SDK V1 `@9.1.32` (ligne 9.1.x).
+
+## 3.3.9 [09/09/2026]
+
+#### Updated
+- *env* — bump mealz-components CDN in `.env.uat` / `.env.production`: V2 `@2.11.7`, V3 `@3.2.6` (recognize `cuisine-actuelle` origin) ([CU-86cbdtw2g](https://app.clickup.com/t/86cbdtw2g)).
+
+#### Internal
+- Demo supplier-defaults: Cuisine Actuelle token `origin` set to `cuisine-actuelle` (CORS stays `cuisineactuelle` for [cuisineactuelle.fr](https://www.cuisineactuelle.fr/)).
+
+## 3.3.8 [08/09/2026]
+
+#### Updated
+- *env* — bump mealz-components CDN in `.env.uat` / `.env.production`: V2 `@2.11.6`, V3 `@3.2.5` (Cuisine Actuelle / no-supplier partner label fix) ([CU-86cbdtw2g](https://app.clickup.com/t/86cbdtw2g)).
+
+## 3.3.7 [02/09/2026]
+
+#### Internal
+- Add cuisineactuelle to CORS
+
+## 3.3.6 [31/08/2026]
+
+#### Fixed
+- *recipe-card* — v3 MULTIPLE (`POST /v3/recipe-card/multiple`): shelf and search cards now resolve sponsor `logo-url` from JSON:API `included` (and request `include=sponsors` on `suggestions-batch`), so the sponsored brand logo renders like on catalog.
+
+## 3.3.5 [27/08/2026]
+
+#### Internal
+- V2 - Update mealz-component to 2.11.5
+- V2 - Update SDK to 10.7.1
+- V3 - Update mealz-component to 3.2.4
+
 ## 3.3.4 [25/06/2026]
 
 #### Internal

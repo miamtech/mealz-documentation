@@ -4,6 +4,34 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.33 - [23/09/2026]
+
+#### Added:
+- *analytics*:
+  - `index` property on `entry.added`, `entry.deleted`, and `product.show` (0-based position in the recipe shopping list).
+
+#### Updated:
+- *analytics*:
+  - Bumped `mealz-shared-analytics` to `^4.16.0`.
+
+#### Fixed:
+- *basket-transfer*: ITM (`pdvref`) waits for `pos.extId` to match before `/baskets/transfer` (after ITM `pos.load()` on view refresh). Cookie polling and `location.reload()` were removed so to avoid cancelling mid basket-synchro. (#12451cu3t6d)
+
+## v9.1.32 - [17/09/2026]
+
+#### Added:
+- *analytics*:
+  - Viewport-based `product.show` on recipe details product cards (≥80% visible for 1s, deduped per `recipe_id:item_id` per visit, no re-fire on scroll or replace/back).
+- *analytics-service* / *basket-preview-line*:
+  - Add `product_base_price` (`basketEntry.price`, `"0"` when missing) to `entry.added` and `entry.deleted`
+
+#### Updated:
+- *analytics*:
+  - Bumped `mealz-shared-analytics` to `^4.15.0` so `product.show` is a known event (`sendEvent` no longer drops it). Includes `product_base_price` from 4.14.0.
+
+#### Internal
+- Transpile mealz-shared-analytics in the WebC webpack build and Jest (Kotlin/JS `??` is not parsed by Angular 11 / Node 12)
+
 ## v9.1.31 - [21/08/2026]
 
 #### Fixed:
