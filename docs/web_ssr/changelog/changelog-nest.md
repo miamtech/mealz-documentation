@@ -4,6 +4,16 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 3.3.12 [29/09/2026]
+
+#### Fixed
+- *recipe-card* — v3
+  - Drink vs meal badge uses `recipe-type` (`id === 'drink'`) instead of meal-type tags ([CU-12451cu52wb](https://app.clickup.com/t/2188392/12451cu52wb)).
+  - Recipe fetches `include` `recipe-type` (and list it in sparse `fields[recipes]` where used). Shelf MULTIPLE relies on miam-api `suggestions-batch` always returning `recipe-type` (see miam-api !2157).
+
+#### Updated
+- *env* - bump mealz-components CDN in `.env.uat` / `.env.production`: V1 `@1.3.20`, V2 `@2.12.1`, V3 `@3.2.9`.
+
 ## 3.3.11 [24/09/2026]
 
 #### Updated
