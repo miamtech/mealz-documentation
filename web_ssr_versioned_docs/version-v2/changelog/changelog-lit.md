@@ -4,6 +4,12 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 2.12.1 [29/09/2026]
+
+### Fixed
+- *store-locator*:
+  - Leaflet basemap tiles no longer show Carto’s “API KEY REQUIRED” watermark; map uses OpenStreetMap tiles (no Carto API key).
+
 ## 2.12.0 [23/09/2026]
 
 ### Added
