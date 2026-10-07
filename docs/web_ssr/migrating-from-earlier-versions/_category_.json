@@ -3,6 +3,6 @@
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Upgrade an integration that still calls the V2 SSR API."
+    "description": "Upgrade an integration that still calls the V1 or V2 SSR API."
   }
 }
