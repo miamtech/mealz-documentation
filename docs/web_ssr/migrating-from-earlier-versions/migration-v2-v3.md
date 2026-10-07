@@ -6,6 +6,10 @@ sidebar_position: 1
 
 This guide lists every breaking change in V3 and what to change on your side. Work through it in order.
 
+:::info
+Still calling `/v1/`? Follow [Migrating from V1 to V3](./migration-v1-v3).
+:::
+
 :::tip
 When you are done, update your `API_VERSION` constant from `v2` to `v3` in all SSR API calls.
 :::
