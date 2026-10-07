@@ -156,7 +156,7 @@ The same applies to the planner entry, if you use a non-default planner-entry va
 
 ## 8. Updated `window.mealz` methods
 
-Theis method still exists. The arguments you pass have changed.
+This method still exists. The arguments you pass have changed.
 
 ### `recipes.openDetails`
 
