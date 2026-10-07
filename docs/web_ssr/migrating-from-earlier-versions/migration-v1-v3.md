@@ -240,6 +240,6 @@ Before going live:
 - [ ] Search for `updateForbidProfiling`, `overrideIcon`, `setOrigin`, `openNoSupplierOnboarding`, `enableArticlesInCatalog`, `updatePricebook` (should be zero occurrences)
 - [ ] Search for `window.mealzInternal` (should be zero occurrences)
 - [ ] `recipes.openDetails`: second argument is `initialTabIndex`, third is `guests`
-- [ ] `setupWithToken` appears only where the page stays open (store change, login, logout)
+- [ ] `pos.load`, `loadWithExternalId`, `user.reset` and `loadWithAuthlessId` appears only where the page stays open (store change, login, logout)
 - [ ] Verify recipe cards render and the details drawer opens
 - [ ] Verify basket sync still works end-to-end
