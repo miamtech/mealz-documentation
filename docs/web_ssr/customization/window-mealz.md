@@ -87,7 +87,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 - `load: (externalId) => void`: Informs Mealz that the active point of sale has changed.
   :::warning
-    **Deprecated for page-load setup.** In V3, the store is initialized from the `store_id` query parameter on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+    **Deprecated for page-load setup.** In V3, the store is initialized from the `store_id` query parameter on your SSR requests. See [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3) if you are upgrading.
   :::
 
   Call `pos.load` only when the user changes store **without a full page reload**. If the change triggers a navigation or reload, pass the new `store_id` on the next SSR request instead.
@@ -121,25 +121,25 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 ## window.mealz.supplier
 - `setupWithToken: (token: string) => void`: Loads the supplier token. 
   :::warning
-    **Deprecated.** The SSR API reads the `Supplier-token` header instead. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+    **Deprecated.** The SSR API reads the `Supplier-token` header instead. See [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3) if you are upgrading.
   :::
 - `load: (supplierId: number | string) => void`: Identify the client website
   :::warning
-    **Deprecated.** The SSR API reads the `Supplier-token` header instead. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+    **Deprecated.** The SSR API reads the `Supplier-token` header instead. See [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3) if you are upgrading.
   :::
 
 ## window.mealz.user
 
 - `loadWithExternalId: (id, forbidProfiling = false) => void`: Notifies Mealz that the user has logged in.
   :::warning
-    **Deprecated for page-load setup.** In V3, the logged-in user is initialized from the `Authorization` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+    **Deprecated for page-load setup.** In V3, the logged-in user is initialized from the `Authorization` header on your SSR requests. See [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3) if you are upgrading.
   :::
 
   Call `loadWithExternalId` only when the user logs in **without a full page reload**. If login triggers a navigation or reload, pass the updated `Authorization` header on the next SSR request instead. See [Log in](../set-up-and-usage/login-and-logout#log-in).
 
 - `loadWithAuthlessId: (id, forbidProfiling = false) => void`: Notifies Mealz of a guest (authless) session.
   :::warning
-    **Deprecated for page-load setup.** In V3, the guest session is initialized from the `Authless-id` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+    **Deprecated for page-load setup.** In V3, the guest session is initialized from the `Authless-id` header on your SSR requests. See [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3) if you are upgrading.
   :::
 
   Call `loadWithAuthlessId` only when the guest id changes **without a full page reload** (for example after logout). If the change triggers a navigation or reload, pass the updated `Authless-id` header on the next SSR request instead. See [Log out](../set-up-and-usage/login-and-logout#log-out).
@@ -147,7 +147,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 - `reset: () => void`: Notify Mealz of a logout without page reload. See [Log out](../set-up-and-usage/login-and-logout#log-out).
 - `setLanguage: (lang: string) => void`: Sets the active language (ISO 639-1 or your custom language code).
   :::warning
-    **Deprecated for page-load setup.** In V3, language is initialized from the `Language-id` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+    **Deprecated for page-load setup.** In V3, language is initialized from the `Language-id` header on your SSR requests. See [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3) if you are upgrading.
   :::
 
   Call `setLanguage` only when the user changes language **without a full page reload**. If the change triggers a navigation or reload, pass the new `Language-id` on the next SSR request instead.

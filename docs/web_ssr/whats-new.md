@@ -10,7 +10,7 @@ V3 is the release where the SSR API stands on its own: the old Web SDK is no lon
 
 With V3, the transition from the old Web SDK to the SSR API is complete. Features and logic that previously needed the SDK now run through the SSR API and `mealz-components`, so the integration is standalone.
 
-That also means a much lighter client-side footprint: the separate `webc-miam` script is gone, and you no longer ship the deprecated SDK stack with its outdated dependencies. Components that used the `ng-miam-` prefix are renamed to `mealz-` (for example `ng-miam-recipe-tags` → `mealz-recipe-tag`).
+That also means a much lighter client-side footprint: the separate `webc-miam` script is gone, and you no longer ship the deprecated SDK stack with its outdated dependencies. Components that used the `webc-miam-` prefix are renamed to `mealz-` (for example `webc-miam-recipe-tags` → `mealz-recipe-tag`).
 
 ## A simpler way to start Mealz
 
@@ -31,8 +31,8 @@ These are capabilities many SDK integrations already relied on; V3 makes them av
 
 ## Clearer recipe card layouts
 
-Recipe card variants were simplified and renumbered so the choices are easier to reason about. If you already pass a variant today, check the mapping in the [migration guide](./migration-v2-v3) before you upgrade.
+Recipe card variants were simplified and renumbered so the choices are easier to reason about. If you already pass a variant today, check the mapping in the [migration guide](./migrating-from-earlier-versions/migration-v2-v3) before you upgrade.
 
 ## Upgrading from V2
 
-Ready to move? Follow [Migrating from V2 to V3](./migration-v2-v3) for the concrete steps and breaking-change details.
+Ready to move? Follow [Migrating from V2 to V3](./migrating-from-earlier-versions/migration-v2-v3) for the concrete steps and breaking-change details.

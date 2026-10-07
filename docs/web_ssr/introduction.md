@@ -9,14 +9,14 @@ Mealz Custom Elements is a library of [Server Side Rendered (SSR)](https://www.h
 The library exposes an API (built on [NestJS](https://docs.nestjs.com/techniques/mvc)) with endpoints named after each component. Your server calls these endpoints, injects the returned HTML into your pages, and the components hydrate automatically in the browser.
 
 :::tip V3 is the current version
-**V3 is the current and recommended version.** It simplifies setup (Mealz initializes from your SSR request headers), consolidates components in `mealz-components`, and improves SSR coverage for teams leaving the older Web SDK. See [What's new](./whats-new) for a short overview, or the [migration guide](./migration-v2-v3) if you are upgrading from V2.
+**V3 is the current and recommended version.** It simplifies setup (Mealz initializes from your SSR request headers), consolidates components in `mealz-components`, and improves SSR coverage for teams leaving the older Web SDK. See [What's new](./whats-new) for a short overview, or the [V2 migration guide](./migrating-from-earlier-versions/migration-v2-v3) if you are upgrading from V2.
 :::
 
 ## Where to start
 
 - **New integration?** Follow [Getting started](./getting-started/overview).
 - **Curious what shoppers see?** Browse [About Mealz](./category/about-mealz).
-- **Upgrading from V2?** Read [Migrating from V2 to V3](./migration-v2-v3).
+- **Upgrading from V2?** Read [Migrating from V2 to V3](./migrating-from-earlier-versions/migration-v2-v3).
 - **Looking up a route or parameter?** Use the [Integration reference](./category/integration-reference).
 
 ## How it works
