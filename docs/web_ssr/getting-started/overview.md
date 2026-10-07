@@ -17,5 +17,5 @@ This guide walks you through a first Mealz SSR integration: load styles and Meal
 Before you start, make sure you have your Mealz **supplier token** (your Mealz contact provides these, including separate tokens for test and production)
 
 :::note
-If you are upgrading an existing V2 integration instead of starting fresh, prefer the [migration guide](../migration-v2-v3).
+If you are upgrading an existing V2 integration instead of starting fresh, prefer the [migration guide](../migrating-from-earlier-versions/migration-v2-v3).
 :::
