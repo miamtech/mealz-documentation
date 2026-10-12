@@ -85,7 +85,7 @@ export class Mealz {
 ```
 
 :::info
-Both methods carry the profiling permission. If that permission changes while Mealz scripts are active, `window.mealz.user.updateForbidProfiling` can update it without a reload. See [window.mealz.user](../customization/window-mealz#windowmealzuser).
+Both methods accept a `forbidProfiling` argument. On page load, send the profiling choice with the optional `cookies-consent` header on SSR requests instead. If consent changes while Mealz scripts stay active, the current view can keep the previous choice until the next load; call `loadWithExternalId` or `loadWithAuthlessId` again with the updated value when the open view must reflect the new choice immediately. See [window.mealz.user](../customization/window-mealz#windowmealzuser) and [HTTP request headers](../integration-reference/pre-rendered-components#http-request-headers).
 :::
 
 ## Transferring an authless basket after login
