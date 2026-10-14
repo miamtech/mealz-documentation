@@ -1,0 +1,8 @@
+{
+  "label": "Recipe Card",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "kmm/features/recipe-card/index"
+  }
+}

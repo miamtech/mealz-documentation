@@ -1,44 +1,48 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 # Handle user login and logout
 
-## When Mealz scripts are active
+## User identity on SSR requests
 
-### Log in
+Mealz reads the current user from your [SSR request headers](../integration-reference/pre-rendered-components#http-request-headers):
 
-Many of Mealz features are enabled by having a user connected, so if you want to use them, you will need to set events to notice Mealz when your users log in or out.
+- Logged-in user: `Authorization`
+- Guest: `Authless-id`
 
-> Features that require the user being connected include:
+When those headers match the user already shown on your site, **nothing else is required on page load**. The `loadWithExternalId` and `loadWithAuthlessId` client methods exist for cases where **the page stays open while the user changes** (see below).
+
+Most sites reload or navigate on login and logout. The next SSR request then carries the updated headers, and Mealz follows without any client call.
+
+## Login or logout without a page reload
+
+On a single-page app, Mealz scripts can remain on the page while the user logs in or out. Until the next SSR fetch, the headers from the previous response no longer reflect the current user. The methods below keep Mealz in sync in that situation.
+
+> Features that require a connected user include:
 >
-> - Personalized content (machine learning on recipes added & products replaced by the user)
+> - Personalized content (machine learning on recipes added and products replaced by the user)
 > - Favorite recipes
 > - Personal recipes
 > - Preferences
 
-When your user logs in, you can use:
+### Log in
+
+`loadWithExternalId` tells Mealz that the user has logged in:
 
 ```ts
 window.mealz.user.loadWithExternalId(userID: string, forbidProfiling: boolean).subscribe();
-// This method is an observable so you can call some code only after user is logged in our system if you need,
-// the downside being that you have to subscribe() even if you don't need it
+// Observable: subscribe() even if you do not need the callback
 ```
 
-- userId: a unique identifier that we can recognize the user by
-- forbidProfiling: true if the user has refused all cookies and false if they have accepted them (if true, personalized content will be desactivated).
+- `userId`: a unique identifier Mealz can recognize the user by
+- `forbidProfiling`: `true` if the user refused all cookies, `false` if they accepted them (`true` disables personalized content)
 
-:::info
-If the user is logged in at the time Mealz scripts are loaded on the page, it needs to be notified at startup, as if the user just logged in
-:::
-:::warning
-Do not forget to remove the authless-id you stored and pass in the headers as detailed in the [HTTP request headers](../main-features/pre-rendered-components#http-request-headers) section
-:::
+SSR requests after login should send `Authorization` instead of `Authless-id`. See [HTTP request headers](../integration-reference/pre-rendered-components#http-request-headers).
 
 ```ts
 // Example Setup
 export class Mealz {
-  // Call this method from your app when the user logs in or when Mealz is set up
   handleLogin(user) {
     window.mealz.user
       .loadWithExternalId(user.id, !user.cookiesAccepted())
@@ -51,26 +55,26 @@ export class Mealz {
 
 ### Log out
 
-When your user logs out, call `window.mealz.user.reset()` to disconnect the user from Mealz. Additionally, when the user logs out, you must generate a new authless ID and pass it in the headers in the future, as detailed in the [Pre-rendered Components](../main-features/pre-rendered-components) section.
+`reset()` clears the logged-in session on the Mealz side.
 
-Just like you inform Mealz of the user's id, if your user is logged out (when Mealz scripts are loaded or after calling `window.mealz.user.reset()`), you will need to inform Mealz of the authless-id so it can remember the unlogged user:
+If the user keeps browsing as a guest, generate a new authless id (see [Authless user](../integration-reference/pre-rendered-components#authless-user)) and pass it to `loadWithAuthlessId`:
 
 ```ts
 window.mealz.user.loadWithAuthlessId(authlessId: string, forbidProfiling?: boolean);
 ```
 
-It works similarly to the method `loadWithExternalId`, except you do not need to subscribe on it, as it does not do anything asynchronous on Mealz end.
+The next SSR requests would use the new id in the `Authless-id` header instead of `Authorization`.
+
+Unlike `loadWithExternalId`, this method is synchronous on Mealz's side, so there is no `subscribe()`.
 
 ```ts
 // Example Setup
 export class Mealz {
-  // Call this method from your app when the user logs out
   handleLogout() {
     window.mealz.user.reset();
-    this.handleAuthless()
+    this.handleAuthless();
   }
 
-  // Call this method from your app during Mealz setup if the user is logged out
   handleAuthless() {
     // ...
     // generate the new authless-id via the route /generate-authless-token
@@ -81,31 +85,25 @@ export class Mealz {
 ```
 
 :::info
-  Since the `loadWithExternalId` and `loadWithAuthlessId` carry the information of the profiling permission, if the permission changes while the scripts are active, you can call `window.mealz.user.updateForbidProfiling` to update the information (see [window.mealz](../customization/window-mealz#windowmealzuser) for method usage).
+Both methods carry the profiling permission. If that permission changes while Mealz scripts are active, `window.mealz.user.updateForbidProfiling` can update it without a reload. See [window.mealz.user](../customization/window-mealz#windowmealzuser).
 :::
 
-## When Mealz scripts are not active
+## Transferring an authless basket after login
 
-If a user logs in when the Mealz scripts are not active, you need to decide how to handle the situation the next time our components are displayed.
+If the user logs in while no Mealz component is mounted, the next SSR request with `Authorization` starts a fresh Mealz session. That is usually enough.
 
-If, at startup, you proceed normally and pass the user ID to us, Mealz will treat the new user as a new session rather than a continuation of the previous session. This is generally acceptable, except if your website allows unlogged carts and the unlogged user had already added some recipes to the cart.
+The edge case is an authless user who already added recipes to a Mealz basket, then logs in on a page where Mealz was not active. Without an extra step, that basket would not carry over to their account.
 
-> **If that happens, the user will lose the recipes they had previously added to their cart !**
-
-To avoid this situation, you can call a specific route to inform Mealz that an unlogged user with an authless-id has logged in, and to transfer their current cart to their new user-id:
-
-The route to **transfer the authless basket**:
+The **`merge-authless-basket`** route transfers the basket from the previous authless session to the logged-in user:
 
 ```
 GET https://MEALZ_SSR_API_URL/API_VERSION/basket/merge-authless-basket?authless_id=xxx&store_id=xxx
 ```
 
 - Parameters :
-  - `authless_id: string`: **_(Mandatory)_** the authless-id of the user before they logged in
-  - `store_id: string`: **_(Mandatory)_** the id of the current store chosen by the user
+  - `authless_id: string`: **_(Mandatory)_** the authless id before login
+  - `store_id: string`: **_(Mandatory)_** the id of the store currently selected by the user
 
 :::info
-Since the route transfers the basket from the authless-id to the user-id, you need to use the `Authorization: user_id` header when calling it, instead of the `Authless-id` header.
+This route moves the basket from the authless id to the user id. Call it with the `Authorization: user_id` header, not `Authless-id`.
 :::
-
-

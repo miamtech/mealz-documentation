@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ## Overview
 
-The `no-supplier-add-to-cart-cta` is the only pre-rendered component you need as a non-retailer. It replaces the regular [recipe-card](../main-features/recipe-card) in your integration: since you already display the recipe on your own page (title, image, ingredients, steps...), all you need from Mealz is a CTA that lets the user add the recipe's ingredients to a Mealz basket.
+The `no-supplier-add-to-cart-cta` is the only pre-rendered component you need as a non-retailer. It replaces the regular [recipe-card](../integration-reference/recipe-card) in your integration: since you already display the recipe on your own page (title, image, ingredients, steps...), all you need from Mealz is a CTA that lets the user add the recipe's ingredients to a Mealz basket.
 
 The component has two visual states:
 
@@ -38,19 +38,19 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta
 ### Example
 
 :::warning
-Do not forget the [mandatory HTTP headers](../main-features/pre-rendered-components#http-request-headers)
+Do not forget the [mandatory HTTP headers](../integration-reference/pre-rendered-components#http-request-headers)
 :::
 
 Minimal call (the usual case for a non-retailer):
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=22509
+GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=12345
 ```
 
 With an explicit guest count:
 
 ```
-GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=22509&guests=6
+GET https://MEALZ_SSR_API_URL/API_VERSION/no-supplier-add-to-cart-cta?recipe_id=12345&guests=6
 ```
 
 ## Guest count after load
@@ -102,9 +102,9 @@ Since the component renders two buttons (static and fixed), do not apply the sam
 
 ## How to integrate it
 
-The integration is the same as for any other [pre-rendered custom element](../main-features/pre-rendered-components):
+The integration is the same as for any other [pre-rendered custom element](../integration-reference/pre-rendered-components):
 
-1. Call the route above from your server with the [mandatory HTTP headers](../main-features/pre-rendered-components#http-request-headers).
+1. Call the route above from your server with the [mandatory HTTP headers](../integration-reference/pre-rendered-components#http-request-headers).
 2. Inject the returned HTML wherever you want the CTA to appear on your recipe page (typically next to the recipe title/image).
 3. Let the [setup](./setup) you did earlier handle the rest: hydration, opening the drawer, adding ingredients to the Mealz basket, and transferring the basket to an affiliated retailer.
 

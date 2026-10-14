@@ -2,6 +2,8 @@
 sidebar_position: 3
 ---
 
+import ImageWithCaption from '@site/src/components/ImageWithCaption';
+
 # Setting up promotions based on products on sale
 
 Our library provides the capability to manage promotional recipes based on the products you have on sale.
@@ -14,10 +16,16 @@ You can find information concerning promotions in three different sections of ou
 
 ## Recipe sale badge:
 
-![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/recipe-on-sale.png "Recipe with the sale badge")
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/recipe-on-sale.png"
+alt="Recipe with the sale badge"
+caption="Recipe with the sale badge"
+imageMaxHeight="500px"
+/>
+<br/>
 
 Recipes containing at least one product on sale will display a **promotion badge** on
-the [recipe card](../features/recipe-card). This badge is managed on
+the [recipe card](../integration-reference/recipe-card). This badge is managed on
 our end, meaning if a user changes the products in a recipe, the display of the badge will not update to reflect these
 changes.
 
@@ -27,7 +35,13 @@ not be displayed.
 
 ## Products in sale:
 
-![alt text](https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/product-in-sale.png "Product with sale indicators")
+<ImageWithCaption
+url="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/web/examples/9.1/product-in-sale.png"
+alt="Product with sale indicators"
+caption="Product with sale indicators"
+imageMaxHeight="400px"
+/>
+<br/>
 
 On a product card and in the replace item modal, if the product is on sale, you'll see two indicators:
 
@@ -56,6 +70,6 @@ Once you have enabled promotions with our backend team, you can just override th
 
 After completing these steps, your users will be able to see the promotion banner and be redirected to the promotion page by clicking on it.
 
-Promotions are treated as a filter on our end, so the URL for the promotion page is the same as for a normal search, with the addition of `?promotion=true` to indicate to the library that the user is on the promotion page.
+Promotions are treated as a filter on our end, so the URL for the promotion page is the same as for a normal search, with the addition of `?promotions=true` to indicate to the library that the user is on the promotion page.
 
 Don't hesitate to customize the banner CSS to match your website's design.

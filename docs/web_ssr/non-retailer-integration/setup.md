@@ -6,75 +6,50 @@ sidebar_position: 2
 
 As a non-retailer, your setup is a subset of the regular one described in [Set up and usage](../category/set-up-and-usage). This page only covers the steps you need, and links to the corresponding retailer pages for the details of each method.
 
-Just like for the retailer setup, we recommend you follow these steps **in order** and **at the starting point of your app**, for the reasons explained in [Getting started](../set-up-and-usage/getting-started).
+In V3, Mealz initializes from the [HTTP headers](../integration-reference/pre-rendered-components#http-request-headers) and query parameters you pass on each SSR request. You do not call `setupWithToken`, `setLanguage`, or user-load methods on page load. Wire the client-side callbacks below once when your app starts (after the Mealz scripts from an SSR response are on the page).
 
-We will build the setup progressively into a class named `Mealz`, and show the final result at the end of the page.
+We show those callbacks in a small `Mealz` helper class and give the full example at the end of the page.
 
 ```js
 // Example Setup
 export class Mealz {
-  // Mealz setup goes here
+  // Client-side callbacks go here
 }
 ```
 
-## Load your supplier token
+## Pass HTTP headers on SSR requests
 
-This step is identical to the retailer integration: we provide you a single token that identifies your site, and you load it with:
+Every call to the Mealz SSR API (including [no-supplier-add-to-cart-cta](./no-supplier-add-to-cart-cta)) must send the [mandatory HTTP headers](../integration-reference/pre-rendered-components#http-request-headers), like for retailers.
 
-```js
-window.mealz.supplier.setupWithToken(token: string)
-```
-
-The only difference is that the token we give you will have the internal `noSupplier` flag set to `true`. This is what makes all the store-related features of the library inactive for you - you do not have to configure anything specific on your side.
-
-```ts
-// Example Setup
-export class Mealz {
-  mealzToken = "aNoSupplierToken";
-
-  constructor() {
-    window.mealz.supplier.setupWithToken(this.mealzToken);
-  }
-}
-```
-
-See [Configure library context](../set-up-and-usage/library-context) for the full description of this method.
+The supplier-token we provide you has the internal `noSupplier` flag set to `true`. That is what disables store-related features on your side; you do not configure anything extra to enter non-retailer mode. See [Introduction](./introduction#what-is-different-compared-to-a-retailer-integration).
 
 :::info
-There is no need to call `window.mealz.pos.load`. Non-retailer mode takes care of store selection entirely, so leaving it out is the correct behavior.
+There is no need to pass `store_id` or call `window.mealz.pos.load`. Non-retailer mode has no point of sale on your site; store selection happens later when the user picks an affiliated retailer.
 :::
-
-## Set the language
-
-This step is also identical to the retailer integration:
-
-```js
-window.mealz.user.setLanguage('en' | 'fr' | ...);
-```
 
 ## Handle user login and logout
 
-User identification works exactly the same way as for retailers. When the user logs in:
+User identification works the same way as for retailers. Pass `Authorization` or `Authless-id` on your SSR requests; call the client methods below only when login or logout happens **without a page reload**. See [Handle user login and logout](../set-up-and-usage/login-and-logout).
+
+When the user logs in without leaving the page:
 
 ```ts
 window.mealz.user.loadWithExternalId(userId: string, forbidProfiling: boolean).subscribe();
 ```
 
-When the user logs out (or when your app starts with an unlogged user):
+When the user logs out without leaving the page (or becomes a guest again):
 
 ```ts
 window.mealz.user.reset();
 window.mealz.user.loadWithAuthlessId(authlessId: string, forbidProfiling?: boolean);
 ```
 
-See [Handle user login and logout](../set-up-and-usage/login-and-logout) for the full details, including how to generate and rotate the authless id.
-
 ## Set the hook callback
 
 The [hook callback](../set-up-and-usage/hooks) is called by Mealz before any action that requires the user to be logged in or to have picked a store. In non-retailer mode:
 
-- `isPosValid` is always **`true`**: no store needs to be picked on your side.
-- `isLogged` behaves exactly as on a retailer integration and reflects whether you have called `loadWithExternalId`.
+- `isStoreValid` is always **`true`**: no store needs to be picked on your side.
+- `isLogged` behaves exactly as on a retailer integration: it reflects whether the user is logged in on Mealz's side (from SSR headers in V3, or after `loadWithExternalId` when login happens without a page reload).
 
 So the callback boils down to deciding what to do when the user is not logged in:
 
@@ -87,7 +62,7 @@ export class Mealz {
     window.mealz.hook.setHookCallback(this.hookCallback);
   }
 
-  hookCallback = (isLogged, _isPosValid) => {
+  hookCallback = (isLogged, _isStoreValid) => {
     if (!isLogged) {
       // Redirect the user to your login page
     }
@@ -105,7 +80,7 @@ export class Mealz {
     window.mealz.hook.setHookCallback(this.hookCallback);
   }
 
-  hookCallback = (_isLogged, _isPosValid) => true;
+  hookCallback = (_isLogged, _isStoreValid) => true;
 }
 ```
 
@@ -118,25 +93,19 @@ There is no need to set up anything under [Basket synchronization](../set-up-and
 At the end of the setup, the `Mealz` class for a non-retailer integration looks like this:
 
 ```ts
-// TS only
-import MealzInterface from 'webc-miam/interfaces/mealz-interface';
-
 // Example Setup
 export class Mealz {
-  mealzToken = 'aNoSupplierToken';
   // TS only
-  mealz = (window as any).mealz as MealzInterface;
+  mealz = (window as any).mealz;
   // You can then replace all 'window.mealz' by 'this.mealz'
 
   constructor() {
-    window.mealz.supplier.setupWithToken(this.mealzToken);
-    window.mealz.user.setLanguage('en');
     window.mealz.hook.setHookCallback(this.hookCallback);
   }
 
   /////////////// LOGIN/LOGOUT ///////////////
 
-  // Call this method from your app when the user logs in
+  // Call this method from your app when the user logs in without a page reload
   handleLogin(user) {
     window.mealz.user
       .loadWithExternalId(user.id, !user.cookiesAccepted())
@@ -145,14 +114,14 @@ export class Mealz {
       });
   }
 
-  // Call this method from your app when the user logs out
+  // Call this method from your app when the user logs out without a page reload
   handleLogout() {
     window.mealz.user.reset();
   }
 
   /////////////// HOOKS CALLBACK ///////////////
 
-  hookCallback = (isLogged, _isPosValid) => {
+  hookCallback = (isLogged, _isStoreValid) => {
     if (!isLogged) {
       // Navigate to your login page
     }
@@ -163,4 +132,4 @@ export class Mealz {
 }
 ```
 
-Once this setup is in place, you can integrate the [no-supplier-add-to-cart-cta](./no-supplier-add-to-cart-cta) component next to your recipes.
+Once headers and callbacks are in place, integrate the [no-supplier-add-to-cart-cta](./no-supplier-add-to-cart-cta) component next to your recipes.

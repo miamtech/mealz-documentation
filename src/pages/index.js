@@ -32,6 +32,13 @@ function HomepageHeader() {
           <div>
             <Link
               className="button button--secondary button--lg"
+              to="/docs/kmm/Introduction">
+              KMM 🧩
+            </Link>
+          </div>
+          <div>
+            <Link
+              className="button button--secondary button--lg"
               to="/docs/web_sdk/Introduction">
               Web SDK 🌐
             </Link>
@@ -39,7 +46,7 @@ function HomepageHeader() {
           <div>
             <Link
               className="button button--secondary button--lg"
-              to="/docs/web_ssr/Introduction">
+              to="/docs/web_ssr/introduction">
               Web SSR ☁️
             </Link>
           </div>

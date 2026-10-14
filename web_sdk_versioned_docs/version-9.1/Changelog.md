@@ -4,6 +4,78 @@ sidebar_position: 12
 
 ## Changelog
 
+## v9.1.33 - [23/09/2026]
+
+#### Added:
+- *analytics*:
+  - `index` property on `entry.added`, `entry.deleted`, and `product.show` (0-based position in the recipe shopping list).
+
+#### Updated:
+- *analytics*:
+  - Bumped `mealz-shared-analytics` to `^4.16.0`.
+
+#### Fixed:
+- *basket-transfer*: ITM (`pdvref`) waits for `pos.extId` to match before `/baskets/transfer` (after ITM `pos.load()` on view refresh). Cookie polling and `location.reload()` were removed so to avoid cancelling mid basket-synchro. (#12451cu3t6d)
+
+## v9.1.32 - [17/09/2026]
+
+#### Added:
+- *analytics*:
+  - Viewport-based `product.show` on recipe details product cards (≥80% visible for 1s, deduped per `recipe_id:item_id` per visit, no re-fire on scroll or replace/back).
+- *analytics-service* / *basket-preview-line*:
+  - Add `product_base_price` (`basketEntry.price`, `"0"` when missing) to `entry.added` and `entry.deleted`
+
+#### Updated:
+- *analytics*:
+  - Bumped `mealz-shared-analytics` to `^4.15.0` so `product.show` is a known event (`sendEvent` no longer drops it). Includes `product_base_price` from 4.14.0.
+
+#### Internal
+- Transpile mealz-shared-analytics in the WebC webpack build and Jest (Kotlin/JS `??` is not parsed by Angular 11 / Node 12)
+
+## v9.1.31 - [21/08/2026]
+
+#### Fixed:
+- *window.mealz.analytics* — `attachRecipeCardShowTracking` always uses the current page URL (`location.href`); `analyticsPath` is not part of the public API (#86cb88rwy).
+
+## v9.1.30 - [09/07/2026]
+
+#### Added:
+- *window.mealz.analytics*:
+  - `attachRecipeCardShowTracking({ element, recipeId, categoryId?, analyticsPath? })` attaches viewport-based `recipe.show` tracking on a custom recipe card root (same rules as `mealz-recipe-card`: ≥80% visible for 1s, deduped until the user scrolls). Returns `{ disconnect() }` for teardown on virtual lists or SPA navigation.
+
+#### Internal:
+- *recipe-card-show-tracker* / *attach-recipe-card-show-tracking* / *viewport-listener*:
+  - SDK-side implementation of the recipe show pipeline; tracker singleton is stored on `window.__mealzRecipeCardShowTracker__` so dedup stays shared with Lit recipe cards.
+
+## v9.1.29 - [24/04/2026]
+
+#### Fix:
+- *mealz.openDetails*
+  - Now force path to '' to avoid analytics errors
+
+## v9.1.28 - [24/04/2026]
+
+#### Internal
+- Update mealzSharedAnalytic version to 4.13.0
+
+## v9.1.27 - [20/04/2026]
+
+#### Updated:
+- *mealz* - *mealzInternal*:
+  - `recipes.openDetails` accepts the planner flag as fifth argument and optional `categoryId` as sixth argument; when a string is passed as fifth argument it is still treated as the legacy `categoryId`.
+- *mealzInternal*:
+  - `recipes.updateRecipeLike` accepts an optional `categoryId` and forwards it in the like/unlike event trace.
+
+#### Fixed:
+- *analytics-service*:
+  - `recipe.add` now forwards `category_id` when it is present in the basket action event trace.
+
+## v9.1.26 - [26/02/2026]
+
+#### Added
+- *mealz*: 
+  - Expose `recipes.openDetails` to open recipe details (previously only on mealzInternal)
+
 ## v9.1.25 - [12/06/2026]
 
 #### Updated:

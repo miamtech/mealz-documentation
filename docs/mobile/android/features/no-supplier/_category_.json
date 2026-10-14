@@ -1,0 +1,8 @@
+{
+  "label": "No Supplier",
+  "position": 6,
+  "link": {
+    "type": "doc",
+    "id": "android/features/no-supplier/index"
+  }
+}

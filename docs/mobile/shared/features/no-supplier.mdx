@@ -1,0 +1,253 @@
+import Link from '@docusaurus/Link';
+import { NoSupplierGuestCountTip, NoSupplierServesParamWarning } from './guestCountAdmonitions';
+
+When your supplier key is in **No Supplier** mode (encoded in the key Mealz provides), Mealz owns the basket. Extra WebView helpers cover retailer/store picking, pricing, and transfer CTAs.
+
+:::important Host Setup
+In No Supplier mode, do **not** call `setUser("…")` and do **not** select a store yourself (`setSelectedStoreWithExternalId` / `setSelectedStoreWithMealzId`). Leave authless defaults; retailer and store picking go through [Supplier Selector](#supplier-selector).
+:::
+
+## Basket Transfer
+
+From the Mealz basket preview (No Supplier), the shopper confirms transfer toward an affiliated retailer. That CTA triggers the handoff: MealzUIKit opens the retailer URL **outside** your app with `transferred_basket_token`. There is no separate transfer API — host Add to Cart / Supplier Selector and allow that handoff.
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/basketPreview.png"
+  alt="No Supplier basket preview — transfer starts from the action under this screen"
+  style={{maxWidth: '280px'}}
+/>
+
+export function BasketTransferNoSupplierCallout(props) {
+  return (
+    <p>
+      Full flow (No Supplier emit + Retailer receive):{' '}
+      <Link to={`/docs/${props.platform}/features/basket-transfer`}>Basket Transfer</Link>.
+    </p>
+  );
+}
+
+<BasketTransferNoSupplierCallout platform={props.platform}/>
+
+## Supplier Selector
+
+Lets the shopper pick an affiliated grocery retailer (and then a store). Mealz opens this automatically when a store is required, or other No Supplier components request it via `redirectToSupplierSelector`. You should not set the Mealz store id manually in the normal flow.
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/supplierSelectorStep1.png"
+  alt="Supplier selector — pick retailer"
+  style={{maxWidth: '280px'}}
+/>
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/page-overviews/supplierSelectorStep2.png"
+  alt="Supplier selector — pick store"
+  style={{maxWidth: '280px'}}
+/>
+
+export function SupplierSelectorInitLink(props) {
+  return (
+    <p>
+      See <Link to={`/docs/${props.platform}/overview/initialisation`}>Initialisation → Store</Link>.
+    </p>
+  );
+}
+
+<SupplierSelectorInitLink platform={props.platform}/>
+
+Background: [Non-retailer introduction](/docs/web_ssr/v2/non-retailer-integration/introduction) (steps 3–4 of the transfer journey).
+
+### Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `context` | `SupplierSelectorContext` | yes | — | Why the selector opened. Today: `OpenedForAddToCartByExternalId(externalRecipeId)`. |
+| `navigationCallback` | `SupplierSelectorNavigationCallback` | yes | — | Only `exit` matters (cancel or store selected). |
+| `modifier` | Compose `Modifier` | no | fills max size | Layout. |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+### `SupplierSelectorNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `exit` | yes | Dismiss the selector when the user cancels **or** after a store is selected. |
+
+## Recipe Pricing
+
+Shows the price for a recipe in the No Supplier context.
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/recipePricingNoStore.png"
+  alt="Recipe pricing — no store selected"
+  style={{maxWidth: '280px'}}
+/>
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/recipePricing.png"
+  alt="Recipe pricing — store selected"
+  style={{maxWidth: '280px'}}
+/>
+
+### Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `displayRecipe` | `DisplayRecipe` | yes | — | Mealz or external recipe id (`FromMealzRecipeId` / `FromExternalRecipeId`). |
+| `serves` | `Int?` | no | `null` | Portion / guest count for pricing. |
+| `navigationCallback` | `RecipePricingNavigationCallback` | yes | — | Opens supplier selector when a store is missing. |
+| `modifier` | Compose `Modifier` | no | — | Layout (fixed height). |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+<NoSupplierServesParamWarning />
+
+### `RecipePricingNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `redirectToSupplierSelector` | yes | `(SupplierSelectorContext) -> Unit` — present `SupplierSelectorScreen` with that context. |
+
+See also [Fetching style](/docs/web_ssr/v2/main-features/fetching-style) and [Non-retailer setup](/docs/web_ssr/v2/non-retailer-integration/setup).
+
+## Add to Cart CTA
+
+Primary CTA next to a recipe to add ingredients to the Mealz basket and start transfer toward an affiliated retailer.
+
+Full web behaviour: [no-supplier-add-to-cart-cta (SSR)](/docs/web_ssr/v2/non-retailer-integration/no-supplier-add-to-cart-cta).
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/addToCartCta.png"
+  alt="Add to Cart CTA — recipe not yet added"
+  style={{maxWidth: '280px'}}
+/>
+
+<img
+  src="https://storage.googleapis.com/assets.miam.tech/kmm_documentation/shared/examples/addToCartCtaAdded.png"
+  alt="Add to Cart CTA — recipe added"
+  style={{maxWidth: '280px'}}
+/>
+
+### Parameters
+
+| Parameter | Type | Required | Default | What it does |
+|-----------|------|----------|---------|--------------|
+| `displayRecipe` | `DisplayRecipe.FromExternalRecipeId` | yes | — | **External** recipe id (your content id). |
+| `serves` | `Int?` | no | `null` | Guest count for the add-to-cart flow. |
+| `navigationCallback` | `AddToCartCtaNavigationCallback` | yes | — | Details, supplier selector, catalog. |
+| `modifier` | Compose `Modifier` | no | — | Layout (fixed height). |
+| `stateContent` | state overlays | no | library default | Optional loading UI. |
+
+<NoSupplierServesParamWarning />
+
+### `AddToCartCtaNavigationCallback`
+
+| Callback | Required | What you must do |
+|----------|----------|------------------|
+| `goToRecipeDetails` | yes | `(DisplayRecipe, serves: Int?) -> Unit` — open details for that recipe. |
+| `redirectToSupplierSelector` | yes | Present supplier selector with the given `SupplierSelectorContext`. |
+| `goToCatalog` | yes | `(FeatureRoute.Catalog) -> Unit` — open catalog when requested. |
+
+Base login / store / cart / exit redirects are no-ops on this callback — wire the three callbacks above.
+
+<NoSupplierGuestCountTip />
+
+## Basket Count Badges
+
+In No Supplier mode, Mealz owns the basket. Use `BasketCountNotifier` to drive recipe / product count badges in your app chrome.
+
+Register **after** `start`. Multiple listeners are supported — keep a reference to each listener if you need to unregister it later:
+
+export function BasketCountInject(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`BasketCountNotifier.shared.registerRecipeCountListener { count in /* badge */ }
+BasketCountNotifier.shared.registerProductCountListener { count in /* badge */ }
+// Unregister with the same listener instance:
+// BasketCountNotifier.shared.unregisterRecipeCountListener(listener:)`}</code></pre>
+    );
+  }
+  return (
+    <pre><code className="language-kotlin">{`val recipeListener = BasketCountListener { count -> /* badge */ }
+BasketCountNotifier.registerRecipeCountListener(recipeListener)
+BasketCountNotifier.registerProductCountListener { count -> /* badge */ }
+// Later:
+BasketCountNotifier.unregisterRecipeCountListener(recipeListener)`}</code></pre>
+  );
+}
+
+<BasketCountInject platform={props.platform}/>
+
+Counts are persisted locally and refreshed from WebView observers. They can be stale until a Mealz WebView opens again after process death, auth changes, or store changes without reopening Mealz UI.
+
+## Inject Examples
+
+export function NoSupplierInject(props) {
+  if (props.platform === "ios") {
+    return (
+      <pre><code className="language-swift">{`// Pricing — nested Kotlin types flatten in Swift (DisplayRecipeFromExternalRecipeId, …)
+let serves = KotlinInt(int: Int32(4))
+
+RecipePricingViewController.companion.get(
+    displayRecipe: DisplayRecipeFromExternalRecipeId(id: "ext-recipe-1"),
+    serves: serves,
+    stateContent: nil,
+    navigationCallback: RecipePricingNavigationCallback(
+        redirectToSupplierSelector: { context in /* present SupplierSelectorViewController */ }
+    )
+)
+
+// Add to Cart CTA
+AddToCartCTAViewController.companion.get(
+    displayRecipe: DisplayRecipeFromExternalRecipeId(id: "ext-recipe-1"),
+    serves: serves,
+    stateContent: nil,
+    navigationCallback: AddToCartCtaNavigationCallback(
+        goToRecipeDetails: { displayRecipe, serves in
+            // Forward serves as-is (should match your No Supplier counter) into RecipeDetailsViewController
+            // serves is KotlinInt? — e.g. serves.map { Int(truncating: $0) }
+        },
+        redirectToSupplierSelector: { context in },
+        goToCatalog: { route in }
+    )
+)
+
+// Supplier Selector
+SupplierSelectorViewController.companion.get(
+    context: SupplierSelectorContextOpenedForAddToCartByExternalId(
+        externalRecipeId: "ext-recipe-1"
+    ),
+    stateContent: nil,
+    navigationCallback: SupplierSelectorNavigationCallback(
+        exit: { /* dismiss */ }
+    )
+)`}</code></pre>
+    );
+  }
+  // Android + KMM — same Compose APIs as sdk-demo-android / SampleKMMSDKIntegration
+  return (
+    <pre><code className="language-kotlin">{`RecipePricing(
+    displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
+    serves = 4,
+    navigationCallback = RecipePricingNavigationCallback(
+        redirectToSupplierSelector = { /* open SupplierSelectorScreen */ }
+    )
+)
+
+AddToCart(
+    displayRecipe = DisplayRecipe.FromExternalRecipeId("ext-recipe-1"),
+    serves = 4,
+    navigationCallback = AddToCartCtaNavigationCallback(
+        goToRecipeDetails = { displayRecipe, serves ->
+            // Forward serves as-is (should match your No Supplier counter) into RecipeDetailsScreen
+        },
+        redirectToSupplierSelector = { },
+        goToCatalog = { }
+    )
+)
+
+SupplierSelectorScreen(
+    context = SupplierSelectorContext.OpenedForAddToCartByExternalId("ext-recipe-1"),
+    navigationCallback = SupplierSelectorNavigationCallback(exit = { })
+)`}</code></pre>
+  );
+}
+
+<NoSupplierInject platform={props.platform}/>

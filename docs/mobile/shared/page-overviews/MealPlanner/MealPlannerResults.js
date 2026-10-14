@@ -15,7 +15,7 @@ If the user selects the 'replace' (remplacer) button, they will be navigated to 
 When the user selects the CTA, they will be navigated to the <code>MealPlannerBasket</code> page where the recipes will be added to their basket.
 </p>"
                     alt="MealPlannerResults"
-                    caption="Miam Neutral Meal Planner Results page"
+                    caption="Miam Neutral Mealz Planner Results page"
                     imageMaxWidth="250px"
             />
     );

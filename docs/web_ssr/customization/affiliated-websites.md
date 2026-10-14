@@ -15,7 +15,7 @@ The process is the following:
 
   If you need us to add more params or if any params are in conflict with yours, please contact us so we can work it together
 :::
-4. On your website, the SDK catches the urlParams, removes them from the url and stores them in sessionStorage until the basket is fully transferred 
+4. On your website, Mealz catches the urlParams, removes them from the url and stores them in sessionStorage until the basket is fully transferred 
   :::info
     Params are stored in sessionStorage because we take into account that maybe logging the user or forcing the store could force your website to reload, which would interrupt the process on our side. So in order to continue the process after any reload, we need to store the params temporarily
 
@@ -25,7 +25,7 @@ The process is the following:
   :::note
     This means if your website accepts unlogged carts, the features will take it into account as usual
   :::
-6. Once `hookCallback` has returned true, if the current POS is not the one passed in params, Mealz calls forcePosCallback method (defined via [setForcePosCallback](#set-force-pos-callback)) with the id of the store selected by the user on the affiliated website in param
+6. Once `hookCallback` has returned true, if the current POS is not the one passed in params, Mealz calls `forcePosCallback` method (defined via [setForcePosCallback](#set-force-pos-callback)) with the id of the store selected by the user on the affiliated website in param
 7. Once `forcePosCallback` has returned true, Mealz adds all products that were added to the basket on the affiliated website to your cart, as if the user had added them all at the same time on your website
 8. Once all products are added, Mealz removes the urlParams stored earlier from sessionStorage
   :::info

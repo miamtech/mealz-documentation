@@ -4,6 +4,39 @@ sidebar_position: 11
 
 ## Changelog
 
+## v8.8.17 [13/08/2026]
+
+#### Fixed:
+- *baskets* / *context*:
+  - Authless → logged-in transfer no longer cancels the in-flight `PATCH /baskets/transfer_authless` when a second `refreshCurrentBasket` runs on login.
+  - `_miam/authlessId` is cleared only after a successful authless transfer, not when the refresh starts.
+  - On login with a pending authless basket, `initBasketPreviewOnly()` avoids a concurrent `loadBasket` refresh racing `reloadBasket`.
+
+#### Updated
+- *analytics*:
+  - Bump `mealz-shared-analytics` to `4.13.1` and route all SDK events through `initSharedAnalytics` + dual-send (Plausible + `analytics.mealz.ai` / BigQuery).
+  - Legacy 8.8 event names are mapped to canonical shared-analytics names in `AnalyticsService` without changing call sites (`entry.add` → `entry.added`, `entry.replace` → `entry.replaced`, `pos.selected` → `locator.select`, etc.).
+  - `recipe.print` is now reported as `recipe.show`.
+  - Basket analytics props aligned with shared-analytics validation (`product_quantity` on change-qty/replace; `new_ext_item_id` / `old_ext_item_id` mapped to canonical keys on replace).
+  - `recipe.reset` is skipped (reset is covered by subsequent `recipe.remove` events).
+
+## v8.8.16 [20/05/2026]
+
+#### Fixed:
+- *user* / *context*:
+  - Anonymous (`authless`) user creation no longer waits on an 800 ms debounce; concurrent calls share a single in-flight `POST /users/authless` so dependent API calls are not sent before `Authorization: user_id …` is available (e.g. after clearing storage).
+- *baskets*:
+  - `refreshCurrentBasket` waits for an anonymous user id when neither a bearer token nor `_miam/userId` is set.
+  - `GET /baskets/affiliated` runs only after the current basket load/update finishes; retries when the API responds with “no basket found” while the backend links the basket.
+- *recipes*:
+  - Batch recipe suggestions (`POST …/recipes/suggestions-batch`) wait for the same anonymous identity guard before firing.
+
+## v8.8.15 - [02/04/2026]
+
+#### Added:
+  - *no-supplier-onboarding*:
+    - When clicking on the confirm button of the modal, it dispatches an event called "mealz-onboarding-confirm-select-store"
+
 ## v8.8.14 - [19/11/2025]
 
 #### Updated
