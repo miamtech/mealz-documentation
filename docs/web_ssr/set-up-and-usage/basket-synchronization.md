@@ -187,17 +187,20 @@ This ensures that if the authless user had a cart, Mealz will merge this cart wi
 
 #### Notify us when payment starts
 
-When the user **begins** the checkout / payment journey on your native cart (typically when they click on a "Confirm my cart" button), call this route so Mealz can emit the analytics event `payment.started`. This is the SSR equivalent of `paymentStarted` (see [Other](/docs/web_ssr/customization/window-mealz#other)).
+When the user **begins** the checkout / payment journey on your native cart (typically when they click on a "Confirm my cart" button), call this route. Mealz synchronizes its basket with the cart you send, then emits the analytics event `payment.started`. The basket is not confirmed. This is the SSR equivalent of `paymentStarted` (see [Other](/docs/web_ssr/customization/window-mealz#other)).
 
 ```
 POST https://MEALZ_SSR_API_URL/API_VERSION/basket/payment-started
 ```
 
 - Parameters:
-  - `store_id: string`: **_(Mandatory)_** The store chosen for the cart.
-  - `order_id: string`: **_(Optional)_** The order id if already known at checkout start (same contract as `handle-payment`).
+  - `store_id: string`: **_(Mandatory)_** The store chosen for the cart. There is no `order_id` on this route (`order_id` belongs to `/basket/handle-payment` only).
 
-- Body: **Same contract as `/basket/handle-payment`** (see below)
+- Body: JSON (**set the Content-Type header to `application/json`**). See the example under `/basket/handle-payment`.
+  - `totalPrice`: **_(Mandatory)_** Total price of the user's cart **(Mealz products and retailer products)**. The route rejects the call when it is missing or not greater than 0.
+  - `products`: **_(Mandatory)_** Array using the same structure as the **ComparableProducts** described above. Unlike `/basket/handle-payment`, omitting `products` is rejected.
+
+`payment.started` is sent only when the Mealz basket total is greater than 0 after this sync.
 
 :::tip
 Recommended duo for native checkout: call **`payment-started`** when checkout begins, then **`handle-payment`** when payment succeeds.
@@ -220,7 +223,7 @@ POST https://MEALZ_SSR_API_URL/API_VERSION/basket/handle-payment
   - The body has one attribute `totalPrice` for the total price of the user's cart **(Mealz products & retailer products included)**
   - The body has an other attribute `products` being an array using the same structure as the **ComparableProducts** described above.
 
-See below for an example of body for the `/basket/payment-started` and `/basket/handle-payment` routes:
+See below for an example of body. `/basket/payment-started` always requires `products`. `/basket/handle-payment` uses the same shape when you send the cart:
 ```json
 {
   "totalPrice": 12.34,
