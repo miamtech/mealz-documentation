@@ -123,7 +123,7 @@ sidebar_position: 1
 
 #### Added
 - *basket* — v1 & v2
-  - New route `POST /basket/payment-started` to be notified by retailer when the payment process start. This route use same contract as `handle-payment` and manage a synchronization with retailer cart before sending analytics event.
+  - New route `POST /basket/payment-started` to be notified by the retailer when the payment process starts. Synchronizes the retailer cart, then sends `payment.started` when the Mealz basket total is greater than 0. Requires `store_id`, `totalPrice` > 0 and `products`. Does not take `order_id` and does not confirm the basket.
 
 #### Updated
 - *recipe-pricing* — v1 / v2
@@ -259,7 +259,7 @@ sidebar_position: 1
 ## 2.15.0 [31/07/2026]
 
 - *basket* — v1 & v2
-  - New route `POST /basket/payment-started` to be notified by retailer when the payment process start. This route use same contract as `handle-payment` and manage a synchronization with retailer cart before sending analytics event.
+  - New route `POST /basket/payment-started` to be notified by the retailer when the payment process starts. Synchronizes the retailer cart, then sends `payment.started` when the Mealz basket total is greater than 0. Requires `store_id`, `totalPrice` > 0 and `products`. Does not take `order_id` and does not confirm the basket.
 
 #### Updated
 - *recipe-pricing* — v1 / v2
