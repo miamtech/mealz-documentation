@@ -15,7 +15,7 @@ You should now have a recipe card loading through the SSR API with styles and ba
 
 ## If you are upgrading from V2
 
-Use [Migrating from V2 to V3](../migration-v2-v3) for breaking changes and a migration checklist. For a non-technical summary of why V3 helps, see [What's new](../whats-new).
+Use [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3) for breaking changes and a migration checklist. For a non-technical summary of why V3 helps, see [What's new](../whats-new).
 
 ## Checklist before going live
 

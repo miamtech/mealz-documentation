@@ -65,4 +65,4 @@ If a product has no associated recipe tag, the `html` value is an empty string.
 ## Related
 
 - [Pre-rendered components](./pre-rendered-components) — mandatory request headers and general SSR patterns
-- [Migrating from V2 to V3](../migration-v2-v3) — if you previously used client-side recipe tags
+- [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3) — if you previously used client-side recipe tags
