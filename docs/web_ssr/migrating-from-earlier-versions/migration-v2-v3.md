@@ -6,6 +6,10 @@ sidebar_position: 1
 
 This guide lists every breaking change in V3 and what to change on your side. Work through it in order.
 
+:::info
+Still calling `/v1/`? Follow [Migrating from V1 to V3](./migration-v1-v3).
+:::
+
 :::tip
 When you are done, update your `API_VERSION` constant from `v2` to `v3` in all SSR API calls.
 :::
@@ -21,6 +25,7 @@ window.mealz.supplier.setupWithToken(yourToken);
 window.mealz.pos.load(storeId);
 window.mealz.user.loadWithExternalId(userId, forbidProfiling);
 window.mealz.user.loadWithAuthlessId(authlessId);
+window.mealz.user.setLanguage(lang)
 ```
 
 **You still need to wire client-side logic, like basket sync and hooks:**
@@ -31,11 +36,12 @@ window.mealz.hook.setHookCallback(yourCallback);
 ```
 
 :::warning Changes without a page reload
-Most sites reload or navigate when the user picks another store or logs in/out. If yours does, pass the updated `store_id`, `Authorization`, or `Authless-id` on your next SSR requests. No client calls needed.
+Most sites reload or navigate when the user picks another store, changes language, or logs in/out. If yours does, pass the updated `store_id`, `Language-id`, `Authorization`, or `Authless-id` on your next SSR requests. No client calls needed.
 
 You only need client-side updates when the page **stays open**:
 
 - **Store change:** `window.mealz.pos.load(storeId)`. See [window.mealz.pos](../customization/window-mealz#windowmealzpos).
+- **Set Language:** `window.mealz.user.setLanguage(lang)`. See [window.mealz.user](../customization/window-mealz#windowmealzuser).
 - **Login:** `window.mealz.user.loadWithExternalId(userId, forbidProfiling).subscribe()`
 - **Logout:** `window.mealz.user.reset()`, then `window.mealz.user.loadWithAuthlessId(authlessId)` if the user continues as a guest. See [Handle user login and logout](../set-up-and-usage/login-and-logout).
 :::
