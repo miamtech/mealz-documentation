@@ -53,5 +53,5 @@ Every change to the Mealz SSR API or Lit components falls into one of three case
 ## Related pages
 
 - [Configure the API](../getting-started/configure-the-api): practical tip for `API_VERSION`
-- [Migrating from V2 to V3](../migration-v2-v3): an example of a Case 2 migration
+- [Migrating from V2 to V3](../migrating-from-earlier-versions/migration-v2-v3): an example of a Case 2 migration
 - [What's new](../whats-new): why V3 is worth adopting
