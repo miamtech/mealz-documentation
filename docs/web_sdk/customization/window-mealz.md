@@ -38,6 +38,7 @@ props: {aString: 'foo bar', aNumber: 5}
     Outside of this usage we don't recommand using `basket.reset()` except to quickly empty Mealz's basket for testing purposes
   :::
 - `recipeCount: () => Observable<number>`: A BehaviorSubject that emits the current number of recipes in Mealz' Basket once (it waits for the Basket to be initialized to emit).
+- `productCount: () => Observable<number>`: An Observable that emits the current number of active products in Mealz's Basket (entries with status `active` and a selected item), including standalone products not linked to a recipe. It waits for the Basket to be initialized before the first emission, then emits again whenever the product count changes. A basket with only standalone products can have `productCount() > 0` while `recipeCount() === 0`. This is broader than recipe-preview "found" entry counts, which exclude standalone products.
 - `openPreview: () => void`: Opens the recipe-modal in basket preview mode to display the recipes currently in the basket (Same action as when clicking on the FAB in the recipe-catalog)
 - `overrideTransferUrl: (url: string)`: Use in the devtools on an affiliated website to override the redirection url when transferring the cart to your website.
   Ex: Calling overrideTransferUrl('http://localhost:3000/recipes') will make the redirection url become 'http://localhost:3000/recipes?{PARAMS}'
