@@ -207,6 +207,31 @@ Fetch the matching styles with `GET /styles/catalog/my-space`. See [Fetching sty
   - `recipe_card_variant: number = 1`:
   **_(Optional)_** Select the variant for the display of the cards in the catalog. Default is 1, available values are 1, 2 and 3 (see [here](/docs/web_ssr/integration-reference/recipe-card#display-variants) for examples)
 
+## Basket preview
+
+Standalone SSR route for the **"My meals"** basket preview (the same drawer opened from the catalog FAB). Useful when you embed the preview on its own page or fragment instead of relying on the floating button alone.
+
+```
+GET https://MEALZ_SSR_API_URL/API_VERSION/catalog/my-space/basket-preview
+```
+
+- Parameters :
+
+  - `store_id: string`:
+  **_(Recommended)_** Pass the user's current store ID so the preview is initialized for that point of sale.
+
+  - `selected_tab: number`:
+  **_(Optional)_** Initial segment in the basket preview, aligned with `window.mealz.basket.openPreview` tab index (`0` recipes, `1` products). Pass `1` to open the products segment first; omit the param or pass any other value to open the recipes segment (`0`). Still applied when `show_tab_selector=false` (tabs hidden, but the chosen segment is shown).
+
+  - `show_tab_selector: boolean = true`:
+  **_(Optional)_** When `false` (or `0`), hides the recipes/products segmented control. The initial segment still follows `selected_tab`.
+
+  - `title: string = 'Mes repas'`:
+  **_(Optional)_** Drawer / page title.
+
+  - `in_drawer: boolean = true` (V3):
+  **_(Optional)_** When `false`, renders `<mealz-basket-preview>` without the drawer wrapper so you can embed it as a standalone SSR fragment.
+
 ## List Page
 
 The base url for the catalog list page will be the following:
