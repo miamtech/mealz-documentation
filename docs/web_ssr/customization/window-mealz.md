@@ -76,7 +76,7 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 - `definePushProductsToCart: (pushProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket changes to update the user's cart accordingly
 - `defineAddProductsToCart: (addProductsToCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket adds new products to update the user's cart accordingly
-- `defineRemoveProductsFromCart: (removeProductsFromCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket removes some products to update the user's cart accordingly
+- `defineRemoveProductsFromCart: (removeProductsFromCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket removes some products to update the user's cart accordingly; each product’s `quantity` is a **negative** number
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
 - `handlePayment: (total: number) => void`: Call to notify Mealz that the user's cart was paid. Mealz then refreshes the groceries-list and basket for the next user's cart
 ## window.mealz.hook
