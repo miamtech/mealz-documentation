@@ -179,15 +179,6 @@ Also:
 
 If you parse the `links` array from `GET /styles`, V3 responses no longer include a `webc-miam` CSS entry. Update any code that assumed it was always present.
 
-## 9. Basket preview `selected_tab` (unchanged)
-
-`GET /v3/catalog/my-space/basket-preview` keeps the same `selected_tab` query param as V2. Keep passing it if you already do — nothing to remove or rename.
-
-- `1` → open the products segment first
-- omitted or any other value → recipes segment (`0`)
-
-Same contract as `window.mealz.basket.openPreview` tab index (`0` recipes, `1` products). The value still applies when `show_tab_selector=false`. See [Basket preview](../integration-reference/recipe-catalog#basket-preview).
-
 ## Verification checklist
 
 Before going live:

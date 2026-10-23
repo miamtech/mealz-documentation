@@ -106,7 +106,7 @@ V3 does not ship the `webc-miam-*` selectors. Delete any you pasted into your pa
 | `webc-miam-meals-planner`, `webc-miam-meals-planner-basket-confirmation`, `webc-miam-meals-planner-basket-preview`, `webc-miam-meals-planner-catalog`, `webc-miam-meals-planner-form`, `webc-miam-meals-planner-result` | Use the SSR planner routes. See [Meals planner](../integration-reference/meals-planner). |
 | `webc-miam-store-locator`, `webc-miam-store-locator-link` | Delete the tags. Pass `store_id` on your SSR requests. |
 | `webc-miam-products-picker` | `GET /v3/recipe-to-basket` (`recipe_id` required; optional `store_id`, `serves`, `planner`, `display_infos`, `hide`). |
-| `webc-miam-basket-preview-block`, `webc-miam-basket-preview-disabled`, `webc-miam-basket-preview-line` | `GET /v3/catalog/my-space/basket-preview`. Pass `store_id` so the preview is initialized for that store. Optional `selected_tab` works as in V2 (`1` products, otherwise recipes). See [Basket preview](../integration-reference/recipe-catalog#basket-preview). |
+| `webc-miam-basket-preview-block`, `webc-miam-basket-preview-disabled`, `webc-miam-basket-preview-line` | `GET /v3/catalog/my-space/basket-preview`. Pass `store_id` so the preview is initialized for that store. |
 | `webc-miam-sponsor-*` | Delete the tags. Sponsor content is `mealz-sponsor-block` inside SSR HTML. |
 | `webc-miam-recipe-tags` | Call `GET /v3/recipe-tags` with your product IDs, then inject each returned `html` next to the matching cart line. The element is `mealz-recipe-tag`. See [Recipe tags](../integration-reference/recipe-tags). |
 
