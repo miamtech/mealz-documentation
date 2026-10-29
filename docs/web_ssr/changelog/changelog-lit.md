@@ -4,6 +4,39 @@ sidebar_position: 2
 
 # Mealz components Changelog
 
+## 3.2.12 [29/10/2026]
+
+#### Added:
+- *drawer*:
+  - Shared error toast for drawer views (replace item, recipe details), when a product cannot be added because it is unavailable.
+
+#### Fixed:
+- *recipe-details* / *init-recipe-details-drawer*:
+  - SSR deep-link now applies `data-serves` (then `?serves=`) when opening the drawer via `recipeService.openRecipeDetails`, matching the guests already resolved by `GET /v2|v3/recipe-details`.
+- *replace-item*:
+  - Replacing a product with an unavailable one keeps the original product in the basket (retailer and Mealz, price unchanged). The attempted product is marked unavailable and a drawer error toast is shown.
+  - Unavailable products in the replace drawer show a badge, faded styling, and cannot be selected again.
+- *baskets-synchronizer*:
+  - `defineRemoveProductsFromCart` now receives a negative `quantity` (amount to remove), matching V1. `definePushProductsToCart` is unchanged.
+- *product-card* / *product-card-planner*:
+  - Promo ingredient cards show strikethrough unit price plus remised price (same helpers as Remplacer).
+- *replace-item-card* / *replace-item-card-planner*:
+  - Substitution grid cards stretch to equal row height so price and CTA align across columns.
+
+## 3.2.11 [15/10/2026]
+
+#### Fixed:
+- *planner-onboarding* / *planner-onboarding-modal*:
+  - Corrected onboarding copy: « nos propositions de recettes », « Ajoutez-la simplement », « sinon passez-la », imperative « Utilisez le bouton », and a stray period before « ou cliquez » ([CU-12451cu4nx3](https://app.clickup.com/t/12451cu4nx3)).
+
+## 3.2.10 [08/10/2026]
+
+#### Fixed:
+- *analytics*:
+  - Events that omit `journey` now take the open screen (`meals-space-home`, `meals-planner-catalog`, `meals-space-recipe-details`, and the other shared-analytics journey names). A closed drawer is ignored, so `recipe.display` keeps the screen it was opened from. Unknown screens still send an empty journey.
+- *replace-item* / *replace-item-planner*:
+  - Product images on substitution cards no longer stay hidden behind the default ingredient placeholder after list recycle when the image URL changes.
+
 ## 3.2.9 [29/09/2026]
 
 #### Fixed
