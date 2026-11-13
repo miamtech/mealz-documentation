@@ -29,6 +29,36 @@ The response is an HTML fragment containing only the scripts that set up `window
 Use the same [mandatory HTTP headers](../integration-reference/pre-rendered-components#http-request-headers) as for any other Mealz SSR API request when calling this route from your server.
 :::
 
+### Client-side setup
+
+Send `setup-client-side: true` to fetch only the scripts for the current version, without the setup information, and complete the setup on the client. For example, use it when the `/v3/core` response must stay cacheable and cannot include user-specific headers. With this header, `Authorization`, `Authless-id`, and `Session-id` are optional. `Supplier-token` and `Language-id` stay required. Leave `store_id` off the URL when it would fragment the cache, and pass the store with `pos.load` after the scripts load.
+
+```
+GET https://MEALZ_SSR_API_URL/v3/core
+```
+
+```json
+{
+  "setup-client-side": "true",
+  "Supplier-token": "<your-supplier-token>",
+  "Language-id": "fr"
+}
+```
+
+The scripts start Mealz without a user or a session. Once `window.mealz` is available, complete the setup on the client:
+
+```js
+if (userId) {
+  window.mealz.user.loadWithExternalId(userId, forbidProfiling);
+} else {
+  window.mealz.user.loadWithAuthlessId(authlessId, forbidProfiling);
+}
+window.mealz.pos.load(storeId);
+window.mealz.user.loadSessionId(sessionId);
+```
+
+`loadSessionId` records the session your site already uses. Later SSR routes still require `Session-id` and return 400 until this call has run. Any other route keeps the [mandatory HTTP headers](../integration-reference/pre-rendered-components#http-request-headers).
+
 :::note Changed in V3
 V2's `GET /v2/mealz-window-bootstrap` was **renamed** to `GET /v3/core` in V3. Thus, `window.mealzInternal` is no longer available; do not rely on any of its namespaces.
 :::
@@ -143,6 +173,13 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
   :::
 
   Call `loadWithAuthlessId` only when the guest id changes **without a full page reload** (for example after logout). If the change triggers a navigation or reload, pass the updated `Authless-id` header on the next SSR request instead. See [Log out](../set-up-and-usage/login-and-logout#log-out).
+
+- `loadSessionId: (sessionId: string) => void`: Informs Mealz of the browsing session your site already uses. Pass the same value you send as `Session-id` on your other SSR requests.
+  :::note
+    `sessionId`: a stable unique id for the shopper session (for example a UUID)
+
+    Call it after a [`GET /v3/core` with client-side setup](#client-side-setup), before any later SSR request. No session exists until this call, and those requests return 400 without it.
+  :::
 
 - `reset: () => void`: Notify Mealz of a logout without page reload. See [Log out](../set-up-and-usage/login-and-logout#log-out).
 - `setLanguage: (lang: string) => void`: Sets the active language (ISO 639-1 or your custom language code).
