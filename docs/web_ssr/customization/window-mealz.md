@@ -162,17 +162,21 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 
 - `loadWithExternalId: (id, forbidProfiling = false) => void`: Notifies Mealz that the user has logged in.
   :::warning
-    **Deprecated for page-load setup.** In V3, the logged-in user is initialized from the `Authorization` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+    **Deprecated for the usual page-load setup.** In most cases, V3 initializes the logged-in user from the `Authorization` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+
+    This method stays available in V3 for a [client-side setup](#client-side-setup) or a [login without a full page reload](../set-up-and-usage/login-and-logout#log-in).
   :::
 
-  Call `loadWithExternalId` only when the user logs in **without a full page reload**. If login triggers a navigation or reload, pass the updated `Authorization` header on the next SSR request instead. See [Log in](../set-up-and-usage/login-and-logout#log-in).
+  For a login **without a full page reload**, call `loadWithExternalId`. If login triggers a navigation or reload, pass the updated `Authorization` header on the next SSR request instead.
 
 - `loadWithAuthlessId: (id, forbidProfiling = false) => void`: Notifies Mealz of a guest (authless) session.
   :::warning
-    **Deprecated for page-load setup.** In V3, the guest session is initialized from the `Authless-id` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+    **Deprecated for the usual page-load setup.** In most cases, V3 initializes the guest session from the `Authless-id` header on your SSR requests. See [Migrating from V2 to V3](../migration-v2-v3) if you are upgrading.
+
+    This method stays available in V3 for a [client-side setup](#client-side-setup) or a guest id change [without a full page reload](../set-up-and-usage/login-and-logout#log-out).
   :::
 
-  Call `loadWithAuthlessId` only when the guest id changes **without a full page reload** (for example after logout). If the change triggers a navigation or reload, pass the updated `Authless-id` header on the next SSR request instead. See [Log out](../set-up-and-usage/login-and-logout#log-out).
+  When the guest id changes **without a full page reload** (for example after logout), call `loadWithAuthlessId`. If the change triggers a navigation or reload, pass the updated `Authless-id` header on the next SSR request instead.
 
 - `loadSessionId: (sessionId: string) => void`: Informs Mealz of the browsing session your site already uses. Pass the same value you send as `Session-id` on your other SSR requests.
   :::note
