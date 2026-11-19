@@ -78,6 +78,25 @@ export class Mealz {
 }
 ```
 
+### When you do not send the cart lines
+
+`retailerBasketChanged` sends the products currently in your cart. If Mealz already stores its own basket (synced basket) and you only need Mealz to react to a change on your side, call one of the two methods on `window.mealz.basketSyncV2`. They take no arguments.
+
+- **`notifyRetailerCartChanged(): void`** — your cart changed and still contains items. Mealz refetches the basket shown on the recipe, in the drawer, and in the basket preview.
+- **`notifyRetailerCartEmptied(): void`** — the shopper emptied the cart. Mealz clears its basket and updates recipe cards back to "add". Call this instead of `notifyRetailerCartChanged`, not after it.
+
+Components that mount later on the same page still receive the call. After a full reload (a reload right after “clear cart”, before Mealz was on screen), call `notifyRetailerCartEmptied` again once `window.mealz.basketSyncV2` exists.
+
+```ts
+function onRetailerCartUpdated(cart) {
+  if (cart.products.length === 0) {
+    window.mealz.basketSyncV2.notifyRetailerCartEmptied();
+    return;
+  }
+  window.mealz.basketSyncV2.notifyRetailerCartChanged();
+}
+```
+
 - **`handlePayment(total: number): void`** - Notifies Mealz of a successful payment, with the total price of the paid cart.
 
 ```ts
