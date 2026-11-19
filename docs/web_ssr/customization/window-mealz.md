@@ -109,6 +109,23 @@ See [basket synchronization](../set-up-and-usage/basket-synchronization)
 - `defineRemoveProductsFromCart: (removeProductsFromCart: (products: ComparableProduct[]) => void) => void`: The callback parameter is called when Mealz's basket removes some products to update the user's cart accordingly
 - `retailerBasketChanged: (comparableProducts: ComparableProduct[]) => void`: Call to notify Mealz that the user's cart has been updated
 - `handlePayment: (total: number) => void`: Call to notify Mealz that the user's cart was paid. Mealz then refreshes the groceries-list and basket for the next user's cart
+
+## window.mealz.basketSyncV2
+
+Use these methods when Mealz should reload its own basket after a change in your cart, and you do not send the cart lines. Call **one** method per update.
+
+- `notifyRetailerCartChanged: () => void`: The cart changed and still has items. Recipe pages, the recipe drawer, and the basket preview refetch the Mealz basket.
+- `notifyRetailerCartEmptied: () => void`: The cart was emptied (clear cart, remove all). Mealz resets its basket and shows recipes as ready to add. Components that mount later on the same page still receive it. After a full reload, call the method again once `window.mealz.basketSyncV2` exists.
+
+```ts
+window.mealz.basketSyncV2.notifyRetailerCartChanged();
+window.mealz.basketSyncV2.notifyRetailerCartEmptied();
+```
+
+Do not call both for the same update. Do not pass quantities or product ids: each Mealz component refetches what it displays.
+
+`basketSync.retailerBasketChanged(products)` remains the method that sends your cart lines. Use that when you synchronize by pushing the cart contents. Use `basketSyncV2` when Mealz already knows its basket and only needs to know that your cart changed.
+
 ## window.mealz.hook
 - `setHookCallback(callback: (isLogged, isStoreValid) => boolean) => void`: [Set up hook callback](../set-up-and-usage/hooks)
 - `setForcePosCallback: (callback: (posExtId: string) => boolean) => void`: [Receiving baskets from affiliated websites](./affiliated-websites)
