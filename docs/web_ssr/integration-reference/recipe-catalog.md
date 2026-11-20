@@ -73,6 +73,10 @@ Clicking the trash icon next to a recipe in the drawer will remove that recipe f
 
 The category, My Space and list pages each return a response with only 20 recipes in the list, but more recipes are automatically fetched on scroll from the client-side.
 
+On the home page, each category row first shows `max_recipes_per_category` recipes. On mobile and tablet, where the rows scroll horizontally, the next recipes of the category are automatically fetched from the client-side when the user gets close to the end of a row, with the same number of recipes per request, until the category has no more recipes. The added recipe cards show prices, promotion badges and likes the same way as the first cards of their row.
+
+When the user comes back to the home page from a recipe or a category page in the same browser tab, the page restores its vertical scroll position and the horizontal position of each row, reloading the recipes that had already been fetched. This position is kept in the tab's session storage for 30 minutes, and is reset when the user changes their preferences.
+
 ## Routing
 
 Links between catalog pages (toolbar, category "See all", search, My Space tabs, promotions, and so on) point to URLs on your website. Those URLs are **client-dependent**: we configure them on our side from the catalog page URLs you use in prod and pre-prod.
@@ -96,7 +100,7 @@ GET https://MEALZ_SSR_API_URL/API_VERSION/catalog
   **_(Recommended)_** We need your store ID to display the prices of the recipes, to fetch the recipes in basket informations and to hide recipes with primary ingredients not available in your store, so ideally it should be passed if the user has chosen a store
 
   - `max_recipes_per_category = 6`:
-  **_(Recommended)_** Specify a maximum number of recipes to display per category. In our base design, we have 1 row of recipes per category and recipes should ideally fill the space available. So it is in your interest to fetch exactly the number of recipes that can be displayed on 1 row on the user's screen.
+  **_(Recommended)_** Specify a maximum number of recipes to display per category. In our base design, we have 1 row of recipes per category and recipes should ideally fill the space available. So it is in your interest to fetch exactly the number of recipes that can be displayed on 1 row on the user's screen. This value is also the number of recipes fetched each time a row loads more recipes on horizontal scroll.
 
   - `display_infos: boolean = false`:
   **_(Optional)_** By default, the recipe-cards doesn't show the preparation time and difficulty af the recipe but if you want to display them you can set display_infos to true
