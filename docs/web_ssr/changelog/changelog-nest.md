@@ -4,6 +4,60 @@ sidebar_position: 1
 
 # Mealz SSR API Changelog
 
+## 3.4.0 [29/10/2026]
+
+#### Internal
+- CI/CD moved from GitLab to GitHub Actions (`verify`) and Cloud Build (`cloudbuild.yaml`); `.gitlab-ci.yml` and `.gitlab/` removed. Runtime images on `node:22-alpine`.
+
+#### Added
+- *catalog/my-space/basket-preview* — v3
+  - Optional query `selected_tab`: `1` opens the products segment first; any other value (including omitted) opens the recipes segment (`0`), matching the SDK basket preview tab index used by `openPreview` ([CU-12451cu8dft](https://app.clickup.com/t/12451cu8dft)).
+- *recipe-details* — v3
+  - `GET /v3/recipe-details` — same contract as v2 (`recipe_id` / `recipe_ext_id`, optional `initial_tab_index`, `serves`, `store_id`, `mealz_store_id`); v3 Lit core + `init-recipe-details-drawer` ([CU-12451cu65b9](https://app.clickup.com/t/2188392/12451cu65b9)).
+- *supplier-selector* — v3
+  - `GET /v3/supplier-selector` — same contract as v2; v3 Lit core + `init-supplier-selector-drawer` ([CU-12451cu65b9](https://app.clickup.com/t/2188392/12451cu65b9)).
+- *recipe-card* — v3
+  - `POST /v3/recipe-card/multiple-raw` — request body `{ contexts: [{ position, productIds }] }` with query `store_id`; response `{ data: [{ recipeId, position }] }` (distinct from HTML `POST /v3/recipe-card/multiple`) ([CU-12451cu65b9](https://app.clickup.com/t/2188392/12451cu65b9)).
+- *recipe-card* & *recipe-pricing* — v3
+  - Optional query parameter `recipe_ext_id`: resolve the recipe from the retailer's external recipe ID (`GET /recipes/external/:id`), mirroring v1/v2 ([CU-12451cu64q1](https://app.clickup.com/t/2188392/12451cu64q1)).
+  - `recipe_id` takes precedence when both `recipe_id` and `recipe_ext_id` are provided (including for `inBasket` computation on `recipe-card`).
+  - An unknown `recipe_ext_id` without `recipe_id` returns **404 Not Found**.
+
+#### Fixed
+- *planner-recipe-suggestion* — v2 & v3
+  - Guard first-card include when `recipeDisplayed` is null (empty suggest for a new/unknown POS).
+- *demo* — nextjs
+  - The demo retailer cart now applies the `quantity` received by `defineRemoveProductsFromCart` as the V1 signed delta (negative = amount to remove) instead of negating it a second time; aligns with components 3.2.12 ([CU-12451cu6hdw](https://app.clickup.com/t/2188392/12451cu6hdw)).
+
+#### Removed
+- *client-scripts* — v1/v2
+  - Removed `GET /v1|v2/client-scripts/recipe-card-show-tracking.js` (`ClientScriptsController`). Use `window.mealz.analytics.attachRecipeCardShowTracking` instead ([CU-12451cu65b9](https://app.clickup.com/t/2188392/12451cu65b9)).
+
+#### Updated
+- *env* - bump mealz-components CDN in `.env.uat` / `.env.production`: V3 `@3.2.12`.
+
+## 3.3.15 [26/10/2026]
+
+#### Internal
+- Dependency update so production `npm audit` (high) passes: `@nestjs/platform-express` 11.2.8 (`multer` 2.5.0, `body-parser` 2.4.0), via `npm audit fix`.
+
+#### Updated
+- *env* - bump SDK V1 CDN in `.env.uat` / `.env.production`: `SDK_WEBC_URL_V1` / `MIAM_STYLE_URL_V1` `@9.1.34` (ligne 9.1.x, fix Intermarché).
+
+## 3.3.14 [15/10/2026]
+
+#### Updated
+- *env* - bump mealz-components CDN in `.env.uat` / `.env.production`: V3 `@3.2.11`.
+
+## 3.3.13 [08/10/2026]
+
+#### Internal
+- Demo supplier-defaults: align UAT remap — Carrefour BE `supplierId` 27→25, CuisineAZ 29→28, Cuisine Actuelle 30→29; add Carrefour BE entry ([CU-12451cu5fwp](https://app.clickup.com/t/12451cu5fwp)).
+- Dependency overrides so production `npm audit` (high) passes: `brace-expansion` 5.0.12, `@grpc/grpc-js` 1.14.5, `proxy-addr` 2.0.8, and `chokidar` 4 so `nestjs-i18n` no longer installs unpatched `braces` 3.
+
+#### Updated
+- *env* - bump mealz-components CDN in `.env.uat` / `.env.production`: V3 `@3.2.10`.
+
 ## 3.3.12 [29/09/2026]
 
 #### Fixed
